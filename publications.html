@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<title>Benchawan Wiwatanapataphee | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {
+    font-family: Arial, Helvetica, sans-serif;}
+
+/* Profile image style */
+img.profile {
+  width: 240px;
+  height: 240px;
+  border-radius: 20%;
+  box-shadow: 10px 10px 10px #8d8c8a;
+  margin-top: 24px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tab {display: inline-block;
+    margin-left: 40px;}
+
+</style>
+
+<script>
+  // Accordion
+  function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+      x.className = x.className.replace("w3-show", "");
+      x.previousElementSibling.className = 
+      x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+  }
+  
+  // Used to toggle the menu on smaller screens when clicking on the menu button
+  function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else { 
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+  </script>
+
+<script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+
+     <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+
+     <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Experience</i></a>
+
+     <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Supervision</i></a>
+
+     <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Publication">Publications</a>
+     </div>
+
+    </div>
+   </div>
+   
+   <!-- Navbar on small screens -->
+   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+     <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
+     <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
+     <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
+   </div>
+   
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container w3-center">
+          <img class="profile" src="media/self.png" alt="Avatar">
+
+        </div>
+        <div class="w3-container">
+          <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan Wiwatanapataphee, PhD</p>
+
+         
+            
+          <!-- Current details -->
+          <p><i class="fab fa-orcid fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://orcid.org/0000-0003-1875-6984" target="_blank">0000-0003-1875-6984</a></p>
+          <p><i class="fa fa-flask fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://www.researcherid.com/rid/E-5421-2010" target="_blank">ResearcherID</a></p>
+          <p><i class="fa fab fa-google fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
+          <p><i class="fa fa-linkedin-square fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" target="_blank">LinkedIn Profile</a></p>
+          <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://github.com/Ben-wiwat.github.io" title="Github Profile" target="_blank">GitHub Profile</a></p>
+        
+          <hr>
+          <p class="w3-large"><b><i class="fas fas fa-chart-line fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Publication Stats</a></b></p>
+          <table class="w3-table w3-striped w3-hoverable">
+            <tr>
+              <td>Patent</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Books</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Journal Articles</td>
+              <td>94</td>
+            </tr>
+            <tr>
+              <td>Proceedings</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td>Citations</td>
+              <td>1367</td>
+            </tr>
+            <tr>
+              <td>h-index</td>
+              <td>19</td>
+            </tr>
+            <tr>
+              <td>i10-index</td>
+              <td>32</td>
+            </tr>
+          </table>
+          <br>
+          <canvas id="myChart" style="max-width:90%;height:200px"></canvas>
+          <script>
+            function adjust(color, amount) {
+              return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+            }
+            
+            
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+                datasets: [{
+                  label: 'Citations per year',
+                  backgroundColor: [],
+                  data: [99, 101, 149, 143, 145, 104, 110, 87],
+                }],
+              },
+              options: {
+                scales: {
+                  y: {
+                    max: 160,
+                    min: 0,
+                    ticks: {
+                      stepSize: 40,
+                      autoSkip: false
+                    }
+                  }
+                }
+              }
+            });
+            
+            let dataset = myChart.data.datasets[0];
+            
+            let data = dataset.data;
+            let data_ord = [...data].sort();
+            
+            let plus = 0;
+            
+            for (let i = 0; i < data_ord.length; i++) {
+              let value = data_ord[i];
+              dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
+              plus -= 10
+            }
+            myChart.update();
+            </script>
+
+          <hr>
+          <!--Research Interest-->
+          <p class="w3-large"><b><i class="fas fa-microscope fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Research Interest</a></b></p>
+          <ul>
+            <li>Applied and Computational Mathematics</li>
+            <li>Modelling and Optimisation in Industrial Management</li>
+            <li>Approximation theory and asymptotic methods</li>
+            <li>Numerical solution of differential and integral eqs.</li>
+            <li>Computational Finance</li>
+            <li>Computational Statistics and Data Analysis</li>
+          </ul>
+
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+
+      <!-- Patent -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"> <i class="fa fas fa-file-signature w3-margin-right w3-xxlarge w3-text-theme"></i>Patent</h2>
+        <object data="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211" type="application/pdf" width="100%" height="500px">
+            <p>Unable to display PDF file. <a href="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211">Download</a> instead.</p>
+          </object>
+      </div>
+      
+      <!-- Books -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fas fa-book fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Books</h2>
+        <div class="w3-container">
+          <ul class="w3-ul w3-hoverable">
+            <li>YH Wu, B.Wiwatanapataphee, Numerical Methods: Theories and Algorithms.  Physics Center Press Limited Partnership, Bangkok, Thailand, 2007, ISBN: 978-974-434-897-5</li>
+            <li>YH Wu, B. Wiwatanapataphee, Finite Element Method and Applications, MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-8-8</li>
+            <li>B. Wiwatanapataphee, Program Design: C++, Fortran 95, MATLAB. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-7-X</li>
+          </ul>
+        </div>
+      <br>
+      </div>
+
+      <!-- Highlighted Publications -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-star fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Highlighted Publications</h2>
+      </div>
+
+      
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-theme w3-center w3-margin-top">
+  <p>Get the print version here <a href="media/CV.pdf"><i class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+</html>

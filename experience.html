@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<title>Benchawan Wiwatanapataphee | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {
+    font-family: Arial, Helvetica, sans-serif;}
+
+/* Profile image style */
+img.profile {
+  width: 235px;
+  height: 235px;
+  border-radius: 20%;
+  box-shadow: 10px 10px 10px #8d8c8a;
+  margin-top: 24px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tab {display: inline-block;
+    margin-left: 40px;}
+
+</style>
+
+<script>
+  // Accordion
+  function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+      x.className = x.className.replace("w3-show", "");
+      x.previousElementSibling.className = 
+      x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+  }
+  
+  // Used to toggle the menu on smaller screens when clicking on the menu button
+  function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else { 
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+  </script>
+
+<script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+
+     <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+
+     <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Experience</i></a>
+
+     <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Supervision</i></a>
+
+     <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Publication">Publications</a>
+     </div>
+
+    </div>
+   </div>
+   
+   <!-- Navbar on small screens -->
+   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+     <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
+     <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
+     <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
+   </div>
+   
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container w3-center">
+          <img class="profile" src="media/self.png" alt="Avatar">
+        </div>
+        <div class="w3-container">
+          <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan Wiwatanapataphee, PhD</p>
+         <hr>
+         <!-- Social Links-->
+         <p class="w3-center w3-justify" style="width: 100%;">
+          <a href="https://staffportal.curtin.edu.au/staff/profile/view/benchawan-wiwatanapataphee-f71b0483/" title="Curtin Staff Profile" target="_blank"><i class="fa fa-university w3-text-theme w3-hover-opacity" style="font-size:32px;vertical-align:middle;"></i></a>
+          <a href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" title="Linkedin Profile" target="_blank"><i class="fa fa-linkedin-square fa-fw w3-text-theme w3-hover-opacity" style="font-size:34px;vertical-align:middle;"></i></a>
+          <a href="https://orcid.org/0000-0003-1875-6984" title="Orcid Profile" target="_blank" style="text-decoration: none; ">
+          <b class="w3-xlarge w3-text-white w3-theme w3-hover-opacity" style="padding-left: 3.5px; padding-right:3.5px; padding-top:3.5px; padding-bottom:0.5px; vertical-align:-6px; border-radius: 6.5px;">iD</b></a>
+          <a href="https://www.researcherid.com/rid/E-5421-2010" title="ResearcherID" target="_blank"><i class="fa fa-flask fa-fw w3-text-theme w3-hover-opacity" style="font-size:32px;vertical-align:middle;"></i></a>
+          <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" title="Google Scholar" target="_blank"><i class="fa fab fa-google fa-fw w3-text-theme w3-hover-opacity" style="font-size:32px;vertical-align:middle; margin-left:-7px"></i></a>
+          <a href="https://github.com/Ben-wiwat" title="Github Profile" target="_blank" title="Github"><i class="fa fa-github w3-xxlarge w3-text-theme w3-hover-opacity" style="vertical-align:-8px;"></i></a>
+          </p>
+        </div>
+        <br>
+      </div> <br>
+
+    <!--Other Professional and Academic Services-->
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <p class="w3-large"><b><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i>Professional and Academic Services</b></p>
+        <div class="w3-responsive">
+            <ul>
+                <li><b>Grant Assessment</b></li>
+                <ul>
+                <li>The Australian Research Council (ARC)</li>
+                <li>Thailand Research Funds (TRF)</li>
+                <li>National Science and Technology Development Agency (NSTDA)</li>
+                <li>National Research Council of Thailand (NRCT) </li> <br>
+                </ul>
+                <li><b>Journal Editing</b></li>
+                <ul>
+                <li>A Special Issue of the International Journal of Differential Equations (Current)</li>
+                <li>Cogent Mathematics (Comp. Sci. section)</li>
+                <li>A Special Issue of Mathematical Problems in Engineering</li>
+                <li>Abstract and Applied Analysis special issue: Nonlinear Functional Analysis of Complex Boundary Value Problems</li>
+                <li>A Special Issue of Dynamics of Discrete, Continuous and Impulsive System B</li> <br>
+                </ul>
+                <li><b>Journal Review Service</b></li>
+                <ul>
+                <li>Computer and Mathematics with Application</li>
+                <li>Nonlinear Analysis - Theory Methods and Applications</li>
+                <li>Advances in Differential Equations, Applied Mathematical Modelling</li>
+                <li>The Songklanakarin Journal of Science and Technology</li>
+                <li>Meccanica (MECC)</li>
+                <li>Applied Bionics and Biomechanics</li>
+                <li>Mathematical Biosciences and Engineering (MBE)</li><br>
+                </ul>
+                <li><b>PhD Thesis Examination</b></li>
+                <ul>
+                <li>International</li>
+                <ul>
+                    <li>BASR University Of Karachi, Pakistan</li>
+                    <li>Visvesvaraya Technological University, Karnataka state, India</li>
+                </ul>
+                <li>Thailand</li>
+                <ul>
+                    <li>Chulalongkorn University</li>
+                    <li>Silpakorn University</li>
+                    <li>Thammasat University</li>
+                    <li>King Mongkot Institute</li>
+                </ul>
+                </ul>
+            </ul>
+        </div>
+        </div>
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+        <!-- Teaching -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fas fa-chalkboard-teacher fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Teaching</h2>
+        <div class="w3-responsive">
+            <ul>
+                <li><b>Curriculum Development</b></li>
+                <ul>
+                    <li>Strategic development for the <a href="https://www.curtin.edu.au/study/offering/course-ug-financial-mathematics-major-bsc-science--mjru-fnmatv1/" target="_blank"><b>BSc (Financial Mathematics)</b></a> course at Curtin, which now attracts more and more international students and has led to the establishment of several articulation agreements with Universities in China.  </li>
+                    <li>Strategic establishment for the <a href="https://mathematics.sc.mahidol.ac.th/programs/bsc-actuarial-science/" target="_blank"><b>BSc (Actuarial Science)</b></a>program at Mahidol University as the then Deputy Department Head, and currently the program attracts over 50 new students each year, and some of them will complete their final three semesters of study at Curtin based on a Curtin-Mahidol agreement.</li>
+                </ul>
+                <li><b>UG and PG units taught at Curtin University</b></li>
+                <ul>
+                    <li>Industrial Engineering Project</li>
+                    <li>Advanced Numerical Analysis</li>
+                    <li>Applied Mathematical Modelling</li>
+                    <li>Applied Mathematics Topics</li>
+                    <li>Computational Mathematics</li>
+                    <li>Supply Chain Modelling and optimisation</li>
+                    <li>Vector Calculus</li>
+                    <li>Advanced Topics in Applied and Computational Mathematics (Curtin-YSU program)</li>
+                    <li>Supply Chain Modelling and Optimisation (Curtin-YSU program) </li>
+                </ul>
+            </ul>
+
+        </div>
+        
+        </div>
+        <!-- Invited Speaker -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fas fa-microphone fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Invited Speaker for International Conferences</h2>
+        <div class="w3-responsive">
+            <table class="w3-table w3-striped">
+                <tr>
+                    <th>Date</td>
+                    <th>Description</td>
+                </tr>
+                <!-- <tr>
+                    <td style="white-space: nowrap;">16-18 Dec 2018</td>
+                    <td>The 2018 International Conference in Mathematics and Applications, The Century Park Hotel, Bangkok, Thailand</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">4-6 Dec 2016</td>
+                    <td>The Australasian Biomechanics Conference, The University of Melbourne, Woodward Conference Centre, Melbourne, Australia</td>
+                </tr> -->
+                <tr>
+                    <td style="white-space: nowrap;">3-8 Dec 2012</td>
+                    <td>The 2012 International Conference on Optimization and Control (ICO2012), Beijing, China</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">28-29 Jul 2012</td>
+                    <td>The 3rd International Symposium on Mathematics and Applied Mathematics (MAM2012), Thailand</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">17-19 Oct 2012</td>
+                    <td>The 38th Congress on Science and Technology of Thailand (STT), Chiang Mai, Thailand</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">1-3 Feb 2012</td>
+                    <td>The Franco-Thai Symposium, Thailand</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">10-12 Oct 2012</td>
+                    <td>The 37th Congress on Science and Technology of Thailand (STT), Bangkok</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">18-23 Jul 2010</td>
+                    <td>The International Conference on Optimization and Control (ICO2010), Guiyang, China</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">9-11 Jan 2007</td>
+                    <td>Asian Simulation and Modeling (ASIMMOD) 2007, Chiang Mai, Thailand</td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        
+        </div>
+        <!--Leadership-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-users fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Leadership Experience</h2>
+        <div class="w3-responsive">
+            <table class="w3-table w3-striped">
+                <tr>
+                    <th>Year</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2017 - now</td>
+                    <td>Deputy to the Postgraduate Course Coordinator in Mathematics and Statistics, Curtin University, responsible in particular for the master programs including MSc (Math Sci) and MSc (IE). The MSc (IE) was ranked top 7 in the field of Industrial and Operations Management in the <a href="https://www.best-masters.com/ranking-master-industrial-and-operations-management-in-oceania.html" target="_blank">2023 Eduniversal Best Masters Ranking</a></td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2019 - now</td>
+                    <td>Project Manager for the ARC linkage project <a href="https://sbenrc.com.au/research-programs/2-56arc/" target="_blank">LP170100341</a> responsible for assisting the project leader for quarterly research reports and organizing quarterly meetings with industrial partners (MRWA and Roads and Maritime Services NSW)</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2017 - Now</td>
+                    <td>Coordinator for the Mahidol - Curtin articulation Program</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2012 - 2014</td>
+                    <td>Member of the Academic Promotion Committee for the Thailand Higher Education Commission (OHEC), MOE, Thailand</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2005 - 2012</td>
+                    <td>Deputy Head of the Department of Mathematics, Mahidol University</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2000 - 2004</td>
+                    <td>PhD Program Chair, Department of Mathematics, Mahidol University</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2004 - 2008</td>
+                    <td>Member of the University Research Grant Committee, Mahidol University</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2012 - 2014</td>
+                    <td>Member of the Faculty of Science Screening Committee for Academic Promotion, Mahidol University</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">2000 - 2014</td>
+                    <td>Evaluation Committee for Staff Performance, Department of Mathematics and Statistics, Mahidol University</td>
+                </tr>
+                    
+            </table>
+        </div>
+        <br>
+      </div>
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-theme w3-center w3-margin-top">
+  <p>Get the print version here <a href="media/CV.pdf"><i class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+</html>
