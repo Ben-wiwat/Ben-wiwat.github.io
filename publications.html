@@ -54,6 +54,7 @@ img.profile {
 
 <script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 
 <body class="w3-theme-l5">
 
@@ -223,9 +224,9 @@ img.profile {
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fas fa-book fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Books</h2>
         <div class="w3-container">
           <ul class="w3-ul w3-hoverable">
-            <li>YH Wu, B.Wiwatanapataphee, Numerical Methods: Theories and Algorithms.  Physics Center Press Limited Partnership, Bangkok, Thailand, 2007, ISBN: 978-974-434-897-5</li>
-            <li>YH Wu, B. Wiwatanapataphee, Finite Element Method and Applications, MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-8-8</li>
-            <li>B. Wiwatanapataphee, Program Design: C++, Fortran 95, MATLAB. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-7-X</li>
+            <li>YH Wu, B.Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/numerical-methods-theories-and-algorithms/" target="_blank">Numerical Methods: Theories and Algorithms</a></b>.  Physics Center Press Limited Partnership, Bangkok, Thailand, 2007, ISBN: 978-974-434-897-5</li>
+            <li>YH Wu, B. Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/category/finite-element-method-and-applications/" target="_blank">Finite Element Method and Applications</a></b>. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-8-8</li>
+            <li>B. Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/program-design-using-cf95matlab/" target="_blank">Program Design: C++/Fortran 95/MATLAB</a></b>. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-7-X</li>
           </ul>
         </div>
       <br>
@@ -234,6 +235,89 @@ img.profile {
       <!-- Highlighted Publications -->
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-star fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Highlighted Publications</h2>
+        <div class="w3-responsive">
+          <table id="pubTable" class="w3-table w3-striped w3-hoverable">
+            <tr>
+              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(1)')" style="cursor: pointer;">Title <i class="fas fa-caret-down"></i></th>
+              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(2)')" style="white-space: nowrap;cursor: pointer;">Cited By <i class="fas fa-caret-down"></i></th>
+              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(3)')" style="cursor: pointer;">Year <i class="fas fa-caret-down"></i></th>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.1016/j.amc.2014.02.062" target="_blank">The eigenvalue for a class of singular p-Laplacian fractional differential equations involving the Riemann-Stieltjes integral boundary condition</a><br>
+              <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
+              Applied Mathematics and Computation 235, 412-422</span></td>
+              <td>126</td>
+              <td>2014</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.1016/j.aml.2016.10.015" target="_blank">Nontrivial solutions for a fractional advection dispersion equation in anomalous diffusion</a><br>
+              <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
+                Applied Mathematics Letters 66, 1-8</span></td>
+              <td>113</td>
+              <td>2017</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.1016/j.amc.2014.12.068" target="_blank">The spectral analysis for a singular fractional differential equation with a signed measure</a><br>
+              <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
+                Applied Mathematics and Computation 257, 252-263</span></td>
+              <td>102</td>
+              <td>2015</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=b69b7ef72460b92c63efa66e1c905d025e7ede7c" target="_blank">Effect of non-Newtonian behaviour of blood on pulsatile flows in stenotic arteries</a><br>
+              <span class="w3-text-theme w3-small">S Amornsamankul, B Wiwatanapataphee, YH Wu, Y Lenbury<br>
+                International Journal of Biological and Medical Sciences 1 (1), 42-46</span></td>
+              <td>53</td>
+              <td>2006</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.1155/2012/512127" target="_blank">Positive solutions of eigenvalue problems for a class of fractional differential equations with derivatives</a><br>
+              <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
+                Abstract and Applied Analysis 2012</span></td>
+              <td>51</td>
+              <td>2012</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://www.researchgate.net/profile/I-Ming-Tang-2/publication/267917183_A_SEIQR_model_for_pandemic_influenza_and_its_parameter_identification/links/5ab1cf7ba6fdcc1bc0bff393/A-SEIQR-model-for-pandemic-influenza-and-its-parameter-identification.pdf" target="_blank">A SEIQR model for pandemic influenza and its parameter identification</a><br>
+              <span class="w3-text-theme w3-small">W Jumpen, B Wiwatanapataphee, YH Wu, IM Tang<br>
+                International Journal of Pure and Applied Mathematics 52 (2), 247-265</span></td>
+              <td>49</td>
+              <td>2009</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.1016/j.physa.2008.06.043" target="_blank">Pressure-driven transient flows of Newtonian fluids through microtubes with slip boundary</a><br>
+              <span class="w3-text-theme w3-small">YH Wu, B Wiwatanapataphee, M Hu<br>
+                Physica A: Statistical Mechanics and Its Applications 387 (24), 5979-5990</span></td>
+              <td>41</td>
+              <td>2008</td>
+            </tr>
+            <tr class="item">
+              <td><a href="http://www.aimspress.com/article/10.3934/mbe.2012.9.199" target="_blank">Effect of branchings on blood flow in the system of human coronary arteries</a><br>
+              <span class="w3-text-theme w3-small">B Wiwatanapataphee, YH Wu, T Siriapisith, B Nuntadilok<br>
+                Mathematical Biosciences and Engineering 9 (1), 199-214</span></td>
+              <td>39</td>
+              <td>2012</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://doi.org/10.3141/1999-02" target="_blank">Mixed traffic flow in anisotropic continuum model</a><br>
+              <span class="w3-text-theme w3-small">CF Tang, R Jiang, QS Wu, B Wiwatanapataphee, YH Wu<br>
+                Transportation research record 1999 (1), 13-22</span></td>
+              <td>39</td>
+              <td>2007</td>
+            </tr>
+            <tr class="item">
+              <td><a href="https://www.aimspress.com/fileOther/PDF/MBE/1551-0018_2006_2_371.pdf" target="_blank">Simulation of pulsatile flow of blood in stenosed coronary artery bypass with graft</a><br>
+              <span class="w3-text-theme w3-small">B Wiwatanapataphee, D Poltem, YH Wu, Y Lenbury<br>
+                Mathematical Biosciences and Engineering 3 (2), 371</span></td>
+              <td>39</td>
+              <td>2006</td>
+            </tr>
+          </table>
+        </div>
+        <br>
+        <div class="w3-container w3-center">
+          <p>More <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank"></a><i class="fas fa-caret-down fa-fw w3-large w3-hover-opacity" style="cursor: pointer;"></i></p>
+        </div>
       </div>
 
       
