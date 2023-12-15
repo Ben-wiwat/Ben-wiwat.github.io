@@ -8,8 +8,17 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
 html,body,h1,h2,h3,h4,h5,h6 {
     font-family: Arial, Helvetica, sans-serif;}
+
+table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}
 
 /* Profile image style */
 img.profile {
@@ -113,17 +122,17 @@ img.profile {
                     <tr>
                       <td>PhD</td>
                       <td>3</td>
-                      <td>32</td>
+                      <td>34</td>
                     </tr>
                     <tr>
                       <td>Masters/Honours</td>
-                      <td>1</td>
-                      <td>6</td>
+                      <td>0</td>
+                      <td>22</td>
                     </tr>
                     <tr>
                       <td>Undergraduate</td>
                       <td>0</td>
-                      <td>14</td>
+                      <td>26</td>
                     </tr>
                   </table>
             </div>
@@ -147,19 +156,19 @@ img.profile {
               <th>Supervision Status</th>
             </tr>
             <tr>
-              <td>1</td>
+              <td class="counterCell"></td>
               <td>Liyuan Zhang</td>
               <td>2021</td>
               <td>Co-supervision</td>
             </tr>
             <tr>
-              <td>2</td>
+              <td class="counterCell"></td>
               <td>Afnan Almuhaysh</td>
               <td>2022</td>
               <td>Co-Supervision</td>
             </tr>
             <tr>
-              <td>3</td>
+              <td class="counterCell"></td>
               <td>Shaofan Yao</td>
               <td>2023</td>
               <td>Co-supervision</td>
@@ -177,197 +186,209 @@ img.profile {
             <tr>
               <th></th>
               <th>Name</th> 
-              <th style="white-space: nowrap;">Graduation Year</th>
-              <th style="white-space: nowrap;">Current Employment</th>
+              <th>Graduation Year</th>
+              <th>Current Employment</th>
             </tr>
             <tr>
-              <td>1</td>
-              <td style="white-space: nowrap;"><a href="https://www.linkedin.com/in/amani-otaif-5865698a/">Amani Ahmed A Otaif</a></td>
-              <td>2023</td>
-              <td>Jazan University</td>
-            </tr>
-            <tr>
-              <td>2</td>
+              <td class="counterCell"></td>
               <td style="white-space: nowrap;"><a href="https://faculty.psau.edu.sa/en/psau/facultymember/f.aljuaydi" target="_blank">Fahad Aljuaydi</a></td>
               <td>2023</td>
               <td>Prince Sattam Bin Abdulaziz University</td>
             </tr>
             <tr>
-                <td>3</td>
+              <td class="counterCell"></td>
+              <td style="white-space: nowrap;"><a href="https://www.linkedin.com/in/amani-otaif-5865698a/">Amani Ahmed A Otaif</a></td>
+              <td>2023</td>
+              <td>Jazan University</td>
+            </tr>
+            <tr>
+              <td class="counterCell"></td>
+              <td style="white-space: nowrap;">Nabubie Bashiruddin</td>
+              <td>2023</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="counterCell"></td>
                 <td style="white-space: nowrap;"><a href="https://ieeexplore.ieee.org/author/37089300234" target="_blank">Chuanye Gu</a></td>
                 <td>2022</td>
                 <td>Guangzhou University, China</td>
             </tr>
             <tr>
-                <td>4</td>
+              <td class="counterCell"></td>
                 <td style="white-space: nowrap;"><a href="https://www.aminer.org/profile/yu-yang/5614762e45cedb3397a5b05f" target="_blank">Yu Yang</a></td>
                 <td>2022</td>
                 <td>University of Electronic Science and Technology of China</td>
             </tr>
             <tr>
-                <td>5</td>
+              <td class="counterCell"></td>
                 <td style="white-space: nowrap;">Rui Li</td>
                 <td>2022</td>
                 <td></td>
             </tr>
             <tr>
-                <td>6</td>
+              <td class="counterCell"></td>
                 <td>Na Wei</td>
                 <td>2022</td>
                 <td>Zhongnan University of Economics and Law, China</td>
             </tr>
             <tr>
-                <td>7</td>
+              <td class="counterCell"></td>
+                <td>Nan Li</td>
+                <td>2020</td>
+                <td></td>
+            </tr>
+            <tr>
+              <td class="counterCell"></td>
                 <td><a href="https://www.aminer.org/profile/shican-liu/609a04599e795ecb5b201c3e" target="_blank">Shican Liu</a></td>
                 <td>2019</td>
                 <td>Zhongnan University of Economics and Law, China</td>
             </tr>
             <tr>
-                <td>8</td>
+              <td class="counterCell"></td>
                 <td><a href="https://www.linkedin.com/in/dr-muhammad-kamran-4471b313b/?originalSubdomain=au" target="_blank">Muhammad Kamran</a></td>
                 <td>2019</td>
                 <td>Deakin College</td>
               </tr>
               <tr>
-                <td>9</td>
-                <td>YS Jiang</td>
+                <td class="counterCell"></td>
+                <td>Yongsheng Jiang</td>
                 <td>2018</td>
                 <td>Zhongnan University of Economics and Laws</td>
               </tr>
               <tr>
-                <td>10</td>
+                <td class="counterCell"></td>
                 <td><a href="https://expert.unimas.my/profile/1648" target="_blank">Phang Piau</a></td>
                 <td>2017</td>
                 <td>Universiti Malaysia Sarawak</td>
               </tr>
               <tr>
-                <td>11</td>
+                <td class="counterCell"></td>
                 <td><a href="https://umexpert.um.edu.my/elayarajah.html" target="_blank">Elayaraja Aruchunan</a></td>
                 <td>2017</td>
                 <td>The University of Malaya and Industrial Consultancy</td>
               </tr>
               <tr>
-                <td>12</td>
+                <td class="counterCell"></td>
                 <td><a href="https://science.msu.ac.th/en/our-departments/department-of-mathematics/academic-staff-mathematics/" target="_blank">Kamonchat Trachoo</a></td>
                 <td>2019</td>
                 <td>Mahasarakham University</td>
               </tr>
               <tr>
-                <td>13</td>
+                <td class="counterCell"></td>
                 <td><a href="https://math.kku.ac.th/math23/academicstaff/din/" target="_blank">Din Prathumwan</a></td>
                 <td>2019</td>
                 <td>Khon Kean University</td>
               </tr>
               <tr>
-                <td>14</td>
+                <td class="counterCell"></td>
                 <td><a href="http://www.math.sci.ru.ac.th/index.php/aboutus/personnel-structure" target="_blank">Pearanat Chuchard</a></td>
                 <td>2018</td>
                 <td>Ramkamhang University</td>
               </tr>
               <tr>
-                <td>15</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.youtube.com/channel/UCBABCVBRHGouJHz_0CqirXw" target="_blank">Mongkol Kaewbumrung</a></td>
                 <td>2018</td>
                 <td>Rajamangala University Ayutthaya</td>
               </tr>
               <tr>
-                <td>16</td>
+                <td class="counterCell"></td>
                 <td><a href="http://ma.kmutnb.ac.th/content/view/361/-%E0%B8%94%E0%B8%A3.%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%A0%E0%B8%B1%E0%B8%84-%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B9%80%E0%B8%A5%E0%B8%B4%E0%B8%A8%E0%B8%A1%E0%B8%87%E0%B8%84%E0%B8%A5%3Cbr%3E%3Csmall%3E%E0%B8%AD%E0%B8%B2%E0%B8%88%E0%B8%B2%E0%B8%A3%E0%B8%A2%E0%B9%8C%3C-small%3E" target="_blank">Akapak Charoenloedmongkhon</a></td>
                 <td>2018</td>
                 <td>King Mongkut’s University of Technology North Bangkok</td>
               </tr>
               <tr>
-                <td>17</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.researchgate.net/profile/Benjamas-Chimmalee" target="_blank">Benjamas Chimmalee</a></td>
                 <td>2017</td>
                 <td>Sisaket Rajabhat University</td>
               </tr>
               <tr>
-                <td>18</td>
+                <td class="counterCell"></td>
                 <td><a href="https://scholar.google.com.au/citations?user=Tz-TTLYAAAAJ&hl=en">Ujjwal KumarDeb</a></td>
                 <td>2012</td>
                 <td>University of Chittagong, Bangladesh</td>
               </tr>
               <tr>
-                <td>19</td>
+                <td class="counterCell"></td>
                 <td><a href="https://math.mju.ac.th/wtms_webpageDetail.aspx?wID=1808" target="_blank">Burasakorn Nuntadilok</a></td>
                 <td>2012</td>
                 <td>Maejo University</td>
               </tr>
               <tr>
-                <td>20</td>
+                <td class="counterCell"></td>
                 <td><a href="https://cur.tsu.ac.th/home/instructureprolist.jsp?instructorid=MTAwMzEw" target="_blank">Suthiwat Tongnak</a></td>
                 <td>2011</td>
                 <td>Thaksin University</td>
               </tr>
               <tr>
-                <td>21</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.researchgate.net/profile/Theeradech-Mookum" target="_blank">Theeradech Mookum</a></td>
                 <td>2010</td>
                 <td>Mae Fah Luang University</td>
               </tr>
               <tr>
-                <td>22</td>
+                <td class="counterCell"></td>
                 <td><a href="https://cur.tsu.ac.th/home/instructureprolist.jsp?instructorid=MTAwMjkx" target="_blank">Warium Chuayjan</a></td>
                 <td>2010</td>
                 <td>Thaksin University</td>
               </tr>
               <tr>
-                <td>23</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.kuet.ac.bd/math/mthossain/" target="_blank">M.M. Touhid Hossain</a></td>
                 <td>2009</td>
                 <td>Khulna University of Engineering & Technology, Bangladesh</td>
               </tr>
               <tr>
-                <td>24</td>
+                <td class="counterCell"></td>
                 <td><a href="https://science.mahidol.ac.th/expertise/search.php?q=Wannika%20Sawangtong" target="_blank">Wanika Jumpen Sawangtong</a></td>
                 <td>2009</td>
                 <td>Mahidol University</td>
               </tr>
               <tr>
-                <td>25</td>
+                <td class="counterCell"></td>
                 <td><a href="http://staff.sci.ubu.ac.th/sakda.n" target="_blank">Sakda Noinang</a></td>
                 <td>2009</td>
                 <td>Ubon Ratchathani University</td>
               </tr>
               <tr>
-                <td>26</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.researchgate.net/profile/Phattharawadee-Hadkaew" target="_blank">Phattharawadee Hadkaew</a></td>
                 <td>2009</td>
                 <td>The Institute for the Promotion of Teaching Science and Technology (IPST), Thailand</td>
               </tr>
               <tr>
-                <td>27</td>
+                <td class="counterCell"></td>
                 <td><a href="https://math.sci.tu.ac.th/supachara-kongnuan/" target="_blank">Supachara Kongnuan</a></td>
                 <td>2008</td>
                 <td>Thammasat University</td>
               </tr>
               <tr>
-                <td>28</td>
+                <td class="counterCell"></td>
                 <td><a href="https://science.buu.ac.th/newweb/person_detail.php?uid=VmpKMGIxWXlSa2hUYmxKaFUwVndZVlp1Y0VkTmJHeHlZVVZLVVZWVU1Eaz0=" target="_blank">Daungkamon Poltem</a></td>
                 <td>2008</td>
                 <td>Burapha University</td>
               </tr>
               <tr>
-                <td>29</td>
+                <td class="counterCell"></td>
                 <td><a href="https://science.buu.ac.th/newweb/person_detail.php?uid=VjFod1MyTXlVbGRqUm1oWFlteGFZVll3Vm5aa2R6MDk=" target="_blank">Sineenard Srimongkol</a></td>
                 <td>2008</td>
                 <td>Burapha University</td>
               </tr>
               <tr>
-                <td>30</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.bangkokhospital.com/en/doctor/dr-permyos-ruengsakulrach" target="_blank">Permyos Ruengsakulrach</a></td>
                 <td>2008</td>
                 <td>Bangkok Hospital</td>
               </tr>
               <tr>
-                <td>31</td>
+                <td class="counterCell"></td>
                 <td><a href="https://docs.ph.mahidol.ac.th/phonebook/inc/education.php?per_id=5789684">Jutathip Achapitak Sillabutra</a></td>
                 <td>2004</td>
                 <td>Mahidol University</td>
               </tr>
               <tr>
-                <td>32</td>
+                <td class="counterCell"></td>
                 <td><a href="https://www.researchgate.net/profile/Bundit-Unyong-2" target="_blank">Bundit Unyong</a></td>
                 <td>2004</td>
                 <td>Phuket Rajabhat University</td>
