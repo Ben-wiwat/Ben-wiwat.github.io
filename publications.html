@@ -8,32 +8,41 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {
-    font-family: Arial, Helvetica, sans-serif;}
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-/* Profile image style */
-img.profile {
-  width: 240px;
-  height: 240px;
-  border-radius: 20%;
-  box-shadow: 10px 10px 10px #8d8c8a;
-  margin-top: 24px;
-  max-width: 100%;
-  max-height: 100%;
-}
+  /* Profile image style */
+  img.profile {
+    width: 240px;
+    height: 240px;
+    border-radius: 20%;
+    box-shadow: 10px 10px 10px #8d8c8a;
+    margin-top: 24px;
+    max-width: 100%;
+    max-height: 100%;
+  }
 
-img.news {
-  width: 300px;
-  height: 200px;
-  margin-top: 24px;
-  box-shadow: 10px 10px 10px #8d8c8a;
-  max-width: 100%;
-  overflow: hidden;
-}
+  img.news {
+    width: 300px;
+    height: 200px;
+    margin-top: 24px;
+    box-shadow: 10px 10px 10px #8d8c8a;
+    max-width: 100%;
+    overflow: hidden;
+  }
 
-.tab {display: inline-block;
-    margin-left: 40px;}
-
+  .tab {
+    display: inline-block;
+    margin-left: 40px;
+  }
 </style>
 
 <script>
@@ -43,23 +52,23 @@ img.news {
     if (x.className.indexOf("w3-show") == -1) {
       x.className += " w3-show";
       x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
+    } else {
       x.className = x.className.replace("w3-show", "");
-      x.previousElementSibling.className = 
-      x.previousElementSibling.className.replace(" w3-theme-d1", "");
+      x.previousElementSibling.className =
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
     }
   }
-  
+
   // Used to toggle the menu on smaller screens when clicking on the menu button
   function openNav() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
       x.className += " w3-show";
-    } else { 
+    } else {
       x.className = x.className.replace(" w3-show", "");
     }
   }
-  </script>
+</script>
 
 <script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
@@ -67,310 +76,383 @@ img.news {
 
 <body class="w3-theme-l5">
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+        href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
 
-    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+      <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+          class="fa fa-home w3-margin-right"></i>Home</a>
 
-    <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Experience">Experience</i></a>
+      <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Experience">Experience</i></a>
 
-    <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Supervision</i></a>
+      <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Supervision">Supervision</i></a>
 
-    <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Publication">Publications</a>
+      <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Publication">Publications</a>
 
-    <a href="compendia.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Compendia">Compendia Index</a>
+      <a href="compendia.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Compendia">Compendia Index</a>
     </div>
 
-    </div>
-   </div>
-   
-   <!-- Navbar on small screens -->
-   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-     <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
-     <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
-     <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
-   </div>
-   
+  </div>
+  </div>
 
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
+    <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
+    <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
+  </div>
 
-  <!-- The Grid -->
-  <div class="w3-row-padding">
-  
-    <!-- Left Column -->
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container w3-center">
-          <img class="profile" src="media/self.png" alt="Avatar">
 
-        </div>
-        <div class="w3-container">
-          <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan Wiwatanapataphee, PhD</p>
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
-         
-            
-          <!-- Current details -->
-          <p><i class="fab fa-orcid fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://orcid.org/0000-0003-1875-6984" target="_blank">0000-0003-1875-6984</a></p>
-          <p><i class="fa fa-flask fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://www.researcherid.com/rid/E-5421-2010" target="_blank">ResearcherID</a></p>
-          <p><i class="fa fab fa-google fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
-          <p><i class="fa fa-linkedin-square fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" target="_blank">LinkedIn Profile</a></p>
-          <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://github.com/Ben-wiwat.github.io" title="Github Profile" target="_blank">GitHub Profile</a></p>
-        
-          <hr>
-          <p class="w3-large"><b><i class="fas fas fa-chart-line fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Publication Stats</a></b></p>
-          <table class="w3-table w3-striped w3-hoverable">
-            <tr>
-              <td>Patent</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Books</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>Journal Articles</td>
-              <td>94</td>
-            </tr>
-            <tr>
-              <td>Proceedings</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>Citations</td>
-              <td>1367</td>
-            </tr>
-            <tr>
-              <td>h-index</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>i10-index</td>
-              <td>32</td>
-            </tr>
-          </table>
-          <br>
-          <canvas id="myChart" style="max-width:90%;height:200px"></canvas>
-          <script>
-            function adjust(color, amount) {
-              return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
-            }
-            
-            
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
-                datasets: [{
-                  label: 'Citations per year',
-                  backgroundColor: [],
-                  data: [99, 101, 149, 143, 145, 104, 110, 87],
-                }],
-              },
-              options: {
-                scales: {
-                  y: {
-                    max: 160,
-                    min: 0,
-                    ticks: {
-                      stepSize: 40,
-                      autoSkip: false
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+      <!-- Left Column -->
+      <div class="w3-third">
+
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container w3-center">
+            <img class="profile" src="media/self.png" alt="Avatar">
+
+          </div>
+          <div class="w3-container">
+            <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan
+              Wiwatanapataphee, PhD</p>
+
+
+
+            <!-- Current details -->
+            <p><i class="fab fa-orcid fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://orcid.org/0000-0003-1875-6984" target="_blank">0000-0003-1875-6984</a></p>
+            <p><i class="fa fa-flask fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://www.researcherid.com/rid/E-5421-2010" target="_blank">ResearcherID</a></p>
+            <p><i class="fa fab fa-google fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            </p>
+            <p><i class="fa fa-linkedin-square fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" target="_blank">LinkedIn
+                Profile</a></p>
+            <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://github.com/Ben-wiwat.github.io" title="Github Profile" target="_blank">GitHub Profile</a>
+            </p>
+
+            <hr>
+            <p class="w3-large"><b><i class="fas fas fa-chart-line fa-fw w3-margin-right w3-text-theme"></i></i><a
+                  href="publications.html">Publication Stats</a></b></p>
+            <table class="w3-table w3-striped w3-hoverable">
+              <tr>
+                <td>Patent</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Books</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Journal Articles</td>
+                <td>94</td>
+              </tr>
+              <tr>
+                <td>Proceedings</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>Citations</td>
+                <td>1367</td>
+              </tr>
+              <tr>
+                <td>h-index</td>
+                <td>19</td>
+              </tr>
+              <tr>
+                <td>i10-index</td>
+                <td>34</td>
+              </tr>
+            </table>
+            <br>
+            <canvas id="myChart" style="max-width:90%;height:200px"></canvas>
+            <script>
+              function adjust(color, amount) {
+                return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+              }
+
+
+              var ctx = document.getElementById("myChart").getContext("2d");
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+                  datasets: [{
+                    label: 'Citations per year',
+                    backgroundColor: [],
+                    data: [99, 101, 149, 143, 145, 104, 110, 123],
+                  }],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      max: 160,
+                      min: 0,
+                      ticks: {
+                        stepSize: 40,
+                        autoSkip: false
+                      }
                     }
                   }
                 }
+              });
+
+              let dataset = myChart.data.datasets[0];
+
+              let data = dataset.data;
+              let data_ord = [...data].sort();
+
+              let plus = 0;
+
+              for (let i = 0; i < data_ord.length; i++) {
+                let value = data_ord[i];
+                dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
+                plus -= 10
               }
-            });
-            
-            let dataset = myChart.data.datasets[0];
-            
-            let data = dataset.data;
-            let data_ord = [...data].sort();
-            
-            let plus = 0;
-            
-            for (let i = 0; i < data_ord.length; i++) {
-              let value = data_ord[i];
-              dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
-              plus -= 10
-            }
-            myChart.update();
+              myChart.update();
             </script>
 
-          <hr>
-          <!--Research Interest-->
-          <p class="w3-large"><b><i class="fas fa-microscope fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Research Interest</a></b></p>
-          <ul>
-            <li>Applied and Computational Mathematics</li>
-            <li>Modelling and Optimisation in Industrial Management</li>
-            <li>Approximation theory and asymptotic methods</li>
-            <li>Numerical solution of differential and integral eqs.</li>
-            <li>Computational Finance</li>
-            <li>Computational Statistics and Data Analysis</li>
-          </ul>
+            <hr>
+            <!--Research Interest-->
+            <p class="w3-large"><b><i class="fas fa-microscope fa-fw w3-margin-right w3-text-theme"></i></i><a
+                  href="publications.html">Research Interest</a></b></p>
+            <ul>
+              <li>Applied and Computational Mathematics</li>
+              <li>Modelling and Optimisation in Industrial Management</li>
+              <li>Approximation theory and asymptotic methods</li>
+              <li>Numerical solution of differential and integral eqs.</li>
+              <li>Computational Finance</li>
+              <li>Computational Statistics and Data Analysis</li>
+            </ul>
 
-        </div>
-      </div><br>
-
-    <!-- End Left Column -->
-    </div>
-
-    <!-- Right Column -->
-    <div class="w3-twothird">
-
-
-      <!-- Patent & News -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <div class="w3-half">
-          <div class="w3-center w3-responsive"></div>
-          <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 10px; padding-bottom: 0;"> <i class="fa fas fa-file-signature w3-margin-right w3-xxlarge w3-text-theme"></i>Patent</h2>
-          <object data="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211" type="application/pdf" width="210px" height="600px" style="width: 100%;"><p>Unable to display PDF file. <a href="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211">Download</a> instead.</p>
-          </object>
-          <p class="w3-center">B Wiwatanapataphee, T Siriapisith, and YH Wu. <a href="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211"><b>Computer model of the coronary system with and with no bypass grafts</b></a></p>
-        </div>
-        <div class="w3-half">
-          <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"> <i class="fa fas fa-newspaper w3-margin-right w3-xxlarge w3-text-theme"></i>News</h2>
-          <div class="w3-display-container w3-center w3-hover-opacity">
-            <a style="text-decoration: none;" href="https://science.mahidol.ac.th/th/activity/jun52-4.php" target="_blank">
-              <figure><img class="news" src="media/new1.jpg" alt="news1">
-              <figcaption><br>Mahidol University reveals outstanding research: Mathematical modeling techniques to assist coronary artery bypass surgery <br><span style="font-size: 10px;">Posted: 4 June 2009 14:00:00</span></figcaption>
-              </figure>
-              
-            </a>
           </div>
-          <div class="w3-display-container w3-center w3-hover-opacity">
-            <a style="text-decoration: none;" href="https://mgronline.com/science/detail/9520000062999" target="_blank">
-              <figure>
-                <img class="news" src="media/new2.png" alt="news2">
-                <figcaption><br>Researcher uses mathematics to help with bypass surgery, reducing the problem of patients with repeated coronary artery blockages<br><span style="font-size: 10px;">Posted: 18 June 2009 11:43:00</span></figcaption>
-              </figure>   
-            </a>
+        </div><br>
+
+        <!-- End Left Column -->
+      </div>
+
+      <!-- Right Column -->
+      <div class="w3-twothird">
+
+
+        <!-- Patent & News -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <div class="w3-half">
+            <div class="w3-center w3-responsive"></div>
+            <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 10px; padding-bottom: 0;"> <i
+                class="fa fas fa-file-signature w3-margin-right w3-xxlarge w3-text-theme"></i>Patent</h2>
+            <object data="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211" type="application/pdf"
+              width="210px" height="600px" style="width: 100%;">
+              <p>Unable to display PDF file. <a
+                  href="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211">Download</a> instead.</p>
+            </object>
+            <p class="w3-center">B Wiwatanapataphee, T Siriapisith, and YH Wu. <a
+                href="https://patentservice.ipthailand.go.th/ecert/qr/256401028835211"><b>Computer model of the coronary
+                  system with and with no bypass grafts</b></a></p>
+          </div>
+          <div class="w3-half">
+            <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"> <i
+                class="fa fas fa-newspaper w3-margin-right w3-xxlarge w3-text-theme"></i>News</h2>
+            <div class="w3-display-container w3-center w3-hover-opacity">
+              <a style="text-decoration: none;" href="https://science.mahidol.ac.th/th/activity/jun52-4.php"
+                target="_blank">
+                <figure><img class="news" src="media/new1.jpg" alt="news1">
+                  <figcaption><br>Mahidol University reveals outstanding research: Mathematical modeling techniques to
+                    assist coronary artery bypass surgery <br><span style="font-size: 10px;">Posted: 4 June 2009
+                      14:00:00</span></figcaption>
+                </figure>
+
+              </a>
+            </div>
+            <div class="w3-display-container w3-center w3-hover-opacity">
+              <a style="text-decoration: none;" href="https://mgronline.com/science/detail/9520000062999"
+                target="_blank">
+                <figure>
+                  <img class="news" src="media/new2.png" alt="news2">
+                  <figcaption><br>Researcher uses mathematics to help with bypass surgery, reducing the problem of
+                    patients with repeated coronary artery blockages<br><span style="font-size: 10px;">Posted: 18 June
+                      2009 11:43:00</span></figcaption>
+                </figure>
+              </a>
+            </div>
+            <br>
+          </div>
+
+
+        </div>
+
+        <!-- Books -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"><i
+              class="fa fas fa-book fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Books</h2>
+          <div class="w3-container">
+            <ul class="w3-ul w3-hoverable">
+              <li>YH Wu, B.Wiwatanapataphee, <b><a
+                    href="https://wisdom.sc.mahidol.ac.th/musctextbook/numerical-methods-theories-and-algorithms/"
+                    target="_blank">Numerical Methods: Theories and Algorithms</a></b>. Physics Center Press Limited
+                Partnership, Bangkok, Thailand, 2007, ISBN: 978-974-434-897-5</li>
+              <li>YH Wu, B. Wiwatanapataphee, <b><a
+                    href="https://wisdom.sc.mahidol.ac.th/musctextbook/category/finite-element-method-and-applications/"
+                    target="_blank">Finite Element Method and Applications</a></b>. MisterKopy Publishing Company,
+                Bangkok, Thailand, 2006, ISBN: 974-94652-8-8</li>
+              <li>B. Wiwatanapataphee, <b><a
+                    href="https://wisdom.sc.mahidol.ac.th/musctextbook/program-design-using-cf95matlab/"
+                    target="_blank">Program Design: C++/Fortran 95/MATLAB</a></b>. MisterKopy Publishing Company,
+                Bangkok, Thailand, 2006, ISBN: 974-94652-7-X</li>
+            </ul>
           </div>
           <br>
         </div>
-        
-        
-      </div>
-      
-      <!-- Books -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"><i class="fa fas fa-book fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Books</h2>
-        <div class="w3-container">
-          <ul class="w3-ul w3-hoverable">
-            <li>YH Wu, B.Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/numerical-methods-theories-and-algorithms/" target="_blank">Numerical Methods: Theories and Algorithms</a></b>.  Physics Center Press Limited Partnership, Bangkok, Thailand, 2007, ISBN: 978-974-434-897-5</li>
-            <li>YH Wu, B. Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/category/finite-element-method-and-applications/" target="_blank">Finite Element Method and Applications</a></b>. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-8-8</li>
-            <li>B. Wiwatanapataphee, <b><a href="https://wisdom.sc.mahidol.ac.th/musctextbook/program-design-using-cf95matlab/" target="_blank">Program Design: C++/Fortran 95/MATLAB</a></b>. MisterKopy Publishing Company, Bangkok, Thailand, 2006, ISBN: 974-94652-7-X</li>
-          </ul>
+
+        <!-- Highlighted Publications -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"><i
+              class="fa fa-star fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Highlighted Publications</h2>
+          <div class="w3-responsive">
+            <table id="pubTable" class="w3-table w3-striped w3-hoverable">
+              <tr>
+                <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(1)')" style="cursor: pointer;">Title <i
+                    class="fas fa-caret-down"></i></th>
+                <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(2)')"
+                  style="white-space: nowrap;cursor: pointer;">Cited By <i class="fas fa-caret-down"></i></th>
+                <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(3)')"
+                  style="white-space: nowrap;cursor: pointer;">Year <i class="fas fa-caret-down"></i></th>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.1016/j.amc.2014.02.062" target="_blank">The eigenvalue for a class of
+                    singular p-Laplacian fractional differential equations involving the Riemann-Stieltjes integral
+                    boundary condition</a><br>
+                  <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
+                    Applied Mathematics and Computation 235, 412-422</span>
+                </td>
+                <td>126</td>
+                <td>2014</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.1016/j.aml.2016.10.015" target="_blank">Nontrivial solutions for a
+                    fractional advection dispersion equation in anomalous diffusion</a><br>
+                  <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
+                    Applied Mathematics Letters 66, 1-8</span>
+                </td>
+                <td>113</td>
+                <td>2017</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.1016/j.amc.2014.12.068" target="_blank">The spectral analysis for a
+                    singular fractional differential equation with a signed measure</a><br>
+                  <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
+                    Applied Mathematics and Computation 257, 252-263</span>
+                </td>
+                <td>102</td>
+                <td>2015</td>
+              </tr>
+              <tr class="item">
+                <td><a
+                    href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=b69b7ef72460b92c63efa66e1c905d025e7ede7c"
+                    target="_blank">Effect of non-Newtonian behaviour of blood on pulsatile flows in stenotic
+                    arteries</a><br>
+                  <span class="w3-text-theme w3-small">S Amornsamankul, B Wiwatanapataphee, YH Wu, Y Lenbury<br>
+                    International Journal of Biological and Medical Sciences 1 (1), 42-46</span>
+                </td>
+                <td>53</td>
+                <td>2006</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.1155/2012/512127" target="_blank">Positive solutions of eigenvalue
+                    problems for a class of fractional differential equations with derivatives</a><br>
+                  <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
+                    Abstract and Applied Analysis 2012</span>
+                </td>
+                <td>51</td>
+                <td>2012</td>
+              </tr>
+              <tr class="item">
+                <td><a
+                    href="https://www.researchgate.net/profile/I-Ming-Tang-2/publication/267917183_A_SEIQR_model_for_pandemic_influenza_and_its_parameter_identification/links/5ab1cf7ba6fdcc1bc0bff393/A-SEIQR-model-for-pandemic-influenza-and-its-parameter-identification.pdf"
+                    target="_blank">A SEIQR model for pandemic influenza and its parameter identification</a><br>
+                  <span class="w3-text-theme w3-small">W Jumpen, B Wiwatanapataphee, YH Wu, IM Tang<br>
+                    International Journal of Pure and Applied Mathematics 52 (2), 247-265</span>
+                </td>
+                <td>49</td>
+                <td>2009</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.1016/j.physa.2008.06.043" target="_blank">Pressure-driven transient
+                    flows of Newtonian fluids through microtubes with slip boundary</a><br>
+                  <span class="w3-text-theme w3-small">YH Wu, B Wiwatanapataphee, M Hu<br>
+                    Physica A: Statistical Mechanics and Its Applications 387 (24), 5979-5990</span>
+                </td>
+                <td>41</td>
+                <td>2008</td>
+              </tr>
+              <tr class="item">
+                <td><a href="http://www.aimspress.com/article/10.3934/mbe.2012.9.199" target="_blank">Effect of
+                    branchings on blood flow in the system of human coronary arteries</a><br>
+                  <span class="w3-text-theme w3-small">B Wiwatanapataphee, YH Wu, T Siriapisith, B Nuntadilok<br>
+                    Mathematical Biosciences and Engineering 9 (1), 199-214</span>
+                </td>
+                <td>39</td>
+                <td>2012</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://doi.org/10.3141/1999-02" target="_blank">Mixed traffic flow in anisotropic
+                    continuum model</a><br>
+                  <span class="w3-text-theme w3-small">CF Tang, R Jiang, QS Wu, B Wiwatanapataphee, YH Wu<br>
+                    Transportation research record 1999 (1), 13-22</span>
+                </td>
+                <td>39</td>
+                <td>2007</td>
+              </tr>
+              <tr class="item">
+                <td><a href="https://www.aimspress.com/fileOther/PDF/MBE/1551-0018_2006_2_371.pdf"
+                    target="_blank">Simulation of pulsatile flow of blood in stenosed coronary artery bypass with
+                    graft</a><br>
+                  <span class="w3-text-theme w3-small">B Wiwatanapataphee, D Poltem, YH Wu, Y Lenbury<br>
+                    Mathematical Biosciences and Engineering 3 (2), 371</span>
+                </td>
+                <td>39</td>
+                <td>2006</td>
+              </tr>
+            </table>
+          </div>
+          <br>
+          <div class="w3-container w3-center">
+            <p><a style="text-decoration: none;" href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en"
+                target="_blank">More <i class="fas fa-caret-down fa-fw w3-large w3-hover-opacity"
+                  style="cursor: pointer;"></i></a></p>
+          </div>
         </div>
-      <br>
+
+
+
+        <!-- End Right Column -->
       </div>
 
-      <!-- Highlighted Publications -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey" style="padding-top: 16px; margin-bottom: 0; padding-bottom: 0;"><i class="fa fa-star fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Highlighted Publications</h2>
-        <div class="w3-responsive">
-          <table id="pubTable" class="w3-table w3-striped w3-hoverable">
-            <tr>
-              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(1)')" style="cursor: pointer;">Title <i class="fas fa-caret-down"></i></th>
-              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(2)')" style="white-space: nowrap;cursor: pointer;">Cited By <i class="fas fa-caret-down"></i></th>
-              <th onclick="w3.sortHTML('#pubTable', '.item', 'td:nth-child(3)')" style="white-space: nowrap;cursor: pointer;">Year <i class="fas fa-caret-down"></i></th>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.1016/j.amc.2014.02.062" target="_blank">The eigenvalue for a class of singular p-Laplacian fractional differential equations involving the Riemann-Stieltjes integral boundary condition</a><br>
-              <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
-              Applied Mathematics and Computation 235, 412-422</span></td>
-              <td>126</td>
-              <td>2014</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.1016/j.aml.2016.10.015" target="_blank">Nontrivial solutions for a fractional advection dispersion equation in anomalous diffusion</a><br>
-              <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
-                Applied Mathematics Letters 66, 1-8</span></td>
-              <td>113</td>
-              <td>2017</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.1016/j.amc.2014.12.068" target="_blank">The spectral analysis for a singular fractional differential equation with a signed measure</a><br>
-              <span class="w3-text-theme w3-small">X Zhang, L Liu, Y Wu, B Wiwatanapataphee<br>
-                Applied Mathematics and Computation 257, 252-263</span></td>
-              <td>102</td>
-              <td>2015</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=b69b7ef72460b92c63efa66e1c905d025e7ede7c" target="_blank">Effect of non-Newtonian behaviour of blood on pulsatile flows in stenotic arteries</a><br>
-              <span class="w3-text-theme w3-small">S Amornsamankul, B Wiwatanapataphee, YH Wu, Y Lenbury<br>
-                International Journal of Biological and Medical Sciences 1 (1), 42-46</span></td>
-              <td>53</td>
-              <td>2006</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.1155/2012/512127" target="_blank">Positive solutions of eigenvalue problems for a class of fractional differential equations with derivatives</a><br>
-              <span class="w3-text-theme w3-small">X Zhang, L Liu, B Wiwatanapataphee, Y Wu<br>
-                Abstract and Applied Analysis 2012</span></td>
-              <td>51</td>
-              <td>2012</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://www.researchgate.net/profile/I-Ming-Tang-2/publication/267917183_A_SEIQR_model_for_pandemic_influenza_and_its_parameter_identification/links/5ab1cf7ba6fdcc1bc0bff393/A-SEIQR-model-for-pandemic-influenza-and-its-parameter-identification.pdf" target="_blank">A SEIQR model for pandemic influenza and its parameter identification</a><br>
-              <span class="w3-text-theme w3-small">W Jumpen, B Wiwatanapataphee, YH Wu, IM Tang<br>
-                International Journal of Pure and Applied Mathematics 52 (2), 247-265</span></td>
-              <td>49</td>
-              <td>2009</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.1016/j.physa.2008.06.043" target="_blank">Pressure-driven transient flows of Newtonian fluids through microtubes with slip boundary</a><br>
-              <span class="w3-text-theme w3-small">YH Wu, B Wiwatanapataphee, M Hu<br>
-                Physica A: Statistical Mechanics and Its Applications 387 (24), 5979-5990</span></td>
-              <td>41</td>
-              <td>2008</td>
-            </tr>
-            <tr class="item">
-              <td><a href="http://www.aimspress.com/article/10.3934/mbe.2012.9.199" target="_blank">Effect of branchings on blood flow in the system of human coronary arteries</a><br>
-              <span class="w3-text-theme w3-small">B Wiwatanapataphee, YH Wu, T Siriapisith, B Nuntadilok<br>
-                Mathematical Biosciences and Engineering 9 (1), 199-214</span></td>
-              <td>39</td>
-              <td>2012</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://doi.org/10.3141/1999-02" target="_blank">Mixed traffic flow in anisotropic continuum model</a><br>
-              <span class="w3-text-theme w3-small">CF Tang, R Jiang, QS Wu, B Wiwatanapataphee, YH Wu<br>
-                Transportation research record 1999 (1), 13-22</span></td>
-              <td>39</td>
-              <td>2007</td>
-            </tr>
-            <tr class="item">
-              <td><a href="https://www.aimspress.com/fileOther/PDF/MBE/1551-0018_2006_2_371.pdf" target="_blank">Simulation of pulsatile flow of blood in stenosed coronary artery bypass with graft</a><br>
-              <span class="w3-text-theme w3-small">B Wiwatanapataphee, D Poltem, YH Wu, Y Lenbury<br>
-                Mathematical Biosciences and Engineering 3 (2), 371</span></td>
-              <td>39</td>
-              <td>2006</td>
-            </tr>
-          </table>
-        </div>
-        <br>
-        <div class="w3-container w3-center">
-          <p><a style="text-decoration: none;" href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">More <i class="fas fa-caret-down fa-fw w3-large w3-hover-opacity" style="cursor: pointer;"></i></a></p>
-        </div>
-      </div>
-
-      
-
-    <!-- End Right Column -->
+      <!-- End Grid -->
     </div>
-    
-  <!-- End Grid -->
-  </div>
-  
-  <!-- End Page Container -->
-</div>
 
-<footer class="w3-container w3-theme w3-center w3-margin-top">
-  <p>Get the print version here <a href="media/cv-nov23.pdf"><i class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
+    <!-- End Page Container -->
+  </div>
+
+  <footer class="w3-container w3-theme w3-center w3-margin-top">
+    <p>Get the print version here <a href="media/cv-nov23.pdf"><i
+          class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
 
 </body>
+
 </html>

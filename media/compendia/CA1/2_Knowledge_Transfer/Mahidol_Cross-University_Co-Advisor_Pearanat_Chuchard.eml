@@ -1,0 +1,95 @@
+Received: from SYXPR01MB0608.ausprd01.prod.outlook.com
+ (2a01:111:e400:5c0f::28) by ME1PR01MB0593.ausprd01.prod.outlook.com with
+ HTTPS via SY3PR01CA0061.AUSPRD01.PROD.OUTLOOK.COM; Thu, 19 Oct 2017 01:02:44
+ +0000
+Received: from ME1PR01CA0100.ausprd01.prod.outlook.com (10.171.8.33) by
+ SYXPR01MB0608.ausprd01.prod.outlook.com (10.169.175.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+ 15.20.77.7; Thu, 19 Oct 2017 01:02:43 +0000
+Received: from ME1AUS01FT012.eop-AUS01.prod.protection.outlook.com
+ (2a01:111:f400:7eb4::203) by ME1PR01CA0100.outlook.office365.com
+ (2603:10c6:200:18::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.56.9 via Frontend
+ Transport; Thu, 19 Oct 2017 01:02:43 +0000
+Received: from au-smtp-1.mimecast.com (124.47.150.22) by
+ ME1AUS01FT012.mail.protection.outlook.com (10.152.232.70) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.20.77.10 via Frontend Transport; Thu, 19 Oct 2017 01:02:42 +0000
+Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
+ [209.85.218.41]) (Using TLS) by au-smtp-1.mimecast.com with ESMTP id
+ au-mta-2-JWhuQTS8MFmnBEzvx3M_6A-1; Thu, 19 Oct 2017 12:02:39 +1100
+Received: by mail-oi0-f41.google.com with SMTP id m198so12045930oig.5
+        for <b.wiwatanapataphee@curtin.edu.au>; Wed, 18 Oct 2017 18:02:38 -0700 (PDT)
+Received: by 10.157.60.204 with HTTP; Wed, 18 Oct 2017 18:02:36 -0700 (PDT)
+From: Phiranat Chuchard <phiranat.th@gmail.com>
+To: Benchawan Wiwatanapataphee <b.wiwatanapataphee@curtin.edu.au>
+Subject: Information of thesis defense examination
+Thread-Topic: Information of thesis defense examination
+Thread-Index: AQHTSHX4WCdXsKhgHUq9hO2yrdltIw==
+Date: Thu, 19 Oct 2017 01:02:36 +0000
+Message-ID:
+	<CANXtvtOqr3M9=5Wr2OCH0aHo6vCBLpdKRTe4mJKf_gvdGTacbA@mail.gmail.com>
+Content-Language: en-US
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AuthSource:
+	ME1AUS01FT012.eop-AUS01.prod.protection.outlook.com
+X-MS-Has-Attach:
+X-MS-Exchange-Organization-Network-Message-Id:
+	b894a4c8-fcd2-4876-16f0-08d5168d1a2d
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+x-forefront-antispam-report:
+	CIP:124.47.150.22;IPV:NLI;CTRY:AU;EFV:NLI;SFV:SKN;SFS:;DIR:INB;SFP:;SCL:-1;SRVR:SYXPR01MB0608;H:au-smtp-1.mimecast.com;FPR:;SPF:None;LANG:en;
+received-spf: SoftFail (protection.outlook.com: domain of transitioning
+ gmail.com discourages use of 124.47.150.22 as permitted sender)
+x-ms-publictraffictype: Email
+Content-Type: multipart/alternative;
+	boundary="_000_CANXtvtOqr3M95Wr2OCH0aHo6vCBLpdKRTe4mJKfgvdGTacbAmailgm_"
+MIME-Version: 1.0
+
+--_000_CANXtvtOqr3M95Wr2OCH0aHo6vCBLpdKRTe4mJKfgvdGTacbAmailgm_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+RGVhciBQcm9mLiBCZW5jaGF3YW4gV2l3YXRhbmFwYXRhcGhlZSwNCg0KICAgICAgIE15IG5hbWUg
+aXMgUGVhcmFuYXQgQ2h1Y2hhcmQsIFBoLkQgc3R1ZGVudCBmcm9tIERlcGFydG1lbnQgb2YgTWF0
+aGVtYXRpY3MsIE1haGlkb2wgVW5pdmVyc2l0eS4gSSB3b3VsZCBsaWtlIHRvIGluZm9ybSB5b3Ug
+YXMgbXkgY28tYWR2aXNvciB0aGF0IG15IHRoZXNpcyBkZWZlbnNlIGV4YW1pbmF0aW9uIHdpbGwg
+YmUgb24gTm92ZW1iZXIgMjQsIDIwMTcgYXQgMTMuMzAuIE15IHRoZXNpcyB0aXRsZSBpcyAiRUxF
+Q1RST09TTU9USUMgRkxPVyBXSVRIIFRJTUUgUEVSSU9ESUMgUFJFU1NVUkUgR1JBRElFTlQgSU4g
+RUxMSVBUSUMgTUlDUk9DSEFOTkVMIFVOREVSIFRIRSBOQVZJRVIgU0xJUCBDT05ESVRJT04iDQoN
+CiAgICAgICBUaGUgb3RoZXIgY29tbWl0dGVlcyBhcmUgYXMgZm9sbG93Og0KDQpBc3NvYy5Qcm9m
+LlN1YWJzYWd1biBZb295dWFueW9uZyBhcyB0aGUgZXh0ZXJuYWwgZXhhbWluZXIgYW5kIGNoYWly
+IG9mIHRoZSBkZWZlbnNlLA0KRHIuIFNvbXNhayBPcmFua2l0amFyb2VuIGFzIG15IG1ham9yIGFk
+dmlzb3IsDQpEci4gS2l0dGlzYWsgQ2hheWFudHJha29tIGFzIG15IGNvLWFkdmlzb3IsDQoNCg0K
+ICAgICAgIElmIHlvdSBhcmUgYXZhaWxhYmxlIGF0IHRoYXQgdGltZSwgcGxlYXNlIHNlbmQgYSBy
+ZXBseSBvZiB5b3VyIGNvbmZpcm1hdGlvbi4NCg0KQmVzdCBSZWdhcmRzLA0KTXIuIFBlYXJhbmF0
+IENodWNoYXJkDQpUZWw6IDA5MDk1OTA5MTENCg==
+
+--_000_CANXtvtOqr3M95Wr2OCH0aHo6vCBLpdKRTe4mJKfgvdGTacbAmailgm_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <F772A6D97E3D8E4E9E7E5C902F3080B1@ausprd01.prod.outlook.com>
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBkaXI9Imx0
+ciI+PGZvbnQgc2l6ZT0iNCI+RGVhciBQcm9mLiBCZW5jaGF3YW4gV2l3YXRhbmFwYXRhcGhlZSw8
+YnI+DQo8YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDtNeSBuYW1lIGlzIFBlYXJhbmF0
+IENodWNoYXJkLCBQaC5EIHN0dWRlbnQgZnJvbSBEZXBhcnRtZW50IG9mIE1hdGhlbWF0aWNzLCBN
+YWhpZG9sIFVuaXZlcnNpdHkuIEkgd291bGQgbGlrZSB0byBpbmZvcm0geW91IGFzIG15IGNvLWFk
+dmlzb3IgdGhhdCBteSB0aGVzaXMgZGVmZW5zZSBleGFtaW5hdGlvbiB3aWxsIGJlIG9uIE5vdmVt
+YmVyIDI0LCAyMDE3IGF0IDEzLjMwLiBNeSB0aGVzaXMgdGl0bGUgaXMgJnF1b3Q7RUxFQ1RST09T
+TU9USUMgRkxPVw0KIFdJVEggVElNRSBQRVJJT0RJQyBQUkVTU1VSRSBHUkFESUVOVCBJTiBFTExJ
+UFRJQyBNSUNST0NIQU5ORUwgVU5ERVIgVEhFIE5BVklFUiBTTElQIENPTkRJVElPTiZxdW90Ow0K
+PGJyPg0KPGJyPg0KJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7VGhlIG90aGVyIGNvbW1pdHRl
+ZXMgYXJlIGFzIGZvbGxvdzo8YnI+DQo8YnI+DQpBc3NvYy5Qcm9mLlN1YWJzYWd1biBZb295dWFu
+eW9uZyBhcyB0aGUgZXh0ZXJuYWwgZXhhbWluZXIgYW5kIGNoYWlyIG9mIHRoZSBkZWZlbnNlLDxi
+cj4NCkRyLiBTb21zYWsgT3JhbmtpdGphcm9lbiBhcyBteSBtYWpvciBhZHZpc29yLDxicj4NCkRy
+LiBLaXR0aXNhayBDaGF5YW50cmFrb20gYXMgbXkgY28tYWR2aXNvciw8YnI+DQo8YnI+DQo8YnI+
+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDtJZiB5b3UgYXJlIGF2YWlsYWJsZSBhdCB0aGF0
+IHRpbWUsIHBsZWFzZSBzZW5kIGEgcmVwbHkgb2YgeW91ciBjb25maXJtYXRpb24uPGJyPg0KPGJy
+Pg0KQmVzdCBSZWdhcmRzLDxicj4NCk1yLiBQZWFyYW5hdCBDaHVjaGFyZDxicj4NClRlbDogMDkw
+OTU5MDkxMTwvZm9udD48YnI+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+
+--_000_CANXtvtOqr3M95Wr2OCH0aHo6vCBLpdKRTe4mJKfgvdGTacbAmailgm_--

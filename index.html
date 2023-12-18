@@ -8,23 +8,32 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {
-    font-family: Arial, Helvetica, sans-serif;}
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-/* Profile image style */
-img.profile {
-  width: 240px;
-  height: 240px;
-  border-radius: 20%;
-  box-shadow: 10px 10px 10px #8d8c8a;
-  margin-top: 24px;
-  max-width: 100%;
-  max-height: 100%;
-}
+  /* Profile image style */
+  img.profile {
+    width: 240px;
+    height: 240px;
+    border-radius: 20%;
+    box-shadow: 10px 10px 10px #8d8c8a;
+    margin-top: 24px;
+    max-width: 100%;
+    max-height: 100%;
+  }
 
-.tab {display: inline-block;
-    margin-left: 40px;}
-
+  .tab {
+    display: inline-block;
+    margin-left: 40px;
+  }
 </style>
 
 <script>
@@ -34,94 +43,114 @@ img.profile {
     if (x.className.indexOf("w3-show") == -1) {
       x.className += " w3-show";
       x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
+    } else {
       x.className = x.className.replace("w3-show", "");
-      x.previousElementSibling.className = 
-      x.previousElementSibling.className.replace(" w3-theme-d1", "");
+      x.previousElementSibling.className =
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
     }
   }
-  
+
   // Used to toggle the menu on smaller screens when clicking on the menu button
   function openNav() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
       x.className += " w3-show";
-    } else { 
+    } else {
       x.className = x.className.replace(" w3-show", "");
     }
   }
-  </script>
+</script>
 
 <script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
 <body class="w3-theme-l5">
 
-<!-- Navbar -->
-<div class="w3-top">
+  <!-- Navbar -->
+  <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+        href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
 
-     <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+      <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+          class="fa fa-home w3-margin-right"></i>Home</a>
 
-     <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Experience">Experience</i></a>
+      <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Experience">Experience</i></a>
 
-     <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Supervision">Supervision</i></a>
+      <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Supervision">Supervision</i></a>
 
-     <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Publication">Publications</a>
+      <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Publication">Publications</a>
 
-     <a href="compendia.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Compendia">Compendia Index</a>
-     </div>
-
+      <a href="compendia.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Compendia">Compendia Index</a>
     </div>
-   </div>
-   
-   <!-- Navbar on small screens -->
-   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-     <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
-     <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
-     <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
-   </div>
-   
 
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  </div>
+  </div>
 
-  <!-- The Grid -->
-  <div class="w3-row-padding">
-  
-    <!-- Left Column -->
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container w3-center">
-          <img class="profile" src="media/self.png" alt="Avatar">
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
+    <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
+    <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
+  </div>
 
-        </div>
-        <div class="w3-container">
-          <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan Wiwatanapataphee, PhD</p>
 
-         
-            
-          <!-- Current details -->
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://staffportal.curtin.edu.au/staff/profile/view/benchawan-wiwatanapataphee-f71b0483/" title="Curtin Staff Profile" target="_blank">Associate Professor, Mathematics and Statistics<br>
-            <span class="tab"></span>School of EECMS, Curtin University</a></p>
-          <p><i class="fa fas fa-graduation-cap fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://catalogue.curtin.edu.au/discovery/fulldisplay?docid=alma9931429490001951&context=L&vid=61CUR_INST:CUR_ALMA&search_scope=MyInst_and_CI&tab=Everything&lang=en" target="_blank">PhD, Curtin University, awarded 1998</a> </p>
-          <p><i class="fa fa-map-marker fa-fw w3-margin-right w3-large w3-text-theme"></i>
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+      <!-- Left Column -->
+      <div class="w3-third">
+
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container w3-center">
+            <img class="profile" src="media/self.png" alt="Avatar">
+
+          </div>
+          <div class="w3-container">
+            <p class="w3-margin-right" style="font-size:26px;word-wrap: break-word;">Assoc. Prof. Benchawan
+              Wiwatanapataphee, PhD</p>
+
+
+
+            <!-- Current details -->
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://staffportal.curtin.edu.au/staff/profile/view/benchawan-wiwatanapataphee-f71b0483/"
+                title="Curtin Staff Profile" target="_blank">Associate Professor, Mathematics and Statistics<br>
+                <span class="tab"></span>School of EECMS, Curtin University</a></p>
+            <p><i class="fa fas fa-graduation-cap fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://catalogue.curtin.edu.au/discovery/fulldisplay?docid=alma9931429490001951&context=L&vid=61CUR_INST:CUR_ALMA&search_scope=MyInst_and_CI&tab=Everything&lang=en"
+                target="_blank">PhD, Curtin University, awarded 1998</a> </p>
+            <p><i class="fa fa-map-marker fa-fw w3-margin-right w3-large w3-text-theme"></i>
               Perth, Western Australia</p>
-          <p><i class="fa fa-globe fa-fw w3-margin-right w3-large w3-text-theme"></i>
+            <p><i class="fa fa-globe fa-fw w3-margin-right w3-large w3-text-theme"></i>
               Languages: Thai (Native), English</p>
-          <p style="word-break: break-all;"><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>
-              <a href="mailto:b.wiwatanapataphee@curtin.edu.au" target="_blank">b.wiwatanapataphee@curtin.edu.au</a></p>
-          <p><i class="fab fa-orcid fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://orcid.org/0000-0003-1875-6984" target="_blank">0000-0003-1875-6984</a></p>
-          <p><i class="fa fa-flask fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://www.researcherid.com/rid/E-5421-2010" target="_blank">ResearcherID</a></p>
-          <p><i class="fa fab fa-google fa-fw w3-margin-right w3-large w3-text-theme"></i> <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
-          <p><i class="fa fa-linkedin-square fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" target="_blank">LinkedIn Profile</a></p>
-          <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-theme" ></i> <a href="https://ben-wiwat.github.io/" title="Github Profile" target="_blank">GitHub Profile</a></p>
-        
-          
-         <!-- Social Links-->
-         <!-- <p class="w3-center w3-justify" style="width: 100%;">
+            <p style="word-break: break-all;"><i
+                class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-theme"></i>
+              <a href="mailto:b.wiwatanapataphee@curtin.edu.au" target="_blank">b.wiwatanapataphee@curtin.edu.au</a>
+            </p>
+            <p><i class="fab fa-orcid fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://orcid.org/0000-0003-1875-6984" target="_blank">0000-0003-1875-6984</a></p>
+            <p><i class="fa fa-flask fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://www.researcherid.com/rid/E-5421-2010" target="_blank">ResearcherID</a></p>
+            <p><i class="fa fab fa-google fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            </p>
+            <p><i class="fa fa-linkedin-square fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" target="_blank">LinkedIn
+                Profile</a></p>
+            <p><i class="fa fa-github fa-fw w3-margin-right w3-large w3-text-theme"></i> <a
+                href="https://ben-wiwat.github.io/" title="Github Profile" target="_blank">GitHub Profile</a></p>
+
+
+            <!-- Social Links-->
+            <!-- <p class="w3-center w3-justify" style="width: 100%;">
           <a href="https://staffportal.curtin.edu.au/staff/profile/view/benchawan-wiwatanapataphee-f71b0483/" title="Curtin Staff Profile" target="_blank"><i class="fa fa-university w3-text-theme w3-hover-opacity" style="font-size:30px;vertical-align:middle;"></i></a>
           <a href="https://www.linkedin.com/in/benchawan-wiwatanapataphee-28560011a/" title="Linkedin Profile" target="_blank"><i class="fa fa-linkedin-square fa-fw w3-text-theme w3-hover-opacity" style="font-size:34px;vertical-align:middle;"></i></a>
           <a href="https://orcid.org/0000-0003-1875-6984" title="Orcid Profile" target="_blank" style="text-decoration: none; ">
@@ -130,334 +159,395 @@ img.profile {
           <a href="https://scholar.google.com/citations?user=td86cJcAAAAJ&hl=en" title="Google Scholar" target="_blank"><i class="fa fab fa-google fa-fw w3-text-theme w3-hover-opacity" style="font-size:32px;vertical-align:middle; margin-left:-7px"></i></a>
           <a href="https://github.com/Ben-wiwat" title="Github Profile" target="_blank" title="Github"><i class="fa fa-github w3-xxlarge w3-text-theme w3-hover-opacity" style="vertical-align:-8px;"></i></a>
           </p> -->
-          <hr>
-          <p class="w3-large"><b><i class="fas fas fa-chart-line fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Publication Stats</a></b></p>
-          <table class="w3-table w3-striped w3-hoverable">
-            <tr>
-              <td>Patent</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Books</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>Journal Articles</td>
-              <td>94</td>
-            </tr>
-            <tr>
-              <td>Proceedings</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>Citations</td>
-              <td>1367</td>
-            </tr>
-            <tr>
-              <td>h-index</td>
-              <td>19</td>
-            </tr>
-            <tr>
-              <td>i10-index</td>
-              <td>32</td>
-            </tr>
-          </table>
-          <br>
-          <canvas id="myChart" style="max-width:90%;height:200px"></canvas>
-          <script>
-            function adjust(color, amount) {
-              return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
-            }
-            
-            
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
-                datasets: [{
-                  label: 'Citations per year',
-                  backgroundColor: [],
-                  data: [99, 101, 149, 143, 145, 104, 110, 87],
-                }],
-              },
-              options: {
-                scales: {
-                  y: {
-                    max: 160,
-                    min: 0,
-                    ticks: {
-                      stepSize: 40,
-                      autoSkip: false
+            <hr>
+            <p class="w3-large"><b><i class="fas fas fa-chart-line fa-fw w3-margin-right w3-text-theme"></i></i><a
+                  href="publications.html">Publication Stats</a></b></p>
+            <table class="w3-table w3-striped w3-hoverable">
+              <tr>
+                <td>Patent</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Books</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Journal Articles</td>
+                <td>94</td>
+              </tr>
+              <tr>
+                <td>Proceedings</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td>Citations</td>
+                <td>1367</td>
+              </tr>
+              <tr>
+                <td>h-index</td>
+                <td>19</td>
+              </tr>
+              <tr>
+                <td>i10-index</td>
+                <td>34</td>
+              </tr>
+            </table>
+            <br>
+            <canvas id="myChart" style="max-width:90%;height:200px"></canvas>
+            <script>
+              function adjust(color, amount) {
+                return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+              }
+
+
+              var ctx = document.getElementById("myChart").getContext("2d");
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+                  datasets: [{
+                    label: 'Citations per year',
+                    backgroundColor: [],
+                    data: [99, 101, 149, 143, 145, 104, 110, 123],
+                  }],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      max: 160,
+                      min: 0,
+                      ticks: {
+                        stepSize: 40,
+                        autoSkip: false
+                      }
                     }
                   }
                 }
+              });
+
+              let dataset = myChart.data.datasets[0];
+
+              let data = dataset.data;
+              let data_ord = [...data].sort();
+
+              let plus = 0;
+
+              for (let i = 0; i < data_ord.length; i++) {
+                let value = data_ord[i];
+                dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
+                plus -= 10
               }
-            });
-            
-            let dataset = myChart.data.datasets[0];
-            
-            let data = dataset.data;
-            let data_ord = [...data].sort();
-            
-            let plus = 0;
-            
-            for (let i = 0; i < data_ord.length; i++) {
-              let value = data_ord[i];
-              dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
-              plus -= 10
-            }
-            myChart.update();
+              myChart.update();
             </script>
 
-          <hr>
-          <!--Research Interest-->
-          <p class="w3-large"><b><i class="fas fa-microscope fa-fw w3-margin-right w3-text-theme"></i></i><a href="publications.html">Research Interest</a></b></p>
-          <ul>
-            <li>Applied and Computational Mathematics</li>
-            <li>Modelling and Optimisation in Industrial Management</li>
-            <li>Approximation theory and asymptotic methods</li>
-            <li>Numerical solution of differential and integral eqs.</li>
-            <li>Computational Finance</li>
-            <li>Computational Statistics and Data Analysis</li>
-          </ul>
-          
-          <hr>
-          <!--Teaching-->
-          <p class="w3-large"><b><i class="fa fas fa-chalkboard-teacher fa-fw w3-margin-right w3-text-theme"></i><a href="experience.html">Teaching</a></b></p>
-          <ul>
-            <li>Advanced Numerical Analysis</li>
-            <li>Supply Chain Modelling and Optimisation</li>
-            <li>Industrial Engineering Project</li>
-            <li>Computational Mathematics</li>
-            <li>Vector Calculus</li>
-            <li>Linear Algebra</li>
-          </ul>
+            <hr>
+            <!--Research Interest-->
+            <p class="w3-large"><b><i class="fas fa-microscope fa-fw w3-margin-right w3-text-theme"></i></i><a
+                  href="publications.html">Research Interest</a></b></p>
+            <ul>
+              <li>Applied and Computational Mathematics</li>
+              <li>Modelling and Optimisation in Industrial Management</li>
+              <li>Approximation theory and asymptotic methods</li>
+              <li>Numerical solution of differential and integral eqs.</li>
+              <li>Computational Finance</li>
+              <li>Computational Statistics and Data Analysis</li>
+            </ul>
 
-          <hr>
+            <hr>
+            <!--Teaching-->
+            <p class="w3-large"><b><i class="fa fas fa-chalkboard-teacher fa-fw w3-margin-right w3-text-theme"></i><a
+                  href="experience.html">Teaching</a></b></p>
+            <ul>
+              <li>Advanced Numerical Analysis</li>
+              <li>Supply Chain Modelling and Optimisation</li>
+              <li>Industrial Engineering Project</li>
+              <li>Computational Mathematics</li>
+              <li>Vector Calculus</li>
+              <li>Linear Algebra</li>
+            </ul>
 
-          <!--Other Professional and Academic Services-->
-          <p class="w3-large"><b><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i><a href="experience.html">Professional and Academic Services</a></b></p>
-          <ul>
-            <li>Grant Assessment</li>
-            <!-- <ul>
+            <hr>
+
+            <!--Other Professional and Academic Services-->
+            <p class="w3-large"><b><i class="fa fa-tasks fa-fw w3-margin-right w3-text-theme"></i><a
+                  href="experience.html">Professional and Academic Services</a></b></p>
+            <ul>
+              <li>Grant Assessment</li>
+              <!-- <ul>
               <li>The Australian Research Council (ARC)</li>
               <li>Thailand Research Funds (TRF)</li>
               <li>National Science and Technology Development Agency (NSTDA)</li>
               <li>National Research Council of Thailand (NRCT) </li>
             </ul> -->
-            <li>Journal Editing</li>
-            <!-- <ul>
+              <li>Journal Editing</li>
+              <!-- <ul>
               <li>A Special Issue of the International Journal of Differential Equations (Current)</li>
               <li>Cogent Mathematics (Comp. Sci. section)</li>
               <li>A Special Issue of Mathematical Problems in Engineering</li>
               <li>Abstract and Applied Analysis special issue: Nonlinear Functional Analysis of Complex Boundary Value Problems</li>
               <li>A Special Issue of Dynamics of Discrete, Continuous and Impulsive System B</li>
             </ul> -->
-            <li>Journal Review Service</li>
-            <li>PhD Thesis Examination</li>
-          </ul>
+              <li>Journal Review Service</li>
+              <li>PhD Thesis Examination</li>
+            </ul>
 
-          <hr>
-          <!--Thai Royal Orders, decorations, and medals-->
-          <p class="w3-large"><b><i class="fa fa-medal w3-margin-right w3-text-theme"></i>Thai Royal Orders & Decorations</b></p>
-          <table class="w3-table w3-responsive" style="font-size:14px;">
-            <tr>
-              <th>Year</th>
-              <th>Ribbon</th>
-              <th>Honour</th>
-            </tr>
-            <tr>
-              <td>Oct 2019</td>
-              <td><img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Chakrabarti_Mala_Medal_%28Thailand%29_ribbon.svg" alt="RChB (C.B.M)"></td>
-              <td>Chakrabarti Mala Medal - Medal for Long Service and Good Conduct (Civil)</td>
-            </tr>
-            <tr>
-              <td>Dec 2010</td>
-              <td><img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Order_of_the_White_Elephant_-_1st_Class_%28Thailand%29_ribbon.svg" alt="PCh (KCE)"></td>
-              <td>Knight Grand Cross (First Class) of the Most Exalted Order of the White Elephant</td>
-            </tr>
-            <tr>
-              <td>Dec 2007</td>
-              <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Order_of_the_Crown_of_Thailand_-_1st_Class_%28Thailand%29_ribbon.svg" alt="PM (KCCT)"></td>
-              <td>Knight Grand Cross (First Class) of the Most Noble Order of the Crown of Thailand</td>
-            </tr>
-            <tr>
-              <td>Dec 2004</td>
-              <td><img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Order_of_the_White_Elephant_-_2nd_Class_%28Thailand%29_ribbon.svg" alt="DCh (KCE)"></td>
-              <td>Knight Commander (Second Class) of the Most Exalted Order of the White Elephant.</td>
-            </tr>
-          </table>
+            <hr>
+            <!--Thai Royal Orders, decorations, and medals-->
+            <p class="w3-large"><b><i class="fa fa-medal w3-margin-right w3-text-theme"></i>Thai Royal Orders &
+                Decorations</b></p>
+            <table class="w3-table w3-responsive" style="font-size:14px;">
+              <tr>
+                <th>Year</th>
+                <th>Ribbon</th>
+                <th>Honour</th>
+              </tr>
+              <tr>
+                <td>Oct 2019</td>
+                <td><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Chakrabarti_Mala_Medal_%28Thailand%29_ribbon.svg"
+                    alt="RChB (C.B.M)"></td>
+                <td>Chakrabarti Mala Medal - Medal for Long Service and Good Conduct (Civil)</td>
+              </tr>
+              <tr>
+                <td>Dec 2010</td>
+                <td><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/79/Order_of_the_White_Elephant_-_1st_Class_%28Thailand%29_ribbon.svg"
+                    alt="PCh (KCE)"></td>
+                <td>Knight Grand Cross (First Class) of the Most Exalted Order of the White Elephant</td>
+              </tr>
+              <tr>
+                <td>Dec 2007</td>
+                <td><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Order_of_the_Crown_of_Thailand_-_1st_Class_%28Thailand%29_ribbon.svg"
+                    alt="PM (KCCT)"></td>
+                <td>Knight Grand Cross (First Class) of the Most Noble Order of the Crown of Thailand</td>
+              </tr>
+              <tr>
+                <td>Dec 2004</td>
+                <td><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Order_of_the_White_Elephant_-_2nd_Class_%28Thailand%29_ribbon.svg"
+                    alt="DCh (KCE)"></td>
+                <td>Knight Commander (Second Class) of the Most Exalted Order of the White Elephant.</td>
+              </tr>
+            </table>
+
+          </div>
+        </div><br>
+
+        <!-- End Left Column -->
+      </div>
+
+      <!-- Right Column -->
+      <div class="w3-twothird">
+
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16"><i
+              class="fa far fa-user-circle fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Overview</h2>
+          <p class="w3-margin-right w3-margin-bottom w3-medium w3-justify"><span class="tab"></span>Assoc. Prof.
+            Benchawan Wiwatanapataphee obtained her PhD degree from Curtin University in 1998. She then worked in the
+            Department of Mathematics at Mahidol University, initially as an Assistant Professor, then as an Associate
+            Professor, and later as a Professor and Deputy Head of Department. In 2015, Dr Wiwatanapataphee moved to
+            Curtin University in Perth, where she has been working as an Associate Professor, conducting research and
+            teaching in the Discipline of Mathematics and Statistics within the School of Electrical Engineering,
+            Computing, and Mathematical Sciences.<br><br>
+
+            <span class="tab"></span>Dr Wiwatanapataphee's research expertise is in Computational Mathematics and its
+            application to science, engineering, and finance. She has strong research experience in computational
+            science applications where computing plays a central and essential role. She has made various contributions
+            to the development of innovative computational methods and algorithms for important scientific research and
+            engineering problems. <br><br>
+
+            <span class="tab"></span>Dr Wiwatanapataphee has supervised over twenty Ph.D. students and twelve MSc
+            students to completion. She has won nine national competitive research grants from her research, including
+            one ARC research grant, two grants from the Thailand Research Funds, two grants from the National Science
+            and Technology Development Agency of Thailand, and four grants from other organizations in Thailand. Dr.
+            Wiwatanapataphee has published over hundred refereed papers in prestigious international journals. <br><br>
+
+            <span class="tab"></span>Dr Wiwatanapataphee's research works are well recognized internationally and have
+            received various awards and prizes. She has acted as an expert assessor on research grant applications for
+            the Australian Research Council, the Thailand Research Funds (TRF), the National Science and Technology
+            Development Agency (NSTDA), and the National Research Council of Thailand (NRCT). Dr Wiwatanapataphee has
+            acted as an associate editor for Cogent Mathematics (Computational Science section), a lead guest editor for
+            a special issue of Mathematical Problems in Engineering, a guest editor for the Abstract and Applied
+            Analysis special issue: Nonlinear Functional Analysis of Complex Boundary Value Problems, and a guest editor
+            for a special issue of Dynamics of Discrete, Continuous and Impulsive System B.
+          </p>
 
         </div>
-      </div><br>
 
-    <!-- End Left Column -->
+        <!-- Employment History -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16"><i
+              class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Employment History</h2>
+
+          <div class="w3-container w3-responsive">
+            <table class="w3-table">
+              <tr>
+                <th class="w3-large w3-text-grey"><i class="fa fa-university fa-fw w3-margin-right"></i>Curtin
+                  University</td>
+                <th class="w3-large w3-text-grey w3-right-align"><i
+                    class="fa fa-map-marker fa-fw w3-margin-right"></i>Perth, Western Australia</td>
+              </tr>
+              <tr>
+                <td class="w3-text-theme">Associate Professor</td>
+                <td class="w3-text-theme w3-right-align">January 2015 - <span
+                    class="w3-tag w3-theme w3-round">Current</span></td>
+              </tr>
+              <tr>
+                <th class="w3-large w3-text-grey"><i class="fa fa-university fa-fw w3-margin-right"></i>Mahidol
+                  University</td>
+                <th class="w3-large w3-text-grey w3-right-align"><i
+                    class="fa fa-map-marker fa-fw w3-margin-right"></i>Bangkok, Thailand</td>
+              </tr>
+              <tr>
+                <td class="w3-text-theme">Professor</td>
+                <td class="w3-text-theme w3-right-align">2011 - 2014</td>
+              </tr>
+              <tr>
+                <td class="w3-text-theme">Associate Professor</td>
+                <td class="w3-text-theme w3-right-align">2000 - 2011</td>
+              </tr>
+              <tr>
+                <td class="w3-text-theme">Assistant Professor</td>
+                <td class="w3-text-theme w3-right-align">1998 - 2000</td>
+              </tr>
+            </table>
+          </div>
+          <br>
+        </div>
+
+        <!-- Prizes, Honours & Awards -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16"><i
+              class="fa fa-award fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Prizes, Honours & Awards</h2>
+          <div class="w3-container">
+            <table class="w3-table w3-striped">
+              <tr>
+                <th>Year</th>
+                <th>Title</th>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td>Prize of THB 20,000 for the patent "Computer model of the coronary system with and with no bypass grafts," awarded for outstanding innovation and contributions to the field of Biomedical Engineering, Mahidol University</td>
+              </tr>
+              <tr>
+                <td>2016</td>
+                <td>Prize of THB 100,000 for the most cited Mathematics articles - Scopus from 2010 to 2016 from Mahidol University</td>
+              </tr>
+              <tr>
+                <td>2010</td>
+                <td>Prize of THB 100,000 for the best research in Applied Mathematics from Mahidol University</td>
+              </tr>
+              <tr>
+                <td>2007</td>
+                <td>Prize of THB 100,000 for the Best Research in Mathematical Sciences for the seminal research on “Mathematical Modelling of Blood flow in the Coronary Artery BypassGraft”, the National Research Council of Thailand</td>
+              </tr>
+              <tr>
+                <td>2007</td>
+                <td>Prize of AUD25,000 for the Australia Endeavour Research Fellowship from the Ministry of Education, Australia</td>
+              </tr>
+              <tr>
+                <td>2005</td>
+                <td>Prize of AUD25,000 for the Australia Endeavour Cheung Kong Award from the Ministry of Education, Australia</td>
+              </tr>
+              <tr>
+                <td>1999</td>
+                <td>Prize of THB 100,000 for the Third World Academy of Science Award for Young Scientists in Thailand in the field of Mathematical Sciences, National Research Council THAILAND (NRCT) and the third World Academy of Sciences (TWAS)</td>
+              </tr>
+            </table>
+          </div>
+          <br>
+        </div>
+
+        <!-- Research Grants -->
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16"><i
+              class="fas fa-hand-holding-usd fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Research Grants</h2>
+          <div class="w3-container">
+            <table class="w3-table w3-striped">
+              <tr>
+                <th>Year</th>
+                <th>Description</th>
+                <th>Funding Organisation</th>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2018 - 2021</td>
+                <td><a href="https://sbenrc.com.au/research-programs/2-56arc/" target="_blank">2.56ARC Improving Road
+                    Network Operations under Non-recurrent Events (LP170100341), AUD228,000,(other CIs: YH Wu, Liu, and
+                    Mohamed)</a></td>
+                <td>Australian Research Council (ARC)</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2012 - 2014</td>
+                <td>Leap research grant for the project entitled "Optimal control of disease transmission in Thailand",
+                  THB2,400,000.</td>
+                <td>Faculty of Science, Mahidol University</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2012 - 2014</td>
+                <td>Research grant (RG-1-53-09-2) for the project entitled "Spreading Dynamics of Epidemic Model on
+                  Adaptive Social Network", THB1,600,000.</td>
+                <td>Centre Excellent in Mathematics, Commission on Higher Education (CHE), Ministry of Education</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2008 - 2011</td>
+                <td>Empowering research grant (RMU5080070) for university lecturers for the project entitled "Modelling
+                  of Blood Flow and Drug Delivery through the Stenosed Coronary Artery with Magnetic Field",
+                  THB1,060,000.</td>
+                <td>Commission on Higher Education (CHE), Ministry of Education, and Thailand Research Fund</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2006 - 2008</td>
+                <td>Focused research grant (MATH-MU-2549) for the project entitled "Optimal Control and Design of
+                  Coronary Arterial Bypass", THB 1,301,100.</td>
+                <td>Faculty of Science, Mahidol University, Bangkok, Thailand</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2007 - 2011</td>
+                <td>Research grant (PHD/0148/2548) for the project entitled “Simulation and Analysis of Blood Flow in
+                  Tumour-Induced Coronary Artery and Capillary Networks" THB 2,152,000.</td>
+                <td>Thailand Research Fund: The Royal Golden Jubilee Ph.D. Program</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2008 - 2012</td>
+                <td>Research grant (PHD/0212/2549) for the project entitled "Mathematical model for fluid flow and heat
+                  transfer in continuous casting process" THB 1,195,000.</td>
+                <td>Thailand Research Fund: The Royal Golden Jubilee Ph.D. Program</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2002 - 2004</td>
+                <td>Research grant (MT-B-45-MET-14-102-G) for the project entitled “Computational Techniques for Heat
+                  Transfer and Solidification in the Continuous Casting Machine”, THB 1,363,560.</td>
+                <td>MTEC National Science and Technology Development Agency, Thailand</td>
+              </tr>
+              <tr>
+                <td style="white-space: nowrap;">2001 - 2002</td>
+                <td>Research grant (MT-S-42-MET-14-078-G) for the project entitled “Modelling Investigation and Control
+                  of the Formation of Oscillation Marks in the Continuous Casting of Steel”, THB 200,000.</td>
+                <td>MTEC National Science and Technology Development Agency, Thailand</td>
+              </tr>
+            </table>
+            <br>
+          </div>
+        </div>
+
+
+
+        <!-- End Right Column -->
+      </div>
+
+      <!-- End Grid -->
     </div>
 
-    <!-- Right Column -->
-    <div class="w3-twothird">
-
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa far fa-user-circle fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Overview</h2>
-        <p class="w3-margin-right w3-margin-bottom w3-medium w3-justify"><span class="tab"></span>Assoc. Prof. Benchawan Wiwatanapataphee obtained her PhD degree from Curtin University in 1998. She then worked in the Department of Mathematics at Mahidol University, initially as an Assistant Professor, then as an Associate Professor, and later as a Professor and Deputy Head of Department. In 2015, Dr Wiwatanapataphee moved to Curtin University in Perth, where she has been working as an Associate Professor, conducting research and teaching in the Discipline of Mathematics and Statistics within the School of Electrical Engineering, Computing, and Mathematical Sciences.<br><br>
-          
-        <span class="tab"></span>Dr Wiwatanapataphee's research expertise is in Computational Mathematics and its application to science, engineering, and finance. She has strong research experience in computational science applications where computing plays a central and essential role. She has made various contributions to the development of innovative computational methods and algorithms for important scientific research and engineering problems. <br><br>
-        
-        <span class="tab"></span>Dr Wiwatanapataphee has supervised over twenty Ph.D. students and twelve MSc students to completion. She has won nine national competitive research grants from her research, including one ARC research grant, two grants from the Thailand Research Funds, two grants from the National Science and Technology Development Agency of Thailand, and four grants from other organizations in Thailand. Dr. Wiwatanapataphee has published over hundred refereed papers in prestigious international journals. <br><br>
-
-        <span class="tab"></span>Dr Wiwatanapataphee's research works are well recognized internationally and have received various awards and prizes. She has acted as an expert assessor on research grant applications for the Australian Research Council, the Thailand Research Funds (TRF), the National Science and Technology Development Agency (NSTDA), and the National Research Council of Thailand (NRCT). Dr Wiwatanapataphee has acted as an associate editor for Cogent Mathematics (Computational Science section), a lead guest editor for a special issue of Mathematical Problems in Engineering, a guest editor for the Abstract and Applied Analysis special issue: Nonlinear Functional Analysis of Complex Boundary Value Problems, and a guest editor for a special issue of Dynamics of Discrete, Continuous and Impulsive System B. </p>
-        
-      </div>
-
-      <!-- Employment History -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Employment History</h2>
-
-        <div class="w3-container w3-responsive">
-          <table class="w3-table">
-            <tr>
-              <th class="w3-large w3-text-grey"><i class="fa fa-university fa-fw w3-margin-right"></i>Curtin University</td>
-              <th class="w3-large w3-text-grey w3-right-align"><i class="fa fa-map-marker fa-fw w3-margin-right"></i>Perth, Western Australia</td>
-            </tr>
-            <tr>
-              <td class="w3-text-theme">Associate Professor</td>
-              <td class="w3-text-theme w3-right-align">January 2015 - <span class="w3-tag w3-theme w3-round">Current</span></td>
-            </tr>
-            <tr>
-              <th class="w3-large w3-text-grey"><i class="fa fa-university fa-fw w3-margin-right"></i>Mahidol University</td>
-              <th class="w3-large w3-text-grey w3-right-align"><i class="fa fa-map-marker fa-fw w3-margin-right"></i>Bangkok, Thailand</td>
-            </tr>
-            <tr>
-              <td class="w3-text-theme">Professor</td>
-              <td class="w3-text-theme w3-right-align">2011 - 2014</td>
-            </tr>
-            <tr>
-              <td class="w3-text-theme">Associate Professor</td>
-              <td class="w3-text-theme w3-right-align">2000 - 2011</td>
-            </tr>
-            <tr>
-              <td class="w3-text-theme">Assistant Professor</td>
-              <td class="w3-text-theme w3-right-align">1998 - 2000</td>
-            </tr>
-          </table>
-        </div>
-      <br>
-      </div>
-      
-      <!-- Prizes, Honours & Awards -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-award fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Prizes, Honours & Awards</h2>
-        <div class="w3-container">
-          <table class="w3-table w3-striped">
-            <tr>
-              <th>Year</th>
-              <th>Title</th>
-            </tr>
-            <tr>
-              <td>2016</td>
-              <td>Prize in most cited Mathematics articles - Scopus from 2010 to 2016 from MAHIDOL University, Nakhonpathom, Thailand, THB 100,000</td>
-            </tr>
-            <tr>
-              <td>2010</td>
-              <td>The best research in Applied Mathematics from MAHIDOL University, Nakhonpathom, Thailand, THB 100,000</td>
-            </tr>
-            <tr>
-              <td>2007</td>
-              <td>Prize of the Best Research in Mathematical Sciences from the National Research Council of Thailand, for the seminal research on “Mathematical Modelling of Blood flow in the Coronary Artery Bypass Graft”, THB 100,000</td>
-            </tr>
-            <tr>
-              <td>2007</td>
-              <td>Australia Endeavour Research Fellowship from the Ministry of Education, Australia, AUD 25,000</td>
-            </tr>
-            <tr>
-              <td>2005</td>
-              <td>Endeavour Australia Cheung Kong Award from the Ministry of Education, Australia, AUD 25,000</td>
-            </tr>
-            <tr>
-              <td>1999</td>
-              <td>Third World Academy of Science Award for Young Scientists in Thailand in the field of Mathematical Sciences by National Research Council THAILAND (NRCT) and the third World Academy of Sciences (TWAS), THB 100,000</td>
-            </tr>
-          </table>
-        </div>
-      <br>
-      </div>
-
-      <!-- Research Grants -->
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fas fa-hand-holding-usd fa-fw w3-margin-right w3-xxlarge w3-text-theme"></i>Research Grants</h2>
-        <div class="w3-container">
-          <table class="w3-table w3-striped">
-            <tr>
-              <th>Year</th>
-              <th>Description</th>
-              <th>Funding Organisation</th>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2018 - 2021</td>
-              <td><a href="https://sbenrc.com.au/research-programs/2-56arc/" target="_blank">2.56ARC Improving Road Network Operations under Non-recurrent Events (LP170100341), AUD228,000,(other CIs: YH Wu, Liu, and Mohamed)</a></td>
-              <td>Australian Research Council (ARC)</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2012 - 2014</td>
-              <td>Leap research grant for the project entitled "Optimal control of disease transmission in Thailand", THB2,400,000.</td>
-              <td>Faculty of Science, Mahidol University</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2012 - 2014</td>
-              <td>Research grant (RG-1-53-09-2) for the project entitled "Spreading Dynamics of Epidemic Model on Adaptive Social Network", THB1,600,000.</td>
-              <td>Centre Excellent in Mathematics, Commission on Higher Education (CHE), Ministry of Education</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2008 - 2011</td>
-              <td>Empowering research grant (RMU5080070) for university lecturers for the project entitled "Modelling of Blood Flow and Drug Delivery through the Stenosed Coronary Artery with Magnetic Field", THB1,060,000.</td>
-              <td>Commission on Higher Education (CHE), Ministry of Education, and Thailand Research Fund</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2006 - 2008</td>
-              <td>Focused research grant (MATH-MU-2549) for the project entitled "Optimal Control and Design of Coronary Arterial Bypass", THB 1,301,100.</td>
-              <td>Faculty of Science, Mahidol University, Bangkok, Thailand</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2007 - 2011</td>
-              <td>Research grant (PHD/0148/2548) for the project entitled “Simulation and Analysis of Blood Flow in Tumour-Induced Coronary Artery and Capillary Networks" THB 2,152,000.</td>
-              <td>Thailand Research Fund: The Royal Golden Jubilee Ph.D. Program</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2008 - 2012</td>
-              <td>Research grant (PHD/0212/2549) for the project entitled "Mathematical model for fluid flow and heat transfer in continuous casting process" THB 1,195,000.</td>
-              <td>Thailand Research Fund: The Royal Golden Jubilee Ph.D. Program</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2002 - 2004</td>
-              <td>Research grant (MT-B-45-MET-14-102-G) for the project entitled “Computational Techniques for Heat Transfer and Solidification in the Continuous Casting Machine”, THB 1,363,560.</td>
-              <td>MTEC National Science and Technology Development Agency, Thailand</td>
-            </tr>
-            <tr>
-              <td style="white-space: nowrap;">2001 - 2002</td>
-              <td>Research grant (MT-S-42-MET-14-078-G) for the project entitled “Modelling Investigation and Control of the Formation of Oscillation Marks in the Continuous Casting of Steel”, THB 200,000.</td>
-              <td>MTEC National Science and Technology Development Agency, Thailand</td>
-            </tr>
-          </table>
-        <br>
-        </div>
-      </div>
-
-      
-
-    <!-- End Right Column -->
-    </div>
-    
-  <!-- End Grid -->
+    <!-- End Page Container -->
   </div>
-  
-  <!-- End Page Container -->
-</div>
 
-<footer class="w3-container w3-theme w3-center w3-margin-top">
-  <p>Get the print version here <a href="media/cv-nov23.pdf"><i class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
+  <footer class="w3-container w3-theme w3-center w3-margin-top">
+    <p>Get the print version here <a href="media/cv-nov23.pdf"><i
+          class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
 
 </body>
+
 </html>
