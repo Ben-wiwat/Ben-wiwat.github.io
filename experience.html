@@ -50,6 +50,16 @@ img.profile {
       x.className = x.className.replace(" w3-show", "");
     }
   }
+
+  // Open image
+  function openImg(imgName) {
+  var i, x;
+  x = document.getElementsByClassName("picture");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(imgName).style.display = "block";
+  }
   </script>
 
 <script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
@@ -205,51 +215,111 @@ img.profile {
                     <th>Description</td>
                 </tr>
                 <tr>
-                  <td style="white-space: nowrap;">15-17 Dec 2022</td>
-                  <td>ICMA-MU 2022: International Conference in Mathematics and Applications, The Century Park Hotel, Bangkok, Thailand</td>
+                  <td style="white-space: nowrap; text-align: right;">22-25 Jan 2024</td>
+                  <td><a href="https://symmetry2024.sut.ac.th/" target="_blank">The Advances in Applications of Analytical Methods for Solving Differential Equations (Symmetry 2024)</a></td>
                 </tr>
                 <tr>
-                <td style="white-space: nowrap;">18-20 Dec 2020</td>
+                  <td style="white-space: nowrap; text-align: right;">31 Mar 2023</td>
+                  <td><a href="https://www.cmu.ac.th/en/article/318c13e6-ad8d-4b0d-812e-ae723448669b" target="_blank">Give a talk on the topic of "Data-Driven Traffic Control using Ramp Metering and Variable Speed Limit" to the faculty members of The International College of Digital Innovation (ICDI), Chiang Mai University</a>
+
+                    <div class="w3-row-padding w3-margin-top">
+                      <div class="w3-col s3 w3-container">
+                      <a href="javascript:void(0)" class="w3-hover-opacity" onclick="openImg('ICDICMU1');">
+                        <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-1.jpg" alt="ICDICMU1" style="width:100%; height: 100px;">
+                      </a>
+                      </div>
+                      <div class="w3-col s3 w3-container">
+                        <a href="javascript:void(0)" class="w3-hover-opacity" onclick="openImg('ICDICMU2');">
+                          <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-2.jpg" alt="ICDICMU12" style="width:100%; height: 100px;">
+                        </a>
+                      </div>
+                      <div class="w3-col s3 w3-container">
+                        <a href="javascript:void(0)" class="w3-hover-opacity" onclick="openImg('ICDICMU3');">
+                          <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-3.jpg" alt="ICDICMU3" style="width:100%; height: 100px;">
+                        </a>
+                      </div>
+                      <div class="w3-col s3 w3-container">
+                        <a href="javascript:void(0)" class="w3-hover-opacity" onclick="openImg('ICDICMU4');">
+                          <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-4.jpg" alt="ICDICMU4" style="width:100%; height: 100px;">
+                        </a>
+                      </div>
+                    </div>
+                    <div style="padding: 30px;">
+                      <div id="ICDICMU1" class="picture w3-display-container" style="display:block">
+                        <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-1.jpg" alt="ICDICMU1" style="width:100%;">
+                        <span onclick="this.parentElement.style.display='none'" 
+                        class="w3-display-topright w3-button w3-transparent w3-text-white">&times;</span>
+                      </div>
+                      
+                      <div id="ICDICMU2" class="picture w3-display-container" style="display:none">
+                        <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-2.jpg" alt="ICDICMU2" style="width:100%;">
+                        <span onclick="this.parentElement.style.display='none'" 
+                        class="w3-display-topright w3-button w3-transparent w3-text-white">&times;</span>
+                      </div>
+                      
+                      <div id="ICDICMU3" class="picture w3-display-container" style="display:none">
+                        <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-3.jpg" alt="ICDICMU3" style="width:100%;">
+                        <span onclick="this.parentElement.style.display='none'" 
+                        class="w3-display-topright w3-button w3-transparent">&times;</span>
+                      </div>
+                      
+                      <div id="ICDICMU4" class="picture w3-display-container" style="display:none">
+                        <img src="media/compendia/CA3/ICDI-CMU-31Mar2023-4.jpg" alt="ICDICMU4" style="width:100%;">
+                        <span onclick="this.parentElement.style.display='none'" 
+                        class="w3-display-topright w3-button w3-transparent w3-text-white">&times;</span>
+                      </div>
+                    </div>  
+<!--                   
+                    <div class="w3-display-container w3-center w3-margin">
+                      <img src="https://www.cmu.ac.th/content/Article/2023/c1f7151f-e075-4981-8b64-1c7bbe1d7137/48f3ad05-f573-4005-bf41-01448f026642.jpg" alt="ICDI-CMU2022" class="w3-image" style="width: 100%;max-width: 500px;">
+                    </div> -->
+                    </td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap; text-align: right;">15-17 Dec 2022</td>
+                  <td><a href="https://cem.sc.mahidol.ac.th/ICMA-MU2022/" target="_blank">ICMA-MU 2022: International Conference in Mathematics and Applications, The Century Park Hotel, Bangkok, Thailand</a></td>
+                </tr>
+                <tr>
+                <td style="white-space: nowrap; text-align: right;">18-20 Dec 2020</td>
                 <td>ICMA-MU 2020: International Conference in Mathematics and Applications, The Century Park Hotel, Bangkok, Thailand</td>
                 </tr>
                 <tr>
-                  <td style="white-space: nowrap;">1-2 Dec 2020</td>
-                  <td>Keynote speaker for FAST Conference: SCIEMATHIC 2020, Malaysia </td>
+                  <td style="white-space: nowrap; text-align: right;">1-2 Dec 2020</td>
+                  <td><a href="https://www.facebook.com/fstpi/photos/a.642122072606176/1837004656451239/?type=3" target="_blank">Keynote speaker for FAST Conference: SCIEMATHIC 2020, Malaysia
+                    <div class="w3-display-container w3-center w3-margin">
+                      <img src="https://scontent.fper10-1.fna.fbcdn.net/v/t1.6435-9/127629868_1837004659784572_3658848219630411540_n.png?_nc_cat=111&ccb=1-7&_nc_sid=7f8c78&_nc_ohc=fMy9_2zJ6poAX-dUuNJ&_nc_ht=scontent.fper10-1.fna&oh=00_AfBzx-o1mPYg_0cBxArMozr7Ykr0zmfcCSm9XDjnk-mF0A&oe=65A88135" alt="SCIEMATHIC2020" class="w3-image" style="width:100%;max-width:500px">
+                    </div></a></td>
                   </tr>
                 <tr>
-                    <td style="white-space: nowrap;">16-18 Dec 2018</td>
+                    <td style="white-space: nowrap; text-align: right;">16-18 Dec 2018</td>
                     <td>The 2018 International Conference in Mathematics and Applications, The Century Park Hotel, Bangkok, Thailand</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">4-6 Dec 2016</td>
-                    <td>The Australasian Biomechanics Conference, The University of Melbourne, Woodward Conference Centre, Melbourne, Australia</td>
-                </tr>
-                <tr>
-                    <td style="white-space: nowrap;">3-8 Dec 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">3-8 Dec 2012</td>
                     <td>The 2012 International Conference on Optimization and Control (ICO2012), Beijing, China</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">28-29 Jul 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">28-29 Jul 2012</td>
                     <td>The 3rd International Symposium on Mathematics and Applied Mathematics (MAM2012), Thailand</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">17-19 Oct 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">17-19 Oct 2012</td>
                     <td>The 38th Congress on Science and Technology of Thailand (STT), Chiang Mai, Thailand</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">1-3 Feb 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">1-3 Feb 2012</td>
                     <td>The Franco-Thai Symposium, Thailand</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">10-12 Oct 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">10-12 Oct 2012</td>
                     <td>The 37th Congress on Science and Technology of Thailand (STT), Bangkok</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">18-23 Jul 2010</td>
+                    <td style="white-space: nowrap; text-align: right;">18-23 Jul 2010</td>
                     <td>The International Conference on Optimization and Control (ICO2010), Guiyang, China</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">9-11 Jan 2007</td>
+                    <td style="white-space: nowrap; text-align: right;">9-11 Jan 2007</td>
                     <td>Asian Simulation and Modeling (ASIMMOD) 2007, Chiang Mai, Thailand</td>
                 </tr>
             </table>
@@ -267,39 +337,39 @@ img.profile {
                     <th>Description</th>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2017 - now</td>
+                    <td style="white-space: nowrap; text-align: right;">2017 - now</td>
                     <td>Deputy to the Postgraduate Course Coordinator in Mathematics and Statistics, Curtin University, responsible in particular for the master programs including MSc (Math Sci) and MSc (IE). The MSc (IE) was ranked top 7 in the field of Industrial and Operations Management in the <a href="https://www.best-masters.com/ranking-master-industrial-and-operations-management-in-oceania.html" target="_blank">2023 Eduniversal Best Masters Ranking</a></td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2019 - now</td>
+                    <td style="white-space: nowrap; text-align: right;">2019 - now</td>
                     <td>Project Manager for the ARC linkage project <a href="https://sbenrc.com.au/research-programs/2-56arc/" target="_blank">LP170100341</a> responsible for assisting the project leader for quarterly research reports and organizing quarterly meetings with industrial partners (MRWA and Roads and Maritime Services NSW)</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2017 - Now</td>
+                    <td style="white-space: nowrap; text-align: right;">2017 - Now</td>
                     <td>Coordinator for the Mahidol - Curtin articulation Program</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2012 - 2014</td>
+                    <td style="white-space: nowrap; text-align: right;">2012 - 2014</td>
                     <td>Member of the Academic Promotion Committee for the Thailand Higher Education Commission (OHEC), MOE, Thailand</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2005 - 2012</td>
+                    <td style="white-space: nowrap; text-align: right;">2005 - 2012</td>
                     <td>Deputy Head of the Department of Mathematics, Mahidol University</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2000 - 2004</td>
+                    <td style="white-space: nowrap; text-align: right;">2000 - 2004</td>
                     <td>PhD Program Chair, Department of Mathematics, Mahidol University</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2004 - 2008</td>
+                    <td style="white-space: nowrap; text-align: right;">2004 - 2008</td>
                     <td>Member of the University Research Grant Committee, Mahidol University</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2012 - 2014</td>
+                    <td style="white-space: nowrap; text-align: right;">2012 - 2014</td>
                     <td>Member of the Faculty of Science Screening Committee for Academic Promotion, Mahidol University</td>
                 </tr>
                 <tr>
-                    <td style="white-space: nowrap;">2000 - 2014</td>
+                    <td style="white-space: nowrap; text-align: right;">2000 - 2014</td>
                     <td>Evaluation Committee for Staff Performance, Department of Mathematics and Statistics, Mahidol University</td>
                 </tr>
                     
