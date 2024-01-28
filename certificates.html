@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<title>Benchawan Wiwatanapataphee | Certificates</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  table {
+    counter-reset: tableCount;
+  }
+
+  .counterCell:before {
+    content: counter(tableCount);
+    counter-increment: tableCount;
+  }
+
+  /* Profile image style */
+  img.profile {
+    width: 240px;
+    height: 240px;
+    border-radius: 20%;
+    box-shadow: 10px 10px 10px #8d8c8a;
+    margin-top: 24px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .tab {
+    display: inline-block;
+    margin-left: 40px;
+  }
+
+  #myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #myImg:hover {
+    opacity: 0.7;
+  }
+
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+  }
+
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+
+  .modal-content,
+  #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0)
+    }
+
+    to {
+      transform: scale(1)
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .modal-content {
+      width: 100%;
+    }
+  }
+
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+<script>
+  // Accordion
+  function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      x.previousElementSibling.className += " w3-theme-d1";
+    } else {
+      x.className = x.className.replace("w3-show", "");
+      x.previousElementSibling.className =
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+  }
+
+  // Used to toggle the menu on smaller screens when clicking on the menu button
+  function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else {
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+  
+</script>
+
+<script src="https://kit.fontawesome.com/a600c1fd88.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+        href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  
+      <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+          class="fa fa-home w3-margin-right"></i>Home</a>
+  
+      <a href="experience.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Experience">Experience</i></a>
+  
+      <a href="supervision.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+        title="Supervision">Supervision</i></a>
+  
+      <a href="publications.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Publication">Publications</a>
+
+        <a href="certificates.html" class="w3-bar-item w3-button w3-hide-small  w3-padding-large w3-hover-white"
+        title="Publication">Certificates</a>
+  
+        <div class="w3-dropdown-hover">
+          <a href="compendia.html" class="w3-button w3-hide-small  w3-padding-large w3-hover-white" title="Compendia">Compendia Index</a>
+          <div class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="ca1.html" class="w3-bar-item w3-button">&nbsp;Capability Area #1</a>
+            <a href="ca2.html" class="w3-bar-item w3-button">&nbsp;Capability Area #2</a>
+            <a href="ca3.html" class="w3-bar-item w3-button">&nbsp;Capability Area #3</a>
+            <a href="ca4.html" class="w3-bar-item w3-button">&nbsp;Capability Area #4</a>
+          </div>
+        </div>
+    </div>
+</div>
+  
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="experience.html" class="w3-bar-item w3-button w3-padding-large">Experience</a>
+        <a href="supervision.html" class="w3-bar-item w3-button w3-padding-large">Supervision</a>
+        <a href="publications.html" class="w3-bar-item w3-button w3-padding-large">Publications</a>
+        <a href="certificates.html" class="w3-bar-item w3-button w3-padding-large">Certificates</a>
+        <a href="compendia.html" class="w3-bar-item w3-button w3-padding-large">Compendia Index</a>
+            <a href="ca1.html" class="w3-bar-item w3-button w3-padding-large">&nbsp; Capability Area #1</a>
+            <a href="ca2.html" class="w3-bar-item w3-button w3-padding-large">&nbsp; Capability Area #2</a>
+            <a href="ca3.html" class="w3-bar-item w3-button w3-padding-large">&nbsp; Capability Area #3</a>
+            <a href="ca4.html" class="w3-bar-item w3-button w3-padding-large">&nbsp; Capability Area #4</a>
+    </div>
+
+
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-container w3-margin-left">
+          <h2><i class="fa fa-certificate" aria-hidden="true"></i> Certificates</h2>
+          <table class="w3-table w3-responsive w3-striped w3-hoverable" style="width: 100%;">
+            <colgroup>
+              <col span="1" style="width: 5%;">
+              <col span="1" style="width: 30%;">
+              <col span="1" style="width: 65%;">
+            </colgroup>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Certificates</th>
+              </tr>
+              <tr>
+                <td>11/12/2023,<br>12/09/2023,<br>10/07/2023</td>
+                <td>PREP Process for Reviewees</td>
+                <td>
+                  <img src="media\compendia\CA1\1_Development_of_Skills\11122023-PREP_Process_for_Reviewees.png" alt="11/12/2023 PREP Certificate" width="250" height="200">
+                    <img class="myImages" id="myImg" src="media\compendia\CA1\1_Development_of_Skills\12092023-PREP_Process_for_Reviewees.png" alt="12/09/2023 PREP Certificate" width="250" height="200">
+                    <img class="myImages" id="myImg" src="media\compendia\CA1\1_Development_of_Skills\10072023-PREP_Process_for_Reviewees.png" alt="10/07/2023 PREP Certificate" width="250" height="200">
+                </td>
+              </tr>
+              <tr>
+                <td>11/01/2023,<br>14/10/2023</td>
+                <td>Competition and Consumer Act 2010 (Act) Work Essentials — Module 1-6</td>
+                <td><img src="media\compendia\CA1\1_Development_of_Skills\11012023-Act_Work_Essentials-Module_1-5.png" alt="11/01/2023 Act Module 1-5" width="250" height="200">
+                  <img src="media\compendia\CA1\1_Development_of_Skills\14102023-Act_Work_Essentials-Module_6.png" alt="14/10/2023 Act Module 6" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>11/01/2023</td>
+                <td>Foundations of Inclusive Practice</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/11012023-Foundations_of_Inclusive_Practice.png" alt="11/01/2023 Foundations of Inclusive Practice" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>02/05/2022</td>
+                <td>ICCF Noongar Language and Culture online course level 1 (MOOC)</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/02052022-ICCF_Noongar_Language_and_Culture.png" alt="02/05/2022 ICCF"></td>
+              </tr>
+              <tr>
+                <td>22/09/2021</td>
+                <td>Recruitment and Selection</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/22092021-Recruitment_and_Selection.png" alt="22/09/2021 Recruitment and Selection" width="250" height="200"></td>
+              </tr>
+              <tr>
+              <tr>
+                  <td>23/08/2021</td>
+                <td>Introduction to Cyber Security Work Essentials</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/23082021-Intro_to_Cyber_Security_Work_Essentials.png" alt="23/08/2021 Introduction to Cyber Security Work Essentials" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>01/04/2021</td>
+                <td>Equal Opportunity Work Essentials &mdash; Full version</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/01042021-Equal_Opportunity_Work_Essentials.png" alt="01/04/2021 Equal Opportunity Work Essentials &mdash; Full version" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>10/02/2021</td>
+                <td>Code of Conduct Work Essentials &mdash; Full</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/10022021-Code_of_Conduct_Work_Essentials.png" alt="10/02/2021 Code of Conduct Work Essentials &mdash; Full" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>10/02/2021</td>
+                <td>Health, Safety and Emergency Management (HSEM) Work Essentials &mdash; Full</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/10022021-HSEM_Work_Essentials.png" alt="10/02/2021 HSEM Work Essentials" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>10/02/2021</td>
+                <td>Information Management Work Essentials Full</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/10022021-Information_Management_Work_Essentials.png" alt="10/02/2021 Information Management Work Essentials Full" width="250" height="200"></td>
+              </tr>
+              <tr>
+                <td>06/03/2019</td>
+                <td>HDR Supervisors &mdash; Management of Student Progress</td>
+                <td><img src="media/compendia/CA1/1_Development_of_Skills/06032019-HDR_Supervisors-Management_of_Student_Progress.png" alt="06/03/2019 HDR Supervisors &mdash; Management of Student Progress" width="250" height="200"></td>
+              </tr>
+            </table>
+        </div>
+
+      </div>
+
+
+      <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+  </div>
+
+  <footer class="w3-container w3-theme w3-center w3-margin-top">
+    <p>Get the print version here <a href="media/cv-jan24.pdf"><i
+          class="fa fa-download fa-fw w3-large w3-text-white w3-hover-opacity"></i></a></p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+
+</body>
+
+</html>
