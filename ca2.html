@@ -140,6 +140,58 @@
       width: 100%;
     }
   }
+
+  /* Comment boxes */
+  .arrowBox{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    padding: 20px;
+    margin: 30px auto 0;
+    position: relative;
+    background: #fff;
+    box-shadow: 2px 3px 3px 3px #D7DBDD;
+}
+
+  /*top arrow*/
+  .arrow-top:before{
+    content: "";
+    position: absolute;
+    display:block;
+    border-style: solid;
+    border-color: #D7DBDD;
+    border-width: 1px 1px 0 0;
+    width: 15px;
+    height: 15px;
+    top: -9px;
+    left: 3.5%;
+    background: inherit;
+    
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  /*left arrow*/
+  .arrow-left:before{
+    content: "";
+    position: absolute;
+    display:block;
+    border-style: solid;
+    border-color: #D7DBDD;
+    border-width: 1px 1px 0 0; 
+    width: 15px;
+    height: 15px;
+    top: 15px;
+    left: -9px;
+    background: inherit;
+
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    }
 </style>
 
 <script>
@@ -245,76 +297,97 @@
             <hr>
             <li><b>Assessment and Evaluation</b>: <br>I have designed assessments that are fair, valid, and reliable for all student with diverse cultural and academic background to ensure that they measure the intended learning outcomes. I am committed to upholding a high standard of educational quality in the courses I oversee. To that end, I frequently engage in peer review consultations with co-assessors to examine and enhance the quality of unit materials and assessments. I also carefully respond to student evaluations, utilising this feedback as a mechanism for continuous improvement in the units I manage. </li>
 
-            <div class="w3-margin">
+            <!-- Student's comments and evaluation -->
+            <div>
+              <!-- MATH5004 (2023) -->
               <div class="w3-margin">
                 <div class="w3-card-4 w3-padding-large">
                   <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                  <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE2000_2019.pdf" target="_blank">TER Report INDE2000 (2019) page 3</a></span><br>Anonymous student(s)<br>
-                  <hr class="w3-clear">
-                  <p>Her passion for the unit and her students. <br> <br>
-                    Having a super friendly and approachable lecture was definatly a
-                    highlight of this unit. She was always available to ask questions and to
-                    make us smile when we were all tired and stressed. also her jokes are
-                    awesome! <br><br>
-                    Subject knowledge and interesting anecdotes.</p>
+                  <br>Anonymous student(s) <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/USR - MATH5004 Advanced Numerical Analysis - Semester 2  2023.pdf" target="_blank">USR Report MATH5004 (2023) page 7</a></span> <br>
+                  <!-- Comments -->
+                  <div class="arrowBox arrow-top">Thanks to Professor Benchawan and the team. I am satisfied with the progress I have made.</div>
+                  <div class="arrowBox arrow-top">Learning under Dr. Benchawan was the most delightful experience. Her lecture notes and teaching routine helped us to bring out our full potential.
+                    The lab works have helped us to develop our coding skills.</div>
+                  <div class="arrowBox arrow-top">The professor was very kind in explaining every doubts and was always there to help us with feedback and extra classes if we were not able to understand it completely. Thus making sure that we understand the unit very well.</div>
+                  <div class="arrowBox arrow-top">Learned most of the mathematical techniques to solve BVP problems, Prof. Benchawan Wiwatanapataphee covered all the important topics and the teaching method was really good which made me to understand the topics at a faster pace. One of the best Prof. I had seen.Thanks to Prof Benchawan.</div>
+                  <div class="arrowBox arrow-top">I gained new knowledge</div>
+                  <div class="arrowBox arrow-top">Prof. Benchawan Wiwatanapataphee. she is outstanding, friendly. Basically, I had no programming knowledge, but through this unit, now I know the basics of programming. she always encourages us about this unit and tells us the future scope of the unit, so that we can do PhD degree.</div>
+                  <p></p>
                 </div>
               </div>
 
+              <!-- INDE5000 2021 -->
               <div class="w3-margin">
                 <div class="w3-card-4 w3-padding-large">
                   <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                  <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE5000_2020.pdf" target="_blank">TER Report INDE5000 (2020) page 3</a></span><br>Anonymous student(s)<br>
-                  <hr class="w3-clear">
-                  <p>Thanks for your help throughout the course. I am very happy with this
+                  <br>Anonymous student(s) <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/FUR_Report-INDE5000.pdf" target="_blank">FUR Report INDE5000 (2021) page 6</a></span><br>
+                  <div class="arrowBox arrow-top">As this is my first semester in my Masters Degree in Industrial Engineering, this unit helped me a lot in
+                    understanding the basic aspects of Supply Chain and how the inventory in a supply chain works. This will
+                    be a stepping stone in learning more about the Optimisation and Modelling techniques in Supply Chain.</div>
+                  <div class="arrowBox arrow-top">The current way of teaching is helpful and it is good.</div>
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- MATH5004 2021 -->
+              <div class="w3-margin">
+                <div class="w3-card-4 w3-padding-large">
+                  <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                  <br>Anonymous student(s)<span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/FUR_Report-MATH5004.pdf" target="_blank">FUR Report MATH5004 (2021) page 6</a></span><br>
+                  <div class="arrowBox arrow-top">It helped in understanding of how fdm and fem works and how it can be applied in real life scenarios.</div>
+                  <div class="arrowBox arrow-top">The current teaching is itself good.</div>
+                  <p></p>
+                </div>
+              </div>
+
+              <!-- INDE5000 2020 -->
+              <div class="w3-margin">
+                <div class="w3-card-4 w3-padding-large">
+                  <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                  <br>Anonymous student(s)<span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE5000_2020.pdf" target="_blank">TER Report INDE5000 (2020) page 3</a></span><br>
+                  <div class="arrowBox arrow-top">Thanks for your help throughout the course. I am very happy with this
                     unit and thank you for the good feedback that I receive every time I ask
                     you a questions. I really love your teaching style because it is easy to
-                    understand and very clear. You are the best! Thank you very much!</p>
+                    understand and very clear. You are the best! Thank you very much!</div>
+                  <p></p>
                 </div>
               </div>
 
-                <div class="w3-margin">
-                  <div class="w3-card-4 w3-padding-large">
-                    <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE2000_2020.pdf" target="_blank">TER Report INDE2000 (2020) page 3</a></span><br>Anonymous student(s)<br>
-                    <hr class="w3-clear">
-                    <p>She is able to assist students with topics that they are unsure about and
-                      is enthusiastic about helping students. <br> <br>
-                      Benchawan is very good at delivering the content in a clear and concise
-                      manner, it is clear she is very knowledgeable in the topics. Benchawan
-                      also provides feedback on assignments and quiz questions which is
-                      very helpful for a student to master the content. <br> <br>
-                      very approachable and communicates information well in person</p>
-                  </div>
+              <!-- INDE2000 2020-->
+              <div class="w3-margin">
+                <div class="w3-card-4 w3-padding-large">
+                  <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                  <br>Anonymous student(s)<span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE2000_2020.pdf" target="_blank">TER Report INDE2000 (2020) page 3</a></span><br>
+                  <div class="arrowBox arrow-top">She is able to assist students with topics that they are unsure about and
+                    is enthusiastic about helping students. <br> <br>
+                    Benchawan is very good at delivering the content in a clear and concise
+                    manner, it is clear she is very knowledgeable in the topics. Benchawan
+                    also provides feedback on assignments and quiz questions which is
+                    very helpful for a student to master the content.</div>
+                    <div class="arrowBox arrow-top">very approachable and communicates information well in person</div>
+                  <p></p>
                 </div>
-
-                <div class="w3-margin">
-                  <div class="w3-card-4 w3-padding-large">
-                    <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_MATH3004_2020.pdf" target="_blank">TER Report MATH3004 (2020) page 3</a></span><br>Anonymous student(s)<br>
-                    <hr class="w3-clear">
-                    <p>Professor Benchawan is very patient. She helps us a lot. I really appreciate her efforts for this unit.</p>
-                  </div>
+              </div>
+              <!-- MATH3004 2020 -->
+              <div class="w3-margin">
+                <div class="w3-card-4 w3-padding-large">
+                  <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                  <br>Anonymous student(s)<span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_MATH3004_2020.pdf" target="_blank">TER Report MATH3004 (2020) page 3</a></span><br>
+                  <div class="arrowBox arrow-top">Professor Benchawan is very patient. She helps us a lot. I really appreciate her efforts for this unit.</div>
+                  <p></p>
                 </div>
+              </div>
 
+                 <!-- INDE2000 (2019) -->
                 <div class="w3-margin">
                   <div class="w3-card-4 w3-padding-large">
                     <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/FUR_Report-INDE5000.pdf" target="_blank">FUR Report INDE5000 (2021) page 6</a></span><br>Anonymous student(s)<br>
-                    <hr class="w3-clear">
-                    <p>As this is my first semester in my Masters Degree in Industrial Engineering, this unit helped me a lot in
-                      understanding the basic aspects of Supply Chain and how the inventory in a supply chain works. This will
-                      be a stepping stone in learning more about the Optimisation and Modelling techniques in Supply Chain. <br><br>
-                      The current way of teaching is helpful and it is good. </p>
-                  </div>
-                </div>
-
-                <div class="w3-margin">
-                  <div class="w3-card-4 w3-padding-large">
-                    <img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/FUR_Report-MATH5004.pdf" target="_blank">FUR Report MATH5004 (2021) page 6</a></span><br>Anonymous student(s)<br>
-                    <hr class="w3-clear">
-                    <p>It helped in understanding of how fdm and fem works and how it can be applied in real life scenarios.<br><br>
-                      The current teaching is itself good.</p>
+                    <br>Anonymous student(s) <span class="w3-right w3-opacity"><a href="media/compendia/CA2/2/TER_Report_INDE2000_2019.pdf" target="_blank">TER Report INDE2000 (2019) page 3</a></span> <br>
+                    <!-- Comments -->
+                    <div class="arrowBox arrow-top">Having a super friendly and approachable lecture was definatly a
+                      highlight of this unit. She was always available to ask questions and to make us smile when we were all tired and stressed. also her jokes are awesome!</div>
+                    <div class="arrowBox arrow-top">Subject knowledge and interesting anecdotes.</div>
+                    <p></p>
                   </div>
                 </div>
           </div>
