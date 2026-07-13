@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 3 Index Notation and Cartesian Tensors – Applied Mathematical Modelling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04_fundamentalEquations.html" rel="next">
+<link href="./02_basicVector.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a473e0dd63122af86f9cbc1d981c1bf5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_indexNotation.html">Chapter 3 Index Notation and Cartesian Tensors</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Mathematical Modelling</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text"><strong>Introduction to Python</strong></span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_python_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Installation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Revision Workshop</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1 Introduction to Mathematical Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_basicVector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_indexNotation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 3 Index Notation and Cartesian Tensors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_fundamentalEquations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#index-notation" id="toc-index-notation" class="nav-link active" data-scroll-target="#index-notation">3.1 Index Notation</a>
+  <ul>
+  <li><a href="#convention-and-rules" id="toc-convention-and-rules" class="nav-link" data-scroll-target="#convention-and-rules">3.1.1 Convention and Rules</a></li>
+  <li><a href="#kronecker-delta-delta_ij-substitution-tensor" id="toc-kronecker-delta-delta_ij-substitution-tensor" class="nav-link" data-scroll-target="#kronecker-delta-delta_ij-substitution-tensor">3.1.2 Kronecker Delta <span class="math inline">\(\delta_{ij}\)</span> (Substitution Tensor)</a></li>
+  <li><a href="#manipulations-with-the-index-notation" id="toc-manipulations-with-the-index-notation" class="nav-link" data-scroll-target="#manipulations-with-the-index-notation">3.1.3 Manipulations with the Index Notation</a></li>
+  </ul></li>
+  <li><a href="#orthogonal-rotation-of-cartesian-axes" id="toc-orthogonal-rotation-of-cartesian-axes" class="nav-link" data-scroll-target="#orthogonal-rotation-of-cartesian-axes">3.2 Orthogonal Rotation of Cartesian Axes</a></li>
+  <li><a href="#cartesian-tensors" id="toc-cartesian-tensors" class="nav-link" data-scroll-target="#cartesian-tensors">3.3 CARTESIAN TENSORS</a>
+  <ul>
+  <li><a href="#cartesian-vector-cartesian-tensor-of-order-one" id="toc-cartesian-vector-cartesian-tensor-of-order-one" class="nav-link" data-scroll-target="#cartesian-vector-cartesian-tensor-of-order-one">3.3.1 CARTESIAN VECTOR (CARTESIAN TENSOR OF ORDER ONE)</a></li>
+  <li><a href="#second-order-cartesian-tensors" id="toc-second-order-cartesian-tensors" class="nav-link" data-scroll-target="#second-order-cartesian-tensors">3.3.2 SECOND ORDER CARTESIAN TENSORS</a></li>
+  <li><a href="#algebra-of-tensors" id="toc-algebra-of-tensors" class="nav-link" data-scroll-target="#algebra-of-tensors">3.3.3 ALGEBRA OF TENSORS</a>
+  <ul class="collapse">
+  <li><a href="#scalar-multiplication-and-addition" id="toc-scalar-multiplication-and-addition" class="nav-link" data-scroll-target="#scalar-multiplication-and-addition">Scalar Multiplication and Addition</a></li>
+  <li><a href="#contraction-and-multiplication" id="toc-contraction-and-multiplication" class="nav-link" data-scroll-target="#contraction-and-multiplication">Contraction and Multiplication</a></li>
+  <li><a href="#canonical-form-of-a-symymmetric-tensor" id="toc-canonical-form-of-a-symymmetric-tensor" class="nav-link" data-scroll-target="#canonical-form-of-a-symymmetric-tensor">Canonical Form of a Symymmetric Tensor</a></li>
+  <li><a href="#the-del-operator-and-the-divergence-theorem" id="toc-the-del-operator-and-the-divergence-theorem" class="nav-link" data-scroll-target="#the-del-operator-and-the-divergence-theorem">The Del Operator and the Divergence Theorem</a></li>
+  <li><a href="#levi-civita-symbol-permutation-symbol" id="toc-levi-civita-symbol-permutation-symbol" class="nav-link" data-scroll-target="#levi-civita-symbol-permutation-symbol">Levi-Civita Symbol (Permutation Symbol)</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><strong>Exercises</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 3 Index Notation and Cartesian Tensors</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In applied mathematical modelling particularly continuum mechanical modelling, in addition to scalars and vectors, we often encounter another type of physical quantities, namely tensors such as stress and strain. In this chapter, we first introduce a shorthand symbolism for writing complex formulae/equations involving vectors and tensors. Then we will introduce the basic calculus of Cartesian tensors.</p>
+<section id="index-notation" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="index-notation">3.1 Index Notation</h2>
+<p>Index notation is a shorthand notation for writing complex mathematical formulae/equations in a compact and succinct manner.</p>
+<p>In index notation, we use the more systematic labelling <span class="math inline">\((x_1,x_2,x_3)\)</span> for the tri-rectangular Cartesian coordinates of a point so that</p>
+<p><span class="math display">\[
+(x_1,x_2,x_3) \text{ represents } (x,y,z),
+\]</span></p>
+<p><span class="math display">\[
+(Ox_1,Ox_2,Ox_3) \text{ represents } (Ox,Oy,Oz),
+\]</span></p>
+<p><span class="math display">\[
+(v_1,v_2,v_3) \text{ represents } (v_x,v_y,v_z).
+\]</span></p>
+<p>In addition, we use free index, summation index, Kronecker Delta and various other symbols to simplify presentation of complex equations. The rest of this section is organized as follows. We first introduce the basic rules and convention, then the Kronecker delta, and then the basic manipulations with index notation.</p>
+<section id="convention-and-rules" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="convention-and-rules">3.1.1 Convention and Rules</h3>
+<p><strong>Free Index</strong></p>
+<p>Consider</p>
+<p><span class="math display">\[
+v_1 = a_{11}\bar{v}_1 + a_{12}\bar{v}_2, \tag{3.1}
+\]</span></p>
+<p><span class="math display">\[
+v_2 = a_{21}\bar{v}_1 + a_{22}\bar{v}_2. \notag
+\]</span></p>
+<p>If we let the subscript <span class="math inline">\(i\)</span> take on the numbers <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> one at a time, we can write the above two equations as one,</p>
+<p><span class="math display">\[
+v_i = a_{i1}\bar{v}_1 + a_{i2}\bar{v}_2. \tag{3.2}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rule 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a subscript appears precisely once in each term of an expression or equation, it is called a “free index”, and is to be successively assigned each value in its range.</p>
+</div>
+</div>
+<p><em>Remark.</em> If there are two free indices appearing in an equation such as</p>
+<p><span class="math display">\[
+B_{ij} = A_{ip}A_{jp}, \qquad (i=1,2,3,4;\ j=1,2,3,4)
+\]</span></p>
+<p>then the equation is a short-hand writing of <span class="math inline">\(16\)</span> equations.</p>
+<hr>
+<p><strong>Summation Index</strong></p>
+<p>Equation (3.2) can be written as</p>
+<p><span class="math display">\[
+v_i = \sum_{j=1}^2 a_{ij}\bar{v}_j. \tag{3.3}
+\]</span></p>
+<p>If we adopt the convention that a subscript which appears precisely twice in a term indicates a summation with the index running through the integers over the index range, we can write (3.3) as</p>
+<p><span class="math display">\[
+v_i = a_{ij}\bar{v}_j. \tag{3.4}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rule 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a subscript occurs precisely twice in one term of an expression, it may or may not occur precisely twice in any other term. It is to be summed over its range of values, and is known as a “dummy index” or “summation index”.</p>
+</div>
+</div>
+<p><em>Remark 1:</em> The repeated index can be assigned any letter and so</p>
+<p><span class="math display">\[
+v_i = a_{ij}\bar{v}_j = a_{ip}\bar{v}_p.
+\]</span></p>
+<p><em>Remark 2:</em> The particular choice of subscripts (free index or summation index) is immaterial provided that the rules are all satisfied. For example, the following equations are equivalent (represent exactly the same equations),</p>
+<p><span class="math display">\[
+v_i = a_{ij}\bar{v}_j, \qquad v_k = a_{kp}\bar{v}_p.
+\]</span></p>
+<hr>
+<p><strong>Differentiation Notation</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rule 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A comma represents differentiation.</p>
+</div>
+</div>
+<p>For example,</p>
+<p><span class="math display">\[
+v_{i,j} \text{ denotes } \frac{\partial v_i}{\partial x_j}.
+\]</span></p>
+<hr>
+<p><strong>Index Occurring More than Twice</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Rule 4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a subscript occurs more than twice in one term of an expression or equation, it is a mistake.</p>
+</div>
+</div>
+<p>For example, the following equations are meaningless</p>
+<p><span class="math display">\[
+v_i = a_{ii}v_i.
+\]</span></p>
+<p><em>Remark on range convention:</em> Lower case literal subscripts shall have all values over their index range.</p>
+<hr>
+</section>
+<section id="kronecker-delta-delta_ij-substitution-tensor" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="kronecker-delta-delta_ij-substitution-tensor">3.1.2 Kronecker Delta <span class="math inline">\(\delta_{ij}\)</span> (Substitution Tensor)</h3>
+<p>The Kronecker delta, denoted by <span class="math inline">\(\delta_{ij}\)</span>, is defined by</p>
+<p><span class="math display">\[
+\delta_{ij} =
+\begin{cases}
+1 &amp; \text{if } i=j, \\
+0 &amp; \text{if } i \ne j.
+\end{cases}
+\]</span></p>
+<p>Using <span class="math inline">\(\delta_{ij}\)</span>, we can often simplify presentations.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+l_{11}l_{11} + l_{12}l_{12} = 1,
+\]</span></p>
+<p><span class="math display">\[
+l_{21}l_{21} + l_{22}l_{22} = 1,
+\]</span></p>
+<p><span class="math display">\[
+l_{11}l_{21} + l_{12}l_{22} = 0,
+\]</span></p>
+<p><span class="math display">\[
+l_{21}l_{11} + l_{22}l_{12} = 0
+\]</span></p>
+<p>can be expressed by</p>
+<p><span class="math display">\[
+l_{1j}l_{1j} = 1,
+\]</span></p>
+<p><span class="math display">\[
+l_{2j}l_{2j} = 1,
+\]</span></p>
+<p><span class="math display">\[
+l_{1j}l_{2j} = 0,
+\]</span></p>
+<p><span class="math display">\[
+l_{2j}l_{1j} = 0.
+\]</span></p>
+<p>By using <span class="math inline">\(\delta_{ij}\)</span>, the above <span class="math inline">\(4\)</span> equations can be expressed by a single expression</p>
+<p><span class="math display">\[
+l_{kj}l_{\ell j} = \delta_{k\ell}.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\delta_{1p}a_p = \delta_{11}a_1 + \delta_{12}a_2 + \delta_{13}a_3 = a_1,
+\]</span></p>
+<p><span class="math display">\[
+\delta_{2p}a_p = \delta_{21}a_1 + \delta_{22}a_2 + \delta_{23}a_3 = a_2,
+\]</span></p>
+<p><span class="math display">\[
+\delta_{3p}a_p = \delta_{31}a_1 + \delta_{32}a_2 + \delta_{33}a_3 = a_3,
+\]</span></p>
+<p>we have in general</p>
+<p><span class="math display">\[
+\delta_{ip}a_p = a_i \qquad \text{(i.e, replace the index $p$ of $a$ by $i$).}
+\]</span></p>
+<p>Similarly, we can show that</p>
+<p><span class="math display">\[
+\delta_{ip}T_{pj} = T_{ij}.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(\mathbf e_1\)</span>, <span class="math inline">\(\mathbf e_2\)</span> and <span class="math inline">\(\mathbf e_3\)</span> are unit vectors perpendicular to each other, then</p>
+<p><span class="math display">\[
+\mathbf e_i \cdot \mathbf e_j = \delta_{ij}.
+\]</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="manipulations-with-the-index-notation" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="manipulations-with-the-index-notation">3.1.3 Manipulations with the Index Notation</h3>
+<p><strong>Substitution</strong></p>
+<p>If</p>
+<p><span class="math display">\[
+a_i = T_{ip}b_p, \tag{3.5}
+\]</span></p>
+<p><span class="math display">\[
+b_i = V_{ip}c_p, \tag{3.6}
+\]</span></p>
+<p>then, in order to substitute <span class="math inline">\(b_i\)</span> in (3.6) into (3.5), we first need to change the free index in (3.6) from <span class="math inline">\(i\)</span> to <span class="math inline">\(p\)</span> and the dummy index <span class="math inline">\(p\)</span> to some other letter so that</p>
+<p><span class="math display">\[
+b_p = V_{pq}c_q. \tag{3.7}
+\]</span></p>
+<p>Now substituting (3.7) into (3.5) yields</p>
+<p><span class="math display">\[
+a_i = T_{ip}V_{pq}c_q.
+\]</span></p>
+<hr>
+<p><strong>Multiplication</strong></p>
+<p>If</p>
+<p><span class="math display">\[
+u = a_ib_i, \qquad v = c_id_i,
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+uv = a_ib_ic_nd_n.
+\]</span></p>
+<p>It is important to note that</p>
+<p><span class="math display">\[
+uv \ne a_ib_ic_id_i \ne \sum_{i=1}^3 a_ib_ic_id_i.
+\]</span></p>
+<hr>
+<p><strong>Factorisation</strong></p>
+<p>Consider</p>
+<p><span class="math display">\[
+T_{ij}n_j - \lambda n_i = 0. \tag{3.8}
+\]</span></p>
+<p>Using the Kronecker delta, we have</p>
+<p><span class="math display">\[
+n_i = \delta_{ij}n_j
+\]</span></p>
+<p>and thus (3.8) becomes</p>
+<p><span class="math display">\[
+T_{ij}n_j - \lambda\delta_{ij}n_j = 0
+\]</span></p>
+<p>which gives</p>
+<p><span class="math display">\[
+(T_{ij} - \lambda\delta_{ij})n_j = 0.
+\]</span></p>
+<hr>
+</section>
+</section>
+<section id="orthogonal-rotation-of-cartesian-axes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="orthogonal-rotation-of-cartesian-axes">3.2 Orthogonal Rotation of Cartesian Axes</h2>
+<p><strong>Cartesian Coordinate System</strong></p>
+<p>In ordinary 2-D space, the system defined by <span class="math inline">\(2\)</span> mutually orthogonal directions with equal units of measurements is called Cartesian frame of reference.</p>
+<p><strong>Cartesian Vectors and Direction Cosines</strong></p>
+<p>A Cartesian vector <span class="math inline">\(\mathbf a\)</span> in 2-D is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> expressed with a Cartesian frame of reference, i.e.</p>
+<p><span class="math display">\[
+\mathbf a=(a_1,a_2).
+\]</span></p>
+<p>Let <span class="math inline">\(\hat{\mathbf a}\)</span> be a unit vector in <span class="math inline">\(\mathbf a\)</span>, then the components of <span class="math inline">\(\hat{\mathbf a}\)</span> along <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are respectively</p>
+<p><span class="math display">\[
+l_{a1} = \text{ cosine of the angle between } \hat{\mathbf a} \text{ and } Ox_1,
+\]</span></p>
+<p><span class="math display">\[
+l_{a2} = \text{ cosine of the angle between } \hat{\mathbf a} \text{ and } Ox_2.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>We define the unit vector</p>
+<p><span class="math display">\[
+\hat{\mathbf a} = (l_{a1},l_{a2})
+\]</span></p>
+<p>as the direction cosines of <span class="math inline">\(\mathbf a\)</span>. With the direction cosines, <span class="math inline">\(\mathbf a\)</span> can be expressed as</p>
+<p><span class="math display">\[
+\mathbf a = |\mathbf a|\hat{\mathbf a}.
+\]</span></p>
+<hr>
+<p><strong>Scalar Product of Two Vectors and Projection of a Vector on a Line</strong></p>
+<p>Let <span class="math inline">\(\overrightarrow{OA}=\mathbf a\)</span>, <span class="math inline">\(\overrightarrow{OB}=\mathbf b\)</span>, then the scalar product of <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf b\)</span> is defined as</p>
+<p><span class="math display">\[
+\mathbf a \bullet \mathbf b = |\mathbf a||\mathbf b|\cos\theta = a_1b_1 + a_2b_2.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Let <span class="math inline">\(\hat{\mathbf a}\)</span> be a unit vector on <span class="math inline">\(\mathbf a\)</span>, then</p>
+<p><span class="math display">\[
+\mathbf b \bullet \hat{\mathbf a} = |\mathbf b|\cos\theta,
+\]</span></p>
+<p>which indicates that the projection of <span class="math inline">\(\mathbf b\)</span> on a line is the scalar product of <span class="math inline">\(\mathbf b\)</span> with a unit vector along the line.</p>
+<hr>
+<p><strong>Rotation of Axes</strong></p>
+<p>Consider the transformation of the coordinate frame by an arbitrary rotation. Fig 1 shows the original frame <span class="math inline">\(Ox_1x_2\)</span>, the new frame <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> and a vector <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> in the <span class="math inline">\(Ox_1x_2\)</span> system or <span class="math inline">\(\bar{\mathbf v}=(\bar{v}_1,\bar{v}_2)\)</span> in the <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Let <span class="math inline">\(l_{ij}\)</span> be the cosine of the angle between the <span class="math inline">\(Ox_i\)</span> axis and the <span class="math inline">\(O\bar{x}_j\)</span> axis, then the unit vector (direction cosines) of the <span class="math inline">\(O\bar{x}_j\)</span> axis in the new system is <span class="math inline">\(\hat{x}_j=(l_{j1},l_{j2})\)</span>; the unit vector (direction cosines) of the <span class="math inline">\(O\bar{x}_j\)</span> axis in the old system are <span class="math inline">\(\hat{x}_j=(l_{1j},l_{2j})\)</span>.</p>
+<p>In system <span class="math inline">\(Ox_1x_2\)</span>, the projection of <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> on the <span class="math inline">\(O\bar{x}_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\mathbf v\)</span> with a unit vector along <span class="math inline">\(O\bar{x}_j\)</span>, we thus have</p>
+<p><span class="math display">\[
+\bar{v}_1 = v \bullet \hat{x}_1 = (v_1,v_2) \bullet (l_{11},l_{21}) = l_{11}v_1 + l_{21}v_2 = l_{i1}v_i,
+\]</span></p>
+<p><span class="math display">\[
+\bar{v}_2 = v \bullet \hat{x}_2 = (v_1,v_2) \bullet (l_{12},l_{22}) = l_{12}v_1 + l_{22}v_2 = l_{i2}v_i.
+\]</span></p>
+<p>Similarly in system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>, the projection of <span class="math inline">\(\bar{v}=(\bar{v}_1,\bar{v}_2)\)</span> on the <span class="math inline">\(Ox_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\bar{v}\)</span> with a unit vector along <span class="math inline">\(Ox_j\)</span>, we thus have</p>
+<p><span class="math display">\[
+v_1 = \bar{v} \bullet \hat{x}_1 = (\bar{v}_1,\bar{v}_2) \bullet (l_{11},l_{12}) = l_{11}\bar{v}_1 + l_{12}\bar{v}_2 = l_{1i}\bar{v}_i,
+\]</span></p>
+<p><span class="math display">\[
+v_2 = \bar{v} \bullet \hat{x}_2 = (\bar{v}_1,\bar{v}_2) \bullet (l_{21},l_{22}) = l_{21}\bar{v}_1 + l_{22}\bar{v}_2 = l_{2i}\bar{v}_i.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\bar{v}_j = l_{ij}v_i, \qquad v_j = l_{ji}\bar{v}_i.
+\]</span></p>
+<p><strong>Properties of Direction Cosines <span class="math inline">\(l_{ij}\)</span></strong></p>
+<p>As <span class="math inline">\(\hat{x}_1=(l_{11},l_{12})\)</span> and <span class="math inline">\(\hat{x}_2=(l_{21},l_{22})\)</span> are orthogonal unit vectors, we have</p>
+<p><span class="math display">\[
+(l_{11},l_{12}) \bullet (l_{11},l_{12}) = l_{11}^2 + l_{12}^2 = 1,
+\]</span></p>
+<p><span class="math display">\[
+(l_{11},l_{12}) \bullet (l_{21},l_{22}) = l_{11}l_{21} + l_{12}l_{22} = 0
+\]</span></p>
+<p>or in index notation,</p>
+<p><span class="math display">\[
+l_{ki}l_{\ell i} = \delta_{k\ell}.
+\]</span></p>
+<p>Similarly, we can obtain</p>
+<p><span class="math display">\[
+l_{ik}l_{i\ell} = \delta_{k\ell}.
+\]</span></p>
+</section>
+<section id="cartesian-tensors" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="cartesian-tensors">3.3 CARTESIAN TENSORS</h2>
+<section id="cartesian-vector-cartesian-tensor-of-order-one" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="cartesian-vector-cartesian-tensor-of-order-one">3.3.1 CARTESIAN VECTOR (CARTESIAN TENSOR OF ORDER ONE)</h3>
+<p>Def. A Cartesian vector, <span class="math inline">\(a\)</span>, in two dimensions is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> in the Cartesian frame <span class="math inline">\(Ox_1x_2\)</span>, which, under rotation of the coordinate frame to <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>, become components <span class="math inline">\(\bar{a}_1\)</span> and <span class="math inline">\(\bar{a}_2\)</span> where</p>
+<p><span class="math display">\[
+\bar{a}_j = a \bullet \hat{x}_j = (a_1,a_2) \bullet (l_{1j},l_{2j}) = l_{ij}a_i. \tag{3.9}
+\]</span></p>
+<p>where <span class="math inline">\(\hat{x}_j = (l_{1j},l_{2j})\)</span> are the direction cosines of the <span class="math inline">\(O\bar{x}_j\)</span> axis with respect to the coordinate frame <span class="math inline">\(Ox_1x_2\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Example. Consider a force <span class="math inline">\(\mathbf F\)</span> acting at a point <span class="math inline">\(P\)</span> on the surface of an object. Suppose we know the components of the force in the <span class="math inline">\(x_1\)</span> and the <span class="math inline">\(x_2\)</span> directions, say, <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>; the direction cosine of the outward normal <span class="math inline">\(\mathbf n\)</span> at <span class="math inline">\(P\)</span> is <span class="math inline">\((n_1,n_2)\)</span> and the direction cosine of <span class="math inline">\(\hat{\mathbf t}\)</span> is <span class="math inline">\((t_1,t_2)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>Then, we can use (3.9) to calculate</p>
+<p><span class="math display">\[
+    \text{normal force: } \qquad F_n = \mathbf F \bullet \mathbf n = f_in_i,
+\]</span></p>
+<p><span class="math display">\[
+    \text{tangential force: } \qquad  F_t = \mathbf F \bullet \hat{\mathbf t} = f_it_i.
+\]</span></p>
+</section>
+<section id="second-order-cartesian-tensors" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="second-order-cartesian-tensors">3.3.2 SECOND ORDER CARTESIAN TENSORS</h3>
+<p><strong>Definition</strong>. A second order Cartesian tensor, <span class="math inline">\(A\)</span>, in two dimensions is an entity having <span class="math inline">\(4\)</span> components <span class="math inline">\(A_{ij}\)</span>, <span class="math inline">\(i,j=1,2\)</span>, in the Cartesian frame of reference <span class="math inline">\(Ox_1x_2\)</span> which on rotation of the frame to <span class="math inline">\(Opq\)</span> become</p>
+<p><span class="math display">\[
+A_{pq} = l_{ip}l_{jq}A_{ij},
+\]</span></p>
+<p>where <span class="math inline">\(l_p=(l_{1p},l_{2p})\)</span> and <span class="math inline">\(l_q=(l_{1q},l_{2q})\)</span> are the direction cosines of the <span class="math inline">\(Op\)</span> and <span class="math inline">\(Oq\)</span> axes with respect to the coordinate frame <span class="math inline">\(Ox_1x_2\)</span>.</p>
+<p>By the orthogonal properties of <span class="math inline">\(l_{rs}\)</span>, we also have the inverse transformation</p>
+<p><span class="math display">\[
+A_{ij} = l_{ip}l_{jq}A_{pq}.
+\]</span></p>
+<p><strong>Remarks</strong></p>
+<ul>
+<li>A 2nd order tensor may be written in matrix form</li>
+</ul>
+<p><span class="math display">\[
+A=
+\begin{pmatrix}
+A_{11} &amp; A_{12} \\
+A_{21} &amp; A_{22}
+\end{pmatrix}
+\]</span></p>
+<ul>
+<li>The transformation law for 2nd order tensors can be expressed in terms of matrices,</li>
+</ul>
+<p><span class="math display">\[
+\bar{A} = L^TAL, \qquad A = L\bar{A}L^T.
+\]</span></p>
+<ul>
+<li><strong>Definition</strong>: Symmetric tensors</li>
+</ul>
+<p>If <span class="math inline">\(A_{ij}=A_{ji}\)</span>, <span class="math inline">\(A\)</span> is said to be symmetric. In this case, there are only <span class="math inline">\(3\)</span> distinct components,</p>
+<p><span class="math display">\[
+A=
+\begin{pmatrix}
+A_{11} &amp; A_{12} \\
+A_{12} &amp; A_{22}
+\end{pmatrix}.
+\]</span></p>
+<ul>
+<li><strong>Definition</strong>: Antisymmetric tensor</li>
+</ul>
+<p>If <span class="math inline">\(A_{ij}=-A_{ji}\)</span>, <span class="math inline">\(A\)</span> is said to be antisymmetric and such a tensor has the form as follows</p>
+<p><span class="math display">\[
+A=
+\begin{pmatrix}
+0 &amp; A_{12} \\
+-A_{12} &amp; 0
+\end{pmatrix}.
+\]</span></p>
+<ul>
+<li><strong>Definition</strong>: Transpose of Tensors</li>
+</ul>
+<p>The tensor whose <span class="math inline">\(ij\)</span> element is <span class="math inline">\(A_{ji}\)</span> is called the transpose <span class="math inline">\(A^T\)</span> of <span class="math inline">\(A\)</span>.</p>
+</section>
+<section id="algebra-of-tensors" class="level3 unnumbered">
+<h3 class="unnumbered anchored">3.3.3 ALGEBRA OF TENSORS</h3>
+<section id="scalar-multiplication-and-addition" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="scalar-multiplication-and-addition">Scalar Multiplication and Addition</h4>
+<ul>
+<li><p>If <span class="math inline">\(\alpha\)</span> is a scalar and <span class="math inline">\(A\)</span> is a second order tensor, the scalar product of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> is a tensor <span class="math inline">\(\alpha A\)</span> each of whose components is <span class="math inline">\(\alpha\)</span> times the corresponding component of <span class="math inline">\(A\)</span>.</p></li>
+<li><p>The sum of two second order tensors is a second order tensor each of whose components is the sum of the corresponding components of the two tensors, i.e.,</p></li>
+</ul>
+<p><span class="math display">\[
+(A+B)_{ij} = A_{ij} + B_{ij}.
+\]</span></p>
+<ul>
+<li>Any tensor may be represented as the sum of a symmetric part and an antisymmetric part.</li>
+</ul>
+<p><span class="math display">\[
+A_{ij} = \frac{1}{2}(A_{ij}+A_{ji}) + \frac{1}{2}(A_{ij}-A_{ji}),
+\]</span></p>
+<p><span class="math display">\[
+    herefore \qquad A = \frac{1}{2}(A+A^T) + \frac{1}{2}(A-A^T)
+\]</span></p>
+</section>
+<section id="contraction-and-multiplication" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="contraction-and-multiplication">Contraction and Multiplication</h4>
+<ul>
+<li>The operation of identifying two indices of a tensor and then summing on them is known as contraction. <span class="math inline">\(A_{ii}\)</span> is the only contraction of <span class="math inline">\(A_{ij}\)</span>,</li>
+</ul>
+<p><span class="math display">\[
+A_{ii} = A_{11} + A_{22}
+\]</span></p>
+<p>and this is a scalar.</p>
+<ul>
+<li>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two second order tensors, then</li>
+</ul>
+<p><span class="math display">\[
+C_{ijkm}=A_{ij}B_{km}
+\]</span></p>
+<p>is a fourth-order tensor.</p>
+<ul>
+<li><p>The product <span class="math inline">\(A_{ij}a_j\)</span> of a vector <span class="math inline">\(a\)</span> and a tensor <span class="math inline">\(A\)</span> is a vector whose <span class="math inline">\(i\)</span>th component is <span class="math inline">\(A_{ij}a_j\)</span>.</p></li>
+<li><p>Notation of scalar product</p></li>
+</ul>
+<p><span class="math display">\[
+A \bullet B \text{ is a tensor with components } A_{ij}B_{jk}.
+\]</span></p>
+<p>Note that the summation is over adjacent suffixes.</p>
+<ul>
+<li>The doubly contracted product</li>
+</ul>
+<p><span class="math display">\[
+A:B = A_{ij}B_{ij}
+\]</span></p>
+<p>is a scalar.</p>
+</section>
+<section id="canonical-form-of-a-symymmetric-tensor" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="canonical-form-of-a-symymmetric-tensor">Canonical Form of a Symymmetric Tensor</h4>
+<p>If <span class="math inline">\(l\)</span> is an arbitrary unit vector, <span class="math inline">\(A \bullet l\)</span> is a vector and, for certain <span class="math inline">\(l\)</span>, may have the same direction as <span class="math inline">\(l\)</span> itself had. The two vectors <span class="math inline">\(A \bullet l\)</span> and <span class="math inline">\(l\)</span> would thus differ only in magnitude and we might write</p>
+<p><span class="math display">\[
+A \bullet l = \lambda l.
+\]</span></p>
+<p>Writing this in component form</p>
+<p><span class="math display">\[
+A_{ij}l_j = \lambda l_i = \lambda\delta_{ij}l_j
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+(A_{ij}-\lambda\delta_{ij})l_j = 0. \tag{3.10}
+\]</span></p>
+<p>Definition: For <span class="math inline">\(l \ne 0\)</span>, the <span class="math inline">\(\lambda\)</span> in (3.10) is called the eigen value of <span class="math inline">\(A\)</span> and <span class="math inline">\(l\)</span> is the associated eigen vector.</p>
+<p>Now we will find the eigen values and eigen vectors. System (3.10) is a set of homogeneous equations for the unknowns <span class="math inline">\(l_j\)</span> and so has non-zero solutions only if the determinant of the coefficient matrix vanishes. Thus the value of <span class="math inline">\(\lambda\)</span> must be such that</p>
+<p><span class="math display">\[
+\det(A_{ij}-\lambda\delta_{ij}) =
+\begin{vmatrix}
+a_{11}-\lambda &amp; a_{12} \\
+a_{12} &amp; a_{22}-\lambda
+\end{vmatrix} = 0
+\]</span></p>
+<p>Therefore, <span class="math display">\[
+     \lambda_{1,2} = \frac{1}{2}(a_{11}+a_{22}) \pm \frac{1}{2}\sqrt{(a_{11}-a_{22})^2 + 4a_{12}^2}. \tag{3.11}
+\]</span></p>
+<p>Assume <span class="math inline">\(\lambda_1 \ne \lambda_2\)</span>, then there will be two different eigen vectors corresponding to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively. The vector <span class="math inline">\(l_j=(l_{1j},l_{2j})\)</span> associated with <span class="math inline">\(\lambda_j\)</span> can be determined from system (3.10).</p>
+<p>For <span class="math inline">\(\lambda=\lambda_1\)</span>, we have</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+a_{11}-\lambda_1 &amp; a_{12} \\
+a_{12} &amp; a_{22}-\lambda_1
+\end{pmatrix}
+\begin{bmatrix}
+l_{11} \\
+l_{21}
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\
+0
+\end{bmatrix}. \tag{3.12}
+\]</span></p>
+<p>As equations <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> in system (3.12) are linearly dependent, we obtain from the first equation,</p>
+<p><span class="math display">\[
+\frac{l_{21}}{l_{11}} = \frac{\lambda_1-a_{11}}{a_{12}}.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch3-fig11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Suppose the angle between the characteristic direction <span class="math inline">\((l_{11},l_{21})\)</span> of <span class="math inline">\(\lambda_1\)</span> and the <span class="math inline">\(x_1\)</span> axis is <span class="math inline">\(\theta_1\)</span>, then</p>
+<p><span class="math display">\[
+l_{11} = \cos\theta_1, \qquad l_{21} = \cos\left(\frac{\pi}{2}-\theta_1\right) = \sin\theta_1.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+    \tan\theta_1 = \frac{l_{21}}{l_{11}} = \frac{\lambda_1-a_{11}}{a_{12}}.
+\]</span></p>
+<p>Similarly, the characteristic direction <span class="math inline">\((l_{12},l_{22})\)</span> of <span class="math inline">\(\lambda_2\)</span> can be determined by</p>
+<p><span class="math display">\[
+    \tan\theta_2 = \frac{l_{22}}{l_{12}} = \frac{\lambda_2-a_{22}}{a_{12}}.
+\]</span></p>
+<p>In the following, we will show that, on rotation of the coordinate frame from <span class="math inline">\(Ox_1x_2\)</span> to <span class="math inline">\(Ox_px_q\)</span> where <span class="math inline">\(x_p\)</span> and <span class="math inline">\(x_q\)</span> are the characteristic directions corresponding respectively to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, <span class="math inline">\(A\)</span> has diagonal form in the new coordinate frame.</p>
+<p>Let the eigen values be <span class="math inline">\(\lambda_{(p)} \ne \lambda_{(q)}\)</span> for <span class="math inline">\(p \ne q\)</span> and the associated directions are <span class="math inline">\(l_p=(l_{1p},l_{2p})\)</span> and <span class="math inline">\(l_q=(l_{1q},l_{2q})\)</span>, then</p>
+<p><span class="math display">\[
+A_{ij}l_{jp} = \lambda_{(p)}l_{ip}, \qquad A_{ij}l_{jq} = \lambda_{(q)}l_{iq}. \tag{3.13}
+\]</span></p>
+<p>where the repeated indices <span class="math inline">\((p)p\)</span> do not represent summation, and <span class="math inline">\(l_{ip}=(l_{1p},l_{2p})\)</span> is the direction associated with <span class="math inline">\(\lambda_{(p)}\)</span>.</p>
+<p><span class="math display">\[(3.13)_1 \times l_{iq}: \qquad A_{ij}l_{jp}l_{iq} = \lambda_{(p)}l_{ip}l_{iq} = A_{ji}l_{ip}l_{jq},\]</span></p>
+<p><span class="math display">\[(3.13)_2 \times l_{ip}: \qquad A_{ij}l_{jq}l_{ip} = \lambda_{(q)}l_{iq}l_{ip}.\]</span></p>
+<p>As <span class="math inline">\(A_{ij}=A_{ji}\)</span>, we have from the above</p>
+<p><span class="math display">\[
+A_{ij}l_{ip}l_{jq} = \lambda_{(p)}l_{ip}l_{iq} = \lambda_{(q)}l_{ip}l_{iq}.
+\]</span></p>
+<p>As <span class="math inline">\(\lambda_p \ne \lambda_q\)</span> as assumed, the above equation is only possible if</p>
+<p><span class="math display">\[
+l_{ip}l_{iq} = l_{(p)} \bullet l_{(q)} = 0.
+\]</span></p>
+<p>and so the vectors are orthogonal and thus</p>
+<p><span class="math display">\[
+l_{ip}l_{iq} = \delta_{pq}.
+\]</span></p>
+<p><span class="math display">\[
+    herefore \qquad A_{pq} = l_{ip}l_{jq}A_{ij} = \lambda_{(p)}\delta_{pq}.
+\]</span></p>
+<p>This merely says that <span class="math inline">\(A\)</span> has diagonal form and its diagonal components are <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, i.e.,</p>
+<p><span class="math display">\[
+\bar{A}=
+\begin{pmatrix}
+\lambda_1 &amp; 0 \\
+0 &amp; \lambda_2
+\end{pmatrix}.
+\]</span></p>
+</section>
+<section id="the-del-operator-and-the-divergence-theorem" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-del-operator-and-the-divergence-theorem">The Del Operator and the Divergence Theorem</h4>
+<ul>
+<li>The Del Operator <span class="math inline">\(\nabla\)</span></li>
+</ul>
+<p>If <span class="math inline">\(\nabla\)</span> operates on a scalar function of position <span class="math inline">\(\phi\)</span>, it produces a vector <span class="math inline">\(\nabla\phi\)</span>, i.e,</p>
+<p><span class="math display">\[
+\nabla =
+\begin{pmatrix}
+\dfrac{\partial}{\partial x_1} \\
+\dfrac{\partial}{\partial x_2}
+\end{pmatrix},
+\qquad
+\nabla\phi = \operatorname{grad}\phi =
+\begin{pmatrix}
+\dfrac{\partial\phi}{\partial x_1} \\
+\dfrac{\partial\phi}{\partial x_2}
+\end{pmatrix}.
+\]</span></p>
+<p>Remark: Let <span class="math inline">\(\mathbf n\)</span> be a unit vector, the directional derivative of <span class="math inline">\(\phi\)</span> along <span class="math inline">\(\mathbf n\)</span> is,</p>
+<p><span class="math display">\[
+\frac{\partial\phi}{\partial n} = \nabla\phi \bullet \mathbf n
+\]</span></p>
+<ul>
+<li>The Divergence Operator <span class="math inline">\(\nabla \bullet\)</span></li>
+</ul>
+<p><span class="math display">\[
+\operatorname{div} \mathbf a = \nabla \bullet \mathbf a = a_{i,i} = \frac{\partial a_1}{\partial x_1} + \frac{\partial a_2}{\partial x_2}
+\]</span></p>
+<ul>
+<li>The Laplace Operator <span class="math inline">\(\Delta\)</span></li>
+</ul>
+<p><span class="math display">\[
+\Delta\phi = \nabla^2\phi = \frac{\partial^2\phi}{\partial x_1^2} + \frac{\partial^2\phi}{\partial x_2^2} = \operatorname{div}\operatorname{grad}\phi = \phi_{,ii}
+\]</span></p>
+<ul>
+<li>The Divergence Theorem</li>
+</ul>
+<p><span class="math display">\[
+\int_\Omega \nabla \bullet \mathbf a\,dV = \int_{\partial\Omega} \mathbf a \bullet \mathbf n\,dS
+\]</span></p>
+<p>which relates a volume integral to an integral over the bounding surface.</p>
+</section>
+<section id="levi-civita-symbol-permutation-symbol" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="levi-civita-symbol-permutation-symbol">Levi-Civita Symbol (Permutation Symbol)</h4>
+<p>The <strong>Levi-Civita symbol</strong>, denoted by <strong>ε (epsilon)</strong>, is a mathematical symbol used in <strong>vector calculus, tensor analysis, linear algebra, and physics</strong>. It is also known as the <strong>permutation symbol</strong> because its value depends on the permutation of its indices.</p>
+<section id="definition" class="level5">
+<h5 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h5>
+<p>In <strong>three dimensions</strong>, the Levi-Civita symbol is written as</p>
+<p><span class="math display">\[\varepsilon_{ijk}\]</span></p>
+<p>where <span class="math inline">\(i, j, k \in \{1,2,3\}\)</span>. Its values are defined as</p>
+<p><span class="math display">\[\varepsilon_{ijk} =
+\begin{cases}
++1, &amp; \text{if } (i,j,k) \text{ is an even permutation of } (1,2,3), \\
+-1, &amp; \text{if } (i,j,k) \text{ is an odd permutation of } (1,2,3), \\
+0, &amp; \text{if any two indices are equal.}
+\end{cases}
+\]</span></p>
+</section>
+<section id="even-and-odd-permutations" class="level5">
+<h5 class="anchored" data-anchor-id="even-and-odd-permutations"><strong>Even and Odd Permutations</strong></h5>
+<p><strong>Even Permutations</strong> (<span class="math inline">\(\varepsilon = +1\)</span>)</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{123} = +1\)</span></li>
+<li><span class="math inline">\(\varepsilon_{231} = +1\)</span></li>
+<li><span class="math inline">\(\varepsilon_{312} = +1\)</span></li>
+</ul>
+<p><strong>Odd Permutations</strong> (<span class="math inline">\(\varepsilon = -1\)</span>)</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{132} = -1\)</span></li>
+<li><span class="math inline">\(\varepsilon_{213} = -1\)</span></li>
+<li><span class="math inline">\(\varepsilon_{321} = -1\)</span></li>
+</ul>
+</section>
+<section id="repeated-indices" class="level5">
+<h5 class="anchored" data-anchor-id="repeated-indices"><strong>Repeated Indices </strong></h5>
+<p>If any two indices are the same:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{112} = 0\)</span></li>
+<li><span class="math inline">\(\varepsilon_{233} = 0\)</span></li>
+<li><span class="math inline">\(\varepsilon_{111} = 0\)</span></li>
+</ul>
+</section>
+<section id="properties" class="level5">
+<h5 class="anchored" data-anchor-id="properties"><strong>Properties</strong></h5>
+<p><strong>1. Complete Antisymmetry</strong></p>
+<p>Interchanging any two indices changes the sign of the symbol:</p>
+<p><span class="math display">\[
+\varepsilon_{ijk} = -\varepsilon_{jik}
+\]</span></p>
+<p><strong>2. Zero for Repeated Indices</strong></p>
+<p>If any two indices are equal:</p>
+<p><span class="math display">\[
+\varepsilon_{iik} = 0
+\]</span></p>
+<p><strong>3. Product Identity</strong></p>
+<p>The product of two Levi-Civita symbols is related to the Kronecker delta:</p>
+<p><span class="math display">\[
+\varepsilon_{ijk}\varepsilon_{imn}
+=
+\delta_{jm}\delta_{kn}
+-
+\delta_{jn}\delta_{km}
+\]</span></p>
+<p>where <span class="math inline">\(\delta_{ij}\)</span> is the <strong>Kronecker delta</strong>.</p>
+</section>
+</section>
+<section id="applications" class="level4 unnumbered">
+<h4 class="unnumbered anchored">Applications</h4>
+<p>The Levi-Civita symbol has numerous applications in mathematics and physics.</p>
+<section id="cross-product" class="level5">
+<h5 class="anchored"><strong>Cross Product</strong></h5>
+<p>The cross product of two vectors can be expressed as:</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_i
+=
+\varepsilon_{ijk}A_jB_k
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example - Cross Product Using the Levi-Civita Symbol
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider two vectors</p>
+<p><span class="math display">\[
+\mathbf{A} = (2,\,3,\,4)
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{B} = (5,\,6,\,7)
+\]</span></p>
+<p>The cross product using the <strong>Levi-Civita symbol</strong> is defined as</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_i
+=
+\varepsilon_{ijk}A_jB_k
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> is the Levi-Civita symbol.</li>
+<li><span class="math inline">\(A_j\)</span> and <span class="math inline">\(B_k\)</span> are the components of vectors <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>.</li>
+</ul>
+<section id="step-1-compute-the-first-component" class="level6">
+<h6 class="anchored" data-anchor-id="step-1-compute-the-first-component"><strong>Step 1</strong>: Compute the First Component</h6>
+<p>For <span class="math inline">\(i=1\)</span>:</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_1
+=
+\varepsilon_{123}A_2B_3
++
+\varepsilon_{132}A_3B_2
+\]</span></p>
+<p>Substituting the values gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\mathbf{A}\times\mathbf{B})_1=&amp;
+(+1)(3)(7)
++
+(-1)(4)(6)\\
+=&amp;
+21-24
+=
+-3
+\end{aligned}
+\]</span></p>
+</section>
+<section id="step-2-compute-the-second-component" class="level6">
+<h6 class="anchored" data-anchor-id="step-2-compute-the-second-component"><strong>Step 2</strong>: Compute the Second Component</h6>
+<p>For <span class="math inline">\(i=2\)</span>:</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_2
+=
+\varepsilon_{231}A_3B_1
++
+\varepsilon_{213}A_1B_3\\
+\]</span></p>
+<p>Substituting the values yields gets</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\mathbf{A}\times\mathbf{B})_2
+=&amp;
+\varepsilon_{231}A_3B_1
++
+\varepsilon_{213}A_1B_3\\
+=&amp;
+(+1)(4)(5)
++
+(-1)(2)(7)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+=
+20-14
+=
+6
+\]</span></p>
+</section>
+<section id="step-3-compute-the-third-component" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-compute-the-third-component">Step 3: Compute the Third Component</h2>
+<p>For <span class="math inline">\(i=3\)</span>:</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_3
+=
+\varepsilon_{312}A_1B_2
++
+\varepsilon_{321}A_2B_1
+\]</span></p>
+<p>Substituting the values gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\mathbf{A}\times\mathbf{B})_3
+=&amp;
+(+1)(2)(6)
++
+(-1)(3)(5)\\
+=&amp;
+12-15
+=
+-3
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf{A}\times\mathbf{B}
+=
+(-3,\;6,\;-3)
+}
+\]</span></p>
+<section id="verification-using-the-determinant-method" class="level6">
+<h6 class="anchored" data-anchor-id="verification-using-the-determinant-method"><strong>Verification Using the Determinant Method</strong></h6>
+<p>The cross product can also be computed using the determinant:</p>
+<p><span class="math display">\[
+\mathbf{A}\times\mathbf{B}
+=
+\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+2 &amp; 3 &amp; 4 \\
+5 &amp; 6 &amp; 7
+\end{vmatrix}
+\]</span></p>
+<p>Expanding the determinant:</p>
+<p><span class="math display">\[
+=
+\mathbf{i}(3\times7-4\times6)
+-
+\mathbf{j}(2\times7-4\times5)
++
+\mathbf{k}(2\times6-3\times5)
+\]</span></p>
+<p><span class="math display">\[
+=
+-3\mathbf{i}
++6\mathbf{j}
+-3\mathbf{k}
+\]</span></p>
+<p>which gives the same result</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf{A}\times\mathbf{B}
+=
+(-3,\;6,\;-3)
+}
+\]</span></p>
+</section>
+</section>
+</div>
+</div>
+<p>This example demonstrates how the <strong>Levi-Civita symbol</strong> provides a compact index notation for computing the cross product. Only the terms corresponding to nonzero values of the Levi-Civita symbol contribute to the result, making it especially useful in tensor analysis and theoretical physics.</p>
+</section>
+<section id="determinant-of-a-matrix" class="level5">
+<h5 class="anchored" data-anchor-id="determinant-of-a-matrix"><strong>Determinant of a Matrix</strong></h5>
+<p>For a <span class="math inline">\(3 \times 3\)</span> matrix <span class="math inline">\(\mathbf A\)</span>:</p>
+<p><span class="math display">\[
+\det(\mathbf A)
+=
+\varepsilon_{ijk}
+A_{1i}
+A_{2j}
+A_{3k}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Determinant of a Matrix Using the Levi-Civita Symbol
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the matrix</p>
+<p><span class="math display">\[
+A=
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6 \\
+7 &amp; 8 &amp; 10
+\end{bmatrix}
+\]</span></p>
+<p>The determinant of a <span class="math inline">\(3\times3\)</span> matrix can be written using the <strong>Levi-Civita symbol</strong> as</p>
+<p><span class="math display">\[
+\det(A)
+=
+\varepsilon_{ijk}A_{1i}A_{2j}A_{3k}
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> is the Levi-Civita symbol.</li>
+<li><span class="math inline">\(A_{1i}\)</span>, <span class="math inline">\(A_{2j}\)</span>, and <span class="math inline">\(A_{3k}\)</span> are the elements from the first, second, and third rows of the matrix.</li>
+</ul>
+<section id="step-1-expand-the-formula" class="level5">
+<h5 class="anchored" data-anchor-id="step-1-expand-the-formula"><strong>Step 1</strong>: Expand the Formula</h5>
+<p>Only the six permutations of <span class="math inline">\((1,2,3)\)</span> contribute because all other terms have repeated indices and are zero.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\det(A)=&amp;
+\;\varepsilon_{123}A_{11}A_{22}A_{33}
++\varepsilon_{231}A_{12}A_{23}A_{31}
++\varepsilon_{312}A_{13}A_{21}A_{32} \\
+&amp;
++\varepsilon_{132}A_{11}A_{23}A_{32}
++\varepsilon_{213}A_{12}A_{21}A_{33}
++\varepsilon_{321}A_{13}A_{22}A_{31}
+\end{aligned}
+\]</span></p>
+<p>Since</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{123}=\varepsilon_{231}=\varepsilon_{312}=+1\)</span></li>
+<li><span class="math inline">\(\varepsilon_{132}=\varepsilon_{213}=\varepsilon_{321}=-1\)</span></li>
+</ul>
+<p>the expression becomes</p>
+<p><span class="math display">\[
+\begin{aligned}
+\det(A)=&amp;
+A_{11}A_{22}A_{33}
++A_{12}A_{23}A_{31}
++A_{13}A_{21}A_{32} \\
+&amp;
+-A_{11}A_{23}A_{32}
+-A_{12}A_{21}A_{33}
+-A_{13}A_{22}A_{31}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="step-2-substitute-the-matrix-entries" class="level5">
+<h5 class="anchored" data-anchor-id="step-2-substitute-the-matrix-entries"><strong>Step 2</strong>: Substitute the Matrix Entries</h5>
+<p>From the matrix,</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;A_{11}=1,\quad A_{12}=2,\quad A_{13}=3,\\
+&amp;A_{21}=4,\quad A_{22}=5,\quad A_{23}=6,\\
+&amp;A_{31}=7,\quad A_{32}=8,\quad A_{33}=10.
+\end{aligned}
+\]</span></p>
+<p>Substituting these values,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\det(A)=&amp;
+(1)(5)(10)
++(2)(6)(7)
++(3)(4)(8) \\
+&amp;
+-(1)(6)(8)
+-(2)(4)(10)
+-(3)(5)(7)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="step-3-evaluate" class="level5">
+<h5 class="anchored" data-anchor-id="step-3-evaluate"><strong>Step 3</strong>: Evaluate</h5>
+<p>Compute each term:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\det(A)
+=&amp;
+50+84+96 \\
+&amp;-48-80-105
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+=230-233
+=-3
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\det(A)=-3
+}
+\]</span></p>
+</section>
+<section id="verification-using-the-standard-determinant-formula" class="level5">
+<h5 class="anchored" data-anchor-id="verification-using-the-standard-determinant-formula"><strong>Verification Using the Standard Determinant Formula</strong></h5>
+<p>Using cofactor expansion along the first row,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\det(A)
+=&amp;
+1(5\times10-6\times8) \\
+&amp;-2(4\times10-6\times7) \\
+&amp;+3(4\times8-5\times7)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+=
+1(50-48)
+-2(40-42)
++3(32-35)
+\]</span></p>
+<p><span class="math display">\[
+=
+2+4-9
+=-3
+\]</span></p>
+<p>which agrees with the result obtained using the <strong>Levi-Civita symbol</strong>.</p>
+</section>
+</div>
+</div>
+<p>The Levi-Civita symbol provides a compact tensor notation for expressing the determinant of a matrix. Only the six nonzero permutations contribute to the computation, with the sign of each term determined by whether the permutation is even (<span class="math inline">\(+1\)</span>) or odd (<span class="math inline">\(-1\)</span>).</p>
+</section>
+<section id="curl-of-a-vector-field" class="level5">
+<h5 class="anchored" data-anchor-id="curl-of-a-vector-field"><strong>Curl of a Vector Field</strong></h5>
+<p>The curl of a vector field is written as:</p>
+<p><span class="math display">\[
+(\nabla\times\mathbf{A})_i
+=
+\varepsilon_{ijk}
+\frac{\partial A_k}{\partial x_j}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Curl of a Vector Field Using the Levi-Civita Symbol
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the vector field</p>
+<p><span class="math display">\[
+\mathbf{A}(x,y,z)=
+\left(
+y^2,\; z^2,\; x^2
+\right)
+\]</span></p>
+<p>That is,</p>
+<p><span class="math display">\[
+A_1=y^2,\quad A_2=z^2,\quad A_3=x^2
+\]</span></p>
+<p>The curl of a vector field using the <strong>Levi-Civita symbol</strong> is written as</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_i
+=
+\varepsilon_{ijk}
+\frac{\partial A_k}{\partial x_j}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> is the Levi-Civita symbol.</li>
+<li><span class="math inline">\(A_k\)</span> is the <span class="math inline">\(k\)</span>-th component of the vector field.</li>
+<li><span class="math inline">\(x_1=x\)</span>, <span class="math inline">\(x_2=y\)</span>, and <span class="math inline">\(x_3=z\)</span>.</li>
+</ul>
+<section id="step-1-compute-the-first-component-1" class="level5">
+<h5 class="anchored" data-anchor-id="step-1-compute-the-first-component-1"><strong>Step 1</strong>: Compute the First Component</h5>
+<p>For <span class="math inline">\(i=1\)</span>:</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_1
+=
+\varepsilon_{123}\frac{\partial A_3}{\partial x_2}
++
+\varepsilon_{132}\frac{\partial A_2}{\partial x_3}
+\]</span></p>
+<p>Since <span class="math inline">\(\varepsilon_{123}=+1\)</span> and <span class="math inline">\(\varepsilon_{132}=-1\)</span>,</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_1
+=
+\frac{\partial A_3}{\partial y}
+-
+\frac{\partial A_2}{\partial z}
+\]</span></p>
+<p>Substitute <span class="math inline">\(A_3=x^2\)</span> and <span class="math inline">\(A_2=z^2\)</span>:</p>
+<p><span class="math display">\[
+=
+\frac{\partial x^2}{\partial y}
+-
+\frac{\partial z^2}{\partial z}
+\]</span></p>
+<p><span class="math display">\[
+=
+0-2z
+=
+-2z
+\]</span></p>
+</section>
+<section id="step-2-compute-the-second-component-1" class="level5">
+<h5 class="anchored" data-anchor-id="step-2-compute-the-second-component-1"><strong>Step 2</strong>: Compute the Second Component</h5>
+<p>For <span class="math inline">\(i=2\)</span>:</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_2
+=
+\varepsilon_{231}\frac{\partial A_1}{\partial x_3}
++
+\varepsilon_{213}\frac{\partial A_3}{\partial x_1}
+\]</span></p>
+<p>Since <span class="math inline">\(\varepsilon_{231}=+1\)</span> and <span class="math inline">\(\varepsilon_{213}=-1\)</span>,</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_2
+=
+\frac{\partial A_1}{\partial z}
+-
+\frac{\partial A_3}{\partial x}
+\]</span></p>
+<p>Substitute <span class="math inline">\(A_1=y^2\)</span> and <span class="math inline">\(A_3=x^2\)</span>:</p>
+<p><span class="math display">\[
+=
+\frac{\partial y^2}{\partial z}
+-
+\frac{\partial x^2}{\partial x}
+\]</span></p>
+<p><span class="math display">\[
+=
+0-2x
+=
+-2x
+\]</span></p>
+</section>
+<section id="step-3-compute-the-third-component-1" class="level5">
+<h5 class="anchored" data-anchor-id="step-3-compute-the-third-component-1"><strong>Step 3</strong>: Compute the Third Component</h5>
+<p>For <span class="math inline">\(i=3\)</span>:</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_3
+=
+\varepsilon_{312}\frac{\partial A_2}{\partial x_1}
++
+\varepsilon_{321}\frac{\partial A_1}{\partial x_2}
+\]</span></p>
+<p>Since <span class="math inline">\(\varepsilon_{312}=+1\)</span> and <span class="math inline">\(\varepsilon_{321}=-1\)</span>,</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_3
+=
+\frac{\partial A_2}{\partial x}
+-
+\frac{\partial A_1}{\partial y}
+\]</span></p>
+<p>Substitute <span class="math inline">\(A_2=z^2\)</span> and <span class="math inline">\(A_1=y^2\)</span>:</p>
+<p><span class="math display">\[
+=
+\frac{\partial z^2}{\partial x}
+-
+\frac{\partial y^2}{\partial y}
+\]</span></p>
+<p><span class="math display">\[
+=
+0-2y
+=
+-2y
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\nabla \times \mathbf{A}
+=
+(-2z,\;-2x,\;-2y)
+}
+\]</span></p>
+<section id="verification-using-the-standard-curl-formula" class="level6">
+<h6 class="anchored" data-anchor-id="verification-using-the-standard-curl-formula"><strong>Verification Using the Standard Curl Formula</strong></h6>
+<p>The standard formula for curl is</p>
+<p><span class="math display">\[
+\nabla \times \mathbf{A}
+=
+\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp; \frac{\partial}{\partial z} \\
+A_1 &amp; A_2 &amp; A_3
+\end{vmatrix}
+\]</span></p>
+<p>Substituting</p>
+<p><span class="math display">\[
+\mathbf{A}=(y^2,\;z^2,\;x^2)
+\]</span></p>
+<p>we get</p>
+<p><span class="math display">\[
+\nabla \times \mathbf{A}
+=
+\left(
+\frac{\partial x^2}{\partial y}
+-
+\frac{\partial z^2}{\partial z},
+\;
+\frac{\partial y^2}{\partial z}
+-
+\frac{\partial x^2}{\partial x},
+\;
+\frac{\partial z^2}{\partial x}
+-
+\frac{\partial y^2}{\partial y}
+\right)
+\]</span></p>
+<p><span class="math display">\[
+=
+(-2z,\;-2x,\;-2y)
+\]</span></p>
+</section>
+</section>
+</div>
+</div>
+<p>The Levi-Civita symbol gives a compact index notation for the curl, i.e.,</p>
+<p><span class="math display">\[
+(\nabla \times \mathbf{A})_i
+=
+\varepsilon_{ijk}
+\frac{\partial A_k}{\partial x_j}
+\]</span></p>
+<p>It automatically encodes the sign changes and component structure of the curl operation.</p>
+</section>
+<section id="tensor-calculus" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="tensor-calculus"><strong>Tensor Calculus</strong></h5>
+<p>The Levi-Civita symbol is widely used in:</p>
+<ul>
+<li>Tensor algebra</li>
+<li>Differential geometry</li>
+<li>Electromagnetism</li>
+<li>Fluid mechanics</li>
+<li>Quantum mechanics</li>
+<li>General relativity</li>
+</ul>
+</section>
+<section id="levi-civita-symbol-in-n-dimensions" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="levi-civita-symbol-in-n-dimensions">Levi-Civita Symbol in <span class="math inline">\(n\)</span> Dimensions</h5>
+<p>In <span class="math inline">\(n\)</span> dimensions, the Levi-Civita symbol is defined as:</p>
+<p><span class="math display">\[
+\varepsilon_{i_1i_2\cdots i_n}
+=
+\begin{cases}
++1, &amp; \text{if }(i_1,i_2,\ldots,i_n)\text{ is an even permutation of }(1,2,\ldots,n), \\
+-1, &amp; \text{if it is an odd permutation}, \\
+0, &amp; \text{if any indices are repeated.}
+\end{cases}
+\]</span></p>
+<p>It is completely antisymmetric with respect to the interchange of any pair of indices.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Symbol</td>
+<td><span class="math inline">\(\varepsilon_{ijk}\)</span></td>
+</tr>
+<tr class="even">
+<td>Possible Values</td>
+<td>+1, -1, 0</td>
+</tr>
+<tr class="odd">
+<td>Nature</td>
+<td>Completely antisymmetric</td>
+</tr>
+<tr class="even">
+<td>Zero Condition</td>
+<td>Any two indices are equal</td>
+</tr>
+<tr class="odd">
+<td>Main Uses</td>
+<td>Cross products, determinants, curls, tensor identities, and physics</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-points" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="key-points"><strong>Key Points</strong></h5>
+<ul>
+<li>The Levi-Civita symbol is also called the <strong>permutation symbol</strong>.</li>
+<li>It takes values <strong>+1</strong>, <strong>−1</strong>, or <strong>0</strong>.</li>
+<li>It is <strong>completely antisymmetric</strong> under the interchange of indices.</li>
+<li>It provides a compact notation for expressing vector and tensor operations.</li>
+<li>It plays a fundamental role in <strong>vector calculus</strong>, <strong>tensor analysis</strong>, and <strong>theoretical physics</strong>.</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="exercises" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercises"><strong>Exercises</strong></h2>
+<section id="q3.1-write-in-index-notation" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.1-write-in-index-notation">Q3.1 Write in index notation</h5>
+<p><span class="math display">\[
+\begin{aligned}
+    \text{(a)} &amp;\quad
+\begin{cases}
+x_1 + c_{11}y_1 + c_{12}y_2 = d_{11}z_1 + d_{21}z_2, \\
+x_2 + c_{21}y_1 + c_{22}y_2 = d_{12}z_1 + d_{22}z_2
+\end{cases}\\
+    \text{(b)} &amp;\quad
+\begin{cases}
+Et_1 = s_1 + A_{11}v_1 + A_{22}v_1, \\
+Et_2 = s_2 + A_{22}v_2 + A_{11}v_2
+\end{cases}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="q3.2-write-in-full" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.2-write-in-full">Q3.2 Write in full</h5>
+<p><span class="math display">\[
+\begin{aligned}
+    \text{(a)}\quad&amp; m_\alpha = t_{\alpha\beta}n_\beta \qquad (\alpha,\beta=1,2)\\
+    \text{(b)}\quad&amp; A_{rs} = m_rn_s + \delta_{rs} \qquad (r,s=1,2)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="q3.3-let-u_alpha43-v_alpha2-1-w2-and" class="level5">
+<h5 class="anchored" data-anchor-id="q3.3-let-u_alpha43-v_alpha2-1-w2-and">Q3.3 Let <span class="math inline">\(u_\alpha=(4,3)\)</span>, <span class="math inline">\(v_\alpha=(2,-1)\)</span>, <span class="math inline">\(w=2\)</span>, and</h5>
+<p><span class="math display">\[
+\displaystyle A_{\alpha\beta}=\begin{pmatrix}
+1 &amp; 2 \\
+0 &amp; -1
+\end{pmatrix}.
+\]</span><br>
+Evaluate</p>
+<p><span class="math display">\[
+    \text{(a) } u_\alpha A_{\alpha\beta}; \qquad
+    \text{(b) } A_{\alpha\alpha} - w; \qquad
+    \text{(c) } A_{\alpha\beta} - w\delta_{\alpha\beta}; \qquad
+    \text{(d) } u_\lambda v_\lambda.
+\]</span></p>
+</section>
+<section id="q3.4-write-in-simplest-form-assuming-that-the-index-range-is-2" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.4-write-in-simplest-form-assuming-that-the-index-range-is-2">Q3.4 Write in simplest form assuming that the index range is <span class="math inline">\(2\)</span></h5>
+<p><span class="math display">\[
+    \text{(a) } \delta_{\alpha\alpha}; \qquad
+    \text{(b) } \delta_{\lambda\mu}\delta_{\lambda\mu}; \qquad
+    \text{(c) } u_\alpha v_\beta\delta_{\alpha\beta}.
+\]</span></p>
+</section>
+<section id="q3.5-if-a_ijx_ix_j-ij12-evaluate" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.5-if-a_ijx_ix_j-ij12-evaluate">Q3.5 If <span class="math inline">\(A_{ij}=x_ix_j\)</span> <span class="math inline">\((i,j=1,2)\)</span>, evaluate</h5>
+<p><span class="math display">\[
+    \text{(a) } A_{ij,j}; \qquad \text{(b) } A_{ij,ij}
+\]</span></p>
+</section>
+<section id="q3.6-given-the-second-order-tensor" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.6-given-the-second-order-tensor">Q3.6 Given the second order tensor</h5>
+<p><span class="math display">\[
+a_{ij}=
+\begin{pmatrix}
+0 &amp; -1 &amp; 3 \\
+1 &amp; 0 &amp; 2 \\
+-3 &amp; -2 &amp; 0
+\end{pmatrix},
+\]</span></p>
+<p>find the components of the tensor in the coordinate system <span class="math inline">\(\underline{x}_i\)</span> defined by <span class="math inline">\(x_i = \alpha_{ij} \underline{x}_j\)</span> where</p>
+<p><span class="math display">\[
+\alpha_{ij}=
+\begin{pmatrix}
+0 &amp; 0 &amp; 1 \\
+-1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0
+\end{pmatrix}.
+\]</span></p>
+</section>
+<section id="q3.7-given-the-vectors" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.7-given-the-vectors">Q3.7 Given the vectors</h5>
+<p><span class="math display">\[
+\mathbf{A}=(1,2,3)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mathbf{B}=(4,5,6),
+\]</span></p>
+<p>use the Levi-Civita symbol</p>
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_i
+=
+\varepsilon_{ijk}A_jB_k
+\]</span></p>
+<p>to compute the cross product</p>
+<p><span class="math display">\[
+\mathbf{A}\times\mathbf{B}.
+\]</span></p>
+</section>
+<section id="q3.8-given-the-matrix" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.8-given-the-matrix">Q3.8 Given the matrix</h5>
+<p><span class="math display">\[
+A=
+\begin{bmatrix}
+2 &amp; 1 &amp; 3\\
+0 &amp; 4 &amp; 5\\
+1 &amp; 2 &amp; 6
+\end{bmatrix},
+\]</span></p>
+<p>use the Levi-Civita symbol</p>
+<p><span class="math display">\[
+\det(A)
+=
+\varepsilon_{ijk}A_{1i}A_{2j}A_{3k}
+\]</span></p>
+<p>to calculate the determinant of the matrix.</p>
+</section>
+<section id="q3.9-consider-the-vector-field" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="q3.9-consider-the-vector-field">Q3.9 Consider the vector field</h5>
+<p><span class="math display">\[
+\mathbf{A}(x,y,z)
+=
+(xy,\;yz,\;zx).
+\]</span></p>
+<p>Using the Levi-Civita symbol,</p>
+<p><span class="math display">\[
+(\nabla\times\mathbf{A})_i
+=
+\varepsilon_{ijk}
+\frac{\partial A_k}{\partial x_j},
+\]</span></p>
+<p>find the curl of the vector field,</p>
+<p><span class="math display">\[
+\nabla\times\mathbf{A}.
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Hint:</strong> Compute each component of the curl separately by evaluating the required partial derivatives and using the values of the Levi-Civita symbol.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_basicVector.html" class="pagination-link" aria-label="Chapter 2 Basic Vector Arithmetic and Newton's Laws">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04_fundamentalEquations.html" class="pagination-link" aria-label="Chapter 4 Fundamental Equations of Continuum Mechanics">
+        <span class="nav-page-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Supply Chain Modelling and Optimisation<br> © Copyright 2026, Ben W. and Sam W.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with ❤️ and <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

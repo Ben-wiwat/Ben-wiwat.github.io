@@ -1,0 +1,2974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 2 Basic Vector Arithmetic and Newton’s Laws – Applied Mathematical Modelling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03_indexNotation.html" rel="next">
+<link href="./01_introduction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a473e0dd63122af86f9cbc1d981c1bf5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_basicVector.html">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Mathematical Modelling</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text"><strong>Introduction to Python</strong></span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_python_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Installation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Revision Workshop</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1 Introduction to Mathematical Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_basicVector.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_indexNotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Index Notation and Cartesian Tensors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_fundamentalEquations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-1-basic-vector-arithmetic" id="toc-part-1-basic-vector-arithmetic" class="nav-link active" data-scroll-target="#part-1-basic-vector-arithmetic"><strong>Part 1: Basic Vector Arithmetic</strong></a>
+  <ul>
+  <li><a href="#scalars-and-vectors" id="toc-scalars-and-vectors" class="nav-link" data-scroll-target="#scalars-and-vectors">Scalars and Vectors</a></li>
+  <li><a href="#geometric-representation-of-a-vector" id="toc-geometric-representation-of-a-vector" class="nav-link" data-scroll-target="#geometric-representation-of-a-vector">Geometric Representation of a Vector</a></li>
+  <li><a href="#cartesian-representation-and-vector-operations" id="toc-cartesian-representation-and-vector-operations" class="nav-link" data-scroll-target="#cartesian-representation-and-vector-operations">Cartesian Representation and Vector Operations</a>
+  <ul class="collapse">
+  <li><a href="#position-vectors" id="toc-position-vectors" class="nav-link" data-scroll-target="#position-vectors">Position Vectors</a></li>
+  <li><a href="#displacement-vectors" id="toc-displacement-vectors" class="nav-link" data-scroll-target="#displacement-vectors">Displacement Vectors</a></li>
+  <li><a href="#velocity-vectors" id="toc-velocity-vectors" class="nav-link" data-scroll-target="#velocity-vectors">Velocity Vectors</a></li>
+  <li><a href="#acceleration-vectors" id="toc-acceleration-vectors" class="nav-link" data-scroll-target="#acceleration-vectors">Acceleration Vectors</a></li>
+  <li><a href="#particle-motion-on-a-hyperbola" id="toc-particle-motion-on-a-hyperbola" class="nav-link" data-scroll-target="#particle-motion-on-a-hyperbola">Particle Motion on a Hyperbola</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#part-2-newtons-laws-of-motion-and-applications" id="toc-part-2-newtons-laws-of-motion-and-applications" class="nav-link" data-scroll-target="#part-2-newtons-laws-of-motion-and-applications"><strong>Part 2: Newton’s Laws of Motion and Applications</strong></a>
+  <ul>
+  <li><a href="#newtons-laws-of-motion" id="toc-newtons-laws-of-motion" class="nav-link" data-scroll-target="#newtons-laws-of-motion">Newton’s Laws of Motion</a></li>
+  <li><a href="#conservation-principles" id="toc-conservation-principles" class="nav-link" data-scroll-target="#conservation-principles">Conservation Principles</a>
+  <ul class="collapse">
+  <li><a href="#conservation-of-mass" id="toc-conservation-of-mass" class="nav-link" data-scroll-target="#conservation-of-mass">Conservation of Mass</a></li>
+  <li><a href="#conservation-of-momentum" id="toc-conservation-of-momentum" class="nav-link" data-scroll-target="#conservation-of-momentum">Conservation of Momentum</a></li>
+  <li><a href="#conservation-of-energy" id="toc-conservation-of-energy" class="nav-link" data-scroll-target="#conservation-of-energy">Conservation of Energy</a></li>
+  </ul></li>
+  <li><a href="#applications-of-newtons-laws" id="toc-applications-of-newtons-laws" class="nav-link" data-scroll-target="#applications-of-newtons-laws">Applications of Newton’s Laws</a>
+  <ul class="collapse">
+  <li><a href="#projectile-motion" id="toc-projectile-motion" class="nav-link" data-scroll-target="#projectile-motion">Projectile Motion</a></li>
+  <li><a href="#uniform-circular-motion" id="toc-uniform-circular-motion" class="nav-link" data-scroll-target="#uniform-circular-motion">Uniform Circular Motion</a></li>
+  <li><a href="#object-moving-in-a-elevator" id="toc-object-moving-in-a-elevator" class="nav-link" data-scroll-target="#object-moving-in-a-elevator">Object moving in a elevator</a></li>
+  <li><a href="#smooth-pulleys-motion" id="toc-smooth-pulleys-motion" class="nav-link" data-scroll-target="#smooth-pulleys-motion">Smooth Pulleys Motion</a></li>
+  <li><a href="#inclined-plane-with-friction" id="toc-inclined-plane-with-friction" class="nav-link" data-scroll-target="#inclined-plane-with-friction">Inclined Plane with Friction</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><strong>Exercises</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Mathematical modelling frequently requires the use of quantities that describe both the <strong>magnitude and direction</strong> of physical phenomena. For example, the velocity of a moving vehicle, the force acting on a particle, and the heat flux through a solid are all quantities that possess both magnitude and direction.</p>
+<p>Such quantities are represented mathematically using <strong>vectors</strong>, while quantities possessing only magnitude are known as <strong>scalars</strong>. A sound understanding of vector arithmetic is therefore essential before developing mathematical models based on Newton’s laws and conservation principles.</p>
+<section id="part-1-basic-vector-arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-basic-vector-arithmetic"><strong>Part 1: Basic Vector Arithmetic</strong></h2>
+<section id="scalars-and-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="scalars-and-vectors">Scalars and Vectors</h3>
+<p>Physical quantities are generally classified into two categories.</p>
+<p><strong>Scalar:</strong> A quantity with magnitude only. Examples include Mass, Time, Temperature, Energy, Pressure, Density.</p>
+<p><strong>Vector:</strong> A quantity with both magnitude and direction. Examples include Velocity, Force, Displacement, Acceleration.</p>
+<p>Throughout this unit vectors will be represented by bold symbols, for example</p>
+<p><span class="math display">\[
+\mathbf{v}, \mathbf{F}, \mathbf{r}, \mathbf{a}.
+\]</span></p>
+<p>Their magnitudes are denoted by</p>
+<p><span class="math display">\[
+|\mathbf{v}|, |\mathbf{F}|, |\mathbf{r}|, |\mathbf{a}\dots|
+\]</span></p>
+</section>
+<section id="geometric-representation-of-a-vector" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-representation-of-a-vector">Geometric Representation of a Vector</h3>
+<p>A vector is represented graphically by a directed line segment.</p>
+<ul>
+<li>The length of the arrow represents the magnitude.</li>
+<li>The arrowhead indicates the direction.</li>
+<li>The initial point is called the <strong>tail</strong>.</li>
+<li>The terminal point is called the <strong>head</strong>.</li>
+</ul>
+<p>Suppose a vector begins at point <span class="math inline">\(A\)</span> and ends at point <span class="math inline">\(B\)</span>. Then the vector is written as</p>
+<p><span class="math display">\[
+\overrightarrow{AB}.
+\]</span></p>
+<p>Its magnitude is <span class="math inline">\(|\overrightarrow{AB}|\)</span>.</p>
+</section>
+<section id="cartesian-representation-and-vector-operations" class="level3">
+<h3 class="anchored" data-anchor-id="cartesian-representation-and-vector-operations">Cartesian Representation and Vector Operations</h3>
+<p>In three-dimensional Cartesian coordinates, a vector is represented by its components.</p>
+<p>Suppose <span class="math inline">\(A=(x,y,z).\)</span> Then the position vector of <span class="math inline">\(A\)</span> measured from the origin is</p>
+<p><span class="math display">\[
+\mathbf r
+=
+x\mathbf i
++y\mathbf j
++z\mathbf k,
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf i, \mathbf j, \mathbf k\)</span> are the unit vectors in the <span class="math inline">\(x, y, z\)</span> directions respectively.</p>
+<p>Equivalently, <span class="math inline">\(\mathbf r =(x,y,z).\)</span></p>
+<div id="fig-cartesian-form" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cartesian-form-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/cartesian-form.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cartesian-form-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Cartesian Representation of a Vector.
+</figcaption>
+</figure>
+</div>
+<p><strong>Magnitude of a Vector</strong></p>
+<p>The length (or magnitude) of a vector <span class="math inline">\(\mathbf a=(a_x,a_y,a_z)\)</span> is <span class="math display">\[
+|\mathbf a| = \sqrt{a_x^2 + a_y^2 + a_z^2}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Find the magnitude of the vector <span class="math inline">\(\mathbf a = (3, 4, 5)\)</span>.</p>
+<p><span class="math display">\[
+|\mathbf a| = \sqrt{3^2 + 4^2 + 5^2} = \sqrt{9 + 16 + 25} = \sqrt{50} = 5\sqrt{2}.
+\]</span></p>
+</div>
+</div>
+<p><strong>Equality of Vectors</strong></p>
+<p>Two vectors are equal if they have the <strong>same magnitude</strong>, and the <strong>same direction</strong>, regardless of where they are located.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\mathbf a = (1, 2, 3), \quad \mathbf b = (1, 2, 3) \implies \mathbf a = \mathbf b.
+\]</span></p>
+<p>even if the vectors originate from different points.</p>
+</div>
+</div>
+<p><strong>Vector Addition</strong></p>
+<p>If <span class="math inline">\(\mathbf u=(u_1,u_2,u_3),\)</span> and <span class="math inline">\(\mathbf v=(v_1,v_2,v_3),\)</span> then</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf u+\mathbf v
+=
+(u_1+v_1,\;
+u_2+v_2,\;
+u_3+v_3).
+}
+\]</span></p>
+<p>Vector addition is performed by adding the corresponding components.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let</p>
+<p><span class="math display">\[
+\mathbf u=(1,0),
+\qquad
+\mathbf v=(1,1).
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\mathbf u+\mathbf v = (1+1, 0+1) = (2, 1).
+\]</span></p>
+</div>
+</div>
+<p><strong>Geometric Interpretation</strong></p>
+<p>Vector addition can be visualised using either the <strong>parallelogram law</strong> or the <strong>triangle law</strong>.</p>
+<ul>
+<li><strong>Triangle Law:</strong> To add two vectors, place the tail of the second vector at the head of the first vector. The resultant vector is the one that starts at the tail of the first vector and ends at the head of the second vector.</li>
+</ul>
+<div id="cell-fig-vector-addition" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-vector-addition" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-vector-addition-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="353" height="298">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Vector Addition Using the Triangle Law
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Parallelogram Law:</strong> To add two vectors, place them so their tails coincide. The resultant vector is the diagonal of the parallelogram formed by the two vectors.</li>
+</ul>
+<div id="cell-fig-vector-addition-parallelogram" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-vector-addition-parallelogram" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vector-addition-parallelogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-vector-addition-parallelogram-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="351" height="356">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-addition-parallelogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Vector Addition Using the Parallelogram Law
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Vector Subtraction</strong></p>
+<p>Vector subtraction is defined as</p>
+<p><span class="math display">\[
+\mathbf u - \mathbf v = \mathbf u + (-\mathbf v).
+\]</span></p>
+<p>The vector <span class="math inline">\(-\mathbf v\)</span> is the vector with the same magnitude as <span class="math inline">\(\mathbf v\)</span> but in the opposite direction.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf u=(5,4),
+\,\,
+\mathbf v=(2,1).\)</span> Then</p>
+<p><span class="math display">\[
+\mathbf u - \mathbf v = (5-2, 4-1) = (3, 3).
+\]</span></p>
+</div>
+</div>
+<p><strong>Scalar Multiplication</strong></p>
+<p>Multiplying a vector by a scalar changes its magnitude. If <span class="math inline">\(\lambda\in\mathbb R,\)</span> then</p>
+<p><span class="math display">\[
+\boxed{
+\lambda\mathbf a
+=
+(\lambda a_x,\lambda a_y,\lambda a_z).
+}
+\]</span></p>
+<ul>
+<li><p>If <span class="math inline">\(\lambda&gt;1,\)</span> the vector becomes longer.</p></li>
+<li><p>If <span class="math inline">\(0&lt;\lambda&lt;1,\)</span> the vector becomes shorter.</p></li>
+<li><p>If <span class="math inline">\(\lambda&lt;0,\)</span> the direction is reversed.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf a=(2,-1).\)</span> Then</p>
+<p><span class="math display">\[
+2\mathbf a = (4,-2), \quad
+0.5\mathbf a = (1,-0.5), \quad
+-1\mathbf a = (-2,1).
+\]</span></p>
+</div>
+</div>
+<p><strong>Unit Vectors</strong></p>
+<p>A unit vector has magnitude equal to one. The standard Cartesian unit vectors are</p>
+<p><span class="math display">\[
+\mathbf i=(1,0,0),
+\quad
+\mathbf j=(0,1,0),
+\quad
+\mathbf k=(0,0,1).
+\]</span></p>
+<p>Any vector</p>
+<p><span class="math display">\[
+\mathbf a
+=
+(a_x,a_y,a_z)
+\]</span></p>
+<p>may be written as</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf a
+=
+a_x\mathbf i
++
+a_y\mathbf j
++
+a_z\mathbf k.}
+\]</span></p>
+<p>The unit vector in the direction of <span class="math inline">\(\mathbf a\)</span> is</p>
+<p><span class="math display">\[
+\boxed{
+\hat{\mathbf a}
+=
+\frac{\mathbf a}{|\mathbf a|}.
+}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf a=(3,4).\)</span> Since <span class="math inline">\(|\mathbf a|=5,\)</span> the unit vector is</p>
+<p><span class="math display">\[
+\hat{\mathbf a} = \frac{1}{5}(3,4) = \left(\frac{3}{5},\frac{4}{5}\right).
+\]</span></p>
+</div>
+</div>
+<hr>
+<section id="position-vectors" class="level4">
+<h4 class="anchored" data-anchor-id="position-vectors">Position Vectors</h4>
+<p>The position of a particle relative to the chosen origin is described by the .</p>
+<p>Suppose a particle is located at <span class="math inline">\(P(x,y,z).\)</span> Then the position vector of <span class="math inline">\(\mathbf{r}(t)\)</span> is</p>
+<p><span class="math display">\[
+\mathbf r(t)
+=
+x(t)\mathbf i
++
+y(t)\mathbf j
++
+z(t)\mathbf k.
+\]</span></p>
+<p>Alternatively,</p>
+<p><span class="math display">\[
+\mathbf r(t)
+=
+(x(t),y(t),z(t)).
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(P=(3,4,2),\)</span> then the position vector is <span class="math display">\[
+\mathbf r = 3\mathbf i + 4\mathbf j + 2\mathbf k = (3,4,2).
+\]</span></p>
+<p>Its distance from the origin is</p>
+<p><span class="math display">\[
+|\mathbf r| = \sqrt{3^2 + 4^2 + 2^2} = \sqrt{29}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="displacement-vectors" class="level4">
+<h4 class="anchored" data-anchor-id="displacement-vectors">Displacement Vectors</h4>
+<p>Suppose a particle moves from <span class="math inline">\(P_1(x_1,y_1,z_1)\)</span> to <span class="math inline">\(P_2(x_2,y_2,z_2).\)</span> The change in position is called the ,</p>
+<p><span class="math display">\[
+\Delta \mathbf r
+=
+\mathbf r_2 - \mathbf r_1
+=
+(x_2-x_1)\mathbf i
++
+(y_2-y_1)\mathbf j
++
+(z_2-z_1)\mathbf k.
+\]</span></p>
+<p>Displacement is a vector quantity and should not be confused with the total distance travelled.</p>
+</section>
+<section id="velocity-vectors" class="level4">
+<h4 class="anchored" data-anchor-id="velocity-vectors">Velocity Vectors</h4>
+<p>Velocity describes how rapidly the position of a particle changes with time.</p>
+<p>If the particle has position vector <span class="math inline">\(\mathbf {r}(t),\)</span> its velocity is defined as</p>
+<p><span class="math display">\[
+\mathbf v
+=
+\frac{d\mathbf r}{dt}.
+\]</span></p>
+<p>In Cartesian coordinates,</p>
+<p><span class="math display">\[
+\mathbf v
+=
+\dot{x}\mathbf i
++
+\dot{y}\mathbf j
++
+\dot{z}\mathbf k
+\quad
+\text{or} \quad
+\mathbf v
+=
+(\dot{x},\dot{y},\dot{z}).
+\]</span></p>
+<p>The magnitude of the velocity, <span class="math inline">\(|\mathbf v|,\)</span> is called the .</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then <span class="math display">\[
+\mathbf v(t) = \frac{d\mathbf r}{dt} = (1, 2t, 3t^2).
+\]</span></p>
+<p>The speed is <span class="math display">\[
+|\mathbf v(t)| = \sqrt{1 + (2t)^2 + (3t^2)^2} = \sqrt{1 + 4t^2 + 9t^4}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="acceleration-vectors" class="level4">
+<h4 class="anchored" data-anchor-id="acceleration-vectors">Acceleration Vectors</h4>
+<p>Acceleration describes how rapidly the velocity of a particle changes with time.</p>
+<p>If the particle has velocity <span class="math inline">\(\mathbf {v}(t),\)</span> its acceleration is defined as</p>
+<p><span class="math display">\[
+\mathbf a
+=
+\frac{d\mathbf v}{dt}
+=
+\frac{d^2\mathbf r}{dt^2}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then <span class="math display">\[
+\mathbf a(t) = \frac{d\mathbf v}{dt} = (0, 2, 6t).
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="particle-motion-on-a-hyperbola" class="level4">
+<h4 class="anchored" data-anchor-id="particle-motion-on-a-hyperbola">Particle Motion on a Hyperbola</h4>
+<p>Describe the path of the particle, its velocity and its acceleration if a particle has position vector</p>
+<p><span class="math display">\[
+\mathbf{r}(t)
+=
+\left(
+a\cosh(\omega t),
+\;
+b\sinh(\omega t),
+\;
+0
+\right),
+\qquad
+0\le t&lt;\infty,
+\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(\omega\)</span> are positive constants.</p>
+<p>The particle coordinates are</p>
+<p><span class="math display">\[
+x=a\cosh(\omega t), \qquad
+y=b\sinh(\omega t), \qquad
+z=0.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\cosh^2(\omega t)-\sinh^2(\omega t)=1,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\left(\frac{x}{a}\right)^2
+-
+\left(\frac{y}{b}\right)^2
+=
+1.
+\]</span></p>
+<p>Hence, the particle moves along the hyperbola</p>
+<p><span class="math display">\[
+\frac{x^2}{a^2}
+-
+\frac{y^2}{b^2}
+=
+1,
+\]</span></p>
+<p>which lies in the <span class="math inline">\(xy\)</span>-plane and is centred at the origin.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>For a left branch hyperbola, we can use the parametrization</li>
+</ul>
+<p><span class="math display">\[
+\mathbf {r}(t) = (-a\cosh(\omega t), b\sinh(\omega t), 0).
+\]</span></p>
+<ul>
+<li>If you want it shifted left/right, use</li>
+</ul>
+<p><span class="math display">\[
+\mathbf {r}(t) = (h - a\cosh(\omega t), b\sinh(\omega t), 0),
+\]</span> where <span class="math inline">\((h,0)\)</span> is the hyperbola center.</p>
+</div>
+</div>
+<p>The velocity is obtained by differentiating the position vector.</p>
+<p><span class="math display">\[
+\mathbf{v}(t)
+=
+\frac{d\mathbf{r}}{dt}
+=
+\left(
+a\omega\sinh(\omega t),
+\;
+b\omega\cosh(\omega t),
+\;
+0
+\right).
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\mathbf{v}(t)
+=
+(a\omega\sinh(\omega t), b\omega\cosh(\omega t), 0).
+\]</span></p>
+<p>The speed is</p>
+<p><span class="math display">\[
+|\mathbf{v}(t)|
+=
+\sqrt{(a\omega\sinh(\omega t))^2 + (b\omega\cosh(\omega t))^2}.
+\]</span></p>
+<p>Differentiating the velocity vector gives the acceleration.</p>
+<p><span class="math display">\[
+\mathbf{a}(t)
+=
+\frac{d\mathbf{v}}{dt}
+=
+\left(
+a\omega^2\cosh(\omega t),
+\;
+b\omega^2\sinh(\omega t),
+\;
+0
+\right).
+\]</span></p>
+<p>In a pursuit problem, one object is constrained to follow another object in a specified manner. For example, a comet is attracted to a planet and moves with constant speed, always pointing towards the planet. The path of the comet is called a pursuit curve.</p>
+<p>Let the comet move along a known path</p>
+<p><span class="math display">\[
+\mathbf r_A(t)
+=
+\bigl(x_A(t),y_A(t),z_A(t)\bigr),
+\]</span></p>
+<p>and assume that the comet travels with constant speed <span class="math inline">\(v\)</span>. Since the velocity of the comet is always directed from the comet towards the planet, the direction of motion is parallel to</p>
+<p><span class="math display">\[
+\mathbf r_A(t)-\mathbf r(t).
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\frac{d\mathbf r}{dt}
+=
+v\,
+\frac{\mathbf r_A(t)-\mathbf r(t)}
+{\left|\mathbf r_A(t)-\mathbf r(t)\right|}.
+\]</span></p>
+<p>This is the governing equation for the pursuit curve.</p>
+<p>In component form, this gives the system</p>
+<p><span class="math display">\[
+\frac{dx}{dt}
+=
+v
+\frac{x_A(t)-x(t)}
+{\sqrt{
+\bigl(x_A(t)-x(t)\bigr)^2
++
+\bigl(y_A(t)-y(t)\bigr)^2
++
+\bigl(z_A(t)-z(t)\bigr)^2}},
+\]</span></p>
+<p><span class="math display">\[
+\frac{dy}{dt}
+=
+v
+\frac{y_A(t)-y(t)}
+{\sqrt{
+\bigl(x_A(t)-x(t)\bigr)^2
++
+\bigl(y_A(t)-y(t)\bigr)^2
++
+\bigl(z_A(t)-z(t)\bigr)^2}},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{dz}{dt}
+=
+v
+\frac{z_A(t)-z(t)}
+{\sqrt{
+\bigl(x_A(t)-x(t)\bigr)^2
++
+\bigl(y_A(t)-y(t)\bigr)^2
++\bigl(z_A(t)-z(t)\bigr)^2}}.
+\]</span></p>
+<p>Given the initial position of the comet,</p>
+<p><span class="math display">\[
+\mathbf r(0)
+=
+\bigl(x(0),y(0),z(0)\bigr).
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example (Pursuit Curve)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose a comet moves along the path</p>
+<p><span class="math display">\[
+\mathbf r_A(t)
+=
+\bigl(0.4 \cosh t,  0.7 \sinh t, 0\bigr),
+\qquad
+0\le t&lt;\infty,
+\]</span></p>
+<p>At initial time <span class="math inline">\(t=0\)</span>, the comet is located at <span class="math inline">\((0.4, 0, 0)\)</span> and a planet is located at the origin. The comet moves with constant speed <span class="math inline">\(v=1\)</span> and its direction of motion is always pointed towards the planet. The governing equations for the pursuit curve are</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dx}{dt}
+&amp;=
+\frac{0.4 \cosh t - x}{\sqrt{(0.4 \cosh t - x)^2 + (0.7 \sinh t - y)^2}},
+\\
+\frac{dy}{dt}
+&amp;=
+\frac{0.7 \sinh t - y}{\sqrt{(0.4 \cosh t - x)^2 + (0.7 \sinh t -  y)^2}}.
+\end{aligned}
+\]</span></p>
+<p>The pursuit curve in <a href="#fig-pursuit-curve" class="quarto-xref">Figure&nbsp;<span>4</span></a> is obtained by solving this system of differential equations with initial conditions numerically.</p>
+<div id="cell-fig-pursuit-curve" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-pursuit-curve" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pursuit-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-pursuit-curve-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="319" height="484">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pursuit-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Pursuit Curve
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The comet moves with constant speed and its direction of motion is always pointed towards the planet, where <span class="math inline">\(AC=a\)</span> and <span class="math inline">\(BC=b\)</span>.</p>
+</div>
+</div>
+<p><strong>Notes:</strong></p>
+<p>The following concepts form the foundation of particle kinematics.</p>
+<table class="table-striped table-hover responsive-table caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Mathematical Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Position</td>
+<td><span class="math inline">\(\mathbf r=x\mathbf i+y\mathbf j+z\mathbf k\)</span></td>
+</tr>
+<tr class="even">
+<td>Displacement</td>
+<td><span class="math inline">\(\Delta\mathbf r=\mathbf r_2-\mathbf r_1\)</span></td>
+</tr>
+<tr class="odd">
+<td>Velocity</td>
+<td><span class="math inline">\(\mathbf v=\dfrac{d\mathbf r}{dt}\)</span></td>
+</tr>
+<tr class="even">
+<td>Acceleration</td>
+<td><span class="math inline">\(\mathbf a=\dfrac{d\mathbf v}{dt} =\dfrac{d^2\mathbf r}{dt^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>These quantities provide the mathematical description of particle motion and form the basis for Newton’s laws of motion, which relate the motion of a particle to the forces acting upon it.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="part-2-newtons-laws-of-motion-and-applications" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-newtons-laws-of-motion-and-applications"><strong>Part 2: Newton’s Laws of Motion and Applications</strong></h2>
+<section id="newtons-laws-of-motion" class="level3">
+<h3 class="anchored" data-anchor-id="newtons-laws-of-motion">Newton’s Laws of Motion</h3>
+<p>In the seventeenth century, <strong>Sir Isaac Newton</strong> formulated three fundamental laws that describe the motion of particles under the action of forces.</p>
+<p>These laws form the foundation of classical mechanics and provide the basis for many mathematical models in engineering and science.</p>
+<p>By combining Newton’s laws with appropriate force models, we can derive differential equations governing the motion of particles, rigid bodies and continua.</p>
+<p>Before introducing Newton’s laws, we first define two important physical quantities.</p>
+<p><strong>Mass</strong> is a measure of the amount of matter contained in a body. It is defined by</p>
+<p><span class="math display">\[
+m=\rho V,
+\]</span></p>
+<p>where where <span class="math inline">\(m\)</span> is the mass (kg), <span class="math inline">\(\rho\)</span> is the density (kg/m<span class="math inline">\(^3\)</span>), <span class="math inline">\(V\)</span> is the volume (m<span class="math inline">\(^3\)</span>).</p>
+<p><strong>Momentum</strong> is a measure of the motion of a body. The linear momentum of a particle is defined as the product of its mass and velocity, It is defined by</p>
+<p><span class="math display">\[
+\mathbf p = m\mathbf v,
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf p\)</span> is the momentum (kg·m/s), <span class="math inline">\(m\)</span> is the mass (kg), and <span class="math inline">\(\mathbf v\)</span> is the velocity (m/s).</p>
+<p><strong>Newton’s First Law (Law of Inertia)</strong></p>
+<p>A particle remains at rest or continues to move with constant velocity in a straight line unless acted upon by a resultant external force.</p>
+<p>This law introduces the concept of inertia.</p>
+<p>If the resultant force is zero,</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Newton’s First Law
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\sum\mathbf F=\mathbf0,
+\]</span></p>
+</div>
+</div>
+<p>then</p>
+<p><span class="math display">\[
+\mathbf a=\mathbf0,
+\quad \text{and consequently}\quad
+\mathbf v=\text{constant},
+\]</span></p>
+<p>the particle’s velocity is constant.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A hockey puck sliding on a perfectly frictionless surface continues moving at constant speed until another force acts on it.</p>
+</div>
+</div>
+<p><strong>Newton’s Second Law</strong></p>
+<p>The rate of change of momentum of a particle is equal to the resultant external force acting on the particle.</p>
+<p>Mathematically,</p>
+<p><span class="math display">\[
+\boxed{
+\sum\mathbf F
+=
+\frac{d\mathbf p}{dt}.
+}
+\]</span></p>
+<p>For constant mass,</p>
+<p><span class="math display">\[
+\mathbf p=m\mathbf v,
+\]</span></p>
+<p>so that</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Newton’s Second Law
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\sum\mathbf F
+=
+m\frac{d\mathbf v}{dt}
+=
+m\mathbf a.
+\]</span></p>
+</div>
+</div>
+<p>This is the fundamental equation used throughout engineering mechanics.</p>
+<p>The equation may also be written as</p>
+<p><span class="math display">\[
+m\frac{d^2\mathbf r}{dt^2}
+=
+\sum\mathbf F.
+\]</span></p>
+<p>Hence, Newton’s Second Law naturally leads to a second-order ordinary differential equation for the particle’s position.</p>
+<p><strong>SI Units</strong></p>
+<p>Throughout this unit we shall use the SI system of units.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>SI Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Length</td>
+<td>metre (m)</td>
+</tr>
+<tr class="even">
+<td>Mass</td>
+<td>kilogram (kg)</td>
+</tr>
+<tr class="odd">
+<td>Time</td>
+<td>second (s)</td>
+</tr>
+<tr class="even">
+<td>Force</td>
+<td>newton (N)</td>
+</tr>
+<tr class="odd">
+<td>Velocity</td>
+<td>m/s</td>
+</tr>
+<tr class="even">
+<td>Acceleration</td>
+<td>m/s<span class="math inline">\(^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A force of <span class="math inline">\(20\, \mathrm N\)</span> acts on a particle of mass <span class="math inline">\(5\, \mathrm{kg}.\)</span></p>
+<p>Using Newton’s Second Law,</p>
+<p><span class="math display">\[
+\mathbf a
+=
+\frac{\mathbf F}{m},
+\]</span></p>
+<p>the acceleration is</p>
+<p><span class="math display">\[
+a
+=
+\frac{20}{5}
+=
+4\ \mathrm{m/s^2}.
+\]</span></p>
+</div>
+</div>
+<p><strong>Newton’s Third Law</strong></p>
+<p>For every action there is an equal and opposite reaction.</p>
+<p>Whenever two bodies interact, the force exerted by the first body on the second is equal in magnitude and opposite in direction to the force exerted by the second body on the first.</p>
+<p>If body <span class="math inline">\(A\)</span> exerts a force on body <span class="math inline">\(B\)</span>,</p>
+<p><span class="math display">\[
+\mathbf F_{AB},
+\]</span></p>
+<p>then body <span class="math inline">\(B\)</span> exerts a force on body <span class="math inline">\(A\)</span>,</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Newton’s Third Law
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\mathbf F_{BA}
+=
+-\mathbf F_{AB}.
+\]</span></p>
+</div>
+</div>
+<p>These forces always occur in pairs and act on different bodies.</p>
+<p><strong>Newton’s Third Law on a horizontal Plane</strong></p>
+<p>Consider a block resting on a horizontal table.</p>
+<ul>
+<li>The block exerts a downward force on the table equal to its weight.</li>
+<li>The table exerts an upward force on the block equal in magnitude and opposite in direction to the block’s weight.</li>
+</ul>
+<div id="cell-fig-mass" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-mass" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-mass-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="371" height="315">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: A Mass Resting on a Horizontal Table
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-mass" class="quarto-xref">Figure&nbsp;<span>5</span></a> illustrates a mass resting on a horizontal table. The block exerts a downward force (<span class="math inline">\(W=mg\)</span>) on the table equal to its weight, and the table exerts an equal and opposite upward force (<span class="math inline">\(N\)</span>) on the block. If the block remains at rest,</p>
+<p><span class="math display">\[
+N=mg,
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the normal force, <span class="math inline">\(m\)</span> is the mass of the block, and <span class="math inline">\(g\)</span> is the acceleration due to gravity.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Block on a Table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A block of mass <span class="math inline">\(5\,\text{kg}\)</span> rests on a horizontal table. Determine the normal force exerted by the table on the block. Hence, state the reaction force exerted by the block on the table.</p>
+<p><strong>Given</strong> <span class="math inline">\(m=5\,\text{kg}, \,
+g=9.8\,\text{m/s}^2.\)</span> The forces acting on the block are:</p>
+<ul>
+<li>Weight, <span class="math inline">\(W=mg\)</span>, acting vertically downward.</li>
+<li>Normal force, <span class="math inline">\(N\)</span>, exerted by the table, acting vertically upward.</li>
+</ul>
+<p>Since the block is at rest, the net vertical force is zero, <span class="math inline">\(\sum F_y=0.\)</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+N-W=0.
+\]</span></p>
+<p>Substituting <span class="math inline">\(W=mg\)</span>,</p>
+<p><span class="math display">\[
+N=mg.
+\]</span></p>
+<p>Substituting the given values,</p>
+<p><span class="math display">\[
+N=(5)(9.8)=49\,\text{N}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{N=49\,\text{N}.}
+\]</span></p>
+<p>According to Newton’s third law, forces always occur in equal and opposite pairs acting on different objects.</p>
+<ul>
+<li><strong>Action:</strong> The table exerts an upward normal force of <span class="math inline">\(49\,\text{N}\)</span> on the block.</li>
+<li><strong>Reaction:</strong> The block exerts an equal downward force of <span class="math inline">\(49\,\text{N}\)</span> on the table.</li>
+</ul>
+</div>
+</div>
+<p><strong>Newton’s Third Law on an Inclined Plane</strong></p>
+<p>Consider a block resting on an inclined plane. The block exerts a force on the plane equal to its weight, and the plane exerts an equal and opposite force on the block. The normal force is perpendicular to the surface of the plane, while the weight acts vertically downward.</p>
+<div id="cell-fig-inclined-plane" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="fig-inclined-plane" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-inclined-plane-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="373" height="257">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: A Block Resting on an Inclined Plane
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Block on an inclined Plane
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A block of mass <span class="math inline">\(10\,\text{kg}\)</span> rests on a smooth inclined plane that makes an angle of <span class="math inline">\(30^\circ\)</span> with the horizontal. Determine the normal force exerted by the plane on the block. Hence, state the reaction force exerted by the block on the plane.</p>
+<p><strong>Given:</strong></p>
+<p><span class="math display">\[
+m=10\,\text{kg}, \qquad
+g=9.8\,\text{m/s}^2, \qquad
+\theta=30^\circ.
+\]</span></p>
+<p>The weight of the block is</p>
+<p><span class="math display">\[
+W=mg=10(9.8)=98\,\text{N}.
+\]</span></p>
+<p>The weight acts vertically downward. Since the plane is inclined, resolve the weight into two components:</p>
+<ul>
+<li><p>Perpendicular to the plane: <span class="math display">\[
+W_\perp=mg\cos\theta.
+\]</span></p></li>
+<li><p>Parallel to the plane: <span class="math display">\[
+W_\parallel=mg\sin\theta.
+\]</span></p></li>
+</ul>
+<p>Since the block is at rest and the plane is smooth, the normal force is equal to the perpendicular component of the weight:</p>
+<p><span class="math display">\[
+N=mg\cos\theta.
+\]</span></p>
+<p>Substituting the given values,</p>
+<p><span class="math display">\[
+N=98\cos30^\circ.
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+\cos30^\circ=0.866,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+N=98(0.866)=84.9\,\text{N}.
+\]</span></p>
+<p>According to Newton’s third law, every action force has an equal and opposite reaction force.</p>
+<ul>
+<li><strong>Action:</strong> The inclined plane exerts a normal force of <span class="math inline">\(84.9\,\text{N}\)</span> on the block.</li>
+<li><strong>Reaction:</strong> The block exerts an equal and opposite normal force of <span class="math inline">\(84.9\,\text{N}\)</span> on the inclined plane.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Hanging Mass
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When a mass is suspended from a rope, the mass exerts a downward force on the rope equal to its weight. The rope exerts an equal and opposite upward force on the mass.</p>
+</div>
+</div>
+<div id="cell-fig-string" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-string" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-string-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-string-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="197" height="251">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-string-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: A Mass Suspended by a Light String
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-string" class="quarto-xref">Figure&nbsp;<span>7</span></a> illustrates a mass suspended by a light string. The mass exerts a downward force (<span class="math inline">\(W=mg\)</span>) on the string equal to its weight, and the string exerts an equal and opposite upward force (<span class="math inline">\(T\)</span>) on the mass.</p>
+<p>Other examples include:</p>
+<div class="columns">
+<div class="column center">
+<p><strong>Rocket Propulsion</strong></p>
+<p>A rocket expels gas at high speed from its engines. The reaction force exerted by the expelled gas on the rocket is equal in magnitude and opposite in direction to the force exerted by the rocket on the gas.</p>
+<p><iconify-icon role="img" inline="" icon="iconoir:rocket" style="font-size: 84px;" aria-label="Icon rocket from iconoir Iconify.design set." title="Icon rocket from iconoir Iconify.design set."></iconify-icon></p>
+</div><div class="column center">
+<p><strong>Swimming</strong></p>
+<p>When a swimmer pushes against the water with their hands and feet, the water exerts an equal and opposite force on the swimmer, propelling them forward.</p>
+<p><iconify-icon role="img" inline="" icon="fa7-solid:swimmer" style="font-size: 84px;" aria-label="Icon swimmer from fa7-solid Iconify.design set." title="Icon swimmer from fa7-solid Iconify.design set."></iconify-icon></p>
+</div>
+</div>
+<div class="columns">
+<div class="column center">
+<p><strong>Walking</strong></p>
+<p>When a person walks, they push the ground backward with their feet. The ground exerts an equal and opposite force on the person, propelling them forward.</p>
+<p><iconify-icon role="img" inline="" icon="ion:walk" style="font-size: 84px;" aria-label="Icon walk from ion Iconify.design set." title="Icon walk from ion Iconify.design set."></iconify-icon></p>
+</div><div class="column center">
+<p><strong>Bird Flight</strong></p>
+<p>When a bird flaps its wings, it pushes the air downward and backward. The air pushes back on the bird with an equal and opposite force, allowing the bird to fly.</p>
+<p><iconify-icon role="img" inline="" icon="mdi:bird" style="font-size: 84px;" aria-label="Icon bird from mdi Iconify.design set." title="Icon bird from mdi Iconify.design set."></iconify-icon></p>
+</div>
+</div>
+<div class="columns">
+<div class="column center">
+<p><strong>Boat Sailing</strong></p>
+<p>When a boat’s sail pushes against the wind, the wind pushes back on the sail with an equal and opposite force.</p>
+<p><iconify-icon role="img" inline="" icon="boxicons:sail" style="font-size: 84px;" aria-label="Icon sail from boxicons Iconify.design set." title="Icon sail from boxicons Iconify.design set."></iconify-icon></p>
+</div><div class="column center">
+<p><strong>Car Driving</strong></p>
+<p>When a car’s tires push backward against the road, the road pushes forward on the tires with an equal and opposite force.</p>
+<p><iconify-icon role="img" inline="" icon="lucide:car" style="font-size: 84px;" aria-label="Icon car from lucide Iconify.design set." title="Icon car from lucide Iconify.design set."></iconify-icon></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Free-Body Diagram
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Free-body diagrams provide the starting point for deriving equations of motion. A free-body diagram should include</p>
+<ul>
+<li>all external forces,</li>
+<li>appropriate coordinate axes,</li>
+<li>force directions,</li>
+<li>known quantities and unknown reactions.</li>
+</ul>
+<p>Free-body diagrams are essential for identifying forces before deriving equations of motion.</p>
+</div>
+</div>
+<p><strong>Limitations of Newtonian Mechanics</strong></p>
+<p>Although Newton’s laws describe many engineering systems with remarkable accuracy, they have limitations.</p>
+<p>They are not suitable for</p>
+<ul>
+<li>atomic and subatomic particles, where quantum mechanics is required;</li>
+<li>objects moving at speeds close to the speed of light, where Einstein’s theory of relativity applies;</li>
+<li>extremely large astrophysical systems where relativistic effects become significant.</li>
+</ul>
+<p>For most engineering applications involving ordinary speeds and dimensions, Newton’s laws provide an excellent mathematical model.</p>
+</section>
+<section id="conservation-principles" class="level3">
+<h3 class="anchored" data-anchor-id="conservation-principles">Conservation Principles</h3>
+<p>Most mathematical models are derived from conservation laws.</p>
+<p>These state that certain physical quantities cannot be created or destroyed, although they may be transported or transformed.</p>
+<p>The three fundamental conservation laws are</p>
+<ul>
+<li>Conservation of Mass</li>
+<li>Conservation of Energy</li>
+<li>Conservation of Momentum</li>
+</ul>
+<p>Each conservation law has a common mathematical structure,</p>
+<p><span class="math display">\[
+\boxed{
+\text{Accumulation}
+=
+\text{Input}
+-
+\text{Output}
++
+\text{Generation}.
+}
+\]</span></p>
+<p>This general balance equation provides the starting point for developing many engineering models.</p>
+<section id="conservation-of-mass" class="level4">
+<h4 class="anchored" data-anchor-id="conservation-of-mass">Conservation of Mass</h4>
+<p>The principle of conservation of mass states that mass can neither be created nor destroyed.</p>
+<p>For a control volume,</p>
+<p><span class="math display">\[
+\boxed{
+\text{Rate of accumulation}
+=
+\text{Mass inflow}
+-
+\text{Mass outflow}.
+}
+\]</span></p>
+<p>For a closed system,</p>
+<p><span class="math display">\[
+\boxed{
+m=\text{constant}.
+}
+\]</span></p>
+<p>In a steady-state flow through a control volume, the rate of mass accumulation is zero. Therefore, the mass inflow equals the mass outflow.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Mass in a Water Tank
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose water flows into a tank at a rate of <span class="math inline">\(5\ \mathrm{kg/s}\)</span> and flows out at a rate of <span class="math inline">\(3\ \mathrm{kg/s}\)</span>. The rate of mass accumulation in the tank is <span class="math display">\[
+\frac{dm}{dt} = 5 - 3 = 2\ \mathrm{kg/s}.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Mass in a Pipe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose water flows through a pipe with a cross-sectional area of <span class="math inline">\(A_1 = 0.1\ \mathrm{m^2}\)</span> at a velocity of <span class="math inline">\(v_1 = 2\ \mathrm{m/s}\)</span> and a density of <span class="math inline">\(\rho = 1000\ \mathrm{kg/m^3}\)</span>. The mass flow rate is <span class="math display">\[
+\dot{m} = \rho A_1 v_1 = 1000 \mathrm{kg/m^3} \times 0.1\ \mathrm{m^2} \times 2\ \mathrm{m/s} = 200\ \mathrm{kg/s}.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Bank Account Analogy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose you have a bank account with an initial balance of <span class="math inline">\(B_0\)</span>. If you deposit money at a rate of <span class="math inline">\(D(t)\)</span> and withdraw money at a rate of <span class="math inline">\(W(t)\)</span>, the rate of change of your account balance is given by <span class="math display">\[
+\frac{dB}{dt} = D(t) - W(t).
+\]</span></p>
+<p>If you deposit <span class="math inline">\(100\ \mathrm{dollars/week}\)</span> and withdraw <span class="math inline">\(50\ \mathrm{dollars/week}\)</span>, the rate of change of your account balance is <span class="math display">\[
+\frac{dB}{dt} = 100 - 50 = 50\ \mathrm{dollars/week}.
+\]</span></p>
+<p>To find the account balance at any time <span class="math inline">\(t\)</span>, you can integrate this equation over time, taking into account the initial balance <span class="math inline">\(B_0 = 500\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{0}^{t} \frac{dB}{dt} dt &amp;= \int_{0}^{t} (D(t) - W(t)) dt \\
+&amp;= \int_{0}^{t} 50 dt \\
+&amp;= 50t + B_0 \\
+B(t) &amp;= 50t + 500.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Mass in Traffic Density
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose the traffic density on a road segment is <span class="math inline">\(\rho(x,t)\)</span> (vehicles per unit length) and the traffic flow rate is <span class="math inline">\(q(x,t)\)</span> (vehicles per unit time). The conservation of mass for traffic can be expressed as <span class="math display">\[
+\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x} = 0,
+\]</span> where <span class="math inline">\(q = \rho v\)</span> and <span class="math inline">\(v\)</span> is the average speed of vehicles. This equation states that the rate of change of traffic density at a point is equal to the negative of the spatial change in traffic flow.</p>
+</div>
+</div>
+</section>
+<section id="conservation-of-momentum" class="level4">
+<h4 class="anchored" data-anchor-id="conservation-of-momentum">Conservation of Momentum</h4>
+<p>The principle of conservation of momentum states that the total momentum of a closed system remains constant if no external forces act on it.</p>
+<p><span class="math display">\[
+\sum \mathbf P_\text{before} = \sum \mathbf P_\text{after}
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf P\)</span> is the momentum of the system, and <span class="math inline">\(\mathbf P = m\mathbf v\)</span> for a particle of mass <span class="math inline">\(m\)</span> and velocity <span class="math inline">\(\mathbf v\)</span>; therefore, for a system of <span class="math inline">\(n\)</span> particles,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf P_1 + \mathbf P_2 + \ldots + \mathbf P_n &amp;= \mathbf P_1' + \mathbf P_2' + \ldots + \mathbf P_n' \\
+m_1 \mathbf v_1 + m_2 \mathbf v_2 + \ldots + m_n \mathbf v_n &amp;= m_1' \mathbf v_1' + m_2' \mathbf v_2' + \ldots + m_n' \mathbf v_n'
+\end{aligned}
+\]</span></p>
+<p>Momentum conservation forms the basis of</p>
+<ul>
+<li>rigid-body mechanics,</li>
+<li>fluid mechanics,</li>
+<li>impact analysis,</li>
+<li>vehicle dynamics.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Momentum in Collisions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose two ice skaters, Skater A and Skater B, collide on an ice rink. Skater A has a mass of <span class="math inline">\(m_A = 50\ \mathrm{kg}\)</span> and is moving with a velocity of <span class="math inline">\(v_A = 2\ \mathrm{m/s}\)</span>, while Skater B has a mass of <span class="math inline">\(m_B = 70\ \mathrm{kg}\)</span> and is initially at rest. After the collision, they move together with a common velocity <span class="math inline">\(v_f\)</span>. Using the conservation of momentum:</p>
+<p><span class="math display">\[
+m_A v_A + m_B v_B = (m_A + m_B) v_f
+\]</span></p>
+<p>Substituting the values:</p>
+<p><span class="math display">\[
+50 \times 2 + 70 \times 0 = (50 + 70) v_f
+\]</span></p>
+<p><span class="math display">\[
+100 = 120 v_f
+\]</span></p>
+<p><span class="math display">\[
+v_f = \frac{100}{120} \approx 0.833\ \mathrm{m/s}
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Momentum in Billiard Ball Collision
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A 0.2 kg billiard ball moving at <span class="math inline">\(v_{1x} = 5\ \mathrm{m/s}\)</span> along the <span class="math inline">\(+X\)</span> axis hits a second identical ball at rest (<span class="math inline">\(v_{2x} = 0\ \mathrm{m/s}\)</span>). After the collision, the first ball deflects at an angle of <span class="math inline">\(30^\circ\)</span> above the <span class="math inline">\(+X\)</span> axis, and the second ball moves at an angle of <span class="math inline">\(60^\circ\)</span> below the <span class="math inline">\(+X\)</span> axis. Using conservation of momentum, we can find the final velocities of both balls <span class="math inline">\(v_1'\)</span> and <span class="math inline">\(v_2'\)</span>.</p>
+<p>We resolve the momentum into <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> components. The conservation of momentum in the <span class="math inline">\(X\)</span> direction gives <span class="math display">\[
+\begin{aligned}
+m_1 v_{1x} + m_2 v_{2x} &amp;= m_1 v_{1}' \cos(30^\circ) + m_2 v_{2}' \cos(-60^\circ) \\
+0.2 \times 5 + 0.2 \times 0 &amp;= 0.2v_{1}' \left(\frac{\sqrt{3}}{2}\right) + 0.2v_{2}' \left(\frac{1}{2}\right) \\
+5 &amp;= 0.866v_{1}' + 0.5v_{2}' \qquad \text{(Eq. 1)}
+\end{aligned}
+\]</span></p>
+<p>The conservation of momentum in the <span class="math inline">\(Y\)</span> direction gives <span class="math display">\[
+\begin{aligned}
+m_1 v_{1y} + m_2 v_{2y} &amp;= m_1 v_{1}' \sin(30^\circ) + m_2 v_{2}' \sin(-60^\circ) \\
+0.2 \times 0 + 0.2 \times 0 &amp;= 0.2v_{1}' \left(\frac{1}{2}\right) + 0.2v_{2}' \left(-\frac{\sqrt{3}}{2}\right) \\
+0 &amp;= 0.5v_{1}' - 0.866v_{2}' \\
+v_{1}' &amp;= 1.732v_{2}' \qquad \qquad \qquad \text{(Eq. 2)}
+\end{aligned}
+\]</span></p>
+<p>Solve the system of equations (Eq. 1 and Eq. 2) to find the final velocities <span class="math inline">\(v_{1}'\)</span> and <span class="math inline">\(v_{2}'\)</span> of both balls after the collision.</p>
+<p>Substituting Eq. 2 into Eq. 1: <span class="math display">\[
+\begin{aligned}
+5 &amp;= 0.866(1.732v_{2}') + 0.5v_{2}' \\
+5 &amp;= 2v_{2}' \\
+v_{2}' &amp;= 2.5\ \mathrm{m/s}
+\end{aligned}
+\]</span></p>
+<p>Substituting <span class="math inline">\(v_{2}'\)</span> back into Eq. 2: <span class="math display">\[
+v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="conservation-of-energy" class="level4">
+<h4 class="anchored" data-anchor-id="conservation-of-energy">Conservation of Energy</h4>
+<p>The First Law of Thermodynamics states that energy cannot be created or destroyed.</p>
+<p>For a control volume,</p>
+<p><span class="math display">\[
+\frac{dE_\text{system}}{dt} = \dot{E}_\text{in} - \dot{E}_\text{out} + \dot{E}_\text{gen},
+\]</span> where</p>
+<ul>
+<li><span class="math inline">\(\dfrac{dE_\text{system}}{dt}\)</span> is the <strong>rate of change of energy stored</strong> within the system,</li>
+<li><span class="math inline">\(\dot{E}_\text{in}\)</span> is the <strong>rate of energy entering</strong> the system,</li>
+<li><span class="math inline">\(\dot{E}_\text{out}\)</span> is the <strong>rate of energy leaving</strong> the system, and</li>
+<li><span class="math inline">\(\dot{E}_\text{gen}\)</span> is the <strong>rate of energy generation</strong> within the system.</li>
+</ul>
+<p>For systems with no energy generation, the equation simplifies to</p>
+<p><span class="math display">\[
+\frac{dE_\text{system}}{dt} = \dot{E}_\text{in} - \dot{E}_\text{out}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Conservation of Energy in a Chemical Reactor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A well-insulated chemical reactor receives reactants carrying thermal energy at a rate of <span class="math inline">\(120\ \mathrm{kW}\)</span>. The products leave the reactor carrying thermal energy at a rate of <span class="math inline">\(80\ \mathrm{kW}\)</span>. An exothermic chemical reaction occurring inside the reactor generates thermal energy at a rate of <span class="math inline">\(50\ \mathrm{kW}\)</span>. Determine the rate of change of energy stored in the reactor.</p>
+<p>Using the conservation of energy equation,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dE_{\text{system}}}{dt}
+&amp;=
+\dot{E}_{\text{in}}
+-
+\dot{E}_{\text{out}}
++
+\dot{E}_{\text{generated}}\\
+&amp;= 120 - 80 + 50 \\
+&amp;= 90\ \mathrm{kW}.
+\end{aligned}
+\]</span></p>
+<p>The energy stored in the reactor increases at a rate of 90 kW.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Steady-State Energy Balance for a Gas Turbine
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A gas turbine operates continuously at steady state. Air enters the turbine system carrying thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{in}} = 6.0\ \mathrm{MW}\)</span>. Fuel combustion inside the system generates thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{generated}} = 18.0\ \mathrm{MW}\)</span>.</p>
+<p>The exhaust gases leave the turbine carrying thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{exhaust}} = 20.5\ \mathrm{MW}\)</span>. The turbine produces shaft work at a rate of <span class="math inline">\(\dot{W}_{\text{shaft}} = 3.0\ \mathrm{MW}\)</span> and loses heat to the surroundings at a rate of <span class="math inline">\(\dot{Q}_{\text{loss}} = 0.5\ \mathrm{MW}\)</span>. Verify that the turbine operates at <strong>steady state</strong>.</p>
+<p>At steady state,</p>
+<p><span class="math display">\[
+\frac{dE_{\text{system}}}{dt}=0 \quad \text{or} \quad
+\dot{E}_{\text{in}} + \dot{E}_{\text{generated}} = \dot{E}_{\text{out}}.
+\]</span></p>
+<p>The total energy leaving the system is</p>
+<p><span class="math display">\[
+\dot{E}_{\text{out}}
+=
+\dot{E}_{\text{exhaust}}
++
+\dot{W}_{\text{shaft}}
++
+\dot{Q}_{\text{loss}} =
+24.0\ \mathrm{MW}.
+\]</span></p>
+<p>Substituting into the energy balance,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{dE_{\text{system}}}{dt}
+&amp;=
+\dot{E}_{\text{in}}
+-
+\dot{E}_{\text{out}}
++
+\dot{E}_{\text{generated}}\\
+&amp;=
+6.0
+-
+24.0
++
+18.0 = 0.
+\end{aligned}
+\]</span></p>
+<p>Since the rate of energy change is zero, the turbine is operating at steady state.</p>
+<p><strong>Note:</strong> In practice, a continuously operating gas turbine is designed to operate at steady state to ensure no damage occurs to the turbine components due to excessive energy accumulation.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Energy Balance for a Gas Turbine Combustor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A gas turbine combustor operates at steady state. Air enters the combustor at a mass flow rate of <span class="math inline">\(18\ \mathrm{kg/s}\)</span> with a specific enthalpy of <span class="math inline">\(320\ \mathrm{kJ/kg}\)</span>. Fuel enters at a mass flow rate of <span class="math inline">\(0.40\ \mathrm{kg/s}\)</span> with a heating value of <span class="math inline">\(43\,000\ \mathrm{kJ/kg}\)</span>. Combustion converts the chemical energy of the fuel into thermal energy within the combustor.</p>
+<p>The combustion products leave the combustor at a mass flow rate of <span class="math inline">\(18.4\ \mathrm{kg/s}\)</span> with a specific enthalpy of <span class="math inline">\(1\,150\ \mathrm{kJ/kg}\)</span>. Heat is lost from the combustor to the surroundings at a rate of <span class="math inline">\(0.80\ \mathrm{MW}\)</span>.</p>
+<p>Neglect changes in kinetic and potential energy. Determine whether the combustor is accumulating energy or operating at steady state.</p>
+<p><strong>Step 1. Determine the rate of energy entering.</strong></p>
+<p>The incoming air contributes</p>
+<p><span class="math display">\[
+\dot{E}_{\text{air}}
+=
+\dot{m}_{\text{air}}h_{\text{air}}
+=
+(18)(320)
+=
+5760\ \mathrm{kW}.
+\]</span></p>
+<p><strong>Step 2. Determine the rate of energy leaving.</strong></p>
+<p>The combustion products carry away</p>
+<p><span class="math display">\[
+\dot{E}_{\text{products}}
+=
+(18.4)(1150)
+=
+21160\ \mathrm{kW}.
+\]</span></p>
+<p>Heat loss to the surroundings is <span class="math inline">\(\dot{Q}_{\text{loss}} = 800\ \mathrm{kW}.\)</span></p>
+<p><span class="math display">\[
+\dot{E}_{\text{out}}
+=
+21160
++
+800
+=
+21960\ \mathrm{kW}.
+\]</span></p>
+<p><strong>Step 3. Determine the energy generated.</strong></p>
+<p>The combustion of fuel releases</p>
+<p><span class="math display">\[
+\dot{E}_{\text{generated}}
+=
+\dot{m}_{\text{fuel}}(\text{Heating Value})
+=
+(0.40)(43000)
+=
+17200\ \mathrm{kW}.
+\]</span></p>
+<p><strong>Step 4. Apply the conservation of energy equation.</strong></p>
+<p><span class="math display">\[
+\frac{dE_{\text{system}}}{dt}
+=
+5760
+-
+21960
++
+17200\\
+=
+1000\ \mathrm{kW}
+= 1.0\ \mathrm{MW}.
+\]</span></p>
+<p>Since the rate of energy change is positive, the combustor is accumulating energy at a rate of <span class="math inline">\(1.0\ \mathrm{MW}\)</span>.</p>
+<p><strong>Note:</strong> If this condition persisted indefinitely, temperatures and stresses would continue to rise, which could eventually damage the equipment. Therefore, a sustained positive accumulation is not a normal operating condition.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="applications-of-newtons-laws" class="level3">
+<h3 class="anchored" data-anchor-id="applications-of-newtons-laws">Applications of Newton’s Laws</h3>
+<section id="projectile-motion" class="level4">
+<h4 class="anchored" data-anchor-id="projectile-motion">Projectile Motion</h4>
+<p>Projectile motion provides an excellent example of how a physical problem can be formulated as a mathematical model using Newton’s laws. By identifying the forces acting on the projectile and applying Newton’s Second Law, we obtain a system of ordinary differential equations describing its motion.</p>
+<div id="cell-fig-projectile" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div id="fig-projectile" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-projectile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-projectile-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="502" height="284">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Projectile Motion of a Ball
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Projectile Motion of a Ball
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A ball is thrown with an initial velocity of <span class="math inline">\(v_0 = 20\ \mathrm{m/s}\)</span> at an angle of <span class="math inline">\(\theta = 30^\circ\)</span> above the horizontal. Determine the trajectory of the ball, its maximum height, and the time it takes to hit the ground.</p>
+<p><strong>Given</strong></p>
+<p><span class="math display">\[
+v_0 = 20\ \mathrm{m/s}, \qquad \theta = 30^\circ, \qquad g = 9.8\ \mathrm{m/s^2}.
+\]</span></p>
+<p>Resolve the initial velocity into horizontal and vertical components:</p>
+<p><span class="math display">\[
+v_{0x}=v_0\cos\theta
+\quad \text{and} \quad
+v_{0y}=v_0\sin\theta
+\]</span></p>
+<p>Substituting,</p>
+<p><span class="math display">\[
+v_{0x}=20\cos30^\circ=20(0.866)=17.32\ \mathrm{m/s}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+v_{0y}=20\sin30^\circ=20(0.5)=10\ \mathrm{m/s}.
+\]</span></p>
+<hr>
+<p><strong>Trajectory of the Ball</strong></p>
+<p>The horizontal and vertical positions are</p>
+<p><span class="math display">\[
+x(t)=v_{0x}t
+\quad \text{and} \quad
+y(t)=v_{0y}t-\frac12gt^2.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+x(t)=17.32t
+\quad \text{and} \quad
+y(t)=10t-4.9t^2.
+\]</span></p>
+<p>To write the trajectory as <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(x\)</span>, use</p>
+<p><span class="math display">\[
+t=\frac{x}{17.32}.
+\]</span></p>
+<p>Substitute into <span class="math inline">\(y(t)\)</span>:</p>
+<p><span class="math display">\[
+y=10\left(\frac{x}{17.32}\right)
+-4.9\left(\frac{x}{17.32}\right)^2.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+y=0.577x-0.0163x^2
+\]</span></p>
+<hr>
+<p><strong>Maximum Height</strong></p>
+<p>The maximum height is</p>
+<p><span class="math display">\[
+H=\frac{v_{0y}^2}{2g}.
+\]</span></p>
+<p>Substituting,</p>
+<p><span class="math display">\[
+H=\frac{10^2}{2(9.8)}
+=\frac{100}{19.6}=5.10\ \mathrm{m}.
+\]</span></p>
+<hr>
+<p><strong>Time to Hit the Ground</strong></p>
+<p>The ball hits the ground when</p>
+<p><span class="math display">\[
+y(t)=10t-4.9t^2=0.
+\]</span></p>
+<p>Factor:</p>
+<p><span class="math display">\[
+t(10-4.9t)=0.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+t=0
+\quad \text{and} \quad
+10-4.9t=0.
+\]</span></p>
+<p>Ignoring <span class="math inline">\(t=0\)</span>, the time of flight is</p>
+<p><span class="math display">\[
+t=\frac{10}{4.9}=2.04\ \mathrm{s}.
+\]</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="uniform-circular-motion" class="level4">
+<h4 class="anchored" data-anchor-id="uniform-circular-motion">Uniform Circular Motion</h4>
+<p>Consider a particle of mass <span class="math inline">\(m\)</span> moving in a circle of radius <span class="math inline">\(r\)</span> at a constant speed <span class="math inline">\(v\)</span>. The particle experiences a centripetal acceleration directed toward the center of the circle, given by</p>
+<p><span class="math display">\[
+a_c = \frac{v^2}{r}.
+\]</span></p>
+<p>The centripetal force required to keep the particle moving in a circle is</p>
+<p><span class="math display">\[
+F_c = m a_c = m \frac{v^2}{r}.
+\]</span></p>
+<div id="cell-fig-circular" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div id="fig-circular" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-circular-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="315" height="315">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Uniform Circular Motion of a Particle
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Car Turning Around a Circular Curve
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A car of mass <span class="math inline">\(1200\,\mathrm{kg}\)</span> travels around a circular curve of radius <span class="math inline">\(50\,\mathrm{m}\)</span> at a constant speed of <span class="math inline">\(15\,\mathrm{m/s}\)</span>. Determine the centripetal acceleration and the centripetal force acting on the car.</p>
+<p>The centripetal acceleration is</p>
+<p><span class="math display">\[
+a_c=\frac{v^2}{r}.
+\]</span></p>
+<p>Substituting,</p>
+<p><span class="math display">\[
+a_c=\frac{15^2}{50}
+=\frac{225}{50}
+=4.5\ \mathrm{m/s^2}.
+\]</span></p>
+<p>The centripetal force is</p>
+<p><span class="math display">\[
+F_c=ma_c.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+F_c=(1200)(4.5)
+=5400\ \mathrm{N}.
+\]</span></p>
+</div>
+</div>
+<p><strong>Moving in a Circle with Friction</strong></p>
+<p>When a vehicle moves in a circular path, friction between the tires and the road provides the necessary centripetal force to keep the vehicle moving in a circle. The maximum speed at which a vehicle can safely navigate a curve without skidding is determined by the coefficient of static friction between the tires and the road.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Maximum Speed on a Curved Road
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A car of mass <span class="math inline">\(1000\ \mathrm{kg}\)</span> is traveling around a circular curve of radius <span class="math inline">\(30\ \mathrm{m}\)</span>. The coefficient of static friction between the tires and the road is <span class="math inline">\(\mu_s = 0.6\)</span>. Determine the maximum speed at which the car can safely navigate the curve without skidding.</p>
+<p>The maximum static friction force that can act on the car is given by</p>
+<p><span class="math display">\[
+f_{\text{max}} = \mu_s N,
+\]</span> where <span class="math inline">\(N\)</span> is the normal force. On a flat road, the normal force is equal to the weight of the car, <span class="math inline">\(N = mg\)</span>. Therefore,</p>
+<p><span class="math display">\[
+f_{\text{max}} = \mu_s mg.
+\]</span></p>
+<p>The maximum speed is determined by equating the centripetal force to the maximum static friction force:</p>
+<p><span class="math display">\[
+f_{\text{max}} = \frac{mv^2}{r}.
+\]</span></p>
+<p>Equating the two expressions for the maximum force, we get</p>
+<p><span class="math display">\[
+\mu_s mg = \frac{mv^2}{r}.
+\]</span></p>
+<p>Solving for the maximum speed, we get</p>
+<p><span class="math display">\[
+v_{\text{max}} = \sqrt{\mu_s g r}.
+\]</span></p>
+<p>Substituting the given values,</p>
+<p><span class="math display">\[
+v_{\text{max}} = \sqrt{0.6 \cdot 9.8 \cdot 30} \approx 13.3\ \mathrm{m/s}.
+\]</span></p>
+<p>Hence, the maximum speed at which the car can safely navigate the curve without skidding is approximately <span class="math inline">\(13.3\ \mathrm{m/s}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="object-moving-in-a-elevator" class="level4">
+<h4 class="anchored" data-anchor-id="object-moving-in-a-elevator">Object moving in a elevator</h4>
+<p>When an object is moving in an elevator, the forces acting on it include its weight and the normal force exerted by the floor of the elevator. The apparent weight of the object can change depending on the acceleration of the elevator.</p>
+<div id="cell-fig-elevator" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div id="fig-elevator" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elevator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-elevator-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="423" height="294">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elevator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Apparent Weight in an Elevator
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-fig-elevator-2" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div id="fig-elevator-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elevator-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-elevator-2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="466" height="406">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elevator-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Free-Body Diagram: Apparent Weight in an Elevator
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Apparent Weight in an Elevator
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A person of mass <span class="math inline">\(70\ \mathrm{kg}\)</span> is standing on a scale in an elevator. Determine the reading on the scale (apparent weight) when the elevator is:</p>
+<ol type="1">
+<li>Moving upward with an acceleration of <span class="math inline">\(2\ \mathrm{m/s^2}\)</span>.</li>
+<li>Moving downward with an acceleration of <span class="math inline">\(2\ \mathrm{m/s^2}\)</span>.</li>
+</ol>
+<p><strong>Given:</strong></p>
+<p><span class="math display">\[
+m=70\ \mathrm{kg}, \qquad
+g=9.8\ \mathrm{m/s^2}, \qquad
+a=2\ \mathrm{m/s^2}.
+\]</span></p>
+<p>The apparent weight is the normal force <span class="math inline">\(N\)</span> exerted by the scale on the person.</p>
+<hr>
+<p><strong>1. Elevator Moving Upward</strong></p>
+<p>When the elevator accelerates upward, the forces acting on the person are:</p>
+<ul>
+<li>Normal force, <span class="math inline">\(N\)</span>, acting upward.</li>
+<li>Weight, <span class="math inline">\(W=mg\)</span>, acting downward.</li>
+</ul>
+<p>Applying Newton’s second law,</p>
+<p><span class="math display">\[
+\sum F_y = ma.
+\]</span></p>
+<p>Taking upward as the positive direction,</p>
+<p><span class="math display">\[
+N-mg=ma.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+N=m(g+a).
+\]</span></p>
+<p>Substituting the given values,</p>
+<p><span class="math display">\[
+N=70(9.8+2).
+\]</span></p>
+<p>Therefore, the scale reads</p>
+<p><span class="math display">\[
+N=70(11.8)=826\ \mathrm{N}.
+\]</span></p>
+<hr>
+<p><strong>2. Elevator Moving Downward</strong></p>
+<p>When the elevator accelerates downward, the forces remain the same, but the acceleration is downward.</p>
+<p>Taking upward as the positive direction,</p>
+<p><span class="math display">\[
+N-mg=-ma.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+N=m(g-a).
+\]</span></p>
+<p>Substituting,</p>
+<p><span class="math display">\[
+N=70(9.8-2).
+\]</span></p>
+<p>Therefore, the scale reads</p>
+<p><span class="math display">\[
+N=70(7.8)=546\ \mathrm{N}.
+\]</span></p>
+<table class="table-striped table-hover responsive-table caption-top table">
+<thead>
+<tr class="header">
+<th>Elevator Motion</th>
+<th style="text-align: right;">Apparent Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accelerating upward at <span class="math inline">\(2\ \mathrm{m/s^2}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(826\ \mathrm{N}\)</span></td>
+</tr>
+<tr class="even">
+<td>Accelerating downward at <span class="math inline">\(2\ \mathrm{m/s^2}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(546\ \mathrm{N}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When the elevator accelerates <strong>upward</strong>, the apparent weight <strong>increases</strong> because the scale must provide an additional upward force.</li>
+<li>When the elevator accelerates <strong>downward</strong>, the apparent weight <strong>decreases</strong> because less upward force is required.</li>
+<li>If the elevator moves with <strong>constant velocity</strong> (<span class="math inline">\(a=0\)</span>), the apparent weight equals the true weight:</li>
+</ul>
+<p><span class="math display">\[
+N=mg=70(9.8)=686\ \mathrm{N}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="smooth-pulleys-motion" class="level4">
+<h4 class="anchored" data-anchor-id="smooth-pulleys-motion">Smooth Pulleys Motion</h4>
+<p>A mass of <span class="math inline">\(m_2\)</span> kg is placed on a smooth horizontal table, and connected by a light inextensible string passing over a small smooth pulley at the edge to a mass of <span class="math inline">\(m_1\;kg\)</span> hanging freely.</p>
+<p>Assume the tension in the string is <span class="math inline">\(T\)</span>. Directions of all forces acting on <span class="math inline">\(m_1\)</span> is downward, and on <span class="math inline">\(m_2\)</span> is horizontal. The acceleration of the system is <span class="math inline">\(a\)</span>.</p>
+<p>the equation of motion for m1 by using Newton’s 2nd law is</p>
+<p><span class="math display">\[
+m_1g-T=m_1a
+\]</span></p>
+<p>the equation of motion for m2 by using Newton’s 2nd law is</p>
+<p><span class="math display">\[
+T=m_2a
+\]</span></p>
+<p>The equations for <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> constitute a system of two equations with two unknowns tension force <span class="math inline">\(T\)</span> and acceleration <span class="math inline">\(a\)</span>.</p>
+<p>Solve the system of equations to find the acceleration <span class="math inline">\(a\)</span> and tension <span class="math inline">\(T\)</span> in the string.</p>
+<p><span class="math display">\[
+a=\frac{m_1g}{m_1+m_2}, \qquad T=\frac{m_1m_2g}{m_1+m_2}.
+\]</span></p>
+<div id="cell-fig-pulley" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div id="fig-pulley" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-pulley-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="614" height="341">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Motion of Two Masses Connected by a Smooth Pulley
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Motion of Two Masses Connected by a Smooth Pulley
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A mass of <span class="math inline">\(m_1=4\,\mathrm{kg}\)</span> hangs freely over the edge of a smooth table and is connected by a light inextensible string passing over a smooth pulley to a mass of <span class="math inline">\(m_2=6\,\mathrm{kg}\)</span> resting on the table. Taking <span class="math inline">\(g=9.8\ \mathrm{m/s^2}\)</span> and assuming the pulley and string are ideal, determine:</p>
+<ol type="1">
+<li>The acceleration of the system.</li>
+<li>The tension in the string.</li>
+</ol>
+<p><strong>Step 1: Draw the Free-Body Diagrams</strong></p>
+<p>For the hanging mass <span class="math inline">\(m_1\)</span>:</p>
+<ul>
+<li>Weight: <span class="math inline">\(m_1g\)</span> acting downward.</li>
+<li>Tension: <span class="math inline">\(T\)</span> acting upward.</li>
+</ul>
+<div id="cell-fig-pulley-fbd" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div id="fig-pulley-fbd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pulley-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-pulley-fbd-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="504" height="315">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulley-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Free-Body Diagrams of the Two Masses
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the mass accelerates downward,</p>
+<p><span class="math display">\[
+m_1g-T=m_1a.
+\]</span></p>
+<p>For the mass <span class="math inline">\(m_2\)</span> on the table:</p>
+<ul>
+<li>Tension: <span class="math inline">\(T\)</span> acting horizontally.</li>
+<li>The table is smooth, so there is no friction.</li>
+</ul>
+<p>Applying Newton’s second law,</p>
+<p><span class="math display">\[
+T=m_2a.
+\]</span></p>
+<p><strong>Step 2: Solve for the Acceleration</strong></p>
+<p>Substitute</p>
+<p><span class="math display">\[
+T=m_2a
+\]</span></p>
+<p>into</p>
+<p><span class="math display">\[
+m_1g-T=m_1a.
+\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[
+m_1g-m_2a=m_1a.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+m_1g=(m_1+m_2)a.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+a=\frac{m_1g}{m_1+m_2}.
+\]</span></p>
+<p>Substituting the given values yields the acceleration of the system</p>
+<p><span class="math display">\[
+a=\frac{4(9.8)}{4+6}
+=\frac{39.2}{10}
+=3.92\ \mathrm{m/s^2}.
+\]</span></p>
+<hr>
+<p><strong>Step 3: Solve for the Tension</strong></p>
+<p>Using</p>
+<p><span class="math display">\[
+T=m_2a,
+\]</span></p>
+<p>we obtain the tension in the string</p>
+<p><span class="math display">\[
+T=(6)(3.92)
+=23.52\ \mathrm{N}.
+\]</span></p>
+<hr>
+<p><strong>Verification</strong></p>
+<p>Using the formula</p>
+<p><span class="math display">\[
+T=\frac{m_1m_2g}{m_1+m_2},
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+T
+=
+\frac{(4)(6)(9.8)}{4+6}
+=
+\frac{235.2}{10}
+=
+23.52\ \mathrm{N},
+\]</span></p>
+<p>which agrees with the previous result.</p>
+</div>
+</div>
+</section>
+<section id="inclined-plane-with-friction" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="inclined-plane-with-friction">Inclined Plane with Friction</h4>
+<p>When a block slides down an inclined plane, the forces acting on it include its weight, the normal force from the plane, and the frictional force opposing the motion. The component of the weight parallel to the incline causes the block to accelerate down the slope.</p>
+<div id="cell-fig-inclined" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div id="fig-inclined" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-inclined-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="614" height="364">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Block Sliding Down an Inclined Plane with Friction
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Example: Block Sliding Down an Inclined Plane with Friction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A block of mass <span class="math inline">\(5\,\mathrm{kg}\)</span> is placed on a rough inclined plane that makes an angle of <span class="math inline">\(30^\circ\)</span> with the horizontal. The coefficient of kinetic friction between the block and the plane is <span class="math inline">\(\mu_k=0.20\)</span>. Take $ g=9.8&nbsp;$ and determine:</p>
+<ol type="1">
+<li>The acceleration of the block as it slides down the incline.</li>
+<li>The normal force acting on the block.</li>
+</ol>
+<p><strong>Step 1: Draw the Free-Body Diagram</strong></p>
+<p>The forces acting on the block are:</p>
+<ul>
+<li>Weight: <span class="math inline">\(W=mg\)</span>, acting vertically downward.</li>
+<li>Normal force: <span class="math inline">\(N\)</span>, acting perpendicular to the plane.</li>
+<li>Frictional force: <span class="math inline">\(f_k=\mu_kN\)</span>, acting up the plane, opposite to the motion.</li>
+</ul>
+<p>Resolve the weight into components:</p>
+<ul>
+<li>Parallel to the incline:</li>
+</ul>
+<p><span class="math display">\[
+W_\parallel=mg\sin\theta.
+\]</span></p>
+<ul>
+<li>Perpendicular to the incline:</li>
+</ul>
+<p><span class="math display">\[
+W_\perp=mg\cos\theta.
+\]</span></p>
+<div id="cell-fig-inclined-forces-FBD" class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div id="fig-inclined-forces-fbd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inclined-forces-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_basicVector_files/figure-html/fig-inclined-forces-fbd-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="317" height="257">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-forces-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Free-Body Diagram of a Block on an Inclined Plane
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p><strong>Step 2: Calculate the Normal Force</strong></p>
+<p>Since there is no acceleration perpendicular to the plane,</p>
+<p><span class="math display">\[
+N=mg\cos\theta.
+\]</span></p>
+<p>Substituting,</p>
+<p><span class="math display">\[
+N=(5)(9.8)\cos30^\circ.
+\]</span></p>
+<p>Since <span class="math inline">\(\cos30^\circ=0.866,\)</span> we obtain</p>
+<p><span class="math display">\[
+N=49(0.866)=42.43\ \mathrm{N}.
+\]</span></p>
+<hr>
+<p><strong>Step 3: Calculate the Frictional Force</strong></p>
+<p>Using</p>
+<p><span class="math display">\[
+f_k=\mu_kN,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+f_k=(0.20)(42.43)
+=8.49\ \mathrm{N}.
+\]</span></p>
+<hr>
+<p><strong>Step 4: Apply Newton’s Second Law</strong></p>
+<p>The net force along the incline is</p>
+<p><span class="math display">\[
+mg\sin\theta-f_k=ma.
+\]</span></p>
+<p>Substituting the values,</p>
+<p><span class="math display">\[
+(5)(9.8)\sin30^\circ-8.49
+=5a.
+\]</span></p>
+<p>Since <span class="math inline">\(\sin30^\circ=0.5,\)</span> we have</p>
+<p><span class="math display">\[
+24.5-8.49=5a \Rightarrow
+a=\frac{16.01}{5}
+=3.20\ \mathrm{m/s^2}.
+\]</span></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="exercises" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercises"><strong>Exercises</strong></h2>
+<section id="question-1" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h5>
+<p>Describe (sketch) the locus of a particle whose position vector is given in (a) and (b). Find also the velocity and acceleration of the particle and show that their magnitudes are both constant.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\vec{r}(t)=\left(a\sin(\omega t),\;a\cos(\omega t),\;0\right),\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(\omega\)</span> are constants.</p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(a\sin(\omega t),\;a\cos(\omega t),\;bt\right),\)</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(\omega\)</span> are constants.</p></li>
+</ol>
+</section>
+<section id="question-2" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h5>
+<p>Find the velocity and acceleration of a particle moving along various loci using parametric equations, and plot the velocity and acceleration vectors as functions of time.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\vec{r}(t)=(2+3t,\;1+4t,\;0).\)</span></p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(4\cos(2t),\;4\sin(2t),\;0\right).\)</span></p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(3\cos t,\;3\sin t,\;2t\right).\)</span></p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(2t,\;5t-\frac{1}{2}(9.81)t^2,\;0\right).\)</span></p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(6\cos t,\;4\sin t,\;0\right).\)</span></p></li>
+<li><p><span class="math inline">\(\vec{r}(t)=\left(2\cosh t,\;\sinh t,\;0\right).\)</span></p></li>
+</ol>
+</section>
+<section id="question-3" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-3">Question 3</h5>
+<p>A particle is moving on a straight line with constant acceleration <span class="math inline">\(a\)</span>. If <span class="math inline">\(x\)</span> is the distance from some fixed point on the straight line, show that the equation <span class="math display">\[
+\frac{d^2x}{dt^2}=a
+\]</span></p>
+<p>can be written as <span class="math inline">\(v\frac{dv}{dx}=a,\)</span> where <span class="math inline">\(v\)</span> is the particle’s speed. If <span class="math inline">\(v=v_0\)</span> at <span class="math inline">\(x=0,\)</span> integrate this equation and show that <span class="math inline">\(v^2=v_0^2+2ax.\)</span></p>
+</section>
+<section id="question-4" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h5>
+<p>A man 70 kg, stands on the floor of a lift.</p>
+<ol type="a">
+<li>The force acting on the mass includes the gravitational force and the reaction from the floor. Show the directions of all forces acting on the mass. In the coordinate shown, what is the total force acting on the mass?</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/TUT2-fig1-h.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<ol start="2" type="a">
+<li><p>Suppose the lift moves upwards with acceleration of 4 <span class="math inline">\(m/s^2\)</span>. Use Newton’s 2nd law to calculate the reaction of the floor (the force acting on the man from the floor).</p></li>
+<li><p>Suppose the lift moves downwards with acceleration of 4 <span class="math inline">\(m/s^2\)</span>. Find the reaction of the floor.</p></li>
+</ol>
+</section>
+<section id="question-5" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h5>
+<p>A catapult projects a stone in the normal direction to a playground which slopes at the angle of <span class="math inline">\(10^\circ\)</span> to the horizontal. The initial speed of the stone is 18 <span class="math inline">\(m/s\)</span>. Ignoring air resistance, calculate the range parallel to the playground.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/TUT2-fig6.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</section>
+<section id="question-6" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="question-6">Question 6</h5>
+<p>From Question 5, suppose that the playground is inclined at an angle <span class="math inline">\(\alpha\)</span> to the horizontal. If the stone were to be fired with velocity <span class="math inline">\(v\)</span> at an acute angle <span class="math inline">\(\beta\)</span> to the playground, in the vertical plane through the line of greatest slope, find the maximum range parallel to the playground.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/TUT2-fig7.PNG" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01_introduction.html" class="pagination-link" aria-label="Chapter 1 Introduction to Mathematical Modelling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 1 Introduction to Mathematical Modelling</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03_indexNotation.html" class="pagination-link" aria-label="Chapter 3 Index Notation and Cartesian Tensors">
+        <span class="nav-page-text">Chapter 3 Index Notation and Cartesian Tensors</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Supply Chain Modelling and Optimisation<br> © Copyright 2026, Ben W. and Sam W.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with ❤️ and <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
