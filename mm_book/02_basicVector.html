@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a473e0dd63122af86f9cbc1d981c1bf5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8df19c2dbc724390100333b991f6aca1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -325,7 +325,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text"><strong>Introduction to Python</strong></span></a>
+ <span class="menu-text">Introduction to Python</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,33 +381,33 @@ window.Quarto = {
   <ul>
   <li><a href="#part-1-basic-vector-arithmetic" id="toc-part-1-basic-vector-arithmetic" class="nav-link active" data-scroll-target="#part-1-basic-vector-arithmetic"><strong>Part 1: Basic Vector Arithmetic</strong></a>
   <ul>
-  <li><a href="#scalars-and-vectors" id="toc-scalars-and-vectors" class="nav-link" data-scroll-target="#scalars-and-vectors">Scalars and Vectors</a></li>
-  <li><a href="#geometric-representation-of-a-vector" id="toc-geometric-representation-of-a-vector" class="nav-link" data-scroll-target="#geometric-representation-of-a-vector">Geometric Representation of a Vector</a></li>
-  <li><a href="#cartesian-representation-and-vector-operations" id="toc-cartesian-representation-and-vector-operations" class="nav-link" data-scroll-target="#cartesian-representation-and-vector-operations">Cartesian Representation and Vector Operations</a>
+  <li><a href="#scalars-and-vectors" id="toc-scalars-and-vectors" class="nav-link" data-scroll-target="#scalars-and-vectors">1.1 Scalars and Vectors</a></li>
+  <li><a href="#geometric-representation-of-a-vector" id="toc-geometric-representation-of-a-vector" class="nav-link" data-scroll-target="#geometric-representation-of-a-vector">1.2 Geometric Representation of a Vector</a></li>
+  <li><a href="#cartesian-representation-and-vector-operations" id="toc-cartesian-representation-and-vector-operations" class="nav-link" data-scroll-target="#cartesian-representation-and-vector-operations">1.3 Cartesian Representation and Vector Operations</a>
   <ul class="collapse">
-  <li><a href="#position-vectors" id="toc-position-vectors" class="nav-link" data-scroll-target="#position-vectors">Position Vectors</a></li>
-  <li><a href="#displacement-vectors" id="toc-displacement-vectors" class="nav-link" data-scroll-target="#displacement-vectors">Displacement Vectors</a></li>
-  <li><a href="#velocity-vectors" id="toc-velocity-vectors" class="nav-link" data-scroll-target="#velocity-vectors">Velocity Vectors</a></li>
-  <li><a href="#acceleration-vectors" id="toc-acceleration-vectors" class="nav-link" data-scroll-target="#acceleration-vectors">Acceleration Vectors</a></li>
-  <li><a href="#particle-motion-on-a-hyperbola" id="toc-particle-motion-on-a-hyperbola" class="nav-link" data-scroll-target="#particle-motion-on-a-hyperbola">Particle Motion on a Hyperbola</a></li>
+  <li><a href="#position-vectors" id="toc-position-vectors" class="nav-link" data-scroll-target="#position-vectors">1.3.1 Position Vectors</a></li>
+  <li><a href="#displacement-vectors" id="toc-displacement-vectors" class="nav-link" data-scroll-target="#displacement-vectors">1.3.2 Displacement Vectors</a></li>
+  <li><a href="#velocity-vectors" id="toc-velocity-vectors" class="nav-link" data-scroll-target="#velocity-vectors">1.3.3 Velocity Vectors</a></li>
+  <li><a href="#acceleration-vectors" id="toc-acceleration-vectors" class="nav-link" data-scroll-target="#acceleration-vectors">1.3.4 Acceleration Vectors</a></li>
+  <li><a href="#particle-motion-on-a-hyperbola" id="toc-particle-motion-on-a-hyperbola" class="nav-link" data-scroll-target="#particle-motion-on-a-hyperbola">1.3.5 Particle Motion on a Hyperbola</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#part-2-newtons-laws-of-motion-and-applications" id="toc-part-2-newtons-laws-of-motion-and-applications" class="nav-link" data-scroll-target="#part-2-newtons-laws-of-motion-and-applications"><strong>Part 2: Newton’s Laws of Motion and Applications</strong></a>
   <ul>
-  <li><a href="#newtons-laws-of-motion" id="toc-newtons-laws-of-motion" class="nav-link" data-scroll-target="#newtons-laws-of-motion">Newton’s Laws of Motion</a></li>
-  <li><a href="#conservation-principles" id="toc-conservation-principles" class="nav-link" data-scroll-target="#conservation-principles">Conservation Principles</a>
+  <li><a href="#newtons-laws-of-motion" id="toc-newtons-laws-of-motion" class="nav-link" data-scroll-target="#newtons-laws-of-motion">2.1 Newton’s Laws of Motion</a></li>
+  <li><a href="#conservation-principles" id="toc-conservation-principles" class="nav-link" data-scroll-target="#conservation-principles">2.2 Conservation Principles</a>
   <ul class="collapse">
-  <li><a href="#conservation-of-mass" id="toc-conservation-of-mass" class="nav-link" data-scroll-target="#conservation-of-mass">Conservation of Mass</a></li>
-  <li><a href="#conservation-of-momentum" id="toc-conservation-of-momentum" class="nav-link" data-scroll-target="#conservation-of-momentum">Conservation of Momentum</a></li>
-  <li><a href="#conservation-of-energy" id="toc-conservation-of-energy" class="nav-link" data-scroll-target="#conservation-of-energy">Conservation of Energy</a></li>
+  <li><a href="#conservation-of-mass" id="toc-conservation-of-mass" class="nav-link" data-scroll-target="#conservation-of-mass">2.2.1 Conservation of Mass</a></li>
+  <li><a href="#conservation-of-momentum" id="toc-conservation-of-momentum" class="nav-link" data-scroll-target="#conservation-of-momentum">2.2.2 Conservation of Momentum</a></li>
+  <li><a href="#conservation-of-energy" id="toc-conservation-of-energy" class="nav-link" data-scroll-target="#conservation-of-energy">2.2.3 Conservation of Energy</a></li>
   </ul></li>
-  <li><a href="#applications-of-newtons-laws" id="toc-applications-of-newtons-laws" class="nav-link" data-scroll-target="#applications-of-newtons-laws">Applications of Newton’s Laws</a>
+  <li><a href="#applications-of-newtons-laws" id="toc-applications-of-newtons-laws" class="nav-link" data-scroll-target="#applications-of-newtons-laws">2.3 Applications of Newton’s Laws</a>
   <ul class="collapse">
-  <li><a href="#projectile-motion" id="toc-projectile-motion" class="nav-link" data-scroll-target="#projectile-motion">Projectile Motion</a></li>
-  <li><a href="#uniform-circular-motion" id="toc-uniform-circular-motion" class="nav-link" data-scroll-target="#uniform-circular-motion">Uniform Circular Motion</a></li>
-  <li><a href="#object-moving-in-a-elevator" id="toc-object-moving-in-a-elevator" class="nav-link" data-scroll-target="#object-moving-in-a-elevator">Object moving in a elevator</a></li>
-  <li><a href="#smooth-pulleys-motion" id="toc-smooth-pulleys-motion" class="nav-link" data-scroll-target="#smooth-pulleys-motion">Smooth Pulleys Motion</a></li>
-  <li><a href="#inclined-plane-with-friction" id="toc-inclined-plane-with-friction" class="nav-link" data-scroll-target="#inclined-plane-with-friction">Inclined Plane with Friction</a></li>
+  <li><a href="#projectile-motion" id="toc-projectile-motion" class="nav-link" data-scroll-target="#projectile-motion">2.3.1 Projectile Motion</a></li>
+  <li><a href="#uniform-circular-motion" id="toc-uniform-circular-motion" class="nav-link" data-scroll-target="#uniform-circular-motion">2.3.2 Uniform Circular Motion</a></li>
+  <li><a href="#object-moving-in-an-elevator" id="toc-object-moving-in-an-elevator" class="nav-link" data-scroll-target="#object-moving-in-an-elevator">2.3.3 Object Moving in an Elevator</a></li>
+  <li><a href="#smooth-pulleys-motion" id="toc-smooth-pulleys-motion" class="nav-link" data-scroll-target="#smooth-pulleys-motion">2.3.4 Smooth Pulleys Motion</a></li>
+  <li><a href="#inclined-plane-with-friction" id="toc-inclined-plane-with-friction" class="nav-link" data-scroll-target="#inclined-plane-with-friction">2.3.4 Inclined Plane with Friction</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><strong>Exercises</strong></a></li>
@@ -442,7 +442,7 @@ window.Quarto = {
 <section id="part-1-basic-vector-arithmetic" class="level2">
 <h2 class="anchored" data-anchor-id="part-1-basic-vector-arithmetic"><strong>Part 1: Basic Vector Arithmetic</strong></h2>
 <section id="scalars-and-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="scalars-and-vectors">Scalars and Vectors</h3>
+<h3 class="anchored" data-anchor-id="scalars-and-vectors">1.1 Scalars and Vectors</h3>
 <p>Physical quantities are generally classified into two categories.</p>
 <p><strong>Scalar:</strong> A quantity with magnitude only. Examples include Mass, Time, Temperature, Energy, Pressure, Density.</p>
 <p><strong>Vector:</strong> A quantity with both magnitude and direction. Examples include Velocity, Force, Displacement, Acceleration.</p>
@@ -456,7 +456,7 @@ window.Quarto = {
 \]</span></p>
 </section>
 <section id="geometric-representation-of-a-vector" class="level3">
-<h3 class="anchored" data-anchor-id="geometric-representation-of-a-vector">Geometric Representation of a Vector</h3>
+<h3 class="anchored" data-anchor-id="geometric-representation-of-a-vector">1.2 Geometric Representation of a Vector</h3>
 <p>A vector is represented graphically by a directed line segment.</p>
 <ul>
 <li>The length of the arrow represents the magnitude.</li>
@@ -471,7 +471,7 @@ window.Quarto = {
 <p>Its magnitude is <span class="math inline">\(|\overrightarrow{AB}|\)</span>.</p>
 </section>
 <section id="cartesian-representation-and-vector-operations" class="level3">
-<h3 class="anchored" data-anchor-id="cartesian-representation-and-vector-operations">Cartesian Representation and Vector Operations</h3>
+<h3 class="anchored" data-anchor-id="cartesian-representation-and-vector-operations">1.3 Cartesian Representation and Vector Operations</h3>
 <p>In three-dimensional Cartesian coordinates, a vector is represented by its components.</p>
 <p>Suppose <span class="math inline">\(A=(x,y,z).\)</span> Then the position vector of <span class="math inline">\(A\)</span> measured from the origin is</p>
 <p><span class="math display">\[
@@ -483,6 +483,7 @@ x\mathbf i
 \]</span></p>
 <p>where <span class="math inline">\(\mathbf i, \mathbf j, \mathbf k\)</span> are the unit vectors in the <span class="math inline">\(x, y, z\)</span> directions respectively.</p>
 <p>Equivalently, <span class="math inline">\(\mathbf r =(x,y,z).\)</span></p>
+<div style="text-align:center;">
 <div id="fig-cartesian-form" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cartesian-form-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -492,6 +493,7 @@ x\mathbf i
 Figure&nbsp;1: Cartesian Representation of a Vector.
 </figcaption>
 </figure>
+</div>
 </div>
 <p><strong>Magnitude of a Vector</strong></p>
 <p>The length (or magnitude) of a vector <span class="math inline">\(\mathbf a=(a_x,a_y,a_z)\)</span> is <span class="math display">\[
@@ -570,6 +572,7 @@ u_3+v_3).
 <ul>
 <li><strong>Triangle Law:</strong> To add two vectors, place the tail of the second vector at the head of the first vector. The resultant vector is the one that starts at the tail of the first vector and ends at the head of the second vector.</li>
 </ul>
+<div style="text-align:center;">
 <div id="cell-fig-vector-addition" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div id="fig-vector-addition" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -584,9 +587,11 @@ Figure&nbsp;2: Vector Addition Using the Triangle Law
 </div>
 </div>
 </div>
+</div>
 <ul>
 <li><strong>Parallelogram Law:</strong> To add two vectors, place them so their tails coincide. The resultant vector is the diagonal of the parallelogram formed by the two vectors.</li>
 </ul>
+<div style="text-align:center;">
 <div id="cell-fig-vector-addition-parallelogram" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-vector-addition-parallelogram" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -598,6 +603,7 @@ Figure&nbsp;2: Vector Addition Using the Triangle Law
 Figure&nbsp;3: Vector Addition Using the Parallelogram Law
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -709,7 +715,7 @@ a_z\mathbf k.}
 </div>
 <hr>
 <section id="position-vectors" class="level4">
-<h4 class="anchored" data-anchor-id="position-vectors">Position Vectors</h4>
+<h4 class="anchored" data-anchor-id="position-vectors">1.3.1 Position Vectors</h4>
 <p>The position of a particle relative to the chosen origin is described by the .</p>
 <p>Suppose a particle is located at <span class="math inline">\(P(x,y,z).\)</span> Then the position vector of <span class="math inline">\(\mathbf{r}(t)\)</span> is</p>
 <p><span class="math display">\[
@@ -748,7 +754,7 @@ z(t)\mathbf k.
 </div>
 </section>
 <section id="displacement-vectors" class="level4">
-<h4 class="anchored" data-anchor-id="displacement-vectors">Displacement Vectors</h4>
+<h4 class="anchored" data-anchor-id="displacement-vectors">1.3.2 Displacement Vectors</h4>
 <p>Suppose a particle moves from <span class="math inline">\(P_1(x_1,y_1,z_1)\)</span> to <span class="math inline">\(P_2(x_2,y_2,z_2).\)</span> The change in position is called the ,</p>
 <p><span class="math display">\[
 \Delta \mathbf r
@@ -764,7 +770,7 @@ z(t)\mathbf k.
 <p>Displacement is a vector quantity and should not be confused with the total distance travelled.</p>
 </section>
 <section id="velocity-vectors" class="level4">
-<h4 class="anchored" data-anchor-id="velocity-vectors">Velocity Vectors</h4>
+<h4 class="anchored" data-anchor-id="velocity-vectors">1.3.3 Velocity Vectors</h4>
 <p>Velocity describes how rapidly the position of a particle changes with time.</p>
 <p>If the particle has position vector <span class="math inline">\(\mathbf {r}(t),\)</span> its velocity is defined as</p>
 <p><span class="math display">\[
@@ -808,7 +814,7 @@ z(t)\mathbf k.
 </div>
 </section>
 <section id="acceleration-vectors" class="level4">
-<h4 class="anchored" data-anchor-id="acceleration-vectors">Acceleration Vectors</h4>
+<h4 class="anchored" data-anchor-id="acceleration-vectors">1.3.4 Acceleration Vectors</h4>
 <p>Acceleration describes how rapidly the velocity of a particle changes with time.</p>
 <p>If the particle has velocity <span class="math inline">\(\mathbf {v}(t),\)</span> its acceleration is defined as</p>
 <p><span class="math display">\[
@@ -835,7 +841,7 @@ z(t)\mathbf k.
 </div>
 </section>
 <section id="particle-motion-on-a-hyperbola" class="level4">
-<h4 class="anchored" data-anchor-id="particle-motion-on-a-hyperbola">Particle Motion on a Hyperbola</h4>
+<h4 class="anchored" data-anchor-id="particle-motion-on-a-hyperbola">1.3.5 Particle Motion on a Hyperbola</h4>
 <p>Describe the path of the particle, its velocity and its acceleration if a particle has position vector</p>
 <p><span class="math display">\[
 \mathbf{r}(t)
@@ -1035,6 +1041,7 @@ v
 \end{aligned}
 \]</span></p>
 <p>The pursuit curve in <a href="#fig-pursuit-curve" class="quarto-xref">Figure&nbsp;<span>4</span></a> is obtained by solving this system of differential equations with initial conditions numerically.</p>
+<div style="text-align:center;">
 <div id="cell-fig-pursuit-curve" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-pursuit-curve" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1049,11 +1056,18 @@ Figure&nbsp;4: Pursuit Curve
 </div>
 </div>
 </div>
+</div>
 <p>The comet moves with constant speed and its direction of motion is always pointed towards the planet, where <span class="math inline">\(AC=a\)</span> and <span class="math inline">\(BC=b\)</span>.</p>
 </div>
 </div>
 <p><strong>Notes:</strong></p>
 <p>The following concepts form the foundation of particle kinematics.</p>
+<div id="tbl-kinematics" class="striped hover responsive-table quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kinematics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Particle kinematics
+</figcaption>
+<div aria-describedby="tbl-kinematics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover responsive-table caption-top table">
 <colgroup>
 <col style="width: 29%">
@@ -1084,6 +1098,9 @@ Figure&nbsp;4: Pursuit Curve
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>These quantities provide the mathematical description of particle motion and form the basis for Newton’s laws of motion, which relate the motion of a particle to the forces acting upon it.</p>
 <hr>
 </section>
@@ -1092,7 +1109,7 @@ Figure&nbsp;4: Pursuit Curve
 <section id="part-2-newtons-laws-of-motion-and-applications" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-newtons-laws-of-motion-and-applications"><strong>Part 2: Newton’s Laws of Motion and Applications</strong></h2>
 <section id="newtons-laws-of-motion" class="level3">
-<h3 class="anchored" data-anchor-id="newtons-laws-of-motion">Newton’s Laws of Motion</h3>
+<h3 class="anchored" data-anchor-id="newtons-laws-of-motion">2.1 Newton’s Laws of Motion</h3>
 <p>In the seventeenth century, <strong>Sir Isaac Newton</strong> formulated three fundamental laws that describe the motion of particles under the action of forces.</p>
 <p>These laws form the foundation of classical mechanics and provide the basis for many mathematical models in engineering and science.</p>
 <p>By combining Newton’s laws with appropriate force models, we can derive differential equations governing the motion of particles, rigid bodies and continua.</p>
@@ -1190,7 +1207,13 @@ m\frac{d^2\mathbf r}{dt^2}
 <p>Hence, Newton’s Second Law naturally leads to a second-order ordinary differential equation for the particle’s position.</p>
 <p><strong>SI Units</strong></p>
 <p>Throughout this unit we shall use the SI system of units.</p>
-<table class="caption-top table">
+<div id="tbl-si-units" class="striped hover responsive-table quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-si-units-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: SI Units
+</figcaption>
+<div aria-describedby="tbl-si-units-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover responsive-table caption-top table">
 <thead>
 <tr class="header">
 <th>Quantity</th>
@@ -1224,6 +1247,9 @@ m\frac{d^2\mathbf r}{dt^2}
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1283,17 +1309,19 @@ a
 <li>The block exerts a downward force on the table equal to its weight.</li>
 <li>The table exerts an upward force on the block equal in magnitude and opposite in direction to the block’s weight.</li>
 </ul>
+<div style="text-align:center;">
 <div id="cell-fig-mass" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-mass" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02_basicVector_files/figure-html/fig-mass-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="371" height="315">
+<img src="02_basicVector_files/figure-html/fig-mass-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="389" height="315">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: A Mass Resting on a Horizontal Table
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1345,17 +1373,19 @@ N=(5)(9.8)=49\,\text{N}.
 </div>
 <p><strong>Newton’s Third Law on an Inclined Plane</strong></p>
 <p>Consider a block resting on an inclined plane. The block exerts a force on the plane equal to its weight, and the plane exerts an equal and opposite force on the block. The normal force is perpendicular to the surface of the plane, while the weight acts vertically downward.</p>
+<div style="text-align:center;">
 <div id="cell-fig-inclined-plane" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined-plane" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02_basicVector_files/figure-html/fig-inclined-plane-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="373" height="257">
+<img src="02_basicVector_files/figure-html/fig-inclined-plane-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="391" height="202">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: A Block Resting on an Inclined Plane
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1425,6 +1455,7 @@ N=98(0.866)=84.9\,\text{N}.
 <p>When a mass is suspended from a rope, the mass exerts a downward force on the rope equal to its weight. The rope exerts an equal and opposite upward force on the mass.</p>
 </div>
 </div>
+<div style="text-align:center;">
 <div id="cell-fig-string" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-string" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1436,6 +1467,7 @@ N=98(0.866)=84.9\,\text{N}.
 Figure&nbsp;7: A Mass Suspended by a Light String
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1505,7 +1537,7 @@ Figure&nbsp;7: A Mass Suspended by a Light String
 <p>For most engineering applications involving ordinary speeds and dimensions, Newton’s laws provide an excellent mathematical model.</p>
 </section>
 <section id="conservation-principles" class="level3">
-<h3 class="anchored" data-anchor-id="conservation-principles">Conservation Principles</h3>
+<h3 class="anchored" data-anchor-id="conservation-principles">2.2 Conservation Principles</h3>
 <p>Most mathematical models are derived from conservation laws.</p>
 <p>These state that certain physical quantities cannot be created or destroyed, although they may be transported or transformed.</p>
 <p>The three fundamental conservation laws are</p>
@@ -1528,7 +1560,7 @@ Figure&nbsp;7: A Mass Suspended by a Light String
 \]</span></p>
 <p>This general balance equation provides the starting point for developing many engineering models.</p>
 <section id="conservation-of-mass" class="level4">
-<h4 class="anchored" data-anchor-id="conservation-of-mass">Conservation of Mass</h4>
+<h4 class="anchored" data-anchor-id="conservation-of-mass">2.2.1 Conservation of Mass</h4>
 <p>The principle of conservation of mass states that mass can neither be created nor destroyed.</p>
 <p>For a control volume,</p>
 <p><span class="math display">\[
@@ -1621,7 +1653,7 @@ B(t) &amp;= 50t + 500.
 </div>
 </section>
 <section id="conservation-of-momentum" class="level4">
-<h4 class="anchored" data-anchor-id="conservation-of-momentum">Conservation of Momentum</h4>
+<h4 class="anchored" data-anchor-id="conservation-of-momentum">2.2.2 Conservation of Momentum</h4>
 <p>The principle of conservation of momentum states that the total momentum of a closed system remains constant if no external forces act on it.</p>
 <p><span class="math display">\[
 \sum \mathbf P_\text{before} = \sum \mathbf P_\text{after}
@@ -1707,7 +1739,7 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 </div>
 </section>
 <section id="conservation-of-energy" class="level4">
-<h4 class="anchored" data-anchor-id="conservation-of-energy">Conservation of Energy</h4>
+<h4 class="anchored" data-anchor-id="conservation-of-energy">2.2.3 Conservation of Energy</h4>
 <p>The First Law of Thermodynamics states that energy cannot be created or destroyed.</p>
 <p>For a control volume,</p>
 <p><span class="math display">\[
@@ -1876,10 +1908,11 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 </section>
 </section>
 <section id="applications-of-newtons-laws" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-newtons-laws">Applications of Newton’s Laws</h3>
+<h3 class="anchored" data-anchor-id="applications-of-newtons-laws">2.3 Applications of Newton’s Laws</h3>
 <section id="projectile-motion" class="level4">
-<h4 class="anchored" data-anchor-id="projectile-motion">Projectile Motion</h4>
+<h4 class="anchored" data-anchor-id="projectile-motion">2.3.1 Projectile Motion</h4>
 <p>Projectile motion provides an excellent example of how a physical problem can be formulated as a mathematical model using Newton’s laws. By identifying the forces acting on the projectile and applying Newton’s Second Law, we obtain a system of ordinary differential equations describing its motion.</p>
+<div style="text-align:center;">
 <div id="cell-fig-projectile" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-projectile" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1891,6 +1924,7 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 Figure&nbsp;8: Projectile Motion of a Ball
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1986,7 +2020,7 @@ t=\frac{10}{4.9}=2.04\ \mathrm{s}.
 <hr>
 </section>
 <section id="uniform-circular-motion" class="level4">
-<h4 class="anchored" data-anchor-id="uniform-circular-motion">Uniform Circular Motion</h4>
+<h4 class="anchored" data-anchor-id="uniform-circular-motion">2.3.2 Uniform Circular Motion</h4>
 <p>Consider a particle of mass <span class="math inline">\(m\)</span> moving in a circle of radius <span class="math inline">\(r\)</span> at a constant speed <span class="math inline">\(v\)</span>. The particle experiences a centripetal acceleration directed toward the center of the circle, given by</p>
 <p><span class="math display">\[
 a_c = \frac{v^2}{r}.
@@ -1995,6 +2029,7 @@ a_c = \frac{v^2}{r}.
 <p><span class="math display">\[
 F_c = m a_c = m \frac{v^2}{r}.
 \]</span></p>
+<div style="text-align:center;">
 <div id="cell-fig-circular" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div id="fig-circular" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -2006,6 +2041,7 @@ F_c = m a_c = m \frac{v^2}{r}.
 Figure&nbsp;9: Uniform Circular Motion of a Particle
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2081,9 +2117,10 @@ v_{\text{max}} = \sqrt{0.6 \cdot 9.8 \cdot 30} \approx 13.3\ \mathrm{m/s}.
 </div>
 </div>
 </section>
-<section id="object-moving-in-a-elevator" class="level4">
-<h4 class="anchored" data-anchor-id="object-moving-in-a-elevator">Object moving in a elevator</h4>
+<section id="object-moving-in-an-elevator" class="level4">
+<h4 class="anchored" data-anchor-id="object-moving-in-an-elevator">2.3.3 Object Moving in an Elevator</h4>
 <p>When an object is moving in an elevator, the forces acting on it include its weight and the normal force exerted by the floor of the elevator. The apparent weight of the object can change depending on the acceleration of the elevator.</p>
+<div style="text-align:center;">
 <div id="cell-fig-elevator" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div id="fig-elevator" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -2098,6 +2135,8 @@ Figure&nbsp;10: Apparent Weight in an Elevator
 </div>
 </div>
 </div>
+</div>
+<div style="text-align:center;">
 <div id="cell-fig-elevator-2" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div id="fig-elevator-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -2109,6 +2148,7 @@ Figure&nbsp;10: Apparent Weight in an Elevator
 Figure&nbsp;11: Free-Body Diagram: Apparent Weight in an Elevator
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2210,7 +2250,7 @@ N=mg=70(9.8)=686\ \mathrm{N}.
 </div>
 </section>
 <section id="smooth-pulleys-motion" class="level4">
-<h4 class="anchored" data-anchor-id="smooth-pulleys-motion">Smooth Pulleys Motion</h4>
+<h4 class="anchored" data-anchor-id="smooth-pulleys-motion">2.3.4 Smooth Pulleys Motion</h4>
 <p>A mass of <span class="math inline">\(m_2\)</span> kg is placed on a smooth horizontal table, and connected by a light inextensible string passing over a small smooth pulley at the edge to a mass of <span class="math inline">\(m_1\;kg\)</span> hanging freely.</p>
 <p>Assume the tension in the string is <span class="math inline">\(T\)</span>. Directions of all forces acting on <span class="math inline">\(m_1\)</span> is downward, and on <span class="math inline">\(m_2\)</span> is horizontal. The acceleration of the system is <span class="math inline">\(a\)</span>.</p>
 <p>the equation of motion for m1 by using Newton’s 2nd law is</p>
@@ -2226,17 +2266,19 @@ T=m_2a
 <p><span class="math display">\[
 a=\frac{m_1g}{m_1+m_2}, \qquad T=\frac{m_1m_2g}{m_1+m_2}.
 \]</span></p>
+<div style="text-align:center;">
 <div id="cell-fig-pulley" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div id="fig-pulley" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02_basicVector_files/figure-html/fig-pulley-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="614" height="341">
+<img src="02_basicVector_files/figure-html/fig-pulley-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="527" height="389">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12: Motion of Two Masses Connected by a Smooth Pulley
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2261,6 +2303,7 @@ Figure&nbsp;12: Motion of Two Masses Connected by a Smooth Pulley
 <li>Weight: <span class="math inline">\(m_1g\)</span> acting downward.</li>
 <li>Tension: <span class="math inline">\(T\)</span> acting upward.</li>
 </ul>
+<div style="text-align:center;">
 <div id="cell-fig-pulley-fbd" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div id="fig-pulley-fbd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -2272,6 +2315,7 @@ Figure&nbsp;12: Motion of Two Masses Connected by a Smooth Pulley
 Figure&nbsp;13: Free-Body Diagrams of the Two Masses
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2347,19 +2391,21 @@ T
 </div>
 </section>
 <section id="inclined-plane-with-friction" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="inclined-plane-with-friction">Inclined Plane with Friction</h4>
+<h4 class="unnumbered anchored" data-anchor-id="inclined-plane-with-friction">2.3.4 Inclined Plane with Friction</h4>
 <p>When a block slides down an inclined plane, the forces acting on it include its weight, the normal force from the plane, and the frictional force opposing the motion. The component of the weight parallel to the incline causes the block to accelerate down the slope.</p>
+<div style="text-align:center;">
 <div id="cell-fig-inclined" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02_basicVector_files/figure-html/fig-inclined-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="614" height="364">
+<img src="02_basicVector_files/figure-html/fig-inclined-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="527" height="315">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14: Block Sliding Down an Inclined Plane with Friction
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2398,6 +2444,7 @@ W_\parallel=mg\sin\theta.
 <p><span class="math display">\[
 W_\perp=mg\cos\theta.
 \]</span></p>
+<div style="text-align:center;">
 <div id="cell-fig-inclined-forces-FBD" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined-forces-fbd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -2409,6 +2456,7 @@ W_\perp=mg\cos\theta.
 Figure&nbsp;15: Free-Body Diagram of a Block on an Inclined Plane
 </figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -2957,7 +3005,7 @@ a=\frac{16.01}{5}
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Supply Chain Modelling and Optimisation<br> © Copyright 2026, Ben W. and Sam W.</p>
+<p>Applied Mathematical Modelling<br> © Copyright 2026, B. Wiwatanapataphee &amp; Y.H. Wu</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

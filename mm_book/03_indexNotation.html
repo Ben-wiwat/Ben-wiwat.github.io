@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a473e0dd63122af86f9cbc1d981c1bf5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8df19c2dbc724390100333b991f6aca1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -324,7 +324,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text"><strong>Introduction to Python</strong></span></a>
+ <span class="menu-text">Introduction to Python</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -385,11 +385,11 @@ window.Quarto = {
   <li><a href="#manipulations-with-the-index-notation" id="toc-manipulations-with-the-index-notation" class="nav-link" data-scroll-target="#manipulations-with-the-index-notation">3.1.3 Manipulations with the Index Notation</a></li>
   </ul></li>
   <li><a href="#orthogonal-rotation-of-cartesian-axes" id="toc-orthogonal-rotation-of-cartesian-axes" class="nav-link" data-scroll-target="#orthogonal-rotation-of-cartesian-axes">3.2 Orthogonal Rotation of Cartesian Axes</a></li>
-  <li><a href="#cartesian-tensors" id="toc-cartesian-tensors" class="nav-link" data-scroll-target="#cartesian-tensors">3.3 CARTESIAN TENSORS</a>
+  <li><a href="#cartesian-tensors" id="toc-cartesian-tensors" class="nav-link" data-scroll-target="#cartesian-tensors">3.3 Cartesian Tensors</a>
   <ul>
-  <li><a href="#cartesian-vector-cartesian-tensor-of-order-one" id="toc-cartesian-vector-cartesian-tensor-of-order-one" class="nav-link" data-scroll-target="#cartesian-vector-cartesian-tensor-of-order-one">3.3.1 CARTESIAN VECTOR (CARTESIAN TENSOR OF ORDER ONE)</a></li>
-  <li><a href="#second-order-cartesian-tensors" id="toc-second-order-cartesian-tensors" class="nav-link" data-scroll-target="#second-order-cartesian-tensors">3.3.2 SECOND ORDER CARTESIAN TENSORS</a></li>
-  <li><a href="#algebra-of-tensors" id="toc-algebra-of-tensors" class="nav-link" data-scroll-target="#algebra-of-tensors">3.3.3 ALGEBRA OF TENSORS</a>
+  <li><a href="#cartesian-vector-cartesian-tensor-of-order-one" id="toc-cartesian-vector-cartesian-tensor-of-order-one" class="nav-link" data-scroll-target="#cartesian-vector-cartesian-tensor-of-order-one">3.3.1 Cartesian Vector (Cartesian Tensor of Order One)</a></li>
+  <li><a href="#second-order-cartesian-tensors" id="toc-second-order-cartesian-tensors" class="nav-link" data-scroll-target="#second-order-cartesian-tensors">3.3.2 Second Order Cartesian Tensors</a></li>
+  <li><a href="#algebra-of-tensors" id="toc-algebra-of-tensors" class="nav-link" data-scroll-target="#algebra-of-tensors">3.3.3 Algebra of Tensors</a>
   <ul class="collapse">
   <li><a href="#scalar-multiplication-and-addition" id="toc-scalar-multiplication-and-addition" class="nav-link" data-scroll-target="#scalar-multiplication-and-addition">Scalar Multiplication and Addition</a></li>
   <li><a href="#contraction-and-multiplication" id="toc-contraction-and-multiplication" class="nav-link" data-scroll-target="#contraction-and-multiplication">Contraction and Multiplication</a></li>
@@ -445,16 +445,16 @@ window.Quarto = {
 <h3 class="unnumbered anchored" data-anchor-id="convention-and-rules">3.1.1 Convention and Rules</h3>
 <p><strong>Free Index</strong></p>
 <p>Consider</p>
-<p><span class="math display">\[
-v_1 = a_{11}\bar{v}_1 + a_{12}\bar{v}_2, \tag{3.1}
-\]</span></p>
+<p><span id="eq-3.1"><span class="math display">\[
+v_1 = a_{11}\bar{v}_1 + a_{12}\bar{v}_2,
+\tag{1}\]</span></span></p>
 <p><span class="math display">\[
 v_2 = a_{21}\bar{v}_1 + a_{22}\bar{v}_2. \notag
 \]</span></p>
 <p>If we let the subscript <span class="math inline">\(i\)</span> take on the numbers <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> one at a time, we can write the above two equations as one,</p>
-<p><span class="math display">\[
-v_i = a_{i1}\bar{v}_1 + a_{i2}\bar{v}_2. \tag{3.2}
-\]</span></p>
+<p><span id="eq-3.2"><span class="math display">\[
+v_i = a_{i1}\bar{v}_1 + a_{i2}\bar{v}_2.
+\tag{2}\]</span></span></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -475,14 +475,14 @@ B_{ij} = A_{ip}A_{jp}, \qquad (i=1,2,3,4;\ j=1,2,3,4)
 <p>then the equation is a short-hand writing of <span class="math inline">\(16\)</span> equations.</p>
 <hr>
 <p><strong>Summation Index</strong></p>
-<p>Equation (3.2) can be written as</p>
-<p><span class="math display">\[
-v_i = \sum_{j=1}^2 a_{ij}\bar{v}_j. \tag{3.3}
-\]</span></p>
-<p>If we adopt the convention that a subscript which appears precisely twice in a term indicates a summation with the index running through the integers over the index range, we can write (3.3) as</p>
-<p><span class="math display">\[
-v_i = a_{ij}\bar{v}_j. \tag{3.4}
-\]</span></p>
+<p><a href="#eq-3.2" class="quarto-xref">Equation&nbsp;<span>2</span></a> can be written as</p>
+<p><span id="eq-3.3"><span class="math display">\[
+v_i = \sum_{j=1}^2 a_{ij}\bar{v}_j.
+\tag{3}\]</span></span></p>
+<p>If we adopt the convention that a subscript which appears precisely twice in a term indicates a summation with the index running through the integers over the index range, we can write <a href="#eq-3.3" class="quarto-xref">Equation&nbsp;<span>3</span></a> as</p>
+<p><span id="eq-3.4"><span class="math display">\[
+v_i = a_{ij}\bar{v}_j.
+\tag{4}\]</span></span></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -648,17 +648,17 @@ l_{kj}l_{\ell j} = \delta_{k\ell}.
 <h3 class="unnumbered anchored" data-anchor-id="manipulations-with-the-index-notation">3.1.3 Manipulations with the Index Notation</h3>
 <p><strong>Substitution</strong></p>
 <p>If</p>
-<p><span class="math display">\[
-a_i = T_{ip}b_p, \tag{3.5}
-\]</span></p>
-<p><span class="math display">\[
-b_i = V_{ip}c_p, \tag{3.6}
-\]</span></p>
-<p>then, in order to substitute <span class="math inline">\(b_i\)</span> in (3.6) into (3.5), we first need to change the free index in (3.6) from <span class="math inline">\(i\)</span> to <span class="math inline">\(p\)</span> and the dummy index <span class="math inline">\(p\)</span> to some other letter so that</p>
-<p><span class="math display">\[
-b_p = V_{pq}c_q. \tag{3.7}
-\]</span></p>
-<p>Now substituting (3.7) into (3.5) yields</p>
+<p><span id="eq-3.5"><span class="math display">\[
+a_i = T_{ip}b_p,
+\tag{5}\]</span></span></p>
+<p><span id="eq-3.6"><span class="math display">\[
+b_i = V_{ip}c_p.
+\tag{6}\]</span></span></p>
+<p>then, in order to substitute <span class="math inline">\(b_i\)</span> in <a href="#eq-3.6" class="quarto-xref">Equation&nbsp;<span>6</span></a> into <a href="#eq-3.5" class="quarto-xref">Equation&nbsp;<span>5</span></a>, we first need to change the free index in <a href="#eq-3.6" class="quarto-xref">Equation&nbsp;<span>6</span></a> from <span class="math inline">\(i\)</span> to <span class="math inline">\(p\)</span> and the dummy index <span class="math inline">\(p\)</span> to some other letter so that</p>
+<p><span id="eq-3.7"><span class="math display">\[
+b_p = V_{pq}c_q.
+\tag{7}\]</span></span></p>
+<p>Now substituting <a href="#eq-3.7" class="quarto-xref">Equation&nbsp;<span>7</span></a> into <a href="#eq-3.5" class="quarto-xref">Equation&nbsp;<span>5</span></a> yields</p>
 <p><span class="math display">\[
 a_i = T_{ip}V_{pq}c_q.
 \]</span></p>
@@ -679,14 +679,14 @@ uv \ne a_ib_ic_id_i \ne \sum_{i=1}^3 a_ib_ic_id_i.
 <hr>
 <p><strong>Factorisation</strong></p>
 <p>Consider</p>
-<p><span class="math display">\[
-T_{ij}n_j - \lambda n_i = 0. \tag{3.8}
-\]</span></p>
+<p><span id="eq-3.8"><span class="math display">\[
+T_{ij}n_j - \lambda n_i = 0.
+\tag{8}\]</span></span></p>
 <p>Using the Kronecker delta, we have</p>
 <p><span class="math display">\[
 n_i = \delta_{ij}n_j
 \]</span></p>
-<p>and thus (3.8) becomes</p>
+<p>and thus <a href="#eq-3.8" class="quarto-xref">Equation&nbsp;<span>8</span></a> becomes</p>
 <p><span class="math display">\[
 T_{ij}n_j - \lambda\delta_{ij}n_j = 0
 \]</span></p>
@@ -744,7 +744,7 @@ l_{a2} = \text{ cosine of the angle between } \hat{\mathbf a} \text{ and } Ox_2.
 <p>which indicates that the projection of <span class="math inline">\(\mathbf b\)</span> on a line is the scalar product of <span class="math inline">\(\mathbf b\)</span> with a unit vector along the line.</p>
 <hr>
 <p><strong>Rotation of Axes</strong></p>
-<p>Consider the transformation of the coordinate frame by an arbitrary rotation. Fig 1 shows the original frame <span class="math inline">\(Ox_1x_2\)</span>, the new frame <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> and a vector <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> in the <span class="math inline">\(Ox_1x_2\)</span> system or <span class="math inline">\(\bar{\mathbf v}=(\bar{v}_1,\bar{v}_2)\)</span> in the <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> system.</p>
+<p>Consider the transformation of the coordinate frame by an arbitrary rotation. A figure below shows the original frame <span class="math inline">\(Ox_1x_2\)</span>, the new frame <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> and a vector <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> in the <span class="math inline">\(Ox_1x_2\)</span> system or <span class="math inline">\(\bar{\mathbf v}=(\bar{v}_1,\bar{v}_2)\)</span> in the <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> system.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figs/Ch3-fig4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
@@ -787,13 +787,13 @@ l_{ik}l_{i\ell} = \delta_{k\ell}.
 \]</span></p>
 </section>
 <section id="cartesian-tensors" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="cartesian-tensors">3.3 CARTESIAN TENSORS</h2>
+<h2 class="unnumbered anchored" data-anchor-id="cartesian-tensors">3.3 Cartesian Tensors</h2>
 <section id="cartesian-vector-cartesian-tensor-of-order-one" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="cartesian-vector-cartesian-tensor-of-order-one">3.3.1 CARTESIAN VECTOR (CARTESIAN TENSOR OF ORDER ONE)</h3>
+<h3 class="unnumbered anchored" data-anchor-id="cartesian-vector-cartesian-tensor-of-order-one">3.3.1 Cartesian Vector (Cartesian Tensor of Order One)</h3>
 <p>Def. A Cartesian vector, <span class="math inline">\(a\)</span>, in two dimensions is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> in the Cartesian frame <span class="math inline">\(Ox_1x_2\)</span>, which, under rotation of the coordinate frame to <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>, become components <span class="math inline">\(\bar{a}_1\)</span> and <span class="math inline">\(\bar{a}_2\)</span> where</p>
-<p><span class="math display">\[
-\bar{a}_j = a \bullet \hat{x}_j = (a_1,a_2) \bullet (l_{1j},l_{2j}) = l_{ij}a_i. \tag{3.9}
-\]</span></p>
+<p><span id="eq-3.9"><span class="math display">\[
+\bar{a}_j = a \bullet \hat{x}_j = (a_1,a_2) \bullet (l_{1j},l_{2j}) = l_{ij}a_i.
+\tag{9}\]</span></span></p>
 <p>where <span class="math inline">\(\hat{x}_j = (l_{1j},l_{2j})\)</span> are the direction cosines of the <span class="math inline">\(O\bar{x}_j\)</span> axis with respect to the coordinate frame <span class="math inline">\(Ox_1x_2\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -806,7 +806,7 @@ l_{ik}l_{i\ell} = \delta_{k\ell}.
 <p><img src="figs/Ch3-fig6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
 </figure>
 </div>
-<p>Then, we can use (3.9) to calculate</p>
+<p>Then, we can use <a href="#eq-3.9" class="quarto-xref">Equation&nbsp;<span>9</span></a> to calculate</p>
 <p><span class="math display">\[
     \text{normal force: } \qquad F_n = \mathbf F \bullet \mathbf n = f_in_i,
 \]</span></p>
@@ -815,7 +815,7 @@ l_{ik}l_{i\ell} = \delta_{k\ell}.
 \]</span></p>
 </section>
 <section id="second-order-cartesian-tensors" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="second-order-cartesian-tensors">3.3.2 SECOND ORDER CARTESIAN TENSORS</h3>
+<h3 class="unnumbered anchored" data-anchor-id="second-order-cartesian-tensors">3.3.2 Second Order Cartesian Tensors</h3>
 <p><strong>Definition</strong>. A second order Cartesian tensor, <span class="math inline">\(A\)</span>, in two dimensions is an entity having <span class="math inline">\(4\)</span> components <span class="math inline">\(A_{ij}\)</span>, <span class="math inline">\(i,j=1,2\)</span>, in the Cartesian frame of reference <span class="math inline">\(Ox_1x_2\)</span> which on rotation of the frame to <span class="math inline">\(Opq\)</span> become</p>
 <p><span class="math display">\[
 A_{pq} = l_{ip}l_{jq}A_{ij},
@@ -870,7 +870,7 @@ A=
 <p>The tensor whose <span class="math inline">\(ij\)</span> element is <span class="math inline">\(A_{ji}\)</span> is called the transpose <span class="math inline">\(A^T\)</span> of <span class="math inline">\(A\)</span>.</p>
 </section>
 <section id="algebra-of-tensors" class="level3 unnumbered">
-<h3 class="unnumbered anchored">3.3.3 ALGEBRA OF TENSORS</h3>
+<h3 class="unnumbered anchored">3.3.3 Algebra of Tensors</h3>
 <section id="scalar-multiplication-and-addition" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="scalar-multiplication-and-addition">Scalar Multiplication and Addition</h4>
 <ul>
@@ -933,11 +933,11 @@ A \bullet l = \lambda l.
 A_{ij}l_j = \lambda l_i = \lambda\delta_{ij}l_j
 \]</span></p>
 <p>or</p>
-<p><span class="math display">\[
-(A_{ij}-\lambda\delta_{ij})l_j = 0. \tag{3.10}
-\]</span></p>
-<p>Definition: For <span class="math inline">\(l \ne 0\)</span>, the <span class="math inline">\(\lambda\)</span> in (3.10) is called the eigen value of <span class="math inline">\(A\)</span> and <span class="math inline">\(l\)</span> is the associated eigen vector.</p>
-<p>Now we will find the eigen values and eigen vectors. System (3.10) is a set of homogeneous equations for the unknowns <span class="math inline">\(l_j\)</span> and so has non-zero solutions only if the determinant of the coefficient matrix vanishes. Thus the value of <span class="math inline">\(\lambda\)</span> must be such that</p>
+<p><span id="eq-3.10"><span class="math display">\[
+(A_{ij}-\lambda\delta_{ij})l_j = 0.
+\tag{10}\]</span></span></p>
+<p>Definition: For <span class="math inline">\(l \ne 0\)</span>, the <span class="math inline">\(\lambda\)</span> in <a href="#eq-3.10" class="quarto-xref">Equation&nbsp;<span>10</span></a> is called the eigen value of <span class="math inline">\(A\)</span> and <span class="math inline">\(l\)</span> is the associated eigen vector.</p>
+<p>Now we will find the eigen values and eigen vectors. System <a href="#eq-3.10" class="quarto-xref">Equation&nbsp;<span>10</span></a> is a set of homogeneous equations for the unknowns <span class="math inline">\(l_j\)</span> and so has non-zero solutions only if the determinant of the coefficient matrix vanishes. Thus the value of <span class="math inline">\(\lambda\)</span> must be such that</p>
 <p><span class="math display">\[
 \det(A_{ij}-\lambda\delta_{ij}) =
 \begin{vmatrix}
@@ -945,12 +945,12 @@ a_{11}-\lambda &amp; a_{12} \\
 a_{12} &amp; a_{22}-\lambda
 \end{vmatrix} = 0
 \]</span></p>
-<p>Therefore, <span class="math display">\[
-     \lambda_{1,2} = \frac{1}{2}(a_{11}+a_{22}) \pm \frac{1}{2}\sqrt{(a_{11}-a_{22})^2 + 4a_{12}^2}. \tag{3.11}
-\]</span></p>
-<p>Assume <span class="math inline">\(\lambda_1 \ne \lambda_2\)</span>, then there will be two different eigen vectors corresponding to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively. The vector <span class="math inline">\(l_j=(l_{1j},l_{2j})\)</span> associated with <span class="math inline">\(\lambda_j\)</span> can be determined from system (3.10).</p>
+<p>Therefore, <span id="eq-3.11"><span class="math display">\[
+\lambda_{1,2} = \frac{1}{2}(a_{11}+a_{22}) \pm \frac{1}{2}\sqrt{(a_{11}-a_{22})^2 + 4a_{12}^2}.
+\tag{11}\]</span></span></p>
+<p>Assume <span class="math inline">\(\lambda_1 \ne \lambda_2\)</span>, then there will be two different eigen vectors corresponding to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively. The vector <span class="math inline">\(l_j=(l_{1j},l_{2j})\)</span> associated with <span class="math inline">\(\lambda_j\)</span> can be determined from system <a href="#eq-3.10" class="quarto-xref">Equation&nbsp;<span>10</span></a>.</p>
 <p>For <span class="math inline">\(\lambda=\lambda_1\)</span>, we have</p>
-<p><span class="math display">\[
+<p><span id="eq-3.12"><span class="math display">\[
 \begin{pmatrix}
 a_{11}-\lambda_1 &amp; a_{12} \\
 a_{12} &amp; a_{22}-\lambda_1
@@ -963,9 +963,9 @@ l_{21}
 \begin{bmatrix}
 0 \\
 0
-\end{bmatrix}. \tag{3.12}
-\]</span></p>
-<p>As equations <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> in system (3.12) are linearly dependent, we obtain from the first equation,</p>
+\end{bmatrix}.
+\tag{12}\]</span></span></p>
+<p>As equations <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> in system <a href="#eq-3.12" class="quarto-xref">Equation&nbsp;<span>12</span></a> are linearly dependent, we obtain from the first equation,</p>
 <p><span class="math display">\[
 \frac{l_{21}}{l_{11}} = \frac{\lambda_1-a_{11}}{a_{12}}.
 \]</span></p>
@@ -988,12 +988,12 @@ l_{11} = \cos\theta_1, \qquad l_{21} = \cos\left(\frac{\pi}{2}-\theta_1\right) =
 \]</span></p>
 <p>In the following, we will show that, on rotation of the coordinate frame from <span class="math inline">\(Ox_1x_2\)</span> to <span class="math inline">\(Ox_px_q\)</span> where <span class="math inline">\(x_p\)</span> and <span class="math inline">\(x_q\)</span> are the characteristic directions corresponding respectively to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, <span class="math inline">\(A\)</span> has diagonal form in the new coordinate frame.</p>
 <p>Let the eigen values be <span class="math inline">\(\lambda_{(p)} \ne \lambda_{(q)}\)</span> for <span class="math inline">\(p \ne q\)</span> and the associated directions are <span class="math inline">\(l_p=(l_{1p},l_{2p})\)</span> and <span class="math inline">\(l_q=(l_{1q},l_{2q})\)</span>, then</p>
-<p><span class="math display">\[
-A_{ij}l_{jp} = \lambda_{(p)}l_{ip}, \qquad A_{ij}l_{jq} = \lambda_{(q)}l_{iq}. \tag{3.13}
-\]</span></p>
+<p><span id="eq-3.13"><span class="math display">\[
+A_{ij}l_{jp} = \lambda_{(p)}l_{ip}, \qquad A_{ij}l_{jq} = \lambda_{(q)}l_{iq}.
+\tag{13}\]</span></span></p>
 <p>where the repeated indices <span class="math inline">\((p)p\)</span> do not represent summation, and <span class="math inline">\(l_{ip}=(l_{1p},l_{2p})\)</span> is the direction associated with <span class="math inline">\(\lambda_{(p)}\)</span>.</p>
-<p><span class="math display">\[(3.13)_1 \times l_{iq}: \qquad A_{ij}l_{jp}l_{iq} = \lambda_{(p)}l_{ip}l_{iq} = A_{ji}l_{ip}l_{jq},\]</span></p>
-<p><span class="math display">\[(3.13)_2 \times l_{ip}: \qquad A_{ij}l_{jq}l_{ip} = \lambda_{(q)}l_{iq}l_{ip}.\]</span></p>
+<p><span class="math display">\[(13)_1 \times l_{iq}: \qquad A_{ij}l_{jp}l_{iq} = \lambda_{(p)}l_{ip}l_{iq} = A_{ji}l_{ip}l_{jq},\]</span></p>
+<p><span class="math display">\[(13)_2 \times l_{ip}: \qquad A_{ij}l_{jq}l_{ip} = \lambda_{(q)}l_{iq}l_{ip}.\]</span></p>
 <p>As <span class="math inline">\(A_{ij}=A_{ji}\)</span>, we have from the above</p>
 <p><span class="math display">\[
 A_{ij}l_{ip}l_{jq} = \lambda_{(p)}l_{ip}l_{iq} = \lambda_{(q)}l_{ip}l_{iq}.
@@ -2284,7 +2284,7 @@ A=
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Supply Chain Modelling and Optimisation<br> © Copyright 2026, Ben W. and Sam W.</p>
+<p>Applied Mathematical Modelling<br> © Copyright 2026, B. Wiwatanapataphee &amp; Y.H. Wu</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
