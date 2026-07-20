@@ -6,9 +6,9 @@
 <script src="01_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="01_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="01_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="01_lecture_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="01_lecture_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="01_lecture_files/libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Prof.&nbsp;Benchawan Wiwatanapataphee">
   <meta name="dcterms.date" content="2026-07-21">
@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="01_lecture_files/libs/revealjs/dist/theme/quarto-0a26b4520511f68a3b5d5dd52964ecc0.css">
+  <link rel="stylesheet" href="01_lecture_files/libs/revealjs/dist/theme/quarto-96788e83c092d5568b77a9a184cee969.css">
   <link href="01_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="01_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="01_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -129,6 +129,12 @@
   <script src="01_lecture_files/libs/quarto-diagram/mermaid.min.js"></script>
   <script src="01_lecture_files/libs/quarto-diagram/mermaid-init.js"></script>
   <link href="01_lecture_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
+    mermaid.registerLayoutLoaders(elkLayouts);
+  </script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -151,61 +157,67 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 
   <p class="date">21 Jul 2026</p>
 </section>
-<section id="welcome" class="slide level2">
-<h2>Welcome</h2>
-<p>Goals today:</p>
-<ul>
-<li class="fragment">Unit information</li>
-<li class="fragment">Intro to Mathematical Modelling</li>
-<li class="fragment">Kinematics of Particles</li>
-<li class="fragment">Newton’s Laws and Applications</li>
-</ul>
+<section id="goals-today" class="slide level2 scrollable">
+<h2>Goals today</h2>
+<div class="columns">
+<div class="column">
+<ol start="0" type="1">
+<li class="fragment"><strong>Unit Information</strong></li>
+<li class="fragment"><strong>Intro to Mathematical Modelling</strong> <br> 1.1. What is a Mathematical Model? <br> 1.2. Variables, Parameters, and State <br> 1.3. Why Build Mathematical Models? <br> 1.4. The Modelling Process <br> 1.5. Physical Systems <br> 1.6. Assumptions and Idealisations <br> 1.7. Dimensional Analysis <br> 1.8. Scaling &amp; Characteristic Quantities <br></li>
+<li class="fragment"><strong>Basic Vector Arithmetic</strong> <br> 2.1. Scalars and Vectors <br> 2.2. Geometric Representation <br> 2.3. Cartesian Representation</li>
+</ol>
+</div><div class="column">
+<ol start="3" type="1">
+<li class="fragment"><strong>Newton’s Laws and Applications</strong> <br> 3.1. Newton’s Laws of Motion <br> 3.2. Conservation Principles <br>  3.2.1. Conservation of Mass <br>  3.2.2. Conservation of Momentum <br>  3.2.3. Conservation of Energy <br> 3.3. Applications of Newton’s Laws <br>  3.3.1. Projectile Motion <br>  3.3.2. Uniform Circular Motion <br>  3.3.3. Object Moving in Elevator <br>  3.3.4. Smooth Pulleys Motion <br>  3.3.5. Inclined Plane Motion <br></li>
+</ol>
+</div></div>
 </section>
-<section id="math30015005-applied-mathematical-modelling-topics" class="slide level2">
-<h2>MATH3001(5005) Applied Mathematical Modelling (Topics)</h2>
+<section id="unit-information" class="slide level2">
+<h2>0. Unit Information</h2>
 <ul>
-<li class="fragment">Unit Coordinator:
+<li class="fragment"><strong>Unit Coordinator:</strong> Prof.&nbsp;Benchawan Wiwatanapataphee</li>
+<li class="fragment"><strong>Lecturers:</strong>
 <ul>
-<li class="fragment">Prof.&nbsp;Benchawan Wiwatanapataphee</li>
-</ul></li>
-<li class="fragment">Lecturer-in-charge:
-<ul>
-<li class="fragment">Prof.&nbsp;Benchawan Wiwatanapataphee, office: 314.347C, email: b.wiwatanapataphee@curtin.edu.au</li>
+<li class="fragment">Prof.&nbsp;Benchawan Wiwatanapataphee, office: 314.347C, <br> email: b.wiwatanapataphee@curtin.edu.au</li>
 <li class="fragment">Prof.&nbsp;Yong Hong Wu, office: 314.363, email: Y.Wu@curtin.edu.au</li>
 </ul></li>
-<li class="fragment">Weekly Contact Hours
-<ul>
-<li class="fragment">Lecture: 2 hours</li>
-<li class="fragment">Tutorial: 1 hour</li>
-<li class="fragment">Workshop: 1 hour</li>
-</ul></li>
+<li class="fragment"><strong>Weekly Contact Hours:</strong> 2-hour lecture, 1-hour tutorial, 1-hour workshop.</li>
 </ul>
-</section>
-<section id="learning-outcomes" class="slide level2">
-<h2>Learning Outcomes</h2>
+<h4 class="fragment" id="learning-outcomes">Learning Outcomes</h4>
+<div class="fragment">
 <p>By the end of this unit, you should be able to</p>
+</div>
+<div class="columns">
+<div class="column">
 <ul>
 <li class="fragment">Apply Newton’s Laws to mathematical modelling</li>
 <li class="fragment">Develop continuum mechanics models</li>
 <li class="fragment">Solve initial and boundary value problems</li>
+</ul>
+</div><div class="column">
+<ul>
 <li class="fragment">Analyse DE/PDE models</li>
 <li class="fragment">Apply mathematics to engineering, biology and science</li>
 <li class="fragment">Interpret computational and analytical results</li>
 </ul>
+</div></div>
 </section>
-<section id="weekly-topics" class="slide level2">
-<h2>Weekly Topics</h2>
-<table class="caption-top">
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<h4 id="weekly-topics">Weekly Topics</h4>
+<table class="table-striped caption-top">
 <thead>
 <tr class="header">
-<th>Lecture Week</th>
+<th>#</th>
 <th>Topic</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>Introduction &amp; Newton’s Laws</td>
+<td>Intro &amp; Newton’s Laws</td>
 </tr>
 <tr class="even">
 <td>2</td>
@@ -221,11 +233,11 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>Heat Transfer</td>
+<td>Fluid Flow</td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td>Fluid Flow</td>
+<td>Heat Transfer</td>
 </tr>
 <tr class="odd">
 <td>8</td>
@@ -249,14 +261,8 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </tr>
 </tbody>
 </table>
-</section>
-<section class="slide level2">
-
-</section>
-<section>
-<section id="assessment" class="title-slide slide level1 center">
-<h1>Assessment</h1>
-<table class="caption-top">
+</div><div class="column fragment" style="width:55%;">
+<table class="table-striped caption-top">
 <thead>
 <tr class="header">
 <th>Assessment</th>
@@ -278,197 +284,30 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </tr>
 </tbody>
 </table>
-<p>To pass the unit:</p>
 <ul>
-<li class="fragment">Final mark ≥ 50%</li>
+<li class="fragment">To pass the unit: Final mark ≥ 50%</li>
 </ul>
-</section>
-<section id="group-project" class="slide level2">
-<h2>Group Project</h2>
-<h3 id="worth-20">Worth 20%</h3>
-<p>Students work in teams of <strong>up to 3 students</strong></p>
+<h4 class="fragment" id="group-project">Group Project</h4>
 <div class="fragment">
-<p>Project objectives</p>
+<p>Students work in teams of <strong>≤3 students</strong> to</p>
 </div>
 <ul>
-<li class="fragment">Solve a real-world mathematical modelling problem</li>
+<li class="fragment">Solve a real-world math modelling problem</li>
 <li class="fragment">Apply concepts learned throughout the semester</li>
 <li class="fragment">Develop teamwork and project management skills</li>
 <li class="fragment">Present mathematical results clearly</li>
 </ul>
-</section>
-<section class="slide level2">
-
-<h3 id="project-learning-goals">Project Learning Goals</h3>
-<p>The project is designed to help you</p>
-<ul>
-<li class="fragment">Connect mathematics with real applications</li>
-<li class="fragment">Develop modelling skills</li>
-<li class="fragment">Learn computational implementation</li>
-<li class="fragment">Interpret numerical results</li>
-<li class="fragment">Improve scientific communication</li>
-<li class="fragment">Work effectively in teams</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="possible-project-topics">Possible Project Topics</h3>
-<p>Examples include</p>
-<ul>
-<li class="fragment">Heat conduction</li>
-<li class="fragment">Diffusion models</li>
-<li class="fragment">Traffic flow</li>
-<li class="fragment">Water filtration</li>
-<li class="fragment">Population dynamics</li>
-<li class="fragment">Mechanical vibrations</li>
-<li class="fragment">Fluid transport</li>
-<li class="fragment">Environmental modelling</li>
-</ul>
-<div class="fragment">
-<p>Students may also propose their own project (subject to approval).</p>
-</div>
-</section>
-<section id="what-your-team-should-produce" class="slide level2">
-<h2>What Your Team Should Produce</h2>
-<p>Your submission should include</p>
-<ul>
-<li class="fragment">Problem statement</li>
-<li class="fragment">Mathematical model</li>
-<li class="fragment">Assumptions</li>
-<li class="fragment">Governing equations</li>
-<li class="fragment">Solution method</li>
-<li class="fragment">Numerical simulation</li>
-<li class="fragment">Interpretation of results</li>
-<li class="fragment">Conclusions</li>
-</ul>
-</section>
-<section id="good-teamwork" class="slide level2">
-<h2>Good Teamwork</h2>
-<p>Successful teams</p>
-<ul>
-<li class="fragment">Meet regularly</li>
-<li class="fragment">Divide responsibilities fairly</li>
-<li class="fragment">Keep shared notes</li>
-<li class="fragment">Use GitHub or OneDrive</li>
-<li class="fragment">Communicate frequently</li>
-<li class="fragment">Respect deadlines</li>
-</ul>
-<div class="fragment">
-<p>Remember:</p>
-<blockquote>
-<p>Every member should understand the entire project.</p>
-</blockquote>
-</div>
-</section>
-<section id="suggested-timeline" class="slide level2">
-<h2>Suggested Timeline</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Task</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3</td>
-<td>Form teams</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Choose topic</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Project proposal</td>
-</tr>
-<tr class="even">
-<td>6-9</td>
-<td>Model development</td>
-</tr>
-<tr class="odd">
-<td>10</td>
-<td>Simulation &amp; analysis</td>
-</tr>
-<tr class="even">
-<td>11</td>
-<td>Writing report</td>
-</tr>
-<tr class="odd">
-<td>12</td>
-<td>Submit assignment</td>
-</tr>
-<tr class="even">
-<td>13</td>
-<td>Presentation</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="assessment-criteria" class="slide level2">
-<h2>Assessment Criteria</h2>
-<p>Your project will be evaluated on</p>
-<ul>
-<li class="fragment">Mathematical modelling</li>
-<li class="fragment">Correctness</li>
-<li class="fragment">Mathematical analysis</li>
-<li class="fragment">Numerical implementation</li>
-<li class="fragment">Interpretation</li>
-<li class="fragment">Report quality</li>
-<li class="fragment">Team contribution</li>
-</ul>
-</section>
-<section id="academic-integrity" class="slide level2">
-<h2>Academic Integrity</h2>
-<p>You are encouraged to</p>
-<ul>
-<li class="fragment">Discuss ideas</li>
-<li class="fragment">Work collaboratively within your group</li>
-</ul>
-<div class="fragment">
-<p>You must not</p>
-</div>
-<ul>
-<li class="fragment">Copy another group’s work</li>
-<li class="fragment">Use AI without permission</li>
-<li class="fragment">Submit work that is not your own</li>
-</ul>
-<div class="fragment">
-<p>Always acknowledge any external resources.</p>
-</div>
-</section>
-<section id="tips-for-success" class="slide level2">
-<h2>Tips for Success</h2>
-<ul>
-<li class="fragment"><p>Start early.</p></li>
-<li class="fragment"><p>Ask questions.</p></li>
-<li class="fragment"><p>Attend workshops.</p></li>
-<li class="fragment"><p>Practice modelling every week.</p></li>
-<li class="fragment"><p>Keep your mathematics organised.</p></li>
-<li class="fragment"><p>Use MATLAB or Python effectively.</p></li>
-</ul>
-</section>
-<section id="communication" class="slide level2">
-<h2>Communication</h2>
-<p>Questions?</p>
-<ul>
-<li class="fragment">Blackboard Discussion Board</li>
-<li class="fragment">Consultation Hours (Monday 2–3pm, Thursday 10–11am)</li>
-<li class="fragment">Email the Unit Coordinator (b.wiwatanapataphee@curtin.edu.au)</li>
-</ul>
-<div class="fragment">
-<p>We are here to help you succeed.</p>
-</div>
+</div></div>
 </section>
 <section id="introduction-to-mathematical-modelling" class="slide level2">
-<h2>Introduction to Mathematical Modelling</h2>
+<h2>1. Introduction to Mathematical Modelling</h2>
 <div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Definition of Mathematical Modelling</strong></p>
+<p><strong>What is Mathematical Modelling?</strong></p>
 </div>
 <div class="callout-content">
 <p>Mathematical modelling represents real-world systems using mathematics to describe their essential behaviour, enabling analysis, understanding and prediction.</p>
@@ -479,16 +318,16 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 <li class="fragment">A mathematical model is a simplified representation of a real-world system.</li>
 <li class="fragment">It includes only the features relevant to the problem being studied.</li>
 </ul>
-<h3 class="fragment" id="applications">Applications:</h3>
+<h3 class="fragment center" id="applications">Applications</h3>
 <div class="columns">
-<div class="column">
+<div class="column center">
 <ul>
 <li class="fragment">population growth</li>
 <li class="fragment">heat transfer</li>
 <li class="fragment">traffic flow</li>
 <li class="fragment">fluid dynamics</li>
 </ul>
-</div><div class="column">
+</div><div class="column center">
 <ul>
 <li class="fragment">disease transmission</li>
 <li class="fragment">water filtration</li>
@@ -512,74 +351,16 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
           display:block!important;
       }</style></aside>
 </section>
-<section id="the-mathematical-modelling-process" class="slide level2 scrollable">
-<h2>The Mathematical Modelling Process</h2>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>A mathematical model translates a real-world problem into mathematics so that it can be analysed and used for prediction.</p>
-</div>
-</div>
-</div>
-<ol type="1">
-<li class="fragment"><strong>Define the problem</strong>
-<ul>
-<li class="fragment">Identify the question and objectives.</li>
-<li class="fragment">Determine the system boundaries.</li>
-</ul></li>
-<li class="fragment"><strong>Make assumptions</strong>
-<ul>
-<li class="fragment">Simplify reality while retaining the essential features.</li>
-<li class="fragment">State assumptions clearly.</li>
-</ul></li>
-<li class="fragment"><strong>Formulate the model</strong>
-<ul>
-<li class="fragment">Identify governing physical laws (e.g., conservation laws, Newton’s laws).</li>
-<li class="fragment">Define variables and parameters.</li>
-<li class="fragment">Derive the mathematical equations.</li>
-</ul></li>
-</ol>
-</section>
-<section class="slide level2 scrollable">
+<section class="slide level2">
 
-<ol start="4" type="1">
-<li class="fragment"><strong>Solve the model</strong>
-<ul>
-<li class="fragment">Obtain analytical or numerical solutions.</li>
-<li class="fragment">Verify that the solution is mathematically consistent.</li>
-</ul></li>
-<li class="fragment"><strong>Interpret and validate</strong>
-<ul>
-<li class="fragment">Compare predictions with observations or experimental data.</li>
-<li class="fragment">Assess whether assumptions are reasonable.</li>
-<li class="fragment">Refine the model if necessary.</li>
-</ul></li>
-</ol>
-<div class="fragment">
-<div class="callout callout-tip callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Modelling is an iterative process:</strong> if predictions do not agree with observations, revise the assumptions or the model and repeat the cycle.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="mathematical-models-of-real-world-systems" class="slide level2">
-<h2>Mathematical Models of Real-World Systems</h2>
+<h3 id="mathematical-models-of-real-world-systems">1.1. Mathematical Models of Real-World Systems</h3>
 <ul>
 <li class="fragment">Real-world systems are represented by different mathematical models depending on the underlying physical mechanisms.</li>
 <li class="fragment">The choice of model determines how the system is analysed, simulated, and used for prediction.</li>
 </ul>
 <div class="fragment">
 <p>Examples include:</p>
-<table class="table-striped table-bordered responsive-table caption-top">
+<table class="table-striped caption-top">
 <thead>
 <tr class="header">
 <th>System</th>
@@ -615,8 +396,9 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </table>
 </div>
 </section>
-<section id="variables-parameters-and-state-variables" class="slide level2">
-<h2>Variables, Parameters and State Variables</h2>
+<section class="slide level2">
+
+<h3 id="variables-parameters-and-state-variables">1.2. Variables, Parameters and State Variables</h3>
 <p>A mathematical model typically contains:</p>
 <ul>
 <li class="fragment"><strong>Independent variables</strong>: quantities that describe the domain of the problem (e.g.&nbsp;time, space).</li>
@@ -664,8 +446,9 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </div>
 </div>
 </section>
-<section id="why-build-mathematical-models" class="slide level2">
-<h2>Why Build Mathematical Models?</h2>
+<section class="slide level2">
+
+<h3 id="why-build-mathematical-models">1.3. Why Build Mathematical Models?</h3>
 <ul>
 <li class="fragment"><p>Mathematical models are used to</p>
 <ul>
@@ -685,29 +468,93 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </ul></li>
 </ul>
 </section>
-<section id="the-modelling-cycle" class="slide level2">
-<h2>The Modelling Cycle</h2>
-<p>Mathematical modelling is an iterative process rather than a single calculation. The modelling cycle consists of several stages.</p>
+<section class="slide level2 scrollable">
+
+<h3 id="the-mathematical-modelling-process">1.4. The Mathematical Modelling Process</h3>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>A mathematical model translates a real-world problem into mathematics so that it can be analysed and used for prediction.</p>
+</div>
+</div>
+</div>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Real Problem] --&gt; B[Assumptions]
-    B --&gt; C[Mathematical Model]
-    C --&gt; D[Solution]
-    D --&gt; E[Validation]
-    E --&gt; F[Interpretation]
-    E --&gt; G[Refinement]
-    G --&gt; C
+<pre class="mermaid mermaid-js">---
+config:
+  themeVariables:
+    fontSize: 0.8em
+  layout: elk
+  elk:
+    mergeEdges: true
+    nodePlacementStrategy: LINEAR_SEGMENTS
+---
+graph LR
+    A[Define&lt;br&gt;Problem] --&gt; B[Make&lt;br&gt;Assumptions]
+    B --&gt; C[Formulate&lt;br&gt;Model]
+    C --&gt; D[Solve]
+    D --&gt; E[Validate]
+    E --&gt; F[Interpret]
+    F --&gt; G[Refine]
+    G --&gt; A
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>The modelling cycle may require several iterations before the mathematical model adequately represents the real system.</p>
+<ol type="1">
+<li class="fragment"><strong>Define the problem</strong>
+<ul>
+<li class="fragment">Identify the question and objectives.</li>
+<li class="fragment">Determine the system boundaries.</li>
+</ul></li>
+<li class="fragment"><strong>Make assumptions</strong>
+<ul>
+<li class="fragment">Simplify reality while retaining the essential features.</li>
+<li class="fragment">State assumptions clearly.</li>
+</ul></li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="3" type="1">
+<li class="fragment"><strong>Formulate the model</strong>
+<ul>
+<li class="fragment">Identify governing physical laws (e.g., conservation laws, Newton’s laws).</li>
+<li class="fragment">Define variables and parameters.</li>
+<li class="fragment">Derive the mathematical equations.</li>
+</ul></li>
+<li class="fragment"><strong>Solve the model</strong>
+<ul>
+<li class="fragment">Obtain analytical or numerical solutions.</li>
+<li class="fragment">Verify that the solution is mathematically consistent.</li>
+</ul></li>
+<li class="fragment"><strong>Interpret and validate</strong>
+<ul>
+<li class="fragment">Compare predictions with observations or experimental data.</li>
+<li class="fragment">Assess whether assumptions are reasonable.</li>
+<li class="fragment">Refine the model if necessary.</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><strong>Modelling is an iterative process:</strong> if predictions do not agree with observations, revise the assumptions or the model and repeat the cycle.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section class="slide level2">
 
@@ -721,135 +568,80 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </div>
 <div class="callout-content">
 <p><strong>Problem:</strong> Determine how the temperature of a cup of coffee changes over time.</p>
-</div>
-</div>
-</div>
 <ul>
-<li class="fragment"><p><strong>Assumptions:</strong> Coffee is perfectly mixed. Ambient temperature remains constant. Heat loss is proportional to the temperature difference.</p></li>
-<li class="fragment"><p><strong>Model Formulation:</strong> <span class="math inline">\(\displaystyle \frac{dT}{dt}=-k(T-T_a),\)</span></p>
+<li class="fragment"><strong>Assumptions:</strong>
+<ul>
+<li class="fragment">Coffee is perfectly mixed.</li>
+<li class="fragment">Ambient temperature remains constant.<br>
+</li>
+<li class="fragment">Heat loss is proportional to the temperature difference.</li>
+</ul></li>
+<li class="fragment"><strong>Model Formulation:</strong> <span class="math inline">\(\displaystyle \frac{dT}{dt}=-k(T-T_a),\)</span>
 <ul>
 <li class="fragment"><span class="math inline">\(T(t)\)</span> is the coffee temperature,</li>
 <li class="fragment"><span class="math inline">\(T_a\)</span> is the ambient temperature,</li>
 <li class="fragment"><span class="math inline">\(k&gt;0\)</span> is a cooling constant.</li>
 </ul></li>
-<li class="fragment"><p><strong>Solution:</strong> <span class="math inline">\(T(t)=T_a+(T_0-T_a)e^{-kt}.\)</span></p></li>
+<li class="fragment"><strong>Solution:</strong> <span class="math inline">\(T(t)=T_a+(T_0-T_a)e^{-kt}.\)</span></li>
 </ul>
+</div>
+</div>
+</div>
 </section>
-<section id="physical-systems" class="slide level2">
-<h2>Physical Systems</h2>
+<section class="slide level2">
+
+<h3 id="physical-systems">1.5. Physical Systems</h3>
 <div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>A <strong>physical system</strong> is the portion of the universe selected for investigation.</p>
+<p>A <strong>physical system</strong> is the portion of the universe selected for investigation. Examples include a moving vehicle, a heat exchanger, a chemical reactor, a river, a traffic network, or a biological cell.</p>
 </div>
 </div>
 </div>
-<ul>
-<li class="fragment"><strong>Examples</strong>
-<ul>
-<li class="fragment">A moving vehicle,</li>
-<li class="fragment">A heat exchanger,</li>
-<li class="fragment">A chemical reactor,</li>
-<li class="fragment">A river,</li>
-<li class="fragment">A traffic network,</li>
-<li class="fragment">A biological cell.</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="system-boundary">System Boundary</h3>
-<div class="fragment">
-<div class="callout callout-none no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p>Everything outside the system is called the surroundings or environment. The interaction between the system and its surroundings occurs through its boundary.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="columns">
+<div class="column">
+<h4 class="fragment center" id="system-boundary">System Boundary</h4>
 <ul>
 <li class="fragment"><p>The boundary separates the system from its surroundings.</p></li>
 <li class="fragment"><p>Boundaries may be <strong>fixed</strong>, <strong>moving</strong>, <strong>real</strong>, or <strong>imaginary</strong>.<br>
 </p></li>
 <li class="fragment"><p>Across the boundary there may be transfer of <strong>mass</strong>, <strong>momentum</strong>, and <strong>energy</strong>.</p></li>
+<li class="fragment"><p>Choosing an appropriate system boundary is one of the most important steps in constructing a math model.</p></li>
 </ul>
-<div class="fragment">
-<div class="callout callout-tip callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>Choosing an appropriate system boundary is one of the most important steps in constructing a mathematical model.</p>
-</div>
-</div>
-</div>
-</div>
+</div><div class="column">
+<h4 class="fragment center" id="control-volumes">Control Volumes</h4>
+<ul>
+<li class="fragment">Fluid flow in engineering is commonly analysed using a <strong>control volume</strong>.</li>
+<li class="fragment">A <strong>control volume</strong> is a fixed region in space.</li>
+<li class="fragment">Its boundary is called the <strong>control surface</strong>.</li>
+<li class="fragment"><strong>Examples</strong> includes a water tank, a pipe section, a pump, or a combustion chamber.</li>
+</ul>
+</div></div>
 </section>
 <section class="slide level2">
 
-<h3 id="control-volumes">Control Volumes</h3>
-<div class="fragment">
-<div class="callout callout-tip callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>Many engineering systems involve the flow of fluids through pipes, channels, heat exchangers and reactors. Rather than tracking individual fluid particles, we analyse a fixed region in space known as a control volume. The boundary surrounding this region is called the control surface.</p>
-</div>
-</div>
-</div>
-</div>
-<ul>
-<li class="fragment"><p><strong>Examples:</strong></p>
-<ul>
-<li class="fragment">a water tank,</li>
-<li class="fragment">a pipe section,</li>
-<li class="fragment">a pump,</li>
-<li class="fragment">a combustion chamber.</li>
-</ul></li>
-</ul>
-</section>
-<section id="assumptions-and-idealisations" class="slide level2">
-<h2>Assumptions and Idealisations</h2>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Every mathematical model is a simplification of reality.</strong><br>
-To obtain a tractable model, we retain the dominant physical effects and neglect those with little influence on the results.</p>
-</div>
-</div>
-</div>
+<h3 id="assumptions-and-idealisations">1.6. Assumptions and Idealisations</h3>
+<div class="fragment" style="font-size: 0.9em;">
 <blockquote>
-<p><em>“All models are wrong, but some are useful.”</em><br>
-— <strong>George E. P. Box</strong></p>
+<p><em>“All models are wrong, but some are useful.”</em> — <strong>George E. P. Box</strong></p>
 </blockquote>
+</div>
 <div class="fragment">
-<div class="callout callout-tip callout-style-simple">
+<div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
 <div class="callout-content">
-<p><strong>A good model is not the most detailed model—it is the simplest model that accurately answers the engineering question.</strong></p>
+<p><strong>Every mathematical model is a simplification of reality.</strong> To obtain a tractable model, we retain the dominant physical effects and neglect those with little influence on the results.</p>
+<p><strong>A good model is not the most detailed model. It is the simplest model that accurately answers the engineering question.</strong></p>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="why-make-assumptions">Why make assumptions?</h3>
+<div class="columns" style="font-size: 0.9em;">
+<div class="column" style="width:40%;">
+<h4 class="fragment" id="why-make-assumptions">Why make assumptions?</h4>
 <ul>
 <li class="fragment">Simplify complex systems</li>
 <li class="fragment">Focus on the dominant physics</li>
@@ -857,13 +649,17 @@ To obtain a tractable model, we retain the dominant physical effects and neglect
 <li class="fragment">Obtain practical solutions</li>
 <li class="fragment">Improve computational efficiency</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<h3 id="common-assumptions">Common assumptions</h3>
+</div><div class="column" style="width:30%;">
+<h4 class="fragment" id="common-assumptions">Common assumptions</h4>
 <ul>
 <li class="fragment">Negligible air resistance</li>
 <li class="fragment">Constant density</li>
 <li class="fragment">Uniform temperature</li>
 <li class="fragment">One-dimensional flow</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><br></p>
+<ul>
 <li class="fragment">Steady-state conditions</li>
 <li class="fragment">Incompressible fluid</li>
 <li class="fragment">Frictionless surfaces</li>
@@ -871,53 +667,50 @@ To obtain a tractable model, we retain the dominant physical effects and neglect
 </div></div>
 </section>
 <section id="dimensional-analysis" class="slide level2">
-<h2>Dimensional Analysis</h2>
-<p>Fundamental dimensions include:</p>
+<h2>1.7. Dimensional Analysis</h2>
+<div id="tbl-fundamental-dimensions" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fundamental-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Fundamental dimensions
+</figcaption>
+<div aria-describedby="tbl-fundamental-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top">
 <thead>
 <tr class="header">
 <th>Quantity</th>
-<th>Dimension</th>
+<th style="text-align: center;">Length</th>
+<th style="text-align: center;">Mass</th>
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Temperature</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Length</td>
-<td><span class="math inline">\(L\)</span></td>
-</tr>
-<tr class="even">
-<td>Mass</td>
-<td><span class="math inline">\(M\)</span></td>
-</tr>
-<tr class="odd">
-<td>Time</td>
-<td><span class="math inline">\(T\)</span></td>
-</tr>
-<tr class="even">
-<td>Temperature</td>
-<td><span class="math inline">\(\Theta\)</span></td>
+<td>Dimension</td>
+<td style="text-align: center;"><span class="math inline">\(L\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta\)</span></td>
 </tr>
 </tbody>
 </table>
-<h3 class="fragment" id="example">Example</h3>
+</div>
+</figure>
+</div>
 <div class="columns">
-<div class="column">
-<ul>
-<li class="fragment">Velocity <span class="math display">\[
+<div class="column fragment" style="width:12%;">
+<h5 class="fragment" id="example">Example:</h5>
+</div><div class="column fragment" style="width:44%;">
+<p><span class="math display">\[
 v=\frac{\text{distance}}{\text{time}},
-\quad \text{so}\quad [v]=LT^{-1}.\]</span></li>
-</ul>
-</div><div class="column">
-<ul>
-<li class="fragment">Acceleration <span class="math display">\[
+\; \rightarrow \; [v]=LT^{-1}.\]</span></p>
+</div><div class="column fragment" style="width:44%;">
+<p><span class="math display">\[
 a=\frac{\text{velocity}}{\text{time}},
-\quad \text{so}\quad [a]=LT^{-2}.\]</span></li>
-</ul>
+\; \rightarrow \; [a]=LT^{-2}.\]</span></p>
 </div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="dimensional-consistency">Dimensional Consistency</h3>
+<h4 class="fragment" id="dimensional-consistency">Dimensional Consistency</h4>
+<div class="fragment">
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
@@ -928,67 +721,35 @@ a=\frac{\text{velocity}}{\text{time}},
 </div>
 </div>
 </div>
-<h3 class="fragment" id="example-1">Example</h3>
-<div class="fragment">
-<p><span class="math display">\[
+</div>
+<h5 class="fragment" id="example-1">Example:</h5>
+<div class="columns">
+<div class="column center fragment">
+<p><strong>Displacement</strong> <span class="math display">\[
 s=ut+\frac12 at^2.
 \]</span></p>
-</div>
-<h4 class="fragment" id="dimensions">Dimensions:</h4>
-<div class="fragment">
-<p><span class="math display">\[
+</div><div class="column center fragment">
+<p><strong>Dimensions</strong> <span class="math display">\[
 [L]
 =
 [LT^{-1}][T]
 +
 [LT^{-2}][T^2].
 \]</span></p>
-</div>
-<h4 class="fragment" id="hence">Hence,</h4>
+</div></div>
 <div class="fragment">
-<p><span class="math display">\[
-[L]=[L]+[L],
-\]</span></p>
-<p>which confirms dimensional consistency.</p>
+<p>Hence, <span class="math inline">\(\; [L]=[L]+[L],\)</span> which confirms dimensional consistency.</p>
 </div>
 </section>
 <section id="scaling-and-characteristic-quantities" class="slide level2">
-<h2>Scaling and Characteristic Quantities</h2>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
+<h2>1.8 Scaling and Characteristic Quantities</h2>
 <p><strong>Scaling</strong> estimates the relative size of physical quantities and identifies the dominant processes in a system.</p>
-</div>
-</div>
-</div>
-<h3 class="fragment" id="example-characteristic-timescale-of-a-vehicle">Example: Characteristic Timescale of a Vehicle</h3>
-<ul>
-<li class="fragment"><p>Suppose a vehicle travels a characteristic distance (L) at a characteristic speed (U).</p></li>
-<li class="fragment"><p>The characteristic time is</p></li>
-</ul>
+<h4 class="fragment" id="example-characteristic-timescale-of-a-vehicle">Example: Characteristic Timescale of a Vehicle</h4>
 <div class="fragment">
-<p><span class="math display">\[
-T_c=\frac{L}{U}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="fragment">
-<p>For</p>
-<p><span class="math display">\[
-L=1000~\mathrm{m}, \qquad
-U=25~\mathrm{m/s},
-\]</span></p>
+<p>Suppose a vehicle travels a characteristic distance <span class="math inline">\(L\)</span> at a characteristic speed <span class="math inline">\(U.\)</span> The characteristic time is <span class="math inline">\(\qquad T_c=\dfrac{L}{U}.\)</span></p>
 </div>
 <div class="fragment">
-<p>we obtain</p>
-<p><span class="math display">\[
-T_c=\frac{1000}{25}=40~\mathrm{s}.
-\]</span></p>
+<p>For <span class="math inline">\(L=1000~\mathrm{m}, \; U=25~\mathrm{m/s},\;\)</span> we obtain <span class="math inline">\(\;T_c=\dfrac{1000}{25}=40~\mathrm{s}.\)</span></p>
 </div>
 <div class="fragment">
 <div class="callout callout-tip callout-style-simple">
@@ -1008,18 +769,9 @@ T_c=\frac{1000}{25}=40~\mathrm{s}.
 </div>
 </div>
 </div>
-<div class="fragment">
-<div class="callout callout-important callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Key idea:</strong> Characteristic quantities provide a reference scale for analysing physical systems and form the basis of <strong>non-dimensionalisation</strong>.</p>
-</div>
-</div>
-</div>
-</div>
+<!-- ::: {.callout-important appearance="simple" .fragment}
+**Key idea:** Characteristic quantities provide a reference scale for analysing physical systems and form the basis of **non-dimensionalisation**.
+::: -->
 </section>
 <section id="kinematics-and-newtons-laws" class="slide level2 unnumbered">
 <h2>2. Kinematics and Newton’s Laws</h2>
@@ -1034,23 +786,19 @@ T_c=\frac{1000}{25}=40~\mathrm{s}.
 </div>
 </div>
 <div class="columns">
-<div class="column fragment" style="width:55%;">
+<div class="column fragment center" style="width:55%;">
 <h3 id="vector-magnitude-and-direction">Vector (magnitude and direction)</h3>
 <ul>
-<li class="fragment">Velocity</li>
-<li class="fragment">Acceleration</li>
-<li class="fragment">Force</li>
-<li class="fragment">Momentum</li>
-<li class="fragment">Heat flux</li>
+<li>Velocity <span class="math inline">\(\qquad\)</span> • Acceleration</li>
+<li>Force <span class="math inline">\(\qquad\quad\)</span>• Momentum</li>
+<li>Heat flux</li>
 </ul>
-</div><div class="column fragment" style="width:45%;">
+</div><div class="column fragment center" style="width:45%;">
 <h3 id="scalar-magnitude-only">Scalar (magnitude only)</h3>
 <ul>
-<li class="fragment">Mass</li>
-<li class="fragment">Temperature</li>
-<li class="fragment">Time</li>
-<li class="fragment">Energy</li>
-<li class="fragment">Pressure</li>
+<li>Mass <span class="math inline">\(\qquad\)</span> • Temperature</li>
+<li>Time <span class="math inline">\(\qquad\)</span> • Energy</li>
+<li>Pressure</li>
 </ul>
 </div></div>
 <div class="fragment">
@@ -1065,54 +813,14 @@ T_c=\frac{1000}{25}=40~\mathrm{s}.
 </div>
 </div>
 </div>
+<ul>
+<li class="fragment"><p>Unit vectors are represented by <strong>bold symbols</strong>, e.g.&nbsp;<span class="math inline">\(\mathbf{v}, \mathbf{F}, \mathbf{r}, \mathbf{a}.\)</span></p></li>
+<li class="fragment"><p>Their magnitudes are denoted by <span class="math inline">\(|\mathbf{v}|, |\mathbf{F}|, |\mathbf{r}|, |\mathbf{a}\dots|\)</span></p></li>
+</ul>
 </section>
 <section class="slide level2">
 
-<h3 id="basic-vector-arithmetic">Basic Vector Arithmetic</h3>
-<div class="fragment">
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Scalar:</strong> A quantity with magnitude only. Examples include Mass, Time, Temperature, Energy, Pressure, Density.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><strong>Vector:</strong> A quantity with both magnitude and direction. Examples include Velocity, Force, Displacement, Acceleration.</p>
-</div>
-</div>
-</div>
-</div>
-<ul>
-<li class="fragment">Throughout this unit vectors will be represented by bold symbols, for example</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-\mathbf{v}, \mathbf{F}, \mathbf{r}, \mathbf{a}.
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">Their magnitudes are denoted by</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-|\mathbf{v}|, |\mathbf{F}|, |\mathbf{r}|, |\mathbf{a}\dots|
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="geometric-representation-of-a-vector">Geometric Representation of a Vector</h3>
+<h3 id="geometric-representation-of-a-vector">2.2. Geometric Representation of a Vector</h3>
 <ul>
 <li class="fragment"><p>A vector is represented graphically by a directed line segment.</p>
 <ul>
@@ -1130,43 +838,51 @@ T_c=\frac{1000}{25}=40~\mathrm{s}.
 </section>
 <section class="slide level2">
 
-<h3 id="cartesian-representation-and-vector-operations">Cartesian Representation and Vector Operations</h3>
-
-<img data-src="figs/cartesian-form.png" class="quarto-figure quarto-figure-center r-stretch" width="350" id="fig-cartesian-form"><p class="caption">
+<h3 id="cartesian-representation-and-vector-operations">2.3 Cartesian Representation and Vector Operations</h3>
+<div class="columns">
+<div class="column">
+<div style="text-align:center;">
+<div id="fig-cartesian-form" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-cartesian-form-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="figs/cartesian-form.png" class="quarto-figure quarto-figure-center" width="450">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cartesian-form-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Cartesian Representation of a Vector.
-</p><ul>
+</figcaption>
+</figure>
+</div>
+</div>
+</div><div class="column">
+<p><br></p>
+<ul>
 <li class="fragment">In 3-D Cartesian coordinates, a vector is represented by its components.</li>
-<li class="fragment">Suppose <span class="math inline">\(A=(x,y,z).\)</span> Then the position vector of <span class="math inline">\(A\)</span> measured from the origin is</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
+<li class="fragment">Suppose <span class="math inline">\(A=(x,y,z),\)</span> then the position vector of <span class="math inline">\(A\)</span> measured from the origin is <span class="math display">\[
 \mathbf r
 =
 x\mathbf i
 +y\mathbf j
 +z\mathbf k
 \equiv (x, y, z)
-\]</span></p>
-<p>where <span class="math inline">\(\mathbf i, \mathbf j, \mathbf k\)</span> are the unit vectors in the <span class="math inline">\(x, y, z\)</span> directions respectively.</p>
-</div>
+\]</span></li>
+<li class="fragment">where <span class="math inline">\(\mathbf i, \mathbf j, \mathbf k\)</span> are the unit vectors in the <span class="math inline">\(x, y, z\)</span> directions respectively.</li>
+</ul>
+</div></div>
 </section>
 <section class="slide level2">
 
-<p><strong>Magnitude of a Vector</strong></p>
-<p>The length (or magnitude) of a vector <span class="math inline">\(\mathbf a=(a_x,a_y,a_z)\)</span> is <span class="math display">\[
-|\mathbf a| = \sqrt{a_x^2 + a_y^2 + a_z^2}.
-\]</span></p>
+<h4 id="magnitude-of-a-vector">Magnitude of a Vector</h4>
+<p>The length (or magnitude) of a vector <span class="math inline">\(\mathbf a=(a_x,a_y,a_z)\)</span> is <span class="math inline">\(|\mathbf a| = \sqrt{a_x^2 + a_y^2 + a_z^2}.\)</span></p>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Example</strong></p>
+<p><strong>Example: Find the magnitude of the vector <span class="math inline">\(\mathbf a = (3, 4, 5)\)</span>.</strong></p>
 </div>
 <div class="callout-content">
-<p>Find the magnitude of the vector <span class="math inline">\(\mathbf a = (3, 4, 5)\)</span>.</p>
 <p><span class="math display">\[
 |\mathbf a| = \sqrt{3^2 + 4^2 + 5^2} = \sqrt{9 + 16 + 25} = \sqrt{50} = 5\sqrt{2}.
 \]</span></p>
@@ -1174,13 +890,12 @@ x\mathbf i
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Equality of Vectors</strong></p>
-<p>Two vectors are equal if they have the <strong>same magnitude</strong>, and the <strong>same direction</strong>, regardless of where they are located.</p>
+<h4 class="fragment" id="equality-of-vectors">Equality of Vectors</h4>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
+<p>Two vectors are equal if they have the <strong>same magnitude</strong>, and the <strong>same direction</strong>, regardless of where they are located.</p>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1200,7 +915,7 @@ x\mathbf i
 </section>
 <section class="slide level2">
 
-<p><strong>Vector Addition</strong></p>
+<h4 id="vector-addition">Vector Addition</h4>
 <p>If <span class="math inline">\(\mathbf u=(u_1,u_2,u_3),\)</span> and <span class="math inline">\(\mathbf v=(v_1,v_2,v_3),\)</span> then</p>
 <p><span class="math display">\[
 \boxed{
@@ -1213,7 +928,7 @@ u_3+v_3).
 \]</span></p>
 <p>Vector addition is performed by adding the corresponding components.</p>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1239,14 +954,16 @@ u_3+v_3).
 </section>
 <section class="slide level2">
 
-<p><strong>Geometric Interpretation</strong></p>
-<p>Vector addition can be visualised using either the <strong>parallelogram law</strong> or the <strong>triangle law</strong>.</p>
+<h4 id="geometric-interpretation">Geometric Interpretation</h4>
+<p><strong>Vector addition</strong> can be visualised using either <strong>parallelogram law</strong> or <strong>triangle law</strong>.</p>
+<div class="columns" style="text-align:center;">
+<div class="column fragment">
 <div id="cell-fig-vector-addition" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div id="fig-vector-addition" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-vector-addition-output-1.png" class="quarto-figure quarto-figure-center" width="515" height="418">
+<img data-src="01_lecture_files/figure-revealjs/fig-vector-addition-output-1.png" class="quarto-figure quarto-figure-center" width="388" height="316">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Vector Addition Using the Triangle Law
@@ -1255,15 +972,14 @@ Figure&nbsp;2: Vector Addition Using the Triangle Law
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
+<p>Place the tail of the second vector <span class="math inline">\(\mathbf{v}\)</span> at the head of the first vector <span class="math inline">\(\mathbf{u}\)</span>. The resultant vector starts at the tail of <span class="math inline">\(\mathbf{u}\)</span> and ends at the head of <span class="math inline">\(\mathbf{v}\)</span>.</p>
+</div><div class="column fragment">
 <div id="cell-fig-vector-addition-parallelogram" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-vector-addition-parallelogram" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-vector-addition-parallelogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-vector-addition-parallelogram-output-1.png" class="quarto-figure quarto-figure-center" width="499" height="504">
+<img data-src="01_lecture_files/figure-revealjs/fig-vector-addition-parallelogram-output-1.png" class="quarto-figure quarto-figure-center" width="316" height="319">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vector-addition-parallelogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Vector Addition Using the Parallelogram Law
@@ -1272,40 +988,25 @@ Figure&nbsp;3: Vector Addition Using the Parallelogram Law
 </div>
 </div>
 </div>
-<p><strong>Parallelogram Law:</strong> To add two vectors, place them so their tails coincide. The resultant vector is the diagonal of the parallelogram formed by the two vectors.</p>
+<p>Place <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> so their tails coincide. The resultant vector is the diagonal of the parallelogram formed by the two vectors.</p>
+</div></div>
 </section>
 <section class="slide level2">
 
-<p><strong>Vector Subtraction</strong></p>
-<p>Vector subtraction is defined as</p>
-<p><span class="math display">\[
-\mathbf u - \mathbf v = \mathbf u + (-\mathbf v).
-\]</span></p>
-<p>The vector <span class="math inline">\(-\mathbf v\)</span> is the vector with the same magnitude as <span class="math inline">\(\mathbf v\)</span> but in the opposite direction.</p>
+<h4 id="vector-subtraction">Vector Subtraction</h4>
+<p>Vector subtraction is defined as <span class="math inline">\(\boxed{\mathbf u - \mathbf v = \mathbf u + (-\mathbf v)}.\)</span></p>
+<p>The vector <span class="math inline">\(-\mathbf v\)</span> has the same magnitude as <span class="math inline">\(\mathbf v\)</span> but in the opposite direction.</p>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-simple">
+<div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Example</strong></p>
-</div>
 <div class="callout-content">
-<p>Let <span class="math inline">\(\mathbf u=(5,4),
-\,\,
-\mathbf v=(2,1).\)</span> Then</p>
-<p><span class="math display">\[
-\mathbf u - \mathbf v = (5-2, 4-1) = (3, 3).
-\]</span></p>
+<p><strong>Example:</strong> Let <span class="math inline">\(\mathbf u=(5,4),\,\,\mathbf v=(2,1).\)</span> Then, <span class="math inline">\(\mathbf u - \mathbf v = (5-2, 4-1) = (3, 3).\)</span></p>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Scalar Multiplication</strong></p>
+<h4 class="fragment" id="scalar-multiplication">Scalar Multiplication</h4>
+<div class="fragment">
 <p>Multiplying a vector by a scalar changes its magnitude. If <span class="math inline">\(\lambda\in\mathbb R,\)</span> then</p>
 <p><span class="math display">\[
 \boxed{
@@ -1314,24 +1015,17 @@ Figure&nbsp;3: Vector Addition Using the Parallelogram Law
 (\lambda a_x,\lambda a_y,\lambda a_z).
 }
 \]</span></p>
+</div>
 <ul>
 <li class="fragment"><p>If <span class="math inline">\(\lambda&gt;1,\)</span> the vector becomes longer.</p></li>
 <li class="fragment"><p>If <span class="math inline">\(0&lt;\lambda&lt;1,\)</span> the vector becomes shorter.</p></li>
 <li class="fragment"><p>If <span class="math inline">\(\lambda&lt;0,\)</span> the direction is reversed.</p></li>
 </ul>
 <div class="fragment">
-<div class="callout callout-tip no-icon callout-titled callout-style-simple">
+<div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
-<p><strong>Example</strong></p>
-</div>
 <div class="callout-content">
-<p>Let <span class="math inline">\(\mathbf a=(2,-1).\)</span> Then</p>
-<p><span class="math display">\[
-2\mathbf a = (4,-2), \quad
-0.5\mathbf a = (1,-0.5), \quad
--1\mathbf a = (-2,1).
-\]</span></p>
+<p><strong>Example:</strong> Let <span class="math inline">\(\mathbf a=(2,-1).\)</span> <span class="math inline">\(2\mathbf a = (4,-2), \; 0.5\mathbf a = (1,-0.5), \;-1\mathbf a = (-2,1).\)</span></p>
 </div>
 </div>
 </div>
@@ -1339,11 +1033,8 @@ Figure&nbsp;3: Vector Addition Using the Parallelogram Law
 </section>
 <section class="slide level2">
 
-<p><strong>Unit Vectors</strong></p>
-<ul>
-<li class="fragment">A unit vector has magnitude equal to one. The standard Cartesian unit vectors are</li>
-</ul>
-<div class="fragment">
+<h4 id="unit-vectors">Unit Vectors</h4>
+<p>A unit vector has magnitude equal to one. The standard Cartesian unit vectors are</p>
 <p><span class="math display">\[
 \mathbf i=(1,0,0),
 \quad
@@ -1351,19 +1042,13 @@ Figure&nbsp;3: Vector Addition Using the Parallelogram Law
 \quad
 \mathbf k=(0,0,1).
 \]</span></p>
-</div>
-<ul>
-<li class="fragment">Any vector</li>
-</ul>
 <div class="fragment">
-<p><span class="math display">\[
-\mathbf a
-=
-(a_x,a_y,a_z)
+<p>Any vector <span class="math display">\[
+\mathbf a=(a_x,a_y,a_z)
 \]</span></p>
+<p>may be written as</p>
 </div>
 <div class="fragment">
-<p>may be written as</p>
 <p><span class="math display">\[
 \boxed{
 \mathbf a
@@ -1385,22 +1070,15 @@ a_z\mathbf k.}
 }
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="fragment">
+<div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Example</strong></p>
-</div>
 <div class="callout-content">
-<p>Let <span class="math inline">\(\mathbf a=(3,4).\)</span> Since <span class="math inline">\(|\mathbf a|=5,\)</span> the unit vector is</p>
+<p><strong>Example:</strong> Let <span class="math inline">\(\mathbf a=(3,4).\)</span> Since <span class="math inline">\(|\mathbf a|=5,\)</span> the unit vector is</p>
 <p><span class="math display">\[
 \hat{\mathbf a} = \frac{1}{5}(3,4) = \left(\frac{3}{5},\frac{4}{5}\right).
 \]</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -1469,7 +1147,7 @@ z(t)\mathbf k.
 (z_2-z_1)\mathbf k.
 \]</span></p>
 </div>
-<h4 class="fragment" id="example-9">Example</h4>
+<h4 class="fragment" id="example-5">Example</h4>
 <div class="fragment">
 <p>A particle moves from <span class="math inline">\(P_1=(2,\,1,\,3)\quad\text{to}\quad P_2=(7,\,5,\,1).\)</span></p>
 </div>
@@ -1510,9 +1188,9 @@ z(t)\mathbf k.
 </section>
 <section class="slide level2">
 
-<h4 id="velocity-vectors">Velocity Vectors</h4>
+<h4 id="velocity-and-acceleration-vectors">Velocity and Acceleration Vectors</h4>
 <ul>
-<li class="fragment"><p>Velocity describes how rapidly the position of a particle changes with time.</p></li>
+<li class="fragment"><p><strong>Velocity</strong> describes how rapidly the position of a particle changes with time.</p></li>
 <li class="fragment"><p>If the particle has position vector <span class="math inline">\(\mathbf {r}(t),\)</span> its velocity is defined as</p></li>
 </ul>
 <div class="fragment">
@@ -1530,56 +1208,27 @@ z(t)\mathbf k.
 \text{or} \quad
 \mathbf v
 =
-(\dot{x},\dot{y},\dot{z})..
+(\dot{x},\dot{y},\dot{z}).
 \]</span></p>
 </div>
 <ul>
 <li class="fragment">The magnitude of the velocity, <span class="math inline">\(|\mathbf v|,\)</span> is called the <strong>speed</strong>.</li>
 </ul>
-<h3 class="fragment" id="example-10">Example</h3>
+<div class="fragment">
+<p><span style="color:blue;"><strong>Example:</strong></span> Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then, <span class="math inline">\(\mathbf v(t) = \frac{d\mathbf r}{dt} = (1, 2t, 3t^2).\)</span></p>
+<p>The speed is <span class="math inline">\(|\mathbf v(t)| = \sqrt{1 + (2t)^2 + (3t^2)^2} = \sqrt{1 + 4t^2 + 9t^4}.\)</span></p>
+</div>
 <ul>
-<li class="fragment">Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then</li>
-</ul>
-<div class="columns">
-<div class="column fragment">
-<p><span class="math display">\[
-\mathbf v(t) = \frac{d\mathbf r}{dt} = (1, 2t, 3t^2).
-\]</span></p>
-</div><div class="column fragment">
-<p>The speed is <span class="math display">\[
-|\mathbf v(t)| = \sqrt{1 + (2t)^2 + (3t^2)^2} = \sqrt{1 + 4t^2 + 9t^4}.
-\]</span></p>
-</div></div>
-</section>
-<section class="slide level2">
-
-<h4 id="acceleration-vectors">Acceleration Vectors</h4>
-<p>Acceleration describes how rapidly the velocity of a particle changes with time.</p>
-<p>If the particle has velocity <span class="math inline">\(\mathbf {v}(t),\)</span> its acceleration is defined as</p>
-<p><span class="math display">\[
+<li class="fragment"><strong>Acceleration</strong> describes how rapidly the velocity of a particle changes with time. <span class="math display">\[
 \mathbf a
 =
 \frac{d\mathbf v}{dt}
 =
 \frac{d^2\mathbf r}{dt^2}.
-\]</span></p>
+\]</span></li>
+</ul>
 <div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Example</strong></p>
-</div>
-<div class="callout-content">
-<p>Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then,</p>
-<p><span class="math display">\[
-\mathbf a(t) = \frac{d\mathbf v}{dt} = (0, 2, 6t).
-\]</span></p>
-</div>
-</div>
-</div>
+<p><span style="color:blue;"><strong>Example:</strong></span> Let <span class="math inline">\(\mathbf r(t) = (t, t^2, t^3).\)</span> Then, <span class="math inline">\(\mathbf a(t) = \dfrac{d\mathbf v}{dt} = (0, 2, 6t).\)</span></p>
 </div>
 </section>
 <section class="slide level2">
@@ -1609,49 +1258,32 @@ b\sinh(\omega t),
 </div>
 </div>
 <div class="fragment">
-<p>The particle coordinates are</p>
-<p><span class="math display">\[
-x=a\cosh(\omega t), \qquad
-y=b\sinh(\omega t), \qquad
-z=0.
+<p>The particle coordinates are <span class="math display">\[
+x=a\cosh(\omega t), \;y=b\sinh(\omega t), \;z=0.
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Since</p>
-<p><span class="math display">\[
-\cosh^2(\omega t)-\sinh^2(\omega t)=1,
-\]</span></p>
+<p>Since <span class="math inline">\(\qquad\qquad\qquad\qquad\cosh^2(\omega t)-\sinh^2(\omega t)=1,\)</span></p>
 </div>
 <div class="fragment">
-<p>we obtain</p>
-<p><span class="math display">\[
-\left(\frac{x}{a}\right)^2
--
-\left(\frac{y}{b}\right)^2
-=
-1.
-\]</span></p>
+<p>we obtain <span class="math inline">\(\qquad\qquad\qquad\qquad\left(\dfrac{x}{a}\right)^2-\left(\dfrac{y}{b}\right)^2=1.\)</span></p>
 </div>
-</section>
-<section class="slide level2">
-
 <div class="fragment">
-<p>Hence, the particle moves along the hyperbola</p>
-<p><span class="math display">\[
+<p>Hence, the particle moves along the hyperbola <span class="math display">\[
 \frac{x^2}{a^2}
 -
 \frac{y^2}{b^2}
 =
 1,
-\]</span></p>
-<p>which lies in the <span class="math inline">\(xy\)</span>-plane and is centred at the origin.</p>
+\]</span> which lies in the <span class="math inline">\(xy\)</span>-plane and is centred at the origin.</p>
 </div>
-<div class="fragment">
-<p>For a left branch hyperbola, we can use the parametrization</p>
+</section>
+<section class="slide level2">
+
+<p>For a left branch hyperbola, we can use the parametrisation</p>
 <p><span class="math display">\[
 \mathbf {r}(t) = (-a\cosh(\omega t), b\sinh(\omega t), 0).
 \]</span></p>
-</div>
 <div class="fragment">
 <p>If you want it shifted left/right, use</p>
 <p><span class="math display">\[
@@ -1674,23 +1306,14 @@ b\omega\cosh(\omega t),
 \right).
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
 <div class="fragment">
-<p>Equivalently,</p>
-<p><span class="math display">\[
-\mathbf{v}(t)
-=
-(a\omega\sinh(\omega t), b\omega\cosh(\omega t), 0).
+<p>Equivalently, <span class="math display">\[
+\qquad\qquad\mathbf{v}(t)=(a\omega\sinh(\omega t), b\omega\cosh(\omega t), 0).
 \]</span></p>
 </div>
 <div class="fragment">
-<p>The speed is</p>
-<p><span class="math display">\[
-|\mathbf{v}(t)|
-=
-\sqrt{(a\omega\sinh(\omega t))^2 + (b\omega\cosh(\omega t))^2}.
+<p>The speed is <span class="math display">\[
+\qquad\quad|\mathbf{v}(t)|=\sqrt{(a\omega\sinh(\omega t))^2 + (b\omega\cosh(\omega t))^2}.
 \]</span></p>
 </div>
 <div class="fragment">
@@ -1713,7 +1336,7 @@ b\omega^2\sinh(\omega t),
 <section class="slide level2">
 
 <p>In a pursuit problem, one object is constrained to follow another object in a specified manner.</p>
-<h4 id="example-12">Example</h4>
+<h4 id="example-6">Example</h4>
 <ul>
 <li class="fragment"><p>A comet is attracted to a planet and moves with constant speed, always pointing towards the planet. The path of the comet is called a pursuit curve.</p></li>
 <li class="fragment"><p>Let the comet move along a known path</p></li>
@@ -1737,14 +1360,7 @@ b\omega^2\sinh(\omega t),
 </section>
 <section class="slide level2">
 
-<p>Hence,</p>
-<p><span class="math display">\[
-\frac{d\mathbf r}{dt}
-=
-v\,
-\frac{\mathbf r_A(t)-\mathbf r(t)}
-{\left|\mathbf r_A(t)-\mathbf r(t)\right|}.
-\]</span></p>
+<p>Hence, <span class="math inline">\(\qquad\qquad\qquad\dfrac{d\mathbf r}{dt}=v\,\dfrac{\mathbf r_A(t)-\mathbf r(t)}{\left|\mathbf r_A(t)-\mathbf r(t)\right|}.\)</span></p>
 <ul>
 <li class="fragment"><p>This is the governing equation for the pursuit curve.</p></li>
 <li class="fragment"><p>In component form, this gives the system</p></li>
@@ -1790,19 +1406,13 @@ v
 +\bigl(z_A(t)-z(t)\bigr)^2}}.
 \]</span></p>
 </div>
+<div class="fragment">
+<p>Given the initial position of the comet, <span class="math inline">\(\;\mathbf r(0)=\bigl(x(0),y(0),z(0)\bigr).\)</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<p>Given the initial position of the comet,</p>
-<div class="fragment">
-<p><span class="math display">\[
-\mathbf r(0)
-=
-\bigl(x(0),y(0),z(0)\bigr).
-\]</span></p>
-</div>
-<h3 class="fragment" id="example-pursuit-curve">Example (Pursuit Curve)</h3>
-<div class="fragment">
+<h4 id="example-pursuit-curve">Example (Pursuit Curve)</h4>
 <p>Suppose a comet moves along the path</p>
 <p><span class="math display">\[
 \mathbf r_A(t)
@@ -1811,20 +1421,14 @@ v
 \qquad
 0\le t&lt;\infty,
 \]</span></p>
-</div>
-<ul>
-<li class="fragment"><p>At initial time <span class="math inline">\(t=0\)</span>, the comet is located at <span class="math inline">\((0.4, 0, 0)\)</span> and a planet is located at the origin.</p></li>
-<li class="fragment"><p>The comet moves with constant speed <span class="math inline">\(v=1\)</span> and its direction of motion is always pointed towards the planet.</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
+<div class="columns">
+<div class="column" style="text-align:center;">
 <div id="cell-fig-pursuit-curve" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-pursuit-curve" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-pursuit-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-pursuit-curve-output-1.png" class="quarto-figure quarto-figure-center" width="355" height="543">
+<img data-src="01_lecture_files/figure-revealjs/fig-pursuit-curve-output-1.png" class="quarto-figure quarto-figure-center" width="248" height="372">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pursuit-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Pursuit Curve
@@ -1833,6 +1437,14 @@ Figure&nbsp;4: Pursuit Curve
 </div>
 </div>
 </div>
+</div><div class="column">
+<ul>
+<li class="fragment">At initial time <span class="math inline">\(t=0\)</span>, the comet is located at <span class="math inline">\((0.4, 0, 0)\)</span>.</li>
+<li class="fragment">The planet is located at the origin <span class="math inline">\((0, 0, 0)\)</span>.</li>
+<li class="fragment">The comet moves with constant speed <span class="math inline">\(v=1\)</span> and</li>
+<li class="fragment">its direction of motion is always pointed towards the planet.</li>
+</ul>
+</div></div>
 </section>
 <section class="slide level2">
 
@@ -1859,8 +1471,22 @@ Figure&nbsp;4: Pursuit Curve
 </section>
 <section class="slide level2">
 
-<p><strong>Notes:</strong></p>
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>The following concepts form the foundation of particle kinematics.</p>
+<div id="tbl-particle-kinematic" class="striped responsive-table quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-particle-kinematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Particle kinematics
+</figcaption>
+<div aria-describedby="tbl-particle-kinematic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped responsive-table caption-top">
 <colgroup>
 <col style="width: 29%">
@@ -1891,21 +1517,19 @@ Figure&nbsp;4: Pursuit Curve
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>These quantities provide the mathematical description of particle motion and form the basis for Newton’s laws of motion, which relate the motion of a particle to the forces acting upon it.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="newtons-laws-of-motion-and-applications" class="slide level2">
 <h2>3. Newton’s Laws of Motion and Applications</h2>
-<h3 class="fragment" id="newtons-laws-of-motion">Newton’s Laws of Motion</h3>
+<h3 class="fragment" id="newtons-laws-of-motion">3.1. Newton’s Laws of Motion</h3>
 <ul>
-<li class="fragment"><p>In the seventeenth century, <strong>Sir Isaac Newton</strong> formulated three fundamental laws that describe the motion of particles under the action of forces.</p></li>
-<li class="fragment"><p>These laws form the foundation of classical mechanics and provide the basis for many mathematical models in engineering and science.</p></li>
-<li class="fragment"><p>By combining Newton’s laws with appropriate force models, we can derive <strong>differential equations</strong> governing the motion of particles, rigid bodies and continua.</p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<ul>
-<li class="fragment">Let us first define two important physical quantities.</li>
+<li class="fragment">Newton’s laws of motion describe the relationship between the motion of a particle and the forces acting upon it.</li>
 </ul>
 <div class="fragment">
 <div class="callout callout-tip callout-style-simple">
@@ -1939,10 +1563,27 @@ m=\rho V,
 </div>
 </div>
 </div>
+<aside class="notes">
+<ul>
+<li><p>In the seventeenth century, <strong>Sir Isaac Newton</strong> formulated three fundamental laws that describe the motion of particles under the action of forces.</p></li>
+<li><p>These laws form the foundation of classical mechanics and provide the basis for many mathematical models in engineering and science.</p></li>
+<li><p>By combining Newton’s laws with appropriate force models, we can derive <strong>differential equations</strong> governing the motion of particles, rigid bodies and continua.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
-<h3 class="fragment" id="newtons-first-law-law-of-inertia"><strong>Newton’s First Law (Law of Inertia)</strong></h3>
+<h3 id="newtons-first-law-law-of-inertia">3.1.1. Newton’s First Law (Law of Inertia)</h3>
 <ul>
 <li class="fragment"><p>A particle remains at rest or continues to move with constant velocity in a straight line unless acted upon by a resultant external force.</p></li>
 <li class="fragment"><p>This law introduces the concept of inertia.</p></li>
@@ -1960,34 +1601,24 @@ m=\rho V,
 <p>If the resultant force is zero, <span class="math display">\[
 \sum\mathbf F=\mathbf0,\quad \text{then}\quad
 \mathbf a=\mathbf0.
-\]</span></p>
-<p>Consequently, the velocity of the particle remains constant.</p>
+\]</span> Consequently, the velocity of the particle remains constant.</p>
 </div>
 </div>
 </div>
 </div>
-<h3 class="fragment" id="example-13"><strong>Example</strong></h3>
 <ul>
-<li class="fragment">A hockey puck sliding on a perfectly frictionless surface continues moving at constant speed until another force acts on it.</li>
+<li class="fragment"><strong>Example:</strong> A hockey puck sliding on a perfectly frictionless surface continues moving at constant speed until another force acts on it.</li>
 </ul>
 </section>
 <section class="slide level2">
 
-<p><strong>Newton’s Second Law</strong></p>
+<h3 id="newtons-second-law">3.1.2. Newton’s Second Law</h3>
 <p>The rate of change of momentum of a particle is equal to the resultant external force acting on the particle.</p>
 <div class="fragment">
-<p>Mathematically,</p>
-<p><span class="math display">\[
-\boxed{
-\sum\mathbf F
-=
-\frac{d\mathbf p}{dt}.
-}
-\]</span></p>
+<p>Mathematically, <span class="math inline">\(\sum\mathbf F=\frac{d\mathbf p}{dt}.\)</span> For constant mass, <span class="math inline">\(\mathbf p=m\mathbf v.\)</span></p>
 </div>
-<div class="fragment">
-<p>For constant mass, <span class="math inline">\(\mathbf p=m\mathbf v.\)</span></p>
-</div>
+<div class="columns">
+<div class="column">
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-simple">
 <div class="callout-body">
@@ -1998,108 +1629,90 @@ m=\rho V,
 <p><strong>Newton’s Second Law</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[
-\sum\mathbf F
-=
-m\frac{d\mathbf v}{dt}
-=
-m\mathbf a.
-\]</span></p>
+<p><span class="math inline">\(\sum\mathbf F=m\dfrac{d\mathbf v}{dt}=m\mathbf a.\)</span></p>
 </div>
 </div>
 </div>
 </div>
+</div><div class="column">
 <ul>
-<li class="fragment">This is the fundamental equation used throughout engineering mechanics.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<p>The equation may also be written as</p>
-<p><span class="math display">\[
+<li class="fragment">The equation may also be written as <span class="math display">\[
 m\frac{d^2\mathbf r}{dt^2}
 =
 \sum\mathbf F.
-\]</span></p>
-<ul>
-<li class="fragment">Hence, Newton’s Second Law naturally leads to a second-order ordinary differential equation for the particle’s position.</li>
+\]</span></li>
 </ul>
-<div class="fragment">
-<p>Throughout this unit we shall use the <strong>SI system of units</strong>.</p>
-<table class="caption-top">
+</div></div>
+<div id="tbl-SI" class="fragment quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-SI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: The SI system of units (SI) is used in this course.
+</figcaption>
+<div aria-describedby="tbl-SI-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="fragment caption-top">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>SI Unit</th>
+<th style="text-align: center;">Quantity</th>
+<th style="text-align: center;">Length</th>
+<th style="text-align: center;">Mass</th>
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Force</th>
+<th style="text-align: center;">Velocity</th>
+<th style="text-align: center;">Acceleration</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Length</td>
-<td>metre (m)</td>
-</tr>
-<tr class="even">
-<td>Mass</td>
-<td>kilogram (kg)</td>
-</tr>
-<tr class="odd">
-<td>Time</td>
-<td>second (s)</td>
-</tr>
-<tr class="even">
-<td>Force</td>
-<td>newton (N)</td>
-</tr>
-<tr class="odd">
-<td>Velocity</td>
-<td>m/s</td>
-</tr>
-<tr class="even">
-<td>Acceleration</td>
-<td>m/s<span class="math inline">\(^2\)</span></td>
+<td style="text-align: center;">SI Unit</td>
+<td style="text-align: center;">metre (m)</td>
+<td style="text-align: center;">kilogram (kg)</td>
+<td style="text-align: center;">second (s)</td>
+<td style="text-align: center;">newton (N)</td>
+<td style="text-align: center;">m/s</td>
+<td style="text-align: center;">m/s<span class="math inline">\(^2\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
+</figure>
+</div>
+<div class="fragment">
+<p><strong>Example:</strong> A force of <span class="math inline">\(20\, \mathrm N\)</span> acts on a particle of mass <span class="math inline">\(5\, \mathrm{kg}.\)</span> Using Newton’s Second Law, <span class="math inline">\(\mathbf a=\frac{\mathbf F}{m}.\)</span> The acceleration is <span class="math inline">\(a=\frac{20}{5}=4\ \mathrm{m/s^2}.\)</span></p>
+</div>
+<aside class="notes">
+<ul>
+<li>Hence, Newton’s Second Law naturally leads to a second-order ordinary differential equation for the particle’s position.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
-<h3 class="fragment" id="example-14"><strong>Example</strong></h3>
+<h3 id="newtons-third-law">3.1.3. Newton’s Third Law</h3>
 <ul>
-<li class="fragment"><p>A force of <span class="math inline">\(20\, \mathrm N\)</span> acts on a particle of mass <span class="math inline">\(5\, \mathrm{kg}.\)</span></p></li>
-<li class="fragment"><p>Using Newton’s Second Law,</p></li>
+<li class="fragment"><p><strong>For every action there is an equal and opposite reaction</strong>.</p></li>
+<li class="fragment"><p>If body <span class="math inline">\(A\)</span> exerts a force on body <span class="math inline">\(B\)</span>, <span class="math inline">\(\mathbf F_{AB},\)</span> then body <span class="math inline">\(B\)</span> exerts a force on body <span class="math inline">\(A\)</span>, <span class="math inline">\(\mathbf F_{BA}.\)</span></p></li>
 </ul>
-<div class="fragment">
-<p><span class="math display">\[
-\mathbf a
-=
-\frac{\mathbf F}{m}.
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">The acceleration is</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-a
-=
-\frac{20}{5}
-=
-4\ \mathrm{m/s^2}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="newtons-third-law"><strong>Newton’s Third Law</strong></h3>
-<ul>
-<li class="fragment"><p>For every action there is an equal and opposite reaction.</p></li>
-<li class="fragment"><p>Whenever two bodies interact, the force exerted by the first body on the second is equal in magnitude and opposite in direction to the force exerted by the second body on the first.</p></li>
-<li class="fragment"><p>If body <span class="math inline">\(A\)</span> exerts a force on body <span class="math inline">\(B\)</span>, <span class="math inline">\(\mathbf F_{AB},\)</span></p>
-<ul>
-<li class="fragment">then body <span class="math inline">\(B\)</span> exerts a force on body <span class="math inline">\(A\)</span>, <span class="math inline">\(\mathbf F_{BA}.\)</span></li>
-</ul></li>
-</ul>
+<div class="columns">
+<div class="column">
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-simple">
 <div class="callout-body">
@@ -2119,25 +1732,13 @@ a
 </div>
 </div>
 </div>
-<ul>
-<li class="fragment">These forces always occur in pairs and act on different bodies.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h4 id="newtons-third-law-on-a-horizontal-plane"><strong>Newton’s Third Law on a horizontal Plane</strong></h4>
-<p>Consider a block resting on a horizontal table.</p>
-<ul>
-<li class="fragment">The block exerts a downward force on the table equal to its weight.</li>
-<li class="fragment">The table exerts an upward force on the block equal in magnitude and opposite in direction to the block’s weight.</li>
-</ul>
-<div class="fragment">
+<div class="fragment" style="text-align:center;">
 <div id="cell-fig-mass" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-mass" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-mass-output-1.png" class="quarto-figure quarto-figure-center" width="370" height="315">
+<img data-src="01_lecture_files/figure-revealjs/fig-mass-output-1.png" class="quarto-figure quarto-figure-center" width="466" height="270">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: A Mass Resting on a Horizontal Table
@@ -2147,9 +1748,25 @@ Figure&nbsp;5: A Mass Resting on a Horizontal Table
 </div>
 </div>
 </div>
+</div><div class="column">
+<p><br></p>
+<p><br></p>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><strong>Example</strong>: A 5-kg block rests on a horizontal table.</p>
+</div>
+<ul>
+<li class="fragment"><p>Since the block is at rest, <span class="math inline">\(\sum F_y=0.\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(N=W=mg=(5)(9.8)=49\,\text{N}.\)</span></p></li>
+<li class="fragment"><p><strong>Action:</strong> The table exerts an upward normal force of <span class="math inline">\(49\,\text{N}\)</span> on the block.</p></li>
+<li class="fragment"><p><strong>Reaction:</strong> The block exerts an equal downward force of <span class="math inline">\(49\,\text{N}\)</span> on the table.</p></li>
+</ul>
+</div></div>
 <aside class="notes">
 <ul>
-<li><a href="#/fig-mass" class="quarto-xref">Figure&nbsp;5</a> illustrates a mass resting on a horizontal table. The block exerts a downward force (<span class="math inline">\(W=mg\)</span>) on the table equal to its weight, and the table exerts an equal and opposite upward force (<span class="math inline">\(N\)</span>) on the block. If the block remains at rest,</li>
+<li><p>For every action there is an equal and opposite reaction.</p></li>
+<li><p>Whenever two bodies interact, the force exerted by the first body on the second is equal in magnitude and opposite in direction to the force exerted by the second body on the first.</p></li>
+<li><p>Example and <a href="#/fig-mass" class="quarto-xref">Figure&nbsp;5</a> illustrates a mass resting on a horizontal table. The block exerts a downward force (<span class="math inline">\(W=mg\)</span>) on the table equal to its weight, and the table exerts an equal and opposite upward force (<span class="math inline">\(N\)</span>) on the block. If the block remains at rest,</p></li>
 </ul>
 <p><span class="math display">\[
 N=mg,
@@ -2169,42 +1786,16 @@ N=mg,
 </section>
 <section class="slide level2">
 
-<h3 id="example-block-on-a-table"><strong>Example</strong>: Block on a Table</h3>
-<p>A block of mass <span class="math inline">\(5\,\text{kg}\)</span> rests on a horizontal table. Determine the normal force exerted by the table on the block and state the reaction force exerted by the block on the table.</p>
-<div class="fragment">
-<p><strong>Given</strong> <span class="math inline">\(m=5\,\text{kg}, \,
-g=9.8\,\text{m/s}^2.\)</span> The forces acting on the block are:</p>
-</div>
-<ul>
-<li class="fragment">Weight, <span class="math inline">\(W=mg\)</span>, acting vertically downward.</li>
-<li class="fragment">Normal force, <span class="math inline">\(N\)</span>, exerted by the table, acting vertically upward.</li>
-</ul>
-<div class="fragment">
-<p>Since the block is at rest, the net vertical force is zero, <span class="math inline">\(\sum F_y=0.\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\therefore N-W=0\quad \Rightarrow\quad N=W=mg=mg=(5)(9.8)=49\,\text{N}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>According to Newton’s third law, forces always occur in equal and opposite pairs acting on different objects.</p>
-</div>
-<ul>
-<li class="fragment"><strong>Action:</strong> The table exerts an upward normal force of <span class="math inline">\(49\,\text{N}\)</span> on the block.</li>
-<li class="fragment"><strong>Reaction:</strong> The block exerts an equal downward force of <span class="math inline">\(49\,\text{N}\)</span> on the table.</li>
-</ul>
-</section>
-<section class="slide level2">
-
 <h4 id="example-block-on-an-inclined-plane"><strong>Example</strong>: Block on an inclined Plane</h4>
 <p>A block of mass <span class="math inline">\(10\,\text{kg}\)</span> rests on a smooth inclined plane that makes an angle of <span class="math inline">\(30^\circ\)</span> with the horizontal. Determine the normal force exerted by the plane on the block. Hence, state the reaction force exerted by the block on the plane.</p>
+<div class="columns">
+<div class="column" style="text-align:center;">
 <div id="cell-fig-inclined-plane" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined-plane" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-inclined-plane-output-1.png" class="quarto-figure quarto-figure-center" width="540" height="363">
+<img data-src="01_lecture_files/figure-revealjs/fig-inclined-plane-output-1.png" class="quarto-figure quarto-figure-center" width="540" height="270">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-plane-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: A Block Resting on an Inclined Plane
@@ -2213,15 +1804,8 @@ Figure&nbsp;6: A Block Resting on an Inclined Plane
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Given:</strong></p>
-<p><span class="math display">\[
-m=10\,\text{kg}, \qquad
-g=9.8\,\text{m/s}^2, \qquad
-\theta=30^\circ.
-\]</span></p>
+<p><strong>Given:</strong> <span class="math inline">\(m=10\,\text{kg}, \, g=9.8\,\text{m/s}^2, \, \theta=30^\circ.\)</span></p>
+</div><div class="column" style="font-size:1em;">
 <div class="fragment">
 <p>The weight of the block is</p>
 <p><span class="math display">\[
@@ -2229,39 +1813,23 @@ W=mg=10(9.8)=98\,\text{N}.
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">The weight acts vertically downward. Since the plane is inclined, resolve the weight into two components:</li>
+<li class="fragment"><p>Since the plane is inclined, resolve the weight into two components:</p></li>
+<li class="fragment"><p><strong>Parallel to the plane:</strong> <span class="math display">\[
+W_\parallel=mg\sin\theta.
+\]</span></p></li>
+<li class="fragment"><p><strong>Perpendicular to the plane:</strong> <span class="math display">\[
+\begin{aligned}
+W_\perp = N &amp;= mg\cos\theta \\ &amp;= 98\cos30^\circ \\ &amp;= 84.9 \text{ N}
+\end{aligned}
+\]</span></p></li>
 </ul>
-<div class="columns">
-<div class="column fragment">
-<p><strong>Perpendicular to the plane:</strong> <span class="math display">\[
-  W_\perp=mg\cos\theta.
-  \]</span></p>
-</div><div class="column fragment">
-<p><strong>Parallel to the plane:</strong> <span class="math display">\[
-  W_\parallel=mg\sin\theta.
-  \]</span></p>
 </div></div>
-</section>
-<section class="slide level2">
-
-<p>Since the block is at rest and the plane is smooth, the normal force is equal to the perpendicular component of the weight:</p>
-<div class="fragment">
-<p><span class="math display">\[
-N=mg\cos\theta=98\cos30^\circ=98(0.866)=84.9\,\text{N}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>According to Newton’s third law, every action force has an equal and opposite reaction force.</p>
-<ul>
-<li class="fragment"><strong>Action:</strong> The inclined plane exerts a normal force of <span class="math inline">\(84.9\,\text{N}\)</span> on the block.</li>
-<li class="fragment"><strong>Reaction:</strong> The block exerts an equal and opposite normal force of <span class="math inline">\(84.9\,\text{N}\)</span> on the inclined plane.</li>
-</ul>
-</div>
 </section>
 <section class="slide level2">
 
 <h4 id="example-hanging-mass"><strong>Example</strong>: Hanging Mass</h4>
 <p>When a mass is suspended from a rope, the mass exerts a downward force on the rope equal to its weight. The rope exerts an equal and opposite upward force on the mass.</p>
+<div style="text-align:center;">
 <div id="cell-fig-string" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-string" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
@@ -2276,73 +1844,68 @@ Figure&nbsp;7: A Mass Suspended by a Light String
 </div>
 </div>
 </div>
+</div>
 <p><a href="#/fig-string" class="quarto-xref">Figure&nbsp;7</a> illustrates a mass suspended by a light string. The mass exerts a downward force (<span class="math inline">\(W=mg\)</span>) on the string equal to its weight, and the string exerts an equal and opposite upward force (<span class="math inline">\(T\)</span>) on the mass.</p>
 </section>
 <section class="slide level2">
 
-<p><strong>Other examples</strong></p>
+<h4 id="other-examples">Other examples</h4>
+<aside class="notes">
+<ul>
+<li>A <strong>rocket</strong> expels gas at high speed from its engines. The reaction force exerted by the expelled gas on the rocket is equal in magnitude and opposite in direction to the force exerted by the rocket on the gas.</li>
+<li>When a <strong>swimmer</strong> pushes against the water with their hands and feet, the water exerts an equal and opposite force on the swimmer, propelling them forward.</li>
+<li>When a person <strong>walks</strong>, they push the ground backward with their feet. The ground exerts an equal and opposite force on the person, propelling them forward.</li>
+<li>When a <strong>bird flaps</strong> its wings, it pushes the air downward and backward. The air pushes back on the bird with an equal and opposite force, allowing the bird to fly.</li>
+<li>When a <strong>boat’s sail</strong> pushes against the wind, the wind pushes back on the sail with an equal and opposite force.</li>
+<li>When a <strong>car’s tires push backward against the road</strong>, the road pushes forward on the tires with an equal and opposite force.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <div class="columns">
-<div class="column center">
-<p><strong>Rocket Propulsion</strong></p>
-<p>A rocket expels gas at high speed from its engines. The reaction force exerted by the expelled gas on the rocket is equal in magnitude and opposite in direction to the force exerted by the rocket on the gas.</p>
-<p><iconify-icon role="img" inline="" icon="iconoir:rocket" style="font-size: 84px;" aria-label="Icon rocket from iconoir Iconify.design set." title="Icon rocket from iconoir Iconify.design set."></iconify-icon></p>
-</div><div class="column center">
-<p><strong>Swimming</strong></p>
-<p>When a swimmer pushes against the water with their hands and feet, the water exerts an equal and opposite force on the swimmer, propelling them forward.</p>
-<p><iconify-icon role="img" inline="" icon="fa7-solid:swimmer" style="font-size: 84px;" aria-label="Icon swimmer from fa7-solid Iconify.design set." title="Icon swimmer from fa7-solid Iconify.design set."></iconify-icon></p>
+<div class="column center block red fragment" style="width:45%;">
+<p><strong>Rocket Propulsion</strong> <iconify-icon role="img" inline="" icon="iconoir:rocket" style="font-size: 84px;" aria-label="Icon rocket from iconoir Iconify.design set." title="Icon rocket from iconoir Iconify.design set."></iconify-icon></p>
+</div><div class="column center block blue fragment" style="width:45%;">
+<p><strong>Swimming</strong> <iconify-icon role="img" inline="" icon="fa7-solid:swimmer" style="font-size: 84px;" aria-label="Icon swimmer from fa7-solid Iconify.design set." title="Icon swimmer from fa7-solid Iconify.design set."></iconify-icon></p>
+</div></div>
+<div class="columns">
+<div class="column center block green fragment" style="width:45%;">
+<p><strong>Walking</strong> <iconify-icon role="img" inline="" icon="ion:walk" style="font-size: 84px;" aria-label="Icon walk from ion Iconify.design set." title="Icon walk from ion Iconify.design set."></iconify-icon></p>
+</div><div class="column center block yellow fragment" style="width:45%;">
+<p><strong>Bird Flight</strong> <iconify-icon role="img" inline="" icon="mdi:bird" style="font-size: 84px;" aria-label="Icon bird from mdi Iconify.design set." title="Icon bird from mdi Iconify.design set."></iconify-icon></p>
+</div></div>
+<div class="columns">
+<div class="column center block purple fragment" style="width:45%;">
+<p><strong>Boat Sailing</strong> <iconify-icon role="img" inline="" icon="boxicons:sail" style="font-size: 84px;" aria-label="Icon sail from boxicons Iconify.design set." title="Icon sail from boxicons Iconify.design set."></iconify-icon></p>
+</div><div class="column center block orange fragment" style="width:45%;">
+<p><strong>Car Driving</strong> <iconify-icon role="img" inline="" icon="lucide:car" style="font-size: 84px;" aria-label="Icon car from lucide Iconify.design set." title="Icon car from lucide Iconify.design set."></iconify-icon></p>
 </div></div>
 </section>
 <section class="slide level2">
 
-<div class="columns">
-<div class="column center">
-<p><strong>Walking</strong></p>
-<p>When a person walks, they push the ground backward with their feet. The ground exerts an equal and opposite force on the person, propelling them forward.</p>
-<p><iconify-icon role="img" inline="" icon="ion:walk" style="font-size: 84px;" aria-label="Icon walk from ion Iconify.design set." title="Icon walk from ion Iconify.design set."></iconify-icon></p>
-</div><div class="column center">
-<p><strong>Bird Flight</strong></p>
-<p>When a bird flaps its wings, it pushes the air downward and backward. The air pushes back on the bird with an equal and opposite force, allowing the bird to fly.</p>
-<p><iconify-icon role="img" inline="" icon="mdi:bird" style="font-size: 84px;" aria-label="Icon bird from mdi Iconify.design set." title="Icon bird from mdi Iconify.design set."></iconify-icon></p>
-</div></div>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column center">
-<p><strong>Boat Sailing</strong></p>
-<p>When a boat’s sail pushes against the wind, the wind pushes back on the sail with an equal and opposite force.</p>
-<p><iconify-icon role="img" inline="" icon="boxicons:sail" style="font-size: 84px;" aria-label="Icon sail from boxicons Iconify.design set." title="Icon sail from boxicons Iconify.design set."></iconify-icon></p>
-</div><div class="column center">
-<p><strong>Car Driving</strong></p>
-<p>When a car’s tires push backward against the road, the road pushes forward on the tires with an equal and opposite force.</p>
-<p><iconify-icon role="img" inline="" icon="lucide:car" style="font-size: 84px;" aria-label="Icon car from lucide Iconify.design set." title="Icon car from lucide Iconify.design set."></iconify-icon></p>
-</div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="free-body-diagram">Free-Body Diagram</h3>
+<h4 id="free-body-diagram">3.1.4 Free-Body Diagram</h4>
 <p>Free-body diagrams provide the starting point for deriving equations of motion. A free-body diagram should include</p>
+<div class="columns">
+<div class="column" style="width:40%;">
 <ul>
 <li class="fragment">all external forces,</li>
 <li class="fragment">appropriate coordinate axes,</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<ul>
 <li class="fragment">force directions,</li>
 <li class="fragment">known quantities and unknown reactions.</li>
 </ul>
-<div class="fragment">
-<div class="callout callout-important callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>Free-body diagrams are essential for identifying forces before deriving equations of motion.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
+</div></div>
+<div class="fragment" style="text-align:center;">
 <div id="cell-fig-freebody" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="fig-freebody" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
@@ -2357,10 +1920,11 @@ Figure&nbsp;8: Free-Body Diagram of a Mass
 </div>
 </div>
 </div>
+</div>
 </section>
 <section class="slide level2">
 
-<h3 id="limitations-of-newtonian-mechanics"><strong>Limitations of Newtonian Mechanics</strong></h3>
+<h4 id="limitations-of-newtonian-mechanics">3.1.5 Limitations of Newtonian Mechanics*</h4>
 <div class="fragment">
 <p>Although Newton’s laws describe many engineering systems with remarkable accuracy, they have limitations.</p>
 </div>
@@ -2378,23 +1942,29 @@ Figure&nbsp;8: Free-Body Diagram of a Mass
 </section>
 <section class="slide level2">
 
-<h3 id="conservation-principles">Conservation Principles</h3>
+<h3 id="conservation-principles">3.2. Conservation Principles</h3>
+<aside class="notes">
 <ul>
-<li class="fragment"><p>Most mathematical models are derived from conservation laws.</p></li>
-<li class="fragment"><p>These state that certain physical quantities cannot be created or destroyed, although they may be transported or transformed.</p></li>
+<li>Most mathematical models are derived from conservation laws.</li>
+<li>These state that certain physical quantities cannot be created or destroyed, although they may be transported or transformed.</li>
 </ul>
-<div class="fragment">
-<p>The three fundamental conservation laws are</p>
-</div>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <ul>
-<li class="fragment">Conservation of <strong>Mass</strong></li>
-<li class="fragment">Conservation of <strong>Energy</strong></li>
-<li class="fragment">Conservation of <strong>Momentum</strong></li>
+<li class="fragment">Conservation of <strong>Mass</strong>, <strong>Energy</strong> and <strong>Momentum</strong></li>
 </ul>
 <div class="fragment">
 <p>Each conservation law has a common mathematical structure,</p>
 <p><span class="math display">\[
-\boxed{
 \text{Accumulation}
 =
 \text{Input}
@@ -2402,110 +1972,71 @@ Figure&nbsp;8: Free-Body Diagram of a Mass
 \text{Output}
 +
 \text{Generation}.
-}
 \]</span></p>
 </div>
-<div class="fragment">
-<p>This general balance equation provides the starting point for developing many engineering models.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h4 id="conservation-of-mass">Conservation of Mass</h4>
-<p>The principle of conservation of mass states that mass can neither be created nor destroyed.</p>
-<div class="fragment">
+<h3 class="fragment" id="conservation-of-mass">3.2.1. Conservation of Mass</h3>
+<ul>
+<li class="fragment">Mass can neither be created nor destroyed.</li>
+</ul>
+<div class="columns">
+<div class="column fragment" style="width:70%;">
 <p>For a control volume,</p>
 <p><span class="math display">\[
 \boxed{
 \text{Rate of accumulation}
-=
-\text{Mass inflow}
--
-\text{Mass outflow}.
+\!=\!
+\text{Mass}_\text{inflow}
+\!-\!
+\text{Mass}_\text{outflow}.
 }
 \]</span></p>
-</div>
-<div class="fragment">
+</div><div class="column fragment" style="width:30%;">
 <p>For a closed system,</p>
 <p><span class="math display">\[
 \boxed{
 m=\text{constant}.
 }
 \]</span></p>
-</div>
-<div class="fragment">
-<p>In a steady-state flow through a control volume, the rate of mass accumulation is zero. Therefore, the mass inflow equals the mass outflow.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="example-conservation-of-mass-in-a-water-tank"><strong>Example</strong>: Conservation of Mass in a Water Tank</h3>
-<p>Suppose water flows into a tank at a rate of <span class="math inline">\(5\ \mathrm{kg/s}\)</span> and flows out at a rate of <span class="math inline">\(3\ \mathrm{kg/s}\)</span>.</p>
-<div class="fragment">
-<p>The rate of mass accumulation in the tank is <span class="math display">\[
-\frac{dm}{dt} = 5 - 3 = 2\ \mathrm{kg/s}.
-\]</span></p>
-</div>
-<h3 class="fragment" id="example-conservation-of-mass-in-a-pipe"><strong>Example</strong>: Conservation of Mass in a Pipe</h3>
-<div class="fragment">
-<p>Suppose water flows through a pipe with a cross-sectional area of <span class="math inline">\(A_1 = 0.1\ \mathrm{m^2}\)</span> at a velocity of <span class="math inline">\(v_1 = 2\ \mathrm{m/s}\)</span> and a density of <span class="math inline">\(\rho = 1000\ \mathrm{kg/m^3}\)</span>.</p>
-</div>
-<div class="fragment">
-<p>The mass flow rate is <span class="math display">\[
-\dot{m} = \rho A_1 v_1 = 1000 \mathrm{kg/m^3} \times 0.1\ \mathrm{m^2} \times 2\ \mathrm{m/s} = 200\ \mathrm{kg/s}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="example-bank-account-analogy"><strong>Example</strong>: Bank Account Analogy</h3>
-<p>Suppose you have a bank account with an initial balance of <span class="math inline">\(B_0\)</span>. If you deposit money at a rate of <span class="math inline">\(D(t)\)</span> and withdraw money at a rate of <span class="math inline">\(W(t)\)</span>,</p>
-<div class="fragment">
-<p>the rate of change of your account balance is given by <span class="math display">\[
-\frac{dB}{dt} = D(t) - W(t).
-\]</span></p>
-</div>
-<div class="fragment">
-<p>If you deposit <span class="math inline">\(100\ \mathrm{dollars/week}\)</span> and withdraw <span class="math inline">\(50\ \mathrm{dollars/week}\)</span>, the rate of change of your account balance is <span class="math display">\[
-\frac{dB}{dt} = 100 - 50 = 50\ \mathrm{dollars/week}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>To find the account balance at any time <span class="math inline">\(t\)</span>, you can integrate this equation over time, taking into account the initial balance <span class="math inline">\(B_0 = 500\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-\begin{aligned}
-\int_{0}^{t} \frac{dB}{dt} dt &amp;= \int_{0}^{t} (D(t) - W(t)) dt \\
-&amp;= \int_{0}^{t} 50 dt \\
-&amp;= 50t + B_0
-\end{aligned}
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-B(t) = 50t + 500.\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="example-conservation-of-mass-in-traffic-density"><strong>Example</strong>: Conservation of Mass in Traffic Density</h3>
-<p>Suppose the traffic density on a road segment is <span class="math inline">\(\rho(x,t)\)</span> (vehicles per unit length) and the traffic flow rate is <span class="math inline">\(q(x,t)\)</span> (vehicles per unit time).</p>
-<div class="fragment">
-<p>The conservation of mass for traffic can be expressed as <span class="math display">\[
-\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x} = 0,
-\]</span></p>
-</div>
+</div></div>
 <ul>
-<li class="fragment"><span class="math inline">\(q = \rho v\)</span> and <span class="math inline">\(v\)</span> is the average speed of vehicles.</li>
-<li class="fragment">This equation states that the rate of change of traffic density at a point is equal to the negative of the spatial change in traffic flow.</li>
+<li class="fragment">In a steady-state flow through a control volume,
+<ul>
+<li class="fragment">the rate of mass accumulation is zero. Therefore, the mass inflow equals the mass outflow.</li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h4 id="conservation-of-momentum">Conservation of Momentum</h4>
+<p><span style="color:blue;"><strong>Water Tank Example</strong></span>: Suppose water flows into a tank at a rate of <span class="math inline">\(5\ \mathrm{kg/s}\)</span> and flows out at a rate of <span class="math inline">\(3\ \mathrm{kg/s}\)</span>. The rate of mass accumulation in the tank is</p>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{dm}{dt} = 5 - 3 = 2\ \mathrm{kg/s}.
+\]</span></p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p><span style="color:blue;"><strong>Water Pipe Example</strong></span>: Suppose water flows through a pipe with a cross-sectional area of <span class="math inline">\(A_1 = 0.1\ \mathrm{m^2}\)</span> at a velocity of <span class="math inline">\(v_1 = 2\ \mathrm{m/s}\)</span> and a density of <span class="math inline">\(\rho = 1000\ \mathrm{kg/m^3}\)</span>. The rate of mass accumulation in the tank is</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\dot{m} = \rho A_1 v_1 = 1000 \mathrm{kg/m^3} \times 0.1\ \mathrm{m^2} \times 2\ \mathrm{m/s} = 200\ \mathrm{kg/s}.
+\]</span></p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p><span style="color:blue;"><strong>Traffic Density Example</strong></span>: Suppose the traffic density on a road segment is <span class="math inline">\(\rho(x,t)\)</span> and the traffic flow rate is <span class="math inline">\(q(x,t)\)</span>. The conservation of mass for traffic can be expressed as</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x} = 0,
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="conservation-of-momentum">3.2.2. Conservation of Momentum</h3>
 <p>The principle of conservation of momentum states that the total momentum of a closed system remains constant if no external forces act on it.</p>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
 \sum \mathbf P_\text{before} = \sum \mathbf P_\text{after}
@@ -2519,21 +2050,29 @@ B(t) = 50t + 500.\]</span></p>
 \begin{aligned}
 \mathbf P_1 + \mathbf P_2 + \ldots + \mathbf P_n &amp;= \mathbf P_1' + \mathbf P_2' + \ldots + \mathbf P_n' \\
 m_1 \mathbf v_1 + m_2 \mathbf v_2 + \ldots + m_n \mathbf v_n &amp;= m_1' \mathbf v_1' + m_2' \mathbf v_2' + \ldots + m_n' \mathbf v_n'
-\end{aligned}\]</span></p>
+\end{aligned}
+\]</span></p>
 </div>
+<p><br></p>
 <div class="fragment">
 <p>Momentum conservation forms the basis of</p>
 </div>
+<div class="columns">
+<div class="column">
 <ul>
 <li class="fragment">rigid-body mechanics,</li>
 <li class="fragment">fluid mechanics,</li>
+</ul>
+</div><div class="column">
+<ul>
 <li class="fragment">impact analysis,</li>
 <li class="fragment">vehicle dynamics.</li>
 </ul>
+</div></div>
 </section>
 <section class="slide level2">
 
-<h3 id="example-conservation-of-momentum-in-collisions"><em>Example</em>: Conservation of Momentum in Collisions</h3>
+<h4 id="example-conservation-of-momentum-in-collisions"><em>Example</em>: Conservation of Momentum in Collisions</h4>
 <p>Suppose two ice skaters, Skater A and Skater B, collide on an ice rink. Skater A has a mass of <span class="math inline">\(m_A = 50\ \mathrm{kg}\)</span> and is moving with a velocity of <span class="math inline">\(v_A = 2\ \mathrm{m/s}\)</span>, while Skater B has a mass of <span class="math inline">\(m_B = 70\ \mathrm{kg}\)</span> and is initially at rest. After the collision, they move together with a common velocity <span class="math inline">\(v_f\)</span>.</p>
 <div class="fragment">
 <p>Using the conservation of momentum:</p>
@@ -2560,33 +2099,33 @@ v_f = \frac{100}{120} \approx 0.833\ \mathrm{m/s}
 </section>
 <section class="slide level2">
 
-<h3 id="example-conservation-of-momentum-in-billiard-ball-collision"><em>Example</em>: Conservation of Momentum in Billiard Ball Collision</h3>
+<h4 id="example-conservation-of-momentum-in-billiard-ball-collision"><em>Example</em>: Conservation of Momentum in Billiard Ball Collision</h4>
 <p>A 0.2 kg billiard ball moving at <span class="math inline">\(v_{1x} = 5\ \mathrm{m/s}\)</span> along the <span class="math inline">\(+X\)</span> axis hits a second identical ball at rest (<span class="math inline">\(v_{2x} = 0\ \mathrm{m/s}\)</span>). After the collision, the first ball deflects at an angle of <span class="math inline">\(30^\circ\)</span> above the <span class="math inline">\(+X\)</span> axis, and the second ball moves at an angle of <span class="math inline">\(60^\circ\)</span> below the <span class="math inline">\(+X\)</span> axis. Using conservation of momentum, find the final velocities of both balls <span class="math inline">\(v_1'\)</span> and <span class="math inline">\(v_2'\)</span>.</p>
-<h3 class="fragment" id="we-resolve-the-momentum-into-x-and-y-components.">We resolve the momentum into <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> components.</h3>
+<h4 class="fragment" id="we-resolve-the-momentum-into-x-and-y-components.">We resolve the momentum into <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> components.</h4>
 <div class="fragment">
 <p>The conservation of momentum in the <span class="math inline">\(X\)</span> direction gives</p>
-<p><span class="math display">\[
+<p><span id="eq-1"><span class="math display">\[
 \begin{aligned}
 m_1 v_{1x} + m_2 v_{2x} &amp;= m_1 v_{1}' \cos(30^\circ) + m_2 v_{2}' \cos(-60^\circ) \\
 0.2 \times 5 + 0.2 \times 0 &amp;= 0.2v_{1}' \left(\frac{\sqrt{3}}{2}\right) + 0.2v_{2}' \left(\frac{1}{2}\right) \\
-5 &amp;= 0.866v_{1}' + 0.5v_{2}' \qquad \text{(Eq. 1)}
+5 &amp;= 0.866v_{1}' + 0.5v_{2}'
 \end{aligned}
-\]</span></p>
+\tag{1}\]</span></span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="the-conservation-of-momentum-in-the-y-direction-gives">The conservation of momentum in the <span class="math inline">\(Y\)</span> direction gives</h3>
-<p><span class="math display">\[
+<h4 id="the-conservation-of-momentum-in-the-y-direction-gives">The conservation of momentum in the <span class="math inline">\(Y\)</span> direction gives</h4>
+<p><span id="eq-2"><span class="math display">\[
 \begin{aligned}
 m_1 v_{1y} + m_2 v_{2y} &amp;= m_1 v_{1}' \sin(30^\circ) + m_2 v_{2}' \sin(-60^\circ) \\
 0.2 \times 0 + 0.2 \times 0 &amp;= 0.2v_{1}' \left(\frac{1}{2}\right) + 0.2v_{2}' \left(-\frac{\sqrt{3}}{2}\right) \\
 0 &amp;= 0.5v_{1}' - 0.866v_{2}' \\
-v_{1}' &amp;= 1.732v_{2}' \qquad \qquad \qquad \text{(Eq. 2)}
+v_{1}' &amp;= 1.732v_{2}'
 \end{aligned}
-\]</span></p>
+\tag{2}\]</span></span></p>
 <div class="fragment">
-<p>Substituting Eq. 2 into Eq. 1: <span class="math display">\[
+<p>Substituting <a href="#/eq-2" class="quarto-xref">Equation&nbsp;2</a> into <a href="#/eq-1" class="quarto-xref">Equation&nbsp;1</a>: <span class="math display">\[
 \begin{aligned}
 5 &amp;= 0.866(1.732v_{2}') + 0.5v_{2}' \\
 5 &amp;= 2v_{2}' \\
@@ -2595,14 +2134,14 @@ v_{2}' &amp;= 2.5\ \mathrm{m/s}
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Substituting <span class="math inline">\(v_{2}'\)</span> back into Eq. 2: <span class="math display">\[
+<p>Substituting <span class="math inline">\(v_{2}'\)</span> back into <a href="#/eq-2" class="quarto-xref">Equation&nbsp;2</a>: <span class="math display">\[
 v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 \]</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="conservation-of-energy">Conservation of Energy</h3>
+<h3 id="conservation-of-energy">3.2.3. Conservation of Energy</h3>
 <p>The First Law of Thermodynamics states that energy cannot be created or destroyed.</p>
 <div class="fragment">
 <p>For a control volume,</p>
@@ -2616,14 +2155,16 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 <li class="fragment"><span class="math inline">\(\dot{E}_\text{out}\)</span> is the <strong>rate of energy leaving</strong> the system, and</li>
 <li class="fragment"><span class="math inline">\(\dot{E}_\text{gen}\)</span> is the <strong>rate of energy generation</strong> within the system.</li>
 </ul>
+<div class="fragment">
 <p>For systems with no energy generation, the equation simplifies to</p>
 <p><span class="math display">\[
 \frac{dE_\text{system}}{dt} = \dot{E}_\text{in} - \dot{E}_\text{out}.
 \]</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<h3 id="example-conservation-of-energy-in-a-chemical-reactor"><strong>Example</strong>: Conservation of Energy in a Chemical Reactor</h3>
+<h4 id="example-conservation-of-energy-in-a-chemical-reactor"><em>Example</em>: Conservation of Energy in a Chemical Reactor</h4>
 <p>A well-insulated chemical reactor receives reactants carrying thermal energy at a rate of <span class="math inline">\(120\ \mathrm{kW}\)</span>. The products leave the reactor carrying thermal energy at a rate of <span class="math inline">\(80\ \mathrm{kW}\)</span>. An exothermic chemical reaction occurring inside the reactor generates thermal energy at a rate of <span class="math inline">\(50\ \mathrm{kW}\)</span>. Determine the rate of change of energy stored in the reactor.</p>
 <div class="fragment">
 <p>Using the conservation of energy equation,</p>
@@ -2647,34 +2188,14 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 </section>
 <section class="slide level2">
 
-<h3 id="example-steady-state-energy-balance-for-a-gas-turbine"><strong>Example</strong>: Steady-State Energy Balance for a Gas Turbine</h3>
-<p>A gas turbine operates continuously at steady state. Air enters the turbine system carrying thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{in}} = 6.0\ \mathrm{MW}\)</span>. Fuel combustion inside the system generates thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{generated}} = 18.0\ \mathrm{MW}\)</span>.</p>
+<h4 id="example-steady-state-energy-balance-for-a-gas-turbine"><strong>Example</strong>: Steady-State Energy Balance for a Gas Turbine</h4>
+<p>Air enters a gas turbine system carrying thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{in}} = 6.0\ \mathrm{MW}.\)</span> Fuel combustion generates thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{generated}} = 18.0\ \mathrm{MW}\)</span>. The exhaust gases leave the turbine carrying thermal energy at <span class="math inline">\(\dot{E}_{\text{exhaust}} = 20.5\ \mathrm{MW}\)</span>. The turbine produces shaft work at <span class="math inline">\(\dot{W}_{\text{shaft}} = 3.0\ \mathrm{MW}\)</span> and loses heat to the surroundings at a rate of <span class="math inline">\(\dot{Q}_{\text{loss}} = 0.5\ \mathrm{MW}\)</span>. Verify that the turbine operates at <strong>steady state</strong>, i.e.&nbsp; <span class="math display">\[\frac{dE_{\text{system}}}{dt} = 0 \quad \text{or} \quad \dot{E}_{\text{in}} + \dot{E}_{\text{gen}} = \dot{E}_{\text{out}}.\]</span></p>
 <div class="fragment">
-<p>The exhaust gases leave the turbine carrying thermal energy at a rate of <span class="math inline">\(\dot{E}_{\text{exhaust}} = 20.5\ \mathrm{MW}\)</span>. The turbine produces shaft work at a rate of <span class="math inline">\(\dot{W}_{\text{shaft}} = 3.0\ \mathrm{MW}\)</span> and loses heat to the surroundings at a rate of <span class="math inline">\(\dot{Q}_{\text{loss}} = 0.5\ \mathrm{MW}\)</span>. Verify that the turbine operates at <strong>steady state</strong>.</p>
-</div>
-<div class="fragment">
-<p>At steady state,</p>
-<p><span class="math display">\[
-\frac{dE_{\text{system}}}{dt}=0 \quad \text{or} \quad
-\dot{E}_{\text{in}} + \dot{E}_{\text{generated}} = \dot{E}_{\text{out}}.
+<p>The total energy leaving the system: <span class="math display">\[
+\dot{E}_{\text{out}}=\dot{E}_{\text{exhaust}}+\dot{W}_{\text{shaft}}+\dot{Q}_{\text{loss}} =24.0\ \mathrm{MW}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p>The total energy leaving the system is</p>
-<p><span class="math display">\[
-\dot{E}_{\text{out}}
-=
-\dot{E}_{\text{exhaust}}
-+
-\dot{W}_{\text{shaft}}
-+
-\dot{Q}_{\text{loss}} =
-24.0\ \mathrm{MW}.
-\]</span></p>
 <div class="fragment">
-<p>Substituting into the energy balance,</p>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{dE_{\text{system}}}{dt}
@@ -2683,33 +2204,37 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 -
 \dot{E}_{\text{out}}
 +
-\dot{E}_{\text{generated}}\\
-&amp;=
+\dot{E}_{\text{generated}}
+=
 6.0
 -
 24.0
 +
-18.0 = 0.
+18.0 = 0 \quad \Rightarrow \; \text{steady state}.
 \end{aligned}
 \]</span></p>
 </div>
-<ul>
-<li class="fragment">Since the rate of energy change is zero, the turbine is operating at steady state.</li>
-</ul>
 <div class="fragment">
-<p><strong>Note:</strong> In practice, a continuously operating gas turbine is designed to operate at steady state to ensure no damage occurs to the turbine components due to excessive energy accumulation.</p>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>In practice, a continuously operating gas turbine is designed to operate at steady state to ensure no damage occurs to the turbine components due to excessive energy accumulation.</p>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="example-energy-balance-for-a-gas-turbine-combustor"><strong>Example</strong>: Energy Balance for a Gas Turbine Combustor</h3>
+<h4 id="example-energy-balance-for-a-gas-turbine-combustor"><em>Example</em>: Energy Balance for a Gas Turbine Combustor</h4>
 <ul>
-<li class="fragment"><p>A gas turbine combustor operates at steady state. Air enters the combustor at a mass flow rate of <span class="math inline">\(18\ \mathrm{kg/s}\)</span> with a specific enthalpy of <span class="math inline">\(320\ \mathrm{kJ/kg}\)</span>. Fuel enters at a mass flow rate of <span class="math inline">\(0.40\ \mathrm{kg/s}\)</span> with a heating value of <span class="math inline">\(43\,000\ \mathrm{kJ/kg}\)</span>. Combustion converts the chemical energy of the fuel into thermal energy within the combustor.</p></li>
+<li class="fragment"><p>Air enters a gas turbine’s combustor at a mass flow rate of <span class="math inline">\(18\ \mathrm{kg/s}\)</span> with a specific enthalpy of <span class="math inline">\(320\ \mathrm{kJ/kg}\)</span>. Fuel enters at a mass flow rate of <span class="math inline">\(0.40\ \mathrm{kg/s}\)</span> with a heating value of <span class="math inline">\(43\,000\ \mathrm{kJ/kg}\)</span>. Combustion converts the chemical energy of the fuel into thermal energy within the combustor.</p></li>
 <li class="fragment"><p>The combustion products leave the combustor at a mass flow rate of <span class="math inline">\(18.4\ \mathrm{kg/s}\)</span> with a specific enthalpy of <span class="math inline">\(1\,150\ \mathrm{kJ/kg}\)</span>. Heat is lost from the combustor to the surroundings at a rate of <span class="math inline">\(0.80\ \mathrm{MW}\)</span>. Neglect changes in kinetic and potential energy.</p></li>
+<li class="fragment"><p>Determine whether the combustor is operating at steady state.</p></li>
 </ul>
-<div class="fragment">
-<p>Determine whether the combustor is accumulating energy or operating at steady state.</p>
-</div>
 <h4 class="fragment" id="step-1.-determine-the-rate-of-energy-entering."><strong>Step 1. Determine the rate of energy entering.</strong></h4>
 <div class="fragment">
 <p>The incoming air contributes</p>
@@ -2751,6 +2276,7 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 21960\ \mathrm{kW}.
 \]</span></p>
 </div>
+<p><br></p>
 <h4 class="fragment" id="step-3.-determine-the-energy-generated."><strong>Step 3. Determine the energy generated.</strong></h4>
 <div class="fragment">
 <p>The combustion of fuel releases</p>
@@ -2764,10 +2290,8 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 17200\ \mathrm{kW}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="step-4.-apply-the-conservation-of-energy-equation."><strong>Step 4. Apply the conservation of energy equation.</strong></h4>
+<p><br></p>
+<h4 class="fragment" id="step-4.-apply-the-conservation-of-energy-equation."><strong>Step 4. Apply the conservation of energy equation.</strong></h4>
 <div class="fragment">
 <p><span class="math display">\[
 \frac{dE_{\text{system}}}{dt}
@@ -2776,32 +2300,25 @@ v_{1}' = 1.732 \times 2.5 \approx 4.33\ \mathrm{m/s}
 -
 21960
 +
-17200\\
+17200
 =
 1000\ \mathrm{kW}
-= 1.0\ \mathrm{MW}.
+= 1.0\ \mathrm{MW} &gt; 0.
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Since the rate of energy change is positive, the combustor is accumulating energy at a rate of <span class="math inline">\(1.0\ \mathrm{MW}\)</span>.</p>
-</div>
-<div class="fragment">
-<p><strong>Note:</strong> If this condition persisted indefinitely, temperatures and stresses would continue to rise, which could eventually damage the equipment. Therefore, a sustained positive accumulation is not a normal operating condition.</p>
+<p>Thus, the combustor is accumulating energy at a rate of <span class="math inline">\(1.0\ \mathrm{MW}\)</span>.</p>
 </div>
 </section>
-<section class="slide level2">
-
-<h3 id="applications-of-newtons-laws---projectile-motion">Applications of Newton’s Laws - Projectile Motion</h3>
-<div class="fragment">
-<p>By identifying the forces acting on the projectile and applying Newton’s Second Law, we obtain a system of ordinary differential equations describing its motion.</p>
-</div>
-<div class="fragment">
+<section id="applications-of-newtons-laws---projectile-motion" class="slide level2">
+<h2>3.3.1 Applications of Newton’s Laws - Projectile Motion</h2>
+<div style="text-align:center;">
 <div id="cell-fig-projectile" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div id="fig-projectile" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-projectile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-projectile-output-1.png" class="quarto-figure quarto-figure-center" width="651" height="432">
+<img data-src="01_lecture_files/figure-revealjs/fig-projectile-output-1.png" class="quarto-figure quarto-figure-center" width="805" height="436">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9: Projectile Motion of a Ball
@@ -2814,65 +2331,37 @@ Figure&nbsp;9: Projectile Motion of a Ball
 </section>
 <section class="slide level2">
 
-<h3 id="example-projectile-motion-of-a-ball"><strong>Example</strong>: Projectile Motion of a Ball</h3>
-<p>A ball is thrown with an initial velocity of <span class="math inline">\(v_0 = 20\ \mathrm{m/s}\)</span> at an angle of <span class="math inline">\(\theta = 30^\circ\)</span> above the horizontal. Determine the trajectory of the ball, its maximum height, and the time it takes to hit the ground.</p>
+<p><span style="color:blue;"><strong>Example</strong></span>: A ball is thrown with an initial velocity of <span class="math inline">\(v_0 = 20\ \mathrm{m/s}\)</span> at an angle of <span class="math inline">\(\theta = 30^\circ\)</span> above the horizontal. Assume <span class="math inline">\(g=9.8\ \mathrm{m/s^2}\)</span>, determine the trajectory of the ball, its maximum height, and the time it takes to hit the ground.</p>
 <div class="fragment">
-<p><strong>Given</strong></p>
+<p>Resolve the initial velocity into horizontal and vertical components:</p>
 <p><span class="math display">\[
-v_0 = 20\ \mathrm{m/s}, \qquad \theta = 30^\circ, \qquad g = 9.8\ \mathrm{m/s^2}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Projectile Motion Resolve the initial velocity into horizontal and vertical components:</p>
-<p><span class="math display">\[
-v_{0x}=v_0\cos\theta
+v_{0x}=v_0\cos\theta=20\cos30^\circ=20(0.866)=17.32\ \mathrm{m/s}
 \quad \text{and} \quad
 v_{0y}=v_0\sin\theta
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Substituting,</p>
 <p><span class="math display">\[
-v_{0x}=20\cos30^\circ=20(0.866)=17.32\ \mathrm{m/s}
+v_{0x}=20\cos30^\circ=17.32\ \mathrm{m/s}
+\quad \text{and} \quad
+v_{0y}=20\sin30^\circ=10\ \mathrm{m/s}.
 \]</span></p>
 </div>
+<p><br></p>
 <div class="fragment">
-<p><span class="math display">\[
-v_{0y}=20\sin30^\circ=20(0.5)=10\ \mathrm{m/s}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
 <p><strong>Trajectory of the Ball</strong></p>
-<div class="fragment">
 <p>The horizontal and vertical positions are</p>
 <p><span class="math display">\[
-x(t)=v_{0x}t
+x(t)=v_{0x}t=17.32t
 \quad \text{and} \quad
-y(t)=v_{0y}t-\frac12gt^2.
+y(t)=v_{0y}t-\frac12gt^2=10t-4.9t^2.
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Thus,</p>
-<p><span class="math display">\[
-x(t)=17.32t
-\quad \text{and} \quad
-y(t)=10t-4.9t^2.
-\]</span></p>
+<p>To write the trajectory as <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(x\)</span>, use <span class="math inline">\(t=\dfrac{x}{17.32}.\)</span></p>
 </div>
 <div class="fragment">
-<p>To write the trajectory as <span class="math inline">\(y\)</span> in terms of <span class="math inline">\(x\)</span>, use</p>
-<p><span class="math display">\[
-t=\frac{x}{17.32}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Substitute into <span class="math inline">\(y(t)\)</span>:</p>
-<p><span class="math display">\[
-y=10\left(\frac{x}{17.32}\right)
--4.9\left(\frac{x}{17.32}\right)^2=0.577x-0.0163x^2.
-\]</span></p>
+<p>Substitute into <span class="math inline">\(y(t)\)</span>: <span class="math inline">\(y=10\left(\dfrac{x}{17.32}\right)-4.9\left(\dfrac{x}{17.32}\right)^2=0.577x-0.0163x^2.\)</span></p>
 </div>
 </section>
 <section class="slide level2">
@@ -2903,25 +2392,23 @@ t=\frac{10}{4.9}=2.04\ \mathrm{s}.
 </section>
 <section class="slide level2">
 
-<h4 id="uniform-circular-motion">Uniform Circular Motion</h4>
+<h3 id="uniform-circular-motion">3.3.2. Uniform Circular Motion</h3>
 <p>Let a particle of mass <span class="math inline">\(m\)</span> move in a circle of radius <span class="math inline">\(r\)</span> at a constant speed <span class="math inline">\(v\)</span>.</p>
 <div class="columns">
-<div class="column fragment">
-<p>The particle experiences a centripetal acceleration directed toward the center of the circle, given by</p>
-<p><span class="math display">\[
-a_c = \frac{v^2}{r}.
+<div class="column fragment" style="width:55%;">
+<p>A centripetal acceleration directed toward the center of the circle is given by <span class="math display">\[
+\boxed{a_c = \frac{v^2}{r}}.
 \]</span></p>
-<p>The centripetal force required to keep the particle moving in a circle is</p>
-<p><span class="math display">\[
-F_c = m a_c = m \frac{v^2}{r}.
+<p>The centripetal force required to keep the particle moving in a circle is <span class="math display">\[
+\boxed{F_c = m a_c = m \frac{v^2}{r}}.
 \]</span></p>
-</div><div class="column fragment">
+</div><div class="column fragment" style="width:45%;">
 <div id="cell-fig-circular" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div id="fig-circular" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-circular-output-1.png" class="quarto-figure quarto-figure-center" width="363" height="366">
+<img data-src="01_lecture_files/figure-revealjs/fig-circular-output-1.png" class="quarto-figure quarto-figure-center" width="327" height="288">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10: Uniform Circular Motion of a Particle
@@ -2931,35 +2418,12 @@ Figure&nbsp;10: Uniform Circular Motion of a Particle
 </div>
 </div>
 </div></div>
-</section>
-<section class="slide level2">
-
-<h3 id="example-car-turning-around-a-circular-curve"><strong>Example</strong>: Car Turning Around a Circular Curve</h3>
-<p>A car of mass <span class="math inline">\(1200\,\mathrm{kg}\)</span> travels around a circular curve of radius <span class="math inline">\(50\,\mathrm{m}\)</span> at a constant speed of <span class="math inline">\(15\,\mathrm{m/s}\)</span>. Determine the centripetal acceleration and the centripetal force acting on the car.</p>
 <div class="fragment">
-<p>The centripetal acceleration is</p>
+<p><span style="color:blue;"><strong>Example</strong></span>: A car of mass <span class="math inline">\(1200\,\mathrm{kg}\)</span> travels around a circular curve of radius <span class="math inline">\(50\,\mathrm{m}\)</span> at a constant speed of <span class="math inline">\(15\,\mathrm{m/s}\)</span>.</p>
 <p><span class="math display">\[
-a_c=\frac{v^2}{r}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Substituting,</p>
-<p><span class="math display">\[
-a_c=\frac{15^2}{50}
-=\frac{225}{50}
-=4.5\ \mathrm{m/s^2}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The centripetal force is</p>
-<p><span class="math display">\[
-F_c=ma_c.
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\therefore F_c=(1200)(4.5)
-=5400\ \mathrm{N}.
+a_c=\dfrac{v^2}{r} =\dfrac{15^2}{50} =4.5\ \mathrm{m/s^2}
+\quad \text{and} \quad
+F_c=ma_c=(1200)(4.5)=5400\ \mathrm{N}.
 \]</span></p>
 </div>
 </section>
@@ -2967,52 +2431,33 @@ F_c=ma_c.
 
 <h4 id="moving-in-a-circle-with-friction"><strong>Moving in a Circle with Friction</strong></h4>
 <ul>
-<li class="fragment"><p>When a vehicle moves in a circular path, friction between the tires and the road provides the necessary centripetal force to keep the vehicle moving in a circle.</p></li>
-<li class="fragment"><p>The maximum speed at which a vehicle can safely navigate a curve without skidding is determined by the coefficient of static friction between the tires and the road.</p></li>
+<li class="fragment"><strong>Tire–road friction</strong> provides the centripetal force needed for a vehicle to negotiate a curve.</li>
+<li class="fragment">The <strong>maximum safe speed</strong> depends on the coefficient of static friction between the tires and the road.</li>
 </ul>
-<h3 class="fragment" id="example-maximum-speed-on-a-curved-road">Example: Maximum Speed on a Curved Road</h3>
 <div class="fragment">
-<p>A car of mass <span class="math inline">\(1000\ \mathrm{kg}\)</span> is traveling around a circular curve of radius <span class="math inline">\(30\ \mathrm{m}\)</span>. The coefficient of static friction between the tires and the road is <span class="math inline">\(\mu_s = 0.6\)</span>. Determine the maximum speed at which the car can safely navigate the curve without skidding.</p>
+<p><span style="color: blue;"><strong>Example:</strong></span> A 1000-kg car of mass is traveling around a circular curve of radius 30 m. The coefficient of static friction between the tires and the road is <span class="math inline">\(\mu_s = 0.6\)</span>. Determine the maximum speed the car can safely navigate the curve.</p>
 </div>
 <div class="fragment">
 <p>The maximum static friction force that can act on the car is given by</p>
 <p><span class="math display">\[
-f_{\text{max}} = \mu_s N,
+f_{\text{max}} = \mu_s N, \text{where } N \text{ is the normal force.}
 \]</span></p>
 </div>
 <div class="fragment">
-<p>where <span class="math inline">\(N\)</span> is the normal force.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>On a flat road, the normal force is equal to the weight of the car, <span class="math inline">\(N = mg\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-\therefore f_{\text{max}} = \mu_s mg.
-\]</span></p>
+<p>On a flat road, <span class="math inline">\(N = mg \Rrightarrow f_{\text{max}} = \mu_s mg.\)</span></p>
 </div>
 <div class="fragment">
-<p>The maximum speed is determined by equating the centripetal force to the maximum static friction force: <span class="math display">\[
-f_{\text{max}} = \frac{mv^2}{r}.
-\]</span></p>
+<p>The maximum speed is determined by <span class="math inline">\(f_{\text{max}} = \dfrac{mv^2}{r} \Rrightarrow \mu_s mg = \dfrac{mv^2}{r}.\)</span></p>
 </div>
 <div class="fragment">
-<p>Equating the two expressions for the maximum force, we get</p>
-<p><span class="math display">\[
-\mu_s mg = \frac{mv^2}{r}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Solving for the maximum speed, we get</p>
-<p><span class="math display">\[
+<p>Solving for the maximum speed, we get <span class="math display">\[
 v_{\text{max}} = \sqrt{\mu_s g r} = \sqrt{0.6 \cdot 9.8 \cdot 30} \approx 13.3\ \mathrm{m/s}.
 \]</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h4 id="object-moving-in-a-elevator">Object moving in a elevator</h4>
+<h3 id="object-moving-in-a-elevator">3.3.3. Object moving in a elevator</h3>
 <p>When an object is moving in an elevator, the forces acting on it include its weight and the normal force exerted by the floor of the elevator. The apparent weight of the object can change depending on the acceleration of the elevator.</p>
 <div class="columns">
 <div class="column">
@@ -3021,7 +2466,7 @@ v_{\text{max}} = \sqrt{\mu_s g r} = \sqrt{0.6 \cdot 9.8 \cdot 30} \approx 13.3\ 
 <div id="fig-elevator" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-elevator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-elevator-output-1.png" class="quarto-figure quarto-figure-center" width="425" height="294">
+<img data-src="01_lecture_files/figure-revealjs/fig-elevator-output-1.png" class="quarto-figure quarto-figure-center" width="423" height="294">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elevator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11: Apparent Weight in an Elevator
@@ -3047,42 +2492,16 @@ Figure&nbsp;12: Free-Body Diagram: Apparent Weight in an Elevator
 </div>
 </div></div>
 </section>
-<section class="slide level2 scrollable">
-
-<h3 id="example-apparent-weight-in-an-elevator"><strong>Example</strong>: Apparent Weight in an Elevator</h3>
-<p>A person of mass <span class="math inline">\(70\ \mathrm{kg}\)</span> is standing on a scale in an elevator. Determine the reading on the scale (apparent weight) when the elevator is:</p>
-<ol type="1">
-<li class="fragment">Moving upward with an acceleration of <span class="math inline">\(2\ \mathrm{m/s^2}\)</span>.</li>
-<li class="fragment">Moving downward with an acceleration of <span class="math inline">\(2\ \mathrm{m/s^2}\)</span>.</li>
-</ol>
-<div class="fragment">
-<p><strong>Given:</strong></p>
-<p><span class="math display">\[
-m=70\ \mathrm{kg}, \qquad
-g=9.8\ \mathrm{m/s^2}, \qquad
-a=2\ \mathrm{m/s^2}.
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The apparent weight is the normal force <span class="math inline">\(N\)</span> exerted by the scale on the person.</p>
-</div>
-</section>
 <section class="slide level2">
 
-<p><strong>1. Elevator Moving Upward</strong></p>
-<p>When the elevator accelerates upward, the forces acting on the person are:</p>
-<ul>
-<li class="fragment">Normal force, <span class="math inline">\(N\)</span>, acting upward.</li>
-<li class="fragment">Weight, <span class="math inline">\(W=mg\)</span>, acting downward.</li>
-</ul>
+<p><span style="color:blue;"><strong>Example:</strong></span> A person of mass <span class="math inline">\(70\ \mathrm{kg}\)</span> is standing on a scale in an elevator. Determine the reading on the scale (apparent weight) when the elevator is moving upward or downward with an acceleration of <span class="math inline">\(2\ \mathrm{m/s^2}\)</span>.</p>
 <div class="fragment">
-<p>Applying Newton’s second law,</p>
-<p><span class="math display">\[
-\sum F_y = ma.
-\]</span></p>
+<p><strong>(i) Elevator Moving Upward</strong></p>
 </div>
 <div class="fragment">
-<p>Taking upward as the positive direction,</p>
+<p>Applying Newton’s second law to the vertical direction, <span class="math inline">\(\sum F_y = ma.\)</span></p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 N-mg=ma.
 \]</span></p>
@@ -3092,13 +2511,14 @@ N-mg=ma.
 \therefore \quad N=m(g+a)=70(9.8+2)=70(11.8)=826\ \mathrm{N}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>2. Elevator Moving Downward</strong></p>
-<p>The forces remain the same, but the acceleration is downward.</p>
+<ul>
+<li class="fragment">The apparent weight <strong>increases</strong> because the scale must provide an additional upward force.</li>
+</ul>
 <div class="fragment">
-<p>Taking upward as the positive direction,</p>
+<p><strong>(ii) Elevator Moving Downward</strong></p>
+<p>The forces remain the same, but the acceleration is downward.</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 N-mg=-ma \quad \rightarrow \quad N=mg-ma.
 \]</span></p>
@@ -3108,93 +2528,60 @@ N-mg=-ma \quad \rightarrow \quad N=mg-ma.
 N=70(9.8-2)=70(7.8)=546\ \mathrm{N}.
 \]</span></p>
 </div>
-<div class="fragment">
-<table class="table-striped responsive-table caption-top">
-<thead>
-<tr class="header">
-<th>Elevator Motion</th>
-<th style="text-align: right;">Apparent Weight</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Accelerating upward at <span class="math inline">\(2\ \mathrm{m/s^2}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(826\ \mathrm{N}\)</span></td>
-</tr>
-<tr class="even">
-<td>Accelerating downward at <span class="math inline">\(2\ \mathrm{m/s^2}\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(546\ \mathrm{N}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
 <ul>
-<li class="fragment">When the elevator accelerates <strong>upward</strong>, the apparent weight <strong>increases</strong> because the scale must provide an additional upward force.</li>
-<li class="fragment">When the elevator accelerates <strong>downward</strong>, the apparent weight <strong>decreases</strong> because less upward force is required.</li>
+<li class="fragment">The apparent weight <strong>decreases</strong> because less upward force is required.</li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h4 id="smooth-pulleys-motion">Smooth Pulleys Motion</h4>
-<p>A mass of <span class="math inline">\(m_2\)</span> kg is placed on a smooth horizontal table, and connected by a light inextensible string passing over a small smooth pulley at the edge to a mass of <span class="math inline">\(m_1\;kg\)</span> hanging freely.</p>
-<div class="fragment">
-<p>Assume the tension in the string is <span class="math inline">\(T\)</span>. Directions of all forces acting on <span class="math inline">\(m_1\)</span> is downward, and on <span class="math inline">\(m_2\)</span> is horizontal. The acceleration of the system is <span class="math inline">\(a\)</span>.</p>
-</div>
-<div class="fragment">
-<p>The equation of motion for <span class="math inline">\(m_1\)</span> by using Newton’s 2nd law is</p>
-<p><span class="math display">\[
-m_1g-T=m_1a
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The equation of motion for <span class="math inline">\(m_2\)</span> by using Newton’s 2nd law is <span class="math display">\[
-T=m_2a
-\]</span></p>
-</div>
-<div class="fragment">
-<p>The equations for <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> constitute a system of two equations with two unknowns tension force <span class="math inline">\(T\)</span> and acceleration <span class="math inline">\(a\)</span>.</p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>Solve the system of equations to find the acceleration <span class="math inline">\(a\)</span> and tension <span class="math inline">\(T\)</span> in the string.</p>
-<div class="fragment">
-<p><span class="math display">\[
-a=\frac{m_1g}{m_1+m_2}, \qquad T=\frac{m_1m_2g}{m_1+m_2}.
-\]</span></p>
-</div>
-<div class="fragment">
+<h3 id="smooth-pulleys-motion">3.3.4. Smooth Pulleys Motion</h3>
+<p>A mass of <span class="math inline">\(m_2\)</span> kg is placed on a smooth horizontal table, and connected by a light string passing over a small smooth pulley at the edge to a mass of <span class="math inline">\(m_1\;kg\)</span> hanging freely. Assume the tension in the string is <span class="math inline">\(T\)</span>. The acceleration of the system is <span class="math inline">\(a\)</span>.</p>
+<div class="columns">
+<div class="column" style="text-align:center;">
 <div id="cell-fig-pulley" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div id="fig-pulley" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-pulley-output-1.png" class="quarto-figure quarto-figure-center" width="614" height="341">
+<img data-src="01_lecture_files/figure-revealjs/fig-pulley-output-1.png" class="quarto-figure quarto-figure-center" width="600" height="389">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulley-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Motion of Two Masses Connected by a Smooth Pulley
+Figure&nbsp;13: Smooth Pulley System with Two Masses
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</section>
-<section class="slide level2 scrollable">
-
-<h3 id="example-motion-of-two-masses-connected-by-a-smooth-pulley">Example: Motion of Two Masses Connected by a Smooth Pulley</h3>
-<p>A mass of <span class="math inline">\(m_1=4\,\mathrm{kg}\)</span> hangs freely over the edge of a smooth table and is connected by a light inextensible string passing over a smooth pulley to a mass of <span class="math inline">\(m_2=6\,\mathrm{kg}\)</span> resting on the table. Taking <span class="math inline">\(g=9.8\ \mathrm{m/s^2}\)</span> and assuming the pulley and string are ideal.</p>
+</div><div class="column fragment">
 <div class="fragment">
-<p>Determine:</p>
+<p>The equation of motion for <span class="math inline">\(m_1\)</span> by using Newton’s 2nd law is</p>
+<p><span class="space-out"></span> <span class="math display">\[
+m_1g-T=m_1a
+\]</span></p>
 </div>
-<ol type="1">
-<li class="fragment">The acceleration of the system.</li>
-<li class="fragment">The tension in the string.</li>
-</ol>
+<div class="fragment">
+<p>The equation of motion for <span class="math inline">\(m_2\)</span> by using Newton’s 2nd law is</p>
+<p><span class="space-out"></span> <span class="math display">\[
+T=m_2a
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Solve the system of equations to find the acceleration <span class="math inline">\(a\)</span> and tension <span class="math inline">\(T\)</span> in the string.</p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><span class="math display">\[
+a=\frac{m_1g}{m_1+m_2}, \qquad T=\frac{m_1m_2g}{m_1+m_2}.
+\]</span></p>
+</div>
+</div></div>
 </section>
 <section class="slide level2">
 
-<h4 id="step-1-draw-the-free-body-diagrams"><strong>Step 1: Draw the Free-Body Diagrams</strong></h4>
+<p><span style="color:blue;"><strong>Example:</strong></span> A mass of <span class="math inline">\(m_1=4\,\mathrm{kg}\)</span> hangs freely over the edge of a smooth table and is connected by a light string passing over a smooth pulley to a mass of <span class="math inline">\(m_2=6\,\mathrm{kg}\)</span> resting on the table. Taking <span class="math inline">\(g=9.8\ \mathrm{m/s^2}\)</span> and assuming the pulley and string are ideal. Determine acceleration of the system and the string’s tension.</p>
+<div class="columns">
+<div class="column fragment" style="text-align:center;">
+<h5 id="step-1-draw-the-free-body-diagrams"><strong>Step 1: Draw the Free-Body Diagrams</strong></h5>
 <div id="cell-fig-pulley-fbd" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div id="fig-pulley-fbd" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
@@ -3209,53 +2596,30 @@ Figure&nbsp;14: Free-Body Diagrams of the Two Masses
 </div>
 </div>
 </div>
-<div class="columns">
-<div class="column">
+</div><div class="column fragment">
 <p>For <strong>the hanging mass <span class="math inline">\(m_1\)</span></strong>:</p>
 <ul>
 <li class="fragment">Weight: <span class="math inline">\(m_1g\)</span> acting downward.</li>
 <li class="fragment">Tension: <span class="math inline">\(T\)</span> acting upward.</li>
-</ul>
-</div><div class="column fragment">
-<p>Since the mass accelerates downward,</p>
-<p><span class="math display">\[
+<li class="fragment">The mass accelerates downward, <span class="math display">\[
 m_1g-T=m_1a.
-\]</span></p>
-</div></div>
-</section>
-<section class="slide level2">
-
-<div id="cell-fig-pulley-fbd2" class="cell" data-execution_count="14">
-<div class="cell-output cell-output-display">
-<div id="fig-pulley-fbd2" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-pulley-fbd2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-pulley-fbd2-output-1.png" class="quarto-figure quarto-figure-center" width="504" height="315">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulley-fbd2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Free-Body Diagrams of the Two Masses
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column fragment">
+\]</span></li>
+</ul>
+<div class="fragment">
 <p>For <strong>the mass <span class="math inline">\(m_2\)</span> on the table</strong>:</p>
+</div>
 <ul>
 <li class="fragment">Tension: <span class="math inline">\(T\)</span> acting horizontally.</li>
-<li class="fragment">The table is smooth, so there is no friction.</li>
-</ul>
-</div><div class="column fragment">
-<p>Applying Newton’s second law,</p>
-<p><span class="math display">\[
+<li class="fragment">The table is smooth <span class="math inline">\(\rightarrow\)</span> no friction.</li>
+<li class="fragment">The mass accelerates horizontally, <span class="math display">\[
 T=m_2a.
-\]</span></p>
+\]</span></li>
+</ul>
 </div></div>
 </section>
 <section class="slide level2">
 
-<h4 id="step-2-solve-for-the-acceleration"><strong>Step 2: Solve for the Acceleration</strong></h4>
+<h5 id="step-2-solve-for-the-acceleration">Step 2: Solve for the Acceleration</h5>
 <p>Substitute <span class="math inline">\(T=m_2a\)</span> into <span class="math inline">\(m_1g-T=m_1a.\)</span></p>
 <p><span class="math display">\[
 \text{then} \quad m_1g-m_2a=m_1a \quad\rightarrow\quad m_1g=(m_1+m_2)a
@@ -3266,7 +2630,7 @@ a=\frac{4(9.8)}{4+6}
 =\frac{39.2}{10}
 =3.92\ \mathrm{m/s^2}.
 \]</span></p>
-<h4 class="fragment" id="step-3-solve-for-the-tension"><strong>Step 3: Solve for the Tension</strong></h4>
+<h5 class="fragment" id="step-3-solve-for-the-tension">Step 3: Solve for the Tension</h5>
 <div class="fragment">
 <p>Using <span class="math inline">\(T=m_2a,\)</span> we obtain the tension in the string</p>
 <p><span class="math display">\[
@@ -3274,14 +2638,14 @@ T=(6)(3.92)
 =23.52\ \mathrm{N}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Verification</strong></p>
+<h5 class="fragment" id="step-4-verification-optional">Step 4: Verification (optional)</h5>
+<div class="fragment">
 <p>Using the formula</p>
 <p><span class="math display">\[
 T=\frac{m_1m_2g}{m_1+m_2},
 \]</span></p>
+</div>
+<div class="fragment">
 <p>we have</p>
 <p><span class="math display">\[
 T
@@ -3290,77 +2654,60 @@ T
 =
 \frac{235.2}{10}
 =
-23.52\ \mathrm{N},
+23.52\ \mathrm{N}.
 \]</span></p>
-<p>which agrees with the previous result.</p>
+</div>
 </section>
 <section class="slide level2">
 
-<h4 class="unnumbered" id="inclined-plane-with-friction">Inclined Plane with Friction</h4>
-<p>When a block slides down an inclined plane, the forces acting on it include its weight, the normal force from the plane, and the frictional force opposing the motion. The component of the weight parallel to the incline causes the block to accelerate down the slope.</p>
-<div id="cell-fig-inclined" class="cell" data-execution_count="15">
+<h3 class="unnumbered" id="inclined-plane-with-friction">3.3.5. Inclined Plane with Friction</h3>
+<p><span style="color:blue;"><strong>Example</strong>:</span> A 5-kg block is placed on a <strong>rough inclined plane</strong> that makes an angle of <span class="math inline">\(30^\circ\)</span> with the horizontal. The coefficient of kinetic friction between the block and the plane is <span class="math inline">\(\mu_k=0.20\)</span>. Take <span class="math inline">\(g=9.8\ \mathrm{m/s^2}\)</span> and determine the acceleration of the block as it slides down the incline and the normal force acting on the block.</p>
+<div class="columns">
+<div class="column" style="text-align:center;">
+<div id="cell-fig-inclined" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-inclined-output-1.png" class="quarto-figure quarto-figure-center" width="614" height="364">
+<img data-src="01_lecture_files/figure-revealjs/fig-inclined-output-1.png" class="quarto-figure quarto-figure-center" width="527" height="315">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Block Sliding Down an Inclined Plane with Friction
+Figure&nbsp;15: Block Sliding Down a Rough Inclined Plane
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2 scrollable">
-
-<h3 id="example-block-sliding-down-an-inclined-plane-with-friction"><strong>Example</strong>: Block Sliding Down an Inclined Plane with Friction</h3>
-<p>A block of mass <span class="math inline">\(5\,\mathrm{kg}\)</span> is placed on a rough inclined plane that makes an angle of <span class="math inline">\(30^\circ\)</span> with the horizontal. The coefficient of kinetic friction between the block and the plane is <span class="math inline">\(\mu_k=0.20\)</span>. Take $ g=9.8&nbsp;$ and determine:</p>
-<ol type="1">
-<li class="fragment">The acceleration of the block as it slides down the incline.</li>
-<li class="fragment">The normal force acting on the block.</li>
-</ol>
-<h4 class="fragment" id="step-1-draw-the-free-body-diagram"><strong>Step 1: Draw the Free-Body Diagram</strong></h4>
-<div class="fragment">
-<p>The forces acting on the block are:</p>
-</div>
-<ul>
-<li class="fragment">Weight: <span class="math inline">\(W=mg\)</span>, acting vertically downward.</li>
-<li class="fragment">Normal force: <span class="math inline">\(N\)</span>, acting perpendicular to the plane.</li>
-<li class="fragment">Frictional force: <span class="math inline">\(f_k=\mu_kN\)</span>, acting up the plane, opposite to the motion.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<div id="cell-fig-inclined-forces-FBD" class="cell" data-execution_count="16">
+</div><div class="column fragment">
+<h5 id="step-1-draw-the-free-body-diagram">Step 1: Draw the Free-Body Diagram</h5>
+<div id="cell-fig-inclined-forces-FBD" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div id="fig-inclined-forces-fbd" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-inclined-forces-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="01_lecture_files/figure-revealjs/fig-inclined-forces-fbd-output-1.png" class="quarto-figure quarto-figure-center" width="466" height="376">
+<img data-src="01_lecture_files/figure-revealjs/fig-inclined-forces-fbd-output-1.png" class="quarto-figure quarto-figure-center" width="391" height="261">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inclined-forces-fbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Free-Body Diagram of a Block on an Inclined Plane
+Figure&nbsp;16: FBD of a Block on an Inclined Plane
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Resolve the weight into components:</p>
-<ul>
-<li class="fragment"><p>Parallel to the incline: <span class="math inline">\(W_\parallel=mg\sin\theta.\)</span></p></li>
-<li class="fragment"><p>Perpendicular to the incline: <span class="math inline">\(W_\perp=mg\cos\theta.\)</span></p></li>
-</ul>
+</div></div>
+<div class="fragment">
+<p>Resolve the weight into: <span class="math inline">\(W_\parallel=mg\sin\theta\)</span> and <span class="math inline">\(W_\perp=mg\cos\theta.\)</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<h4 id="step-2-calculate-the-normal-force"><strong>Step 2: Calculate the Normal Force</strong></h4>
+<h5 id="step-2-calculate-the-normal-force">Step 2: Calculate the Normal Force</h5>
 <p>Since there is no acceleration perpendicular to the plane,</p>
 <p><span class="math display">\[
 N=mg\cos\theta=(5)(9.8)\cos30^\circ=49(0.866)=42.43\ \mathrm{N}.
 \]</span></p>
-<h4 class="fragment" id="step-3-calculate-the-frictional-force"><strong>Step 3: Calculate the Frictional Force</strong></h4>
+<p><span class="space-out"></span></p>
+<h5 class="fragment" id="step-3-calculate-the-frictional-force">Step 3: Calculate the Frictional Force</h5>
 <div class="fragment">
 <p>Using</p>
 <p><span class="math display">\[
@@ -3368,16 +2715,13 @@ f_k=\mu_kN,
 \]</span></p>
 </div>
 <div class="fragment">
-<p>we obtain</p>
 <p><span class="math display">\[
 f_k=(0.20)(42.43)
 =8.49\ \mathrm{N}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="step-4-apply-newtons-second-law"><strong>Step 4: Apply Newton’s Second Law</strong></h4>
+<p><span class="space-out"></span></p>
+<h5 class="fragment" id="step-4-apply-newtons-second-law">Step 4: Apply Newton’s Second Law</h5>
 <div class="fragment">
 <p>The net force along the incline is</p>
 <p><span class="math display">\[
@@ -3400,7 +2744,7 @@ a=\frac{16.01}{5}
 \]</span></p>
 </div>
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="figs/curtin-logo.png" class="slide-logo"></p>
@@ -3438,7 +2782,7 @@ a=\frac{16.01}{5}
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3, h4, h5, h6"},
+'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3"},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -3593,7 +2937,7 @@ a=\frac{16.01}{5}
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
