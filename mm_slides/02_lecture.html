@@ -6,8 +6,8 @@
 <script src="02_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="02_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="02_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="02_lecture_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="02_lecture_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Prof.&nbsp;Benchawan Wiwatanapataphee">
   <meta name="dcterms.date" content="2026-07-28">
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="02_lecture_files/libs/revealjs/dist/theme/quarto-96788e83c092d5568b77a9a184cee969.css">
+  <link rel="stylesheet" href="02_lecture_files/libs/revealjs/dist/theme/quarto-732dc41fd9cf82e3e6efb95b11f77e1d.css">
   <link href="02_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="02_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="02_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -125,6 +125,37 @@
       margin-right: 0; 
     }
   </style>
+  
+  <script>
+  window.MathJax = {
+      loader: {
+      load: [
+          '[tex]/upgreek',
+          '[tex]/boldsymbol',
+          '[tex]/physics',
+          '[tex]/color'
+      ]
+      },
+      tex: {
+      packages: {
+          '[+]': [
+          'upgreek',
+          'boldsymbol',
+          'physics',
+          'color'
+          ]
+      }
+      }
+  };
+  </script>
+
+
+  <script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
+
+  mermaid.registerLayoutLoaders(elkLayouts);
+  </script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -147,76 +178,64 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 
   <p class="date">28 Jul 2026</p>
 </section>
-<section id="outline" class="slide level2">
-<h2>Outline</h2>
-<ul>
-<li class="fragment">Index Notation
-<ul>
-<li class="fragment">Convention and Rules</li>
-<li class="fragment">Kronecker Delta</li>
-<li class="fragment">Manipulations with the Index Notation</li>
-<li class="fragment">Levi-Civita Symbol</li>
-</ul></li>
+<section id="goals-today" class="slide level2 scrollable">
+<h2>Goals Today</h2>
+<div class="columns" style="font-size: 1em;">
+<div class="column">
+<ol type="1">
+<li class="fragment">Index Notation <br> 1.1. Convention and Rules <br>  1.1.1. Free Index <br>  1.1.2. Summation Index <br>  1.1.3. Differentiation Notation <br>  1.1.4. Range of Indices <br> 1.2. Kronecker Delta <br> 1.3. Manipulations with the Index Notation <br> 1.4. Levi-Civita Symbol <br></li>
 <li class="fragment">Orthogonal Rotation of Cartesian Axes</li>
-<li class="fragment">Cartesian Tensors
-<ul>
-<li class="fragment">Cartesian Vector (Cartesian Tensor of Order One)</li>
-<li class="fragment">Second Order Cartesian Tensors</li>
-<li class="fragment">Algebra of Tensors</li>
-<li class="fragment">Canonical Form of a Symmetric Tensor</li>
-<li class="fragment">Levi-Civita Symbol in <span class="math inline">\(n\)</span> Dimensions</li>
-</ul></li>
-</ul>
-</section>
-<section id="objectives" class="slide level2">
-<h2>Objectives</h2>
-<p>By the end of this topic, students will</p>
-<ul>
-<li class="fragment">Understand the notation, properties, and operations of Cartesian tensors, and</li>
-<li class="fragment">Apply tensor algebra and coordinate transformations to formulate and</li>
-<li class="fragment">Analyze problems in continuum mechanics and related engineering applications.</li>
-</ul>
-<h3 class="fragment" id="learning-outcomes">Learning Outcomes</h3>
-<ul>
-<li class="fragment">Use index notation, the Kronecker delta, and the Levi-Civita symbol.</li>
-<li class="fragment">Perform basic manipulations using index notation.</li>
-<li class="fragment">Apply orthogonal coordinate transformations.</li>
-<li class="fragment">Identify and operate on first- and second-order Cartesian tensors.</li>
-<li class="fragment">Apply basic tensor algebra and obtain the canonical form of symmetric tensors.</li>
-</ul>
+</ol>
+</div><div class="column">
+<ol start="3" type="1">
+<li class="fragment">Cartesian Tensors <br> 3.1. Cartesian Vector <br> 3.2. Second Order Cartesian Tensors <br> 3.3. Algebra of Tensors <br> 3.4. Canonical Form of a Symmetric Tensor <br> 3.5. Levi-Civita Symbol in <span class="math inline">\(n\)</span> Dimensions <br></li>
+</ol>
+</div></div>
+<!-- ---
+
+## Objectives
+
+By the end of this topic, students will 
+
+* Understand the notation, properties, and operations of Cartesian tensors, and 
+* Apply tensor algebra and coordinate transformations to formulate and
+* Analyze problems in continuum mechanics and related engineering applications.
+
+### Learning Outcomes {.fragment}
+
+* Use index notation, the Kronecker delta, and the Levi-Civita symbol.
+* Perform basic manipulations using index notation.
+* Apply orthogonal coordinate transformations.
+* Identify and operate on first- and second-order Cartesian tensors.
+* Apply basic tensor algebra and obtain the canonical form of symmetric tensors. -->
 </section>
 <section id="index-notation-and-cartesian-tensors" class="slide level2">
 <h2>1. Index Notation and Cartesian Tensors</h2>
 <p>In applied mathematical modelling, especially continuum mechanics, we often use tensors (e.g., stress and strain) alongside scalars and vectors.</p>
-<h3 class="fragment" id="index-notation">1.1 Index Notation</h3>
 <ul>
-<li class="fragment">In index notation, we use the more systematic labelling <span class="math inline">\((x_1,x_2,x_3)\)</span> for the tri-rectangular Cartesian coordinates of a point so that</li>
+<li class="fragment">In <strong>index notation</strong>, we use the more systematic labelling <span class="math inline">\((x_1,x_2,x_3)\)</span> for the tri-rectangular Cartesian coordinates of a point so that</li>
 </ul>
-<div class="fragment">
-<p><span class="math display">\[
-(x_1,x_2,x_3) \text{ represents } (x,y,z),
-\]</span></p>
-<p><span class="math display">\[
-(Ox_1,Ox_2,Ox_3) \text{ represents } (Ox,Oy,Oz),
-\]</span></p>
-<p><span class="math display">\[
-(v_1,v_2,v_3) \text{ represents } (v_x,v_y,v_z).
-\]</span></p>
+<div class="fragment center">
+<p><span class="math inline">\((x_1,x_2,x_3)\)</span> represents <span class="math inline">\((x,y,z),\)</span></p>
+<p><span class="math inline">\((Ox_1,Ox_2,Ox_3)\)</span> represents <span class="math inline">\((Ox,Oy,Oz),\)</span></p>
+<p><span class="math inline">\((v_1,v_2,v_3)\)</span> represents <span class="math inline">\((v_x,v_y,v_z).\)</span></p>
 </div>
 <ul>
-<li class="fragment">We use free index, summation index, Kronecker Delta and various other symbols to simplify presentation of complex equations.</li>
+<li class="fragment">We use <strong>free index</strong>, <strong>summation index</strong>, <strong>Kronecker Delta</strong> and various other symbols to simplify presentation of complex equations.</li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="convention-and-rules---free-index">Convention and Rules - <strong>Free Index</strong></h3>
+<h3 id="convention-and-rules-free-index">1.1.1. Convention and Rules – Free Index</h3>
+<div class="fragment">
 <p>Consider</p>
 <p><span id="eq-eq1"><span class="math display">\[
 \begin{aligned}
-v_\color{red}{1} &amp;= a_{\color{red}{1}1}\bar{v}_1 + a_{\color{red}{1}2}\bar{v}_2, \\
-v_\color{red}{2} &amp;= a_{\color{red}{2}1}\bar{v}_1 + a_{\color{red}{2}2}\bar{v}_2.
+v_{\color{red}1} &amp;= a_{{\color{red}1}1}\bar{v}_1 + a_{{\color{red}1}2}\bar{v}_2, \\
+v_{\color{red}2} &amp;= a_{{\color{red}2}1}\bar{v}_1 + a_{{\color{red}2}2}\bar{v}_2.
 \end{aligned}
 \tag{1}\]</span></span></p>
+</div>
 <ul>
 <li class="fragment">If we let the <strong>subscript <span class="math inline">\(i\)</span> take on the numbers <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> one at a time</strong>,
 <ul>
@@ -225,139 +244,130 @@ v_\color{red}{2} &amp;= a_{\color{red}{2}1}\bar{v}_1 + a_{\color{red}{2}2}\bar{v
 </ul>
 <div class="fragment">
 <p><span id="eq-eq2"><span class="math display">\[
-v_\color{red}{i} = a_{\color{red}{i}1}\bar{v}_1 + a_{\color{red}{i}2}\bar{v}_2.
+v_{\color{red}i} = a_{{\color{red}i}1}\bar{v}_1 + a_{{\color{red}i}2}\bar{v}_2.
 \tag{2}\]</span></span></p>
 </div>
 <div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout callout-important callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Rule 1</strong></p>
-</div>
 <div class="callout-content">
-<p>If a subscript appears precisely <strong>once in each term</strong> of an expression or equation, it is called a “free index”, and is to be successively assigned each value in its range.</p>
+<p><strong>Rule 1:</strong> If a subscript appears <strong>once in each term</strong> of an equation, it is called a “free index”, and is to be successively assigned each value in its range.</p>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<p>If there are <strong>two free indices</strong> appearing in an equation such as</p>
+<ul>
+<li class="fragment">If there are <strong>two free indices</strong> appearing in an equation such as</li>
+</ul>
 <div class="fragment">
 <p><span class="math display">\[
 B_{ij} = A_{ip}A_{jp}, \qquad (i=1,2,3,4;\ j=1,2,3,4)
 \]</span></p>
 </div>
+<ul>
+<li class="fragment">then the equation is a short-hand writing of <span class="math inline">\(16\)</span> equations.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="summation-index">1.1.2. Summation Index</h3>
 <div class="fragment">
-<p>then the equation is a short-hand writing of <span class="math inline">\(16\)</span> equations.</p>
-</div>
-<h3 class="fragment" id="convention-and-rules---summation-index">Convention and Rules - <strong>Summation Index</strong></h3>
-<div class="fragment">
-<p><a href="#/eq-eq2" class="quarto-xref">Equation&nbsp;2</a> can be written as</p>
-<div class="fragment">
-<p><span id="eq-eq3"><span class="math display">\[
+<p><a href="#/eq-eq2" class="quarto-xref">Equation&nbsp;2</a> can be written as <span id="eq-eq3"><span class="math display">\[
 v_i = \sum_{j=1}^2 a_{ij}\bar{v}_j.
 \tag{3}\]</span></span></p>
 </div>
+<div class="fragment">
+<p>If we use <strong>Einstein’s summation convention</strong> we can write <a href="#/eq-eq3" class="quarto-xref">Equation&nbsp;3</a> as</p>
+<p><span id="eq-eq4"><span class="math display">\[
+v_i = a_{ij}\bar{v}_j.
+\tag{4}\]</span></span></p>
 </div>
-<ul>
-<li class="fragment">If we adopt the convention that a subscript which appears precisely <strong>twice</strong> in a term indicates a <strong>summation</strong> with the index running through the integers over the index range, we can write <a href="#/eq-eq3" class="quarto-xref">Equation&nbsp;3</a> as</li>
-</ul>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><strong>Rule 2:</strong> A subscript appearing <strong>twice in a term</strong> is automatically summed over its index range. Such an index is called a <strong>dummy (summation) index</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><b><em>Remark 1.</em></b> The dummy index name is arbitrary (i.e.&nbsp;can be assigned any letter):</p>
+<p><span class="math display">\[
+v_i = a_{i{\color{red}j}}\bar{v}_{\color{red}j} = a_{i{\color{red}p}}\bar{v}_{\color{red}p}.
+\]</span></p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><b><em>Remark 2.</em></b> The free index or summation index is immaterial (can be renamed) provided that the rules are all satisfied:</p>
+<p><span class="math display">\[
+v_{\color{red}i} = a_{{\color{red}i}j}\bar{v}_j, \qquad v_{\color{red}k} = a_{{\color{red}k}p}\bar{v}_p.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="differentiation-notation">1.1.3. Differentiation Notation</h3>
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p><strong>Rule 3:</strong> A comma represents differentiation.</p>
+</div>
+</div>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
-v_i = a_{ij}\bar{v}_j. \tag{3.4}
+v_{i,j} \quad \text{ denotes } \quad \frac{\partial v_i}{\partial x_j}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<div class="callout callout-important callout-titled callout-style-default">
+<p><br></p>
+<h3 class="fragment" id="range-of-indices">1.1.4. Range of Indices</h3>
+<div class="fragment">
+<div class="callout callout-important callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Rule 2</strong></p>
-</div>
 <div class="callout-content">
-<p>If a subscript occurs precisely twice in one term of an expression, it may or may not occur precisely twice in any other term. It is to be summed over its range of values, and is known as a “dummy index” or “summation index”.</p>
-</div>
-</div>
-</div>
-<h3 class="fragment" id="remark-1.">Remark 1.</h3>
-<div class="fragment">
-<p>The repeated index can be assigned any letter and so <span class="math display">\[
-v_i = a_{i\color{red}{j}}\bar{v}_\color{red}{j} = a_{i\color{red}{p}}\bar{v}_\color{red}{p}.
-\]</span></p>
-</div>
-<h3 class="fragment" id="remark-2.">Remark 2.</h3>
-<div class="fragment">
-<p>The particular choice of subscripts (free index or summation index) is immaterial provided that the rules are all satisfied. For example, the following equations are equivalent (represent exactly the same equations), <span class="math display">\[
-v_\color{red}{i} = a_{\color{red}{i}j}\bar{v}_j, \qquad v_\color{red}{k} = a_{\color{red}{k}p}\bar{v}_p.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<h3 id="convention-and-rules---differentiation-notation">Convention and Rules - <strong>Differentiation Notation</strong></h3>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Rule 3</strong></p>
-</div>
-<div class="callout-content">
-<p>A comma represents differentiation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>For example, <span class="math inline">\(\displaystyle v_{i,j} \quad \text{ denotes } \quad \frac{\partial v_i}{\partial x_j}.\)</span></p>
-</div>
-<h3 class="fragment" id="convention-and-rules---range-of-indices">Convention and Rules - <strong>Range of Indices</strong></h3>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Rule 4</strong></p>
-</div>
-<div class="callout-content">
-<p>If a subscript occurs more than twice in one term of an expression or equation, it is a mistake.</p>
+<p><strong>Rule 4:</strong> If a subscript occurs <strong>more than twice in one term</strong> of an expression or equation, it is a mistake.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="fragment">
 <p>For example, the following equations are meaningless</p>
+<p><span class="space-out"></span></p>
 <p><span class="math display">\[
 v_i = a_{ii}v_i.
 \]</span></p>
 </div>
-<ul>
-<li class="fragment"><strong>Remark</strong>. Lower case literal subscripts shall have all values over their index range.</li>
-</ul>
+<p><br></p>
+<div class="fragment">
+<p><b><em>Remark 3.</em></b> Lower case literal subscripts shall have all values over their index range.</p>
+</div>
 </section>
 <section class="slide level2">
 
-<h3 id="kronecker-delta-delta_ij-substitution-tensor">1.1.2 Kronecker Delta <span class="math inline">\(\delta_{ij}\)</span> (Substitution Tensor)</h3>
+<h3 id="kronecker-delta-delta_ij-substitution-tensor">1.2 Kronecker Delta <span class="math inline">\(\delta_{ij}\)</span> (Substitution Tensor)</h3>
 <p>The Kronecker delta, denoted by <span class="math inline">\(\delta_{ij}\)</span>, is defined by <span class="math inline">\(\displaystyle \delta_{ij} = \begin{cases}
 1 &amp; \text{if } i=j, \\
 0 &amp; \text{if } i \ne j.
 \end{cases}\)</span></p>
-<h3 class="fragment" id="example-1">Example 1</h3>
 <div class="columns">
-<div class="column fragment">
+<div class="column" style="width:20%;">
+<h4 class="fragment" id="example-1">Example 1</h4>
+</div><div class="column fragment" style="width:30%;">
 <p><span class="math display">\[
 l_{11}l_{11} + l_{12}l_{12} = 1,
 \]</span></p>
@@ -370,61 +380,51 @@ l_{11}l_{21} + l_{12}l_{22} = 0,
 <p><span class="math display">\[
 l_{21}l_{11} + l_{22}l_{12} = 0
 \]</span></p>
-</div><div class="column fragment">
+</div><div class="column fragment" style="width:20%;">
 <p><span class="math display">\[
-l_{1j}l_{1j} = 1,
+\rightarrow \quad l_{1j}l_{1j} = 1,
 \]</span></p>
 <p><span class="math display">\[
-l_{2j}l_{2j} = 1,
+\rightarrow \quad l_{2j}l_{2j} = 1,
 \]</span></p>
 <p><span class="math display">\[
-l_{1j}l_{2j} = 0,
+\rightarrow \quad l_{1j}l_{2j} = 0,
 \]</span></p>
 <p><span class="math display">\[
-l_{2j}l_{1j} = 0.
+\rightarrow \quad l_{2j}l_{1j} = 0.
 \]</span></p>
 </div></div>
 <ul>
-<li class="fragment">By using <span class="math inline">\(\delta_{ij}\)</span>, the above <span class="math inline">\(4\)</span> equations can be expressed by a single expression</li>
+<li class="fragment">By using <span class="math inline">\(\delta_{ij}\)</span>, the above <span class="math inline">\(4\)</span> equations can be expressed by <span class="math inline">\(l_{kj}l_{\ell j} = \delta_{k\ell}.\)</span></li>
 </ul>
+<div class="columns">
+<div class="column" style="width:20%;">
+<h4 class="fragment" id="example-2">Example 2</h4>
+</div><div class="column fragment" style="width:70%;">
+<p><span class="math display">\[
+\delta_{{\color{red}1}p}a_p = \delta_{{\color{red}1}1}a_1 + \delta_{{\color{red}1}2}a_2 + \delta_{{\color{red}1}3}a_3 = a_{\color{red}1},
+\]</span></p>
 <div class="fragment">
 <p><span class="math display">\[
-l_{kj}l_{\ell j} = \delta_{k\ell}.
+\delta_{{\color{red}2}p}a_p = \delta_{{\color{red}2}1}a_1 + \delta_{{\color{red}2}2}a_2 + \delta_{{\color{red}2}3}a_3 = a_{\color{red}2},
 \]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\delta_{{\color{red}3}p}a_p = \delta_{{\color{red}3}1}a_1 + \delta_{{\color{red}3}2}a_2 + \delta_{{\color{red}3}3}a_3 = a_{\color{red}3},
+\]</span></p>
+</div>
+</div></div>
+<div class="fragment">
+<p>we have in general <span class="math inline">\(\qquad\qquad\; \delta_{{\color{red}i}p}a_p = a_{\color{red}i} \qquad\)</span> (i.e, replace the index <span class="math inline">\(p\)</span> of <span class="math inline">\(a\)</span> by <span class="math inline">\(i\)</span>).</p>
+</div>
+<div class="fragment">
+<p>Similarly, we can show that <span class="math inline">\(\;\;\delta_{ip}T_{pj} = T_{ij}.\)</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 id="example-2">Example 2</h3>
-<p><span class="math display">\[
-\delta_{\color{red}{1}p}a_p = \delta_{\color{red}{1}1}a_1 + \delta_{\color{red}{1}2}a_2 + \delta_{\color{red}{1}3}a_3 = a_\color{red}{1},
-\]</span></p>
-<div class="fragment">
-<p><span class="math display">\[
-\delta_{\color{red}{2}p}a_p = \delta_{\color{red}{2}1}a_1 + \delta_{\color{red}{2}2}a_2 + \delta_{\color{red}{2}3}a_3 = a_\color{red}{2},
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\delta_{\color{red}{3}p}a_p = \delta_{\color{red}{3}1}a_1 + \delta_{\color{red}{3}2}a_2 + \delta_{\color{red}{3}3}a_3 = a_\color{red}{3},
-\]</span></p>
-</div>
-<div class="fragment">
-<p>we have in general</p>
-<p><span class="math display">\[
-\delta_{\color{red}{i}p}a_p = a_\color{red}{i} \qquad \text{(i.e, replace the index $p$ of $a$ by $i$).}
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Similarly, we can show that</p>
-<p><span class="math display">\[
-\delta_{ip}T_{pj} = T_{ij}.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>Expand the repeated index (p):</p>
+<p>Expand the repeated index <span class="math inline">\(p\)</span>:</p>
 <p><span class="math display">\[
 \delta_{\color{red}{1}p}T_{pj}
 =
@@ -470,51 +470,46 @@ T_{\color{red}{3}j},
 T_{\color{red}{i}j},
 \]</span></p>
 <ul>
-<li class="fragment">Kronecker delta <strong>replaces the summed index (p) by (i)</strong> while leaving the free index (j) unchanged.</li>
+<li class="fragment">Kronecker delta <strong>replaces the summed index <span class="math inline">\(p\)</span> by <span class="math inline">\(i\)</span></strong> while leaving the free index <span class="math inline">\(j\)</span> unchanged.</li>
 </ul>
 </div>
-<div class="fragment">
-<div class="callout callout-tip callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
+<p><br></p>
+<h4 class="fragment" id="example-3">Example 3</h4>
+<div class="fragment center">
 <p>If <span class="math inline">\(\mathbf e_1\)</span>, <span class="math inline">\(\mathbf e_2\)</span> and <span class="math inline">\(\mathbf e_3\)</span> are unit vectors perpendicular to each other, then</p>
 <p><span class="math display">\[
 \mathbf e_i \cdot \mathbf e_j = \delta_{ij}.
 \]</span></p>
 </div>
-</div>
-</div>
-</div>
 </section>
 <section class="slide level2">
 
-<h3 id="manipulations-with-the-index-notation">1.1.3 Manipulations with the Index Notation</h3>
-<h4 class="fragment" id="substitution"><strong>Substitution</strong></h4>
+<h3 id="manipulations-with-the-index-notation">1.3 Manipulations with the Index Notation</h3>
+<h4 class="fragment center" id="substitution">Substitution</h4>
 <div class="fragment">
 <p>If</p>
 <p><span id="eq-eq4"><span class="math display">\[
 a_i = T_{ip}b_p,  
-\tag{4}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p><span id="eq-eq5"><span class="math display">\[
 b_i = V_{ip}c_p,  
-\tag{5}\]</span></span></p>
+\tag{6}\]</span></span></p>
 </div>
 <ul>
-<li class="fragment">In order to substitute <span class="math inline">\(b_i\)</span> in <a href="#/eq-eq5" class="quarto-xref">Equation&nbsp;5</a> into <a href="#/eq-eq4" class="quarto-xref">Equation&nbsp;4</a>,
+<li class="fragment">In order to substitute <span class="math inline">\(b_i\)</span> in <a href="#/eq-eq5" class="quarto-xref">Equation&nbsp;6</a> into <a href="#/eq-eq4" class="quarto-xref">Equation&nbsp;5</a>,
 <ul>
-<li class="fragment">we first need to change the free index in <a href="#/eq-eq5" class="quarto-xref">Equation&nbsp;5</a> from <span class="math inline">\(i\)</span> to <span class="math inline">\(p\)</span> and the dummy index <span class="math inline">\(p\)</span> to some other letter so that</li>
+<li class="fragment">we first need to change the free index in <a href="#/eq-eq5" class="quarto-xref">Equation&nbsp;6</a> from <span class="math inline">\(i\)</span> to <span class="math inline">\(p\)</span> and the dummy index <span class="math inline">\(p\)</span> to some other letter so that</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <p><span id="eq-eq6"><span class="math display">\[
 b_p = V_{pq}c_q.
-\tag{6}\]</span></span></p>
+\tag{7}\]</span></span></p>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
-<p>Now substituting <a href="#/eq-eq6" class="quarto-xref">Equation&nbsp;6</a> into <a href="#/eq-eq4" class="quarto-xref">Equation&nbsp;4</a> yields</p>
+<p>Now substituting <a href="#/eq-eq6" class="quarto-xref">Equation&nbsp;7</a> into <a href="#/eq-eq4" class="quarto-xref">Equation&nbsp;5</a> yields</p>
+<p><span class="space-out"></span></p>
 <p><span class="math display">\[
 a_i = T_{ip}V_{pq}c_q.
 \]</span></p>
@@ -522,83 +517,74 @@ a_i = T_{ip}V_{pq}c_q.
 </section>
 <section class="slide level2">
 
-<h4 id="multiplication">Multiplication</h4>
+<h4 class="center" id="multiplication">Multiplication</h4>
 <div class="fragment">
-<p>If</p>
-<p><span class="math display">\[
-u = a_ib_i, \qquad v = c_id_i,
-\]</span></p>
+<p>If <span class="math inline">\(\hspace{11em} u = a_ib_i, \qquad v = c_id_i,\)</span></p>
 </div>
 <div class="fragment">
 <p>then</p>
 <p><span class="math display">\[
-uv = a_ib_ic_\color{red}{n}d_\color{red}{n}.
+uv = a_ib_ic_{\color{red}n}d_{\color{red}n}.
 \]</span></p>
 </div>
 <div class="fragment">
 <p>It is important to note that</p>
 <p><span class="math display">\[
-\color{red}{uv \ne a_ib_ic_id_i \ne \sum_{i=1}^3 a_ib_ic_id_i.}
+uv \ne a_ib_ic_id_i \ne \sum_{i=1}^3 a_ib_ic_id_i.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="factorisation">Factorisation</h4>
+<h4 class="center fragment" id="factorisation">Factorisation</h4>
+<div class="fragment">
 <p>Consider</p>
 <p><span id="eq-eq7"><span class="math display">\[
-T_{ij}n_\color{red}{j} - \lambda n_\color{red}{i} = 0.
-\tag{7}\]</span></span></p>
+T_{ij}n_{\color{red}j} - \lambda n_{\color{red}i} = 0.
+\tag{8}\]</span></span></p>
+</div>
 <div class="fragment">
-<p>Using the Kronecker delta, we have</p>
+<p>Using the Kronecker delta, <span class="math inline">\(\qquad\quad n_{\color{red}i} = \delta_{\color{red}{i}j}n_j\)</span></p>
+</div>
+<div class="fragment">
+<p>and <a href="#/eq-eq7" class="quarto-xref">Equation&nbsp;8</a> becomes</p>
 <p><span class="math display">\[
-n_\color{red}{i} = \delta_{\color{red}{i}j}n_j
+T_{ij}n_j - \lambda \delta_{ij}n_j = 0
 \]</span></p>
 </div>
 <div class="fragment">
-<p>and thus <a href="#/eq-eq7" class="quarto-xref">Equation&nbsp;7</a> becomes</p>
-<p><span class="math display">\[
-T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
-\]</span></p>
-</div>
-<div class="fragment">
-<p>which gives</p>
-<p><span class="math display">\[
-(T_{ij} - \lambda\delta_{ij})n_j = 0.
-\]</span></p>
+<p>which gives <span class="math inline">\(\hspace{8em}(T_{ij} - \lambda\delta_{ij})n_j = 0.\)</span></p>
 </div>
 </section>
 <section id="orthogonal-rotation-of-cartesian-axes" class="slide level2">
-<h2>1.2 Orthogonal Rotation of Cartesian Axes</h2>
-<h3 class="fragment" id="cartesian-coordinate-system">1.2.1 Cartesian Coordinate System</h3>
-<ul>
-<li class="fragment">In ordinary 2-D space, the system defined by <span class="math inline">\(2\)</span> mutually orthogonal directions with equal units of measurements is called <strong>Cartesian frame of reference</strong>.</li>
-</ul>
+<h2>2. Orthogonal Rotation of Cartesian Axes</h2>
+<div class="columns">
+<div class="column center fragment" style="width:45%;">
+<h4 id="cartesian-coordinate-system">Cartesian Coordinate System</h4>
+<div class="fragment">
+<p>In ordinary 2-D space, the system defined by <span class="math inline">\(2\)</span> mutually orthogonal directions with equal units of measurements is called<br> <strong>Cartesian frame of reference</strong>.</p>
+</div>
 <div class="fragment center">
-<div id="d4661497" class="cell" data-execution_count="1">
+<div id="8576f3b2" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="02_lecture_files/figure-revealjs/cell-2-output-1.png" width="361" height="357"></p>
+<p><img data-src="02_lecture_files/figure-revealjs/cell-2-output-1.png" width="361" height="355"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<h3 id="cartesian-vectors-and-direction-cosines">1.2.2 Cartesian Vectors and Direction Cosines</h3>
-<ul>
-<li class="fragment">A Cartesian vector <span class="math inline">\(\mathbf a\)</span> in 2-D is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> expressed with a Cartesian frame of reference, i.e.</li>
-</ul>
+</div><div class="column center fragment" style="width:55%;">
+<h4 id="cartesian-vectors-direction-cosines">Cartesian Vectors &amp; Direction Cosines</h4>
+<div class="fragment">
+<p>A Cartesian vector <span class="math inline">\(\mathbf a\)</span> in 2-D is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> expressed with a Cartesian frame of reference, i.e.</p>
+</div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
 \mathbf a=(a_1,a_2).
 \]</span></p>
 </div>
 <div class="fragment center">
-<div id="109a0414" class="cell" data-execution_count="2">
+<div id="89c7bc07" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -608,12 +594,13 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section class="slide level2">
 
 <div class="columns">
 <div class="column">
-<div id="8936381c" class="cell" data-execution_count="3">
+<div id="8e6cc815" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -639,10 +626,10 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 </section>
 <section class="slide level2">
 
-<h3 id="scalar-product-of-two-vectors-and-projection-of-a-vector-on-a-line">1.2.3 Scalar Product of Two Vectors and Projection of a Vector on a Line</h3>
+<h4 class="center" id="scalar-product-of-two-vectors-and-projection-of-a-vector-on-a-line">Scalar Product of Two Vectors and Projection of a Vector on a Line</h4>
 <div class="columns">
 <div class="column">
-<div id="b71ee924" class="cell" data-execution_count="4">
+<div id="d4a8fd61" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -674,11 +661,11 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 </section>
 <section class="slide level2">
 
-<h3 id="rotation-of-axes">1.2.4 Rotation of Axes</h3>
-<p>Consider a Cartesian coordinate system <span class="math inline">\(Ox_1x_2\)</span> that is rotated by an arbitrary angle to obtain a new coordinate system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>.</p>
+<h4 class="center" id="rotation-of-axes">Rotation of Axes</h4>
+<p>Consider a Cartesian coordinate system <span class="math inline">\(Ox_1x_2\)</span> that is rotated to <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>.</p>
 <div class="columns">
 <div class="column">
-<div id="106f263f" class="cell" data-execution_count="5">
+<div id="5fc164f2" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -689,37 +676,28 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 </div>
 </div><div class="column">
 <ul>
-<li class="fragment">A vector <span class="math inline">\(\mathbf{v}\)</span> remains the same physical quantity, but its components depend on the chosen coordinate system.</li>
+<li class="fragment"><span class="math inline">\(\mathbf{v}\)</span> is independent of the coordinate system.</li>
 <li class="fragment">Its components are
 <ul>
-<li class="fragment"><span class="math inline">\((v_1, v_2)\)</span> in the original frame <span class="math inline">\(Ox_1x_2\)</span></li>
-<li class="fragment"><span class="math inline">\((\bar{v}_1, \bar{v}_2)\)</span> in the rotated frame <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>.</li>
+<li class="fragment"><span class="math inline">\(\mathbf{v} = (v_1, v_2)\)</span> in <span class="math inline">\(Ox_1x_2\)</span></li>
+<li class="fragment"><span class="math inline">\(\mathbf{\bar v} = (\bar{v}_1, \bar{v}_2)\)</span> in <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>.</li>
+</ul></li>
+<li class="fragment">Let <span class="math inline">\(l_{ij}=\cos(x_i,\bar x_j)\)</span> be the <strong>direction cosines</strong>, then</li>
+<li class="fragment">The unit vector of the <span class="math inline">\(O\bar{x}_j\)</span> axis in
+<ul>
+<li class="fragment">the new system: <span class="math inline">\(\hat{x}_j=(l_{j1},l_{j2}).\)</span></li>
+<li class="fragment">the old system: <span class="math inline">\(\hat{x}_{\color{red}j}=(l_{1{\color{red}j}},l_{2{\color{red}j}}).\)</span></li>
 </ul></li>
 </ul>
 </div></div>
 </section>
 <section class="slide level2">
 
-<ul>
-<li class="fragment"><p>Let <span class="math inline">\(l_{ij}\)</span> be the cosine of the angle between the <span class="math inline">\(Ox_i\)</span> axis and the <span class="math inline">\(O\bar{x}_j\)</span> axis.</p></li>
-<li class="fragment"><p>The unit vector (direction cosines) of the <span class="math inline">\(O\bar{x}_j\)</span> axis in the new system is</p></li>
-</ul>
+<p>In system <span class="math inline">\(Ox_1x_2\)</span>, the projection of <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> on the <span class="math inline">\(O\bar{x}_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\mathbf v\)</span> with a unit vector along <span class="math inline">\(O\bar{x}_j\)</span>, we thus have</p>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
-\hat{x}_j=(l_{j1},l_{j2}).
-\]</span></p>
-</div>
-<div class="fragment">
-<p><em>Note: The unit vector (direction cosines) of the <span class="math inline">\(O\bar{x}_j\)</span> axis in the old system are</em> <span class="math display">\[
-\hat{x}_\color{red}{j}=(l_{1\color{red}{j}},l_{2\color{red}{j}  }).
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">In system <span class="math inline">\(Ox_1x_2\)</span>, the projection of <span class="math inline">\(\mathbf v=(v_1,v_2)\)</span> on the <span class="math inline">\(O\bar{x}_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\mathbf v\)</span> with a unit vector along <span class="math inline">\(O\bar{x}_j\)</span>, we thus have</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-\bar{v}_\color{red}{1} = \mathbf{v} \bullet \hat{\mathbf{x}}_\color{red}{1} = (v_1,v_2) \bullet (l_{1\color{red}{1}},l_{2\color{red}{1}}) = l_{\color{green}{1}\color{red}{1}}v_\color{green}{1} + l_{\color{green}{2}\color{red}{1}}v_\color{green}{2} = l_{i\color{red}{1}}v_i,
+\bar{v}_{\color{red}1} = \mathbf{v} \bullet \hat{\mathbf{x}}_{\color{red}1} = (v_1,v_2) \bullet (l_{1{\color{red}1}},l_{2{\color{red}1}}) = l_{{\color{green}1}{\color{red}1}}v_{\color{green}1} + l_{{\color{green}2}{\color{red}1}}v_{\color{green}2} = l_{i{\color{red}1}}v_i,
 \]</span></p>
 </div>
 <div class="fragment">
@@ -727,60 +705,43 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 \bar{v}_2 = \mathbf{v} \bullet \hat{\mathbf{x}}_2 = (v_1,v_2) \bullet (l_{12},l_{22}) = l_{12}v_1 + l_{22}v_2 = l_{i2}v_i.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h3 id="example">Example</h3>
-<p>Given <span class="math inline">\(\mathbf v=(4,2)\)</span>. Suppose the new coordinate system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> is obtained by rotating the old system <span class="math inline">\(Ox_1x_2\)</span> counterclockwise by <span class="math inline">\(30^\circ\)</span>. Find components of <span class="math inline">\(\mathbf v\)</span> in the new system.</p>
-<ul>
-<li class="fragment">Then the direction cosine matrix is</li>
-</ul>
+<p><br></p>
 <div class="fragment">
-<p><span class="math display">\[
-[l_{ij}]
-=
+<p><span style="color:blue;"><strong>Example:</strong></span> Given <span class="math inline">\(\mathbf v=(4,2)\)</span>. Suppose the new coordinate system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> is obtained by rotating the old system <span class="math inline">\(Ox_1x_2\)</span> counterclockwise by <span class="math inline">\(30^\circ\)</span>. Find components of <span class="math inline">\(\mathbf v\)</span> in the new system.</p>
+</div>
+<div class="fragment">
+<p>The direction cosine matrix is <span class="math inline">\([l_{ij}]=
 \begin{bmatrix}
 \cos30^\circ &amp; -\sin30^\circ\\
 \sin30^\circ &amp; \cos30^\circ
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 0.866 &amp; -0.500\\
 0.500 &amp; 0.866
-\end{bmatrix}.
-\]</span></p>
+\end{bmatrix}.\)</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p>The components of <span class="math inline">\(\mathbf{v}=(4,2)\)</span> in the rotated coordinate system are</p>
-<p><span class="math display">\[
-\bar{v}_j=l_{ij}v_i.
-\]</span></p>
 <div class="fragment">
-<p>Hence,</p>
+<p>The components of <span class="math inline">\(\mathbf{v}=(4,2)\)</span> in the rotated coordinate system are <span class="math inline">\(\bar{v}_j=l_{ij}v_i.\)</span></p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
 <p><span class="math display">\[
-\begin{aligned}
 \bar{v}_1
-&amp;=l_{11}v_1+l_{21}v_2\\
-&amp;=(0.866)(4)+(0.500)(2)\\
-&amp;=4.464,
-\end{aligned}
+=l_{11}v_1+l_{21}v_2
+=(0.866)(4)+(0.500)(2)
+=4.464,
 \]</span></p>
 </div>
 <div class="fragment">
-<p>and</p>
 <p><span class="math display">\[
-\begin{aligned}
 \bar{v}_2
-&amp;=l_{12}v_1+l_{22}v_2\\
-&amp;=(-0.500)(4)+(0.866)(2)\\
-&amp;=-0.268.
-\end{aligned}
+=l_{12}v_1+l_{22}v_2
+=(-0.500)(4)+(0.866)(2)
+=-0.268.
 \]</span></p>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
-<p>Therefore,</p>
 <p><span class="math display">\[
 \boxed{\bar{\mathbf v}=(4.464,\,-0.268).}
 \]</span></p>
@@ -788,47 +749,29 @@ T_{ij}n_j - \lambda \color{red}{\delta_{ij}n_j} = 0
 </section>
 <section class="slide level2">
 
-<h3 id="recovering-the-original-components">Recovering the original components</h3>
+<h4 class="center" id="recovering-the-original-components">Recovering the original components</h4>
 <div class="fragment">
-<p>Using</p>
-<p><span class="math display">\[
-v_j=l_{ji}\bar{v}_i,
-\]</span></p>
+<p>Using <span class="math inline">\(\hspace{13em}v_j=l_{ji}\bar{v}_i,\)</span></p>
 </div>
 <div class="fragment">
-<p>we obtain</p>
 <p><span class="math display">\[
-\begin{aligned}
 v_1
-&amp;=l_{11}\bar{v}_1+l_{12}\bar{v}_2\\
-&amp;=(0.866)(4.464)+(-0.500)(-0.268)\\
-&amp;\approx4,
-\end{aligned}
+=l_{11}\bar{v}_1+l_{12}\bar{v}_2
+=(0.866)(4.464)+(-0.500)(-0.268)
+\approx4,
 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\begin{aligned}
 v_2
-&amp;=l_{21}\bar{v}_1+l_{22}\bar{v}_2\\
-&amp;=(0.500)(4.464)+(0.866)(-0.268)\\
-&amp;\approx2.
-\end{aligned}
+=l_{21}\bar{v}_1+l_{22}\bar{v}_2
+=(0.500)(4.464)+(0.866)(-0.268)
+\approx2.
 \]</span></p>
 </div>
-<div class="fragment">
-<p>Thus,</p>
-<p><span class="math display">\[
-\mathbf{v}=(4,2),\quad\text{which confirms that}\quad \bar{v}_j=l_{ij}v_i,\qquad
-v_j=l_{ji}\bar{v}_i.
-\]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
 <div class="columns">
 <div class="column">
-<div id="33591e69" class="cell" data-execution_count="6">
+<div id="22e8d1c6" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -838,13 +781,17 @@ v_j=l_{ji}\bar{v}_i.
 </div>
 </div>
 </div><div class="column fragment">
+<p>Thus, <span class="math inline">\(\mathbf{v}=(4,2),\;\)</span>which confirms that <span class="math display">\[
+\bar{v}_j=l_{ij}v_i,\; v_j=l_{ji}\bar{v}_i.
+\]</span></p>
+<div class="fragment">
 <p>In system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>,</p>
+</div>
 <ul>
-<li class="fragment">the projection of <span class="math inline">\(\bar{\mathbf{v}}=(\bar{v}_1,\bar{v}_2)\)</span> on the <span class="math inline">\(Ox_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\bar{\mathbf{v}}\)</span> with a unit vector along <span class="math inline">\(Ox_j\)</span>,</li>
+<li class="fragment">the projection of <span class="math inline">\(\bar{\mathbf{v}}=(\bar{v}_1,\bar{v}_2)\)</span> on the <span class="math inline">\(Ox_j\)</span> axis is equal to the scalar product of <span class="math inline">\(\bar{\mathbf{v}}\)</span> with a unit vector along <span class="math inline">\(Ox_j\)</span>, Thus, we have</li>
 </ul>
 </div></div>
 <div class="fragment">
-<p>Thus, we have</p>
 <p><span class="math display">\[
 v_1 = \bar{\mathbf{v}} \bullet \hat{\mathbf{x}}_1 = (\bar{v}_1,\bar{v}_2) \bullet (l_{11},l_{12}) = l_{11}\bar{v}_1 + l_{12}\bar{v}_2 = l_{1i}\bar{v}_i,
 \]</span></p>
@@ -862,29 +809,21 @@ v_2 = \bar{\mathbf{v}} \bullet \hat{x}_2 = (\bar{v}_1,\bar{v}_2) \bullet (l_{21}
 </section>
 <section class="slide level2">
 
-<h3 id="example-3">Example</h3>
-<p>Suppose the coordinate system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> is obtained by rotating <span class="math inline">\(Ox_1x_2\)</span> counterclockwise by <span class="math inline">\(30^\circ\)</span>.</p>
-<ul>
-<li class="fragment">Then the direction cosine matrix is</li>
-</ul>
+<p><span style="color:blue;"><strong>Example:</strong></span> Suppose the coordinate system <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span> is obtained by rotating <span class="math inline">\(Ox_1x_2\)</span> counterclockwise by <span class="math inline">\(30^\circ\)</span>.</p>
 <div class="fragment">
-<p><span class="math display">\[
-[l_{ij}]
-=
+<p>The direction cosine matrix is <span class="math inline">\([l_{ij}]=
 \begin{bmatrix}
 \cos30^\circ &amp; -\sin30^\circ\\
 \sin30^\circ &amp; \cos30^\circ
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 0.866 &amp; -0.500\\
 0.500 &amp; 0.866
-\end{bmatrix}.
-\]</span></p>
+\end{bmatrix}.\)</span></p>
 </div>
-<ul>
-<li class="fragment">The unit vector along the <span class="math inline">\(Ox_1\)</span>-axis, and <span class="math inline">\(Ox_2\)</span>-axis expressed in the rotated system is</li>
-</ul>
+<div class="fragment">
+<p>The unit vector along the <span class="math inline">\(Ox_1\)</span>-axis, and <span class="math inline">\(Ox_2\)</span>-axis expressed in the rotated system is</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 \hat{\mathbf x}_1=(l_{11},l_{12})
@@ -892,10 +831,9 @@ v_2 = \bar{\mathbf{v}} \bullet \hat{x}_2 = (\bar{v}_1,\bar{v}_2) \bullet (l_{21}
 =(0.500,0.866).
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p>Suppose the vector has components in the rotated system as <span class="math inline">\(\bar{\mathbf v}=(3,2)\)</span>, we have</p>
+<div class="fragment">
+<p>Suppose the vector has components in the rotated system as <span class="math inline">\(\bar{\mathbf v}=(3,2)\)</span>,</p>
+</div>
 <div class="columns">
 <div class="column fragment">
 <p><span class="math display">\[
@@ -934,63 +872,69 @@ v_2=l_{21}\bar v_1+l_{22}\bar v_2.
 </section>
 <section class="slide level2">
 
-<h4 id="properties-of-direction-cosines-l_ij">Properties of Direction Cosines <span class="math inline">\(l_{ij}\)</span></h4>
-<p>As <span class="math inline">\(\hat{x}_1=(l_{11},l_{12})\)</span> and <span class="math inline">\(\hat{x}_2=(l_{21},l_{22})\)</span> are orthogonal unit vectors,</p>
-<ul>
-<li class="fragment">we have</li>
-</ul>
+<h4 class="center" id="properties-of-direction-cosines-l_ij">Properties of Direction Cosines <span class="math inline">\(l_{ij}\)</span></h4>
+<p><span class="space-out"></span></p>
+<p>As <span class="math inline">\(\hat{x}_1=(l_{11},l_{12})\)</span> and <span class="math inline">\(\hat{x}_2=(l_{21},l_{22})\)</span> are orthogonal unit vectors, we have</p>
+<p><br></p>
 <div class="fragment">
 <p><span class="math display">\[
 (l_{11},l_{12}) \bullet (l_{11},l_{12}) = l_{11}^2 + l_{12}^2 = 1,
 \]</span></p>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
 (l_{11},l_{12}) \bullet (l_{21},l_{22}) = l_{11}l_{21} + l_{12}l_{22} = 0
 \]</span></p>
 </div>
+<p><br></p>
 <div class="fragment">
 <p>or in index notation,</p>
 <p><span class="math display">\[
-l_{ki}l_{\ell i} = \delta_{k\ell}\qquad \text{or} \qquad l_{ki}l_{\ell i} = \delta_{k\ell}.
+l_{ki}l_{\ell i} = \delta_{k\ell}.
+\]</span></p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>Similarly, we can obtain</p>
+<p><span class="math display">\[
+l_{ki}l_{\ell i} = \delta_{k\ell}.
 \]</span></p>
 </div>
 </section>
 <section id="cartesian-vectors-and-tensors" class="slide level2">
-<h2>1.3 Cartesian Vectors and Tensors</h2>
-<h3 class="fragment" id="first-order-cartesian-vectors">1.3.1 First-Order Cartesian Vectors</h3>
-<div class="columns">
-<div class="column fragment">
-<div id="9506d025" class="cell" data-execution_count="7">
+<h2>3. Cartesian Vectors and Tensors</h2>
+<h3 id="first-order-cartesian-vectors">3.1. First-Order Cartesian Vectors</h3>
+<div class="fragment">
+<p><b><em>Definition.</em></b> A Cartesian vector, <span class="math inline">\(\mathbf{a}\)</span>, in 2-D is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> in the Cartesian frame <span class="math inline">\(Ox_1x_2\)</span>, which, under rotation of the coordinate frame to <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>, become components <span class="math inline">\(\bar{a}_1\)</span> and <span class="math inline">\(\bar{a}_2\)</span> where</p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><span id="eq-eq8"><span class="math display">\[
+\bar{a}_j = \mathbf{a} \bullet \hat{x}_j = (a_1,a_2) \bullet (l_{1j},l_{2j}) = l_{ij}a_i.  
+\tag{9}\]</span></span></p>
+</div>
+<div id="4694b9ab" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02_lecture_files/figure-revealjs/cell-8-output-1.png" width="424" height="329"></p>
+<p><img data-src="02_lecture_files/figure-revealjs/cell-8-output-1.png" class="quarto-figure quarto-figure-center" width="362" height="281"></p>
 </figure>
 </div>
 </div>
-</div>
-</div><div class="column fragment">
-<p><span class="math inline">\(\hat{x}_j = (l_{1j},l_{2j})\)</span> are the direction cosines of the <span class="math inline">\(O\bar{x}_j\)</span> axis with respect to the coordinate frame <span class="math inline">\(Ox_1x_2\)</span>.</p>
-</div></div>
-<div class="fragment">
-<p><strong>Definition</strong>. A Cartesian vector, <span class="math inline">\(\mathbf{a}\)</span>, in two dimensions is a quantity with two components <span class="math inline">\(a_1\)</span> and <span class="math inline">\(a_2\)</span> in the Cartesian frame <span class="math inline">\(Ox_1x_2\)</span>, which, under rotation of the coordinate frame to <span class="math inline">\(O\bar{x}_1\bar{x}_2\)</span>, become components <span class="math inline">\(\bar{a}_1\)</span> and <span class="math inline">\(\bar{a}_2\)</span> where</p>
-<p><span id="eq-eq8"><span class="math display">\[
-\bar{a}_j = \mathbf{a} \bullet \hat{x}_j = (a_1,a_2) \bullet (l_{1j},l_{2j}) = l_{ij}a_i.  
-\tag{8}\]</span></span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<p><strong>Example</strong>. Consider a force <span class="math inline">\(\mathbf F\)</span> acting at a point <span class="math inline">\(P\)</span> on the surface of an object.</p>
+<p><span style="color:blue;"><strong>Example:</strong></span> Consider a force <span class="math inline">\(\mathbf F\)</span> acting at a point <span class="math inline">\(P\)</span> on the surface of an object.</p>
 <div class="columns">
-<div class="column">
+<div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/Ch3-fig6.png" class="quarto-figure quarto-figure-center" width="200"></p>
+<p><img data-src="figs/Ch3-fig6.png" class="quarto-figure quarto-figure-center" width="250"></p>
 </figure>
 </div>
-</div><div class="column fragment">
+</div><div class="column fragment" style="width:70%;">
 <ul>
 <li class="fragment"><p>Let the components of the force in the <span class="math inline">\(x_1\)</span> and the <span class="math inline">\(x_2\)</span> directions be <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>.</p></li>
 <li class="fragment"><p>Direction cosine of the outward normal <span class="math inline">\(\mathbf n\)</span> at <span class="math inline">\(P\)</span> is <span class="math inline">\((n_1,n_2)\)</span></p></li>
@@ -998,11 +942,13 @@ l_{ki}l_{\ell i} = \delta_{k\ell}\qquad \text{or} \qquad l_{ki}l_{\ell i} = \del
 </ul>
 </div></div>
 <div class="fragment">
-<p>Then, we can use <a href="#/eq-eq8" class="quarto-xref">Equation&nbsp;8</a> to calculate</p>
+<p>Then, we can use <a href="#/eq-eq8" class="quarto-xref">Equation&nbsp;9</a> to calculate</p>
+<p><br></p>
 <p><span class="math display">\[
     \text{normal force: } \qquad F_n = \mathbf F \bullet \mathbf n = (f_1,f_2) \bullet (n_1,n_2) = f_1n_1 + f_2n_2=f_in_i,
 \]</span></p>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
     \text{tangential force: } \qquad  F_t = \mathbf F \bullet \hat{\mathbf t} = (f_1,f_2) \bullet (t_1,t_2) = f_1t_1 + f_2t_2=f_it_i.
@@ -1011,8 +957,8 @@ l_{ki}l_{\ell i} = \delta_{k\ell}\qquad \text{or} \qquad l_{ki}l_{\ell i} = \del
 </section>
 <section class="slide level2">
 
-<h3 id="second-order-cartesian-tensors">1.3.2 Second Order Cartesian Tensors</h3>
-<p><strong>Definition</strong>. A second order Cartesian tensor, <span class="math inline">\(A\)</span>, in two dimensions is an entity having <span class="math inline">\(4\)</span> components <span class="math inline">\(A_{ij}\)</span>, <span class="math inline">\(i,j=1,2\)</span>, in the Cartesian frame of reference <span class="math inline">\(Ox_1x_2\)</span> which on rotation of the frame to <span class="math inline">\(Opq\)</span> become</p>
+<h3 id="second-order-cartesian-tensors">3.2. Second Order Cartesian Tensors</h3>
+<p><b><em>Definition.</em></b> A second order Cartesian tensor, <span class="math inline">\(A\)</span>, in two dimensions is an entity having <span class="math inline">\(4\)</span> components <span class="math inline">\(A_{ij}\)</span>, <span class="math inline">\(i,j=1,2\)</span>, in the Cartesian frame of reference <span class="math inline">\(Ox_1x_2\)</span> which on rotation of the frame to <span class="math inline">\(Opq\)</span> become</p>
 <p><span class="math display">\[
 A_{pq} = l_{ip}l_{jq}A_{ij},
 \]</span></p>
@@ -1025,13 +971,9 @@ A_{pq} = l_{ip}l_{jq}A_{ij},
 A_{ij} = l_{ip}l_{jq}A_{pq}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Remarks</strong></p>
-<ul>
-<li class="fragment">A 2nd order tensor may be written in matrix form</li>
-</ul>
+<div class="fragment">
+<p><b><em>Remark.</em></b> A 2nd order tensor may be written in matrix form</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 A=
@@ -1041,9 +983,9 @@ A_{21} &amp; A_{22}
 \end{pmatrix}
 \]</span></p>
 </div>
-<ul>
-<li class="fragment">The transformation law for 2nd order tensors can be expressed in terms of matrices,</li>
-</ul>
+<div class="fragment">
+<p>The transformation law for 2nd order tensors can be expressed in matrix form,</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 \bar{A} = L^TAL, \qquad A = L\bar{A}L^T.
@@ -1052,7 +994,7 @@ A_{21} &amp; A_{22}
 </section>
 <section class="slide level2">
 
-<p><strong>Definition</strong>: Symmetric tensors</p>
+<p><b><em>Definition.</em></b> Symmetric tensors</p>
 <p>If <span class="math inline">\(A_{ij}=A_{ji}\)</span>, <span class="math inline">\(A\)</span> is said to be symmetric. In this case, there are only <span class="math inline">\(3\)</span> distinct components,</p>
 <p><span class="math display">\[
 A=
@@ -1061,8 +1003,9 @@ A_{11} &amp; A_{12} \\
 A_{12} &amp; A_{22}
 \end{pmatrix}.
 \]</span></p>
+<p><span class="space-out"></span></p>
 <div class="fragment">
-<p><strong>Definition</strong>: Antisymmetric tensor</p>
+<p><b><em>Definition.</em></b> Antisymmetric tensor</p>
 <p>If <span class="math inline">\(A_{ij}=-A_{ji}\)</span>, <span class="math inline">\(A\)</span> is said to be antisymmetric and such a tensor has the form as follows</p>
 <p><span class="math display">\[
 A=
@@ -1072,6 +1015,7 @@ A=
 \end{pmatrix}.
 \]</span></p>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><strong>Definition</strong>: Transpose of Tensors</p>
 <p>The tensor whose <span class="math inline">\(ij\)</span> element is <span class="math inline">\(A_{ji}\)</span> is called the transpose <span class="math inline">\(A^T\)</span> of <span class="math inline">\(A\)</span>.</p>
@@ -1079,14 +1023,14 @@ A=
 </section>
 <section class="slide level2">
 
-<h3 id="algebra-of-tensors">1.3.3 ALGEBRA OF TENSORS</h3>
-<h4 id="scalar-multiplication-and-addition">Scalar Multiplication and Addition</h4>
-<ul>
-<li class="fragment">If <span class="math inline">\(\alpha\)</span> is a scalar and <span class="math inline">\(A\)</span> is a second order tensor, the scalar product of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> is a tensor <span class="math inline">\(\alpha A\)</span> each of whose components is <span class="math inline">\(\alpha\)</span> times the corresponding component of <span class="math inline">\(A\)</span>.</li>
-</ul>
-<h5 class="fragment" id="example-4">Example</h5>
+<h3 id="algebra-of-tensors">3.3. Algebra of Tensors</h3>
+<h3 class="fragment" id="scalar-multiplication-and-addition">3.3.1. Scalar Multiplication and Addition</h3>
 <div class="fragment">
-<p>Let</p>
+<p>If <span class="math inline">\(\alpha\)</span> is a scalar and <span class="math inline">\(A\)</span> is a second order tensor, the scalar product of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> is a tensor <span class="math inline">\(\alpha A\)</span> each of whose components is <span class="math inline">\(\alpha\)</span> times the corresponding component of <span class="math inline">\(A\)</span>.</p>
+</div>
+<div class="columns">
+<div class="column fragment">
+<p><span style="color:blue;"><b>Example:</b></span> Let</p>
 <p><span class="math display">\[
 A=
 \begin{bmatrix}
@@ -1096,12 +1040,8 @@ A=
 \qquad
 \alpha=3.
 \]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>The scalar multiplication of <span class="math inline">\(A\)</span> by <span class="math inline">\(\alpha\)</span> is obtained by multiplying every component of <span class="math inline">\(A\)</span> by <span class="math inline">\(3\)</span>:</p>
-<div class="fragment">
+</div><div class="column fragment">
+<p><br></p>
 <p><span class="math display">\[
 \alpha A
 =
@@ -1116,29 +1056,23 @@ A=
 9 &amp; 12
 \end{bmatrix}.
 \]</span></p>
-</div>
+</div></div>
 <div class="fragment">
-<p>In component form,</p>
-<p><span class="math display">\[
-A_{ij}
-=
+<p>In component form, <span class="math inline">\(\qquad A_{ij}=
 \begin{bmatrix}
 1 &amp; 2\\
 3 &amp; 4
 \end{bmatrix},
 \qquad
-(\alpha A)_{ij}
-=
-\alpha A_{ij}.
-\]</span></p>
-<p>For example,</p>
-<p><span class="math display">\[
-(\alpha A)_{12}
+(\alpha A)_{ij}=
+\alpha A_{ij}.\)</span></p>
+</div>
+<div class="fragment">
+<p>E.g., <span class="math inline">\(\qquad (\alpha A)_{12}
 =\alpha A_{12}
 =3(2)=6,\quad\text{and}\quad (\alpha A)_{21}
 =\alpha A_{21}
-=3(3)=9.
-\]</span></p>
+=3(3)=9.\)</span></p>
 </div>
 <div class="fragment">
 <p>Hence, every component of the tensor is multiplied by the scalar:</p>
@@ -1155,27 +1089,24 @@ A_{ij}
 (A+B)_{ij} = A_{ij} + B_{ij}.
 \]</span></p>
 </div>
-<h5 class="fragment" id="example-5">Example</h5>
-<div class="fragment">
-<p>Let</p>
+<div class="columns">
+<div class="column fragment" style="width:40%;">
+<p><span style="color:blue;"><b>Example:</b></span> Let</p>
 <p><span class="math display">\[
 A=
 \begin{bmatrix}
 1 &amp; 2\\
 3 &amp; 4
 \end{bmatrix},
-\qquad
+\;\;
 B=
 \begin{bmatrix}
 5 &amp; -1\\
 2 &amp; 6
 \end{bmatrix}.
 \]</span></p>
-</div>
-<ul>
-<li class="fragment">The sum of the two tensors is obtained by adding their corresponding components:</li>
-</ul>
-<div class="fragment">
+</div><div class="column fragment" style="width:60%;">
+<p><br></p>
 <p><span class="math display">\[
 A+B
 =
@@ -1189,25 +1120,9 @@ A+B
 5 &amp; 10
 \end{bmatrix}.
 \]</span></p>
-</div>
-</section>
-<section class="slide level2">
-
-<p>In component form,</p>
-<p><span class="math display">\[
-(A+B)_{11}=A_{11}+B_{11}=1+5=6,
-\]</span></p>
-<p><span class="math display">\[
-(A+B)_{12}=A_{12}+B_{12}=2+(-1)=1,
-\]</span></p>
-<p><span class="math display">\[
-(A+B)_{21}=A_{21}+B_{21}=3+2=5,
-\]</span></p>
-<p><span class="math display">\[
-(A+B)_{22}=A_{22}+B_{22}=4+6=10.
-\]</span></p>
+</div></div>
 <div class="fragment">
-<p><span class="math display">\[
+<p>In component form, <span class="math display">\[
 \therefore
 (A+B)_{ij}=A_{ij}+B_{ij}.
 \]</span></p>
@@ -1222,13 +1137,13 @@ A_{ij} = \frac{1}{2}(A_{ij}+A_{ji}) + \frac{1}{2}(A_{ij}-A_{ji})
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\rightarrow\qquad\qquad A = \frac{1}{2}(A+A^T) + \frac{1}{2}(A-A^T).
+\rightarrow\; A = \frac{1}{2}(A+A^T) + \frac{1}{2}(A-A^T).
 \]</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h4 id="contraction-and-multiplication-of-tensors">Contraction and Multiplication of Tensors</h4>
+<h3 id="contraction-and-multiplication-of-tensors">3.3.2. Contraction and Multiplication of Tensors</h3>
 <p>The operation of identifying two indices of a tensor and then summing on them is known as contraction.</p>
 <ul>
 <li class="fragment">The contraction of a second order tensor <span class="math inline">\(A\)</span> is a scalar defined by</li>
@@ -1274,10 +1189,11 @@ A \bullet B = \{A_{ij}B_{jk}\}.
 <li class="fragment">while the free indices <span class="math inline">\(i\)</span> and <span class="math inline">\(k\)</span> define the components of the resulting tensor.</li>
 </ul></li>
 </ul>
+<p><br></p>
 <h4 class="fragment" id="double-contraction">Double Contraction</h4>
-<ul>
-<li class="fragment">The doubly contracted product of two second-order tensors is a scalar defined by</li>
-</ul>
+<div class="fragment">
+<p>The doubly contracted product of two second-order tensors is a scalar defined by</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 A : B = A_{ij}B_{ij},\qquad i,j=1,2.
@@ -1286,45 +1202,33 @@ A : B = A_{ij}B_{ij},\qquad i,j=1,2.
 </section>
 <section class="slide level2">
 
-<h4 id="canonical-form-of-a-symmetric-tensor">Canonical Form of a Symmetric Tensor</h4>
+<h3 id="canonical-form-of-a-symmetric-tensor">3.3.3. Canonical Form of a Symmetric Tensor</h3>
 <p>If <span class="math inline">\(l\)</span> is an arbitrary unit vector,</p>
 <ul>
 <li class="fragment"><p><span class="math inline">\(A \bullet l\)</span> is a vector and, for certain <span class="math inline">\(l\)</span>, may have the same direction as <span class="math inline">\(l\)</span> itself had.</p></li>
 <li class="fragment"><p>The two vectors <span class="math inline">\(A \bullet l\)</span> and <span class="math inline">\(l\)</span> would thus differ only in magnitude and</p>
 <ul>
-<li class="fragment">we might write</li>
+<li class="fragment">we might write <span class="math inline">\(\qquad\qquad\qquad A \bullet l = \lambda l.\)</span></li>
 </ul></li>
+<li class="fragment"><p>Writing this in component form</p></li>
 </ul>
-<div class="fragment">
-<p><span class="math display">\[
-A \bullet l = \lambda l.
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">Writing this in component form</li>
-</ul>
-<div class="fragment">
+<div class="columns">
+<div class="column" style="width:20%;">
+
+</div><div class="column fragment" style="width:20%;">
 <p><span class="math display">\[
 A_{ij}l_j = \lambda l_i = \lambda\delta_{ij}l_j
 \]</span></p>
-</div>
-<div class="fragment">
+</div><div class="column fragment" style="width:40%;">
 <p><span id="eq-eq10"><span class="math display">\[
-\text{or}\qquad(A_{ij}-\lambda\delta_{ij})l_j = 0.
-\tag{9}\]</span></span></p>
+\text{or}\quad\;(A_{ij}-\lambda\delta_{ij})l_j = 0.
+\tag{10}\]</span></span></p>
+</div></div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><b><em>Definition.</em></b> For <span class="math inline">\(l \ne 0\)</span>, the <span class="math inline">\(\lambda\)</span> in <a href="#/eq-eq10" class="quarto-xref">Equation&nbsp;10</a> is called the eigenvalue of <span class="math inline">\(A\)</span> and <span class="math inline">\(l\)</span> is the associated eigenvector. The value of <span class="math inline">\(\lambda\)</span> is determined from:</p>
 </div>
-</section>
-<section class="slide level2">
-
-<p><strong>Definition</strong>. For <span class="math inline">\(l \ne 0\)</span>, the <span class="math inline">\(\lambda\)</span> in <a href="#/eq-eq10" class="quarto-xref">Equation&nbsp;9</a> is called the eigen value of <span class="math inline">\(A\)</span> and <span class="math inline">\(l\)</span> is the associated eigen vector.</p>
-<ul>
-<li class="fragment"><p>Now we will find the eigen values and eigen vectors.</p></li>
-<li class="fragment"><p>System <a href="#/eq-eq10" class="quarto-xref">Equation&nbsp;9</a> is a set of homogeneous equations for the unknowns <span class="math inline">\(l_j\)</span> and</p>
-<ul>
-<li class="fragment">so has non-zero solutions only if the determinant of the coefficient matrix vanishes.</li>
-</ul></li>
-<li class="fragment"><p>Thus the value of <span class="math inline">\(\lambda\)</span> must be such that</p></li>
-</ul>
+<p><span class="space-out"></span></p>
 <div class="fragment">
 <p><span class="math display">\[
 \det(A_{ij}-\lambda\delta_{ij}) =
@@ -1337,15 +1241,15 @@ a_{12} &amp; a_{22}-\lambda
 <div class="fragment">
 <p><span id="eq-eq11"><span class="math display">\[
 \therefore   \lambda_{1,2} = \frac{1}{2}(a_{11}+a_{22}) \pm \frac{1}{2}\sqrt{(a_{11}-a_{22})^2 + 4a_{12}^2}.
-\tag{10}\]</span></span></p>
+\tag{11}\]</span></span></p>
 </div>
 </section>
 <section class="slide level2">
 
 <p>Assume <span class="math inline">\(\lambda_1 \ne \lambda_2\)</span>.</p>
 <ul>
-<li class="fragment"><p>There will be two different eigen vectors corresponding to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively.</p></li>
-<li class="fragment"><p>The vector <span class="math inline">\(l_j=(l_{1j},l_{2j})\)</span> associated with <span class="math inline">\(\lambda_j\)</span> can be determined from system <a href="#/eq-eq10" class="quarto-xref">Equation&nbsp;9</a>.</p></li>
+<li class="fragment"><p>There will be two different eigenvectors corresponding to <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>.</p></li>
+<li class="fragment"><p>Vector <span class="math inline">\(l_j=(l_{1j},l_{2j})\)</span> associated with <span class="math inline">\(\lambda_j\)</span> can be determined from <a href="#/eq-eq10" class="quarto-xref">Equation&nbsp;10</a>.</p></li>
 <li class="fragment"><p>For <span class="math inline">\(\lambda=\lambda_1\)</span>, we have</p></li>
 </ul>
 <div class="fragment">
@@ -1363,10 +1267,10 @@ l_{21}
 0 \\
 0
 \end{bmatrix}.  
-\tag{11}\]</span></span></p>
+\tag{12}\]</span></span></p>
 </div>
 <ul>
-<li class="fragment"><p>As equations <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> in system <a href="#/eq-eq12" class="quarto-xref">Equation&nbsp;11</a> are linearly dependent,</p>
+<li class="fragment"><p>As equations <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> in system <a href="#/eq-eq12" class="quarto-xref">Equation&nbsp;12</a> are linearly dependent,</p>
 <ul>
 <li class="fragment">we obtain from the first equation,</li>
 </ul></li>
@@ -1435,7 +1339,7 @@ l_{21} &amp;= \cos\left(\frac{\pi}{2}-\theta_1\right) = \sin\theta_1.
 <div class="fragment">
 <p><span id="eq-eq13"><span class="math display">\[
 \rightarrow\quad A_{ij}l_{jp} = \lambda_{(p)}l_{ip}, \qquad A_{ij}l_{jq} = \lambda_{(q)}l_{iq}.  
-\tag{12}\]</span></span></p>
+\tag{13}\]</span></span></p>
 </div>
 <ul>
 <li class="fragment">The repeated indices <span class="math inline">\((p)p\)</span> do not represent summation,</li>
@@ -1444,12 +1348,13 @@ l_{21} &amp;= \cos\left(\frac{\pi}{2}-\theta_1\right) = \sin\theta_1.
 </section>
 <section class="slide level2">
 
+<p>From <a href="#/eq-eq13" class="quarto-xref">Equation&nbsp;13</a>, we have</p>
 <p><span class="math display">\[
-(12)_1 \times l_{iq}: \qquad A_{ij}l_{jp}l_{iq} = \lambda_{(p)}l_{ip}l_{iq} = A_{ji}l_{ip}l_{jq},
+(13)_1 \times l_{iq}: \quad A_{ij}l_{jp}l_{iq} = \lambda_{(p)}l_{ip}l_{iq} = A_{ji}l_{ip}l_{jq},
 \]</span></p>
 <div class="fragment">
 <p><span class="math display">\[
-(12)_2 \times l_{ip}: \qquad A_{ij}l_{jq}l_{ip} = \lambda_{(q)}l_{iq}l_{ip}.
+(13)_2 \times l_{ip}: \quad A_{ij}l_{jq}l_{ip} = \lambda_{(q)}l_{iq}l_{ip}. \qquad\qquad\;\;
 \]</span></p>
 </div>
 <div class="fragment">
@@ -1475,9 +1380,7 @@ l_{ip}l_{iq} = \delta_{pq}.
     \therefore \qquad A_{pq} = l_{ip}l_{jq}A_{ij} = \lambda_{(p)}\delta_{pq}.
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
+<div class="fragment">
 <p>This merely says that <span class="math inline">\(A\)</span> has diagonal form and its diagonal components are <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, i.e.,</p>
 <p><span class="math display">\[
 \bar{A}=
@@ -1486,14 +1389,14 @@ l_{ip}l_{iq} = \delta_{pq}.
 0 &amp; \lambda_2
 \end{pmatrix}.
 \]</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<h3 id="the-del-operator-and-the-divergence-theorem">1.3.4 The Del Operator and the Divergence Theorem</h3>
-<ul>
-<li class="fragment"><p>he Del Operator <span class="math inline">\(\nabla\)</span></p></li>
-<li class="fragment"><p>If <span class="math inline">\(\nabla\)</span> operates on a scalar function of position <span class="math inline">\(\phi\)</span>, it produces a vector <span class="math inline">\(\nabla\phi\)</span>, i.e,</p></li>
-</ul>
+<h3 id="the-del-operator-nabla-and-the-divergence-theorem">3.3.4. The Del Operator <span class="math inline">\(\nabla\)</span> and the Divergence Theorem</h3>
+<div class="fragment">
+<p>If <span class="math inline">\(\nabla\)</span> operates on a scalar function of position <span class="math inline">\(\phi\)</span>, it produces a vector <span class="math inline">\(\nabla\phi\)</span>, i.e,</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 \nabla =
@@ -1509,46 +1412,40 @@ l_{ip}l_{iq} = \delta_{pq}.
 \end{pmatrix}.
 \]</span></p>
 </div>
-<ul>
-<li class="fragment">Remark: Let <span class="math inline">\(\mathbf n\)</span> be a unit vector, the directional derivative of <span class="math inline">\(\phi\)</span> along <span class="math inline">\(\mathbf n\)</span> is,</li>
-</ul>
+<div class="fragment">
+<p><b><em>Remark.</em></b> Let <span class="math inline">\(\mathbf n\)</span> be a unit vector, the directional derivative of <span class="math inline">\(\phi\)</span> along <span class="math inline">\(\mathbf n\)</span> is,</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 \frac{\partial\phi}{\partial n} = \nabla\phi \bullet \mathbf n
 \]</span></p>
 </div>
+<div class="fragment">
+<p><span style="color:blue;"><strong>Divergence Operator <span class="math inline">\(\nabla \bullet\)</span>:</strong></span> <span class="math inline">\(\hspace{3em}\operatorname{div} \mathbf a = \nabla \bullet \mathbf a = a_{i,i} = \dfrac{\partial a_1}{\partial x_1} + \dfrac{\partial a_2}{\partial x_2}\)</span></p>
+</div>
+<div class="fragment">
+<p><span style="color:blue;"><strong>Laplace Operator <span class="math inline">\(\Delta\)</span>:</strong></span> <span class="math inline">\(\qquad\Delta\phi = \nabla^2\phi = \dfrac{\partial^2\phi}{\partial x_1^2} + \dfrac{\partial^2\phi}{\partial x_2^2} = \operatorname{div}(\operatorname{grad})\phi = \phi_{,ii}\)</span></p>
+</div>
+<div class="fragment">
+<p><span style="color:blue;"><strong>The Divergence Theorem:</strong></span> <span class="math inline">\(\hspace{3em}\displaystyle\int_\Omega \nabla \bullet \mathbf a\,dV = \int_{\partial\Omega} \mathbf a \bullet \mathbf n\,dS\)</span></p>
+</div>
+<aside class="notes">
+<p>The divergence theorem relates a volume integral to an integral over the bounding surface.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2">
 
-<p>The Divergence Operator <span class="math inline">\(\nabla \bullet\)</span></p>
-<div class="fragment">
-<p><span class="math display">\[
-\operatorname{div} \mathbf a = \nabla \bullet \mathbf a = a_{i,i} = \frac{\partial a_1}{\partial x_1} + \frac{\partial a_2}{\partial x_2}
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">The Laplace Operator <span class="math inline">\(\Delta\)</span></li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-\Delta\phi = \nabla^2\phi = \frac{\partial^2\phi}{\partial x_1^2} + \frac{\partial^2\phi}{\partial x_2^2} = \operatorname{div}\operatorname{grad}\phi = \phi_{,ii}
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">The Divergence Theorem</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-\int_\Omega \nabla \bullet \mathbf a\,dV = \int_{\partial\Omega} \mathbf a \bullet \mathbf n\,dS
-\]</span></p>
-</div>
-<ul>
-<li class="fragment">The above equation relates a volume integral to an integral over the bounding surface.</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="levi-civita-symbol-permutation-symbol">1.3.5 Levi-Civita Symbol (Permutation Symbol)</h3>
+<h3 id="levi-civita-symbol-permutation-symbol">3.3.5. Levi-Civita Symbol (Permutation Symbol)</h3>
 <p>The Levi-Civita symbol, denoted by <span class="math inline">\(\varepsilon\)</span>, is a mathematical symbol used in vector calculus, tensor analysis, linear algebra, and physics.</p>
 <ul>
 <li class="fragment">It is also known as the <strong>permutation symbol</strong> because its value depends on the permutation of its indices.</li>
@@ -1577,36 +1474,33 @@ l_{ip}l_{iq} = \delta_{pq}.
 </section>
 <section class="slide level2">
 
-<h4 id="even-and-odd-permutations">Even and Odd Permutations</h4>
+<h4 class="center" id="even-and-odd-permutations">Even and Odd Permutations</h4>
 <div class="columns">
-<div class="column fragment">
-<p><strong>Even Permutations</strong> (<span class="math inline">\(\varepsilon = +1\)</span>)</p>
+<div class="column fragment center" style="width:28%;">
+<p><strong>Even Permutations</strong> <br> (<span class="math inline">\(\varepsilon = +1\)</span>)</p>
 <ul>
 <li class="fragment"><span class="math inline">\(\varepsilon_{123} = +1\)</span></li>
 <li class="fragment"><span class="math inline">\(\varepsilon_{231} = +1\)</span></li>
 <li class="fragment"><span class="math inline">\(\varepsilon_{312} = +1\)</span></li>
 </ul>
-</div><div class="column fragment">
-<p><strong>Odd Permutations</strong> (<span class="math inline">\(\varepsilon = -1\)</span>)</p>
+</div><div class="column fragment center" style="width:28%;">
+<p><strong>Odd Permutations</strong> <br> (<span class="math inline">\(\varepsilon = -1\)</span>)</p>
 <ul>
 <li class="fragment"><span class="math inline">\(\varepsilon_{132} = -1\)</span></li>
 <li class="fragment"><span class="math inline">\(\varepsilon_{213} = -1\)</span></li>
 <li class="fragment"><span class="math inline">\(\varepsilon_{321} = -1\)</span></li>
 </ul>
-</div></div>
-<h4 class="fragment" id="repeated-indices"><strong>Repeated Indices </strong></h4>
+</div><div class="column fragment center" style="width:44%;">
+<p><strong>Repeated Indices</strong> <br> If any two indices are the same:</p>
 <ul>
-<li class="fragment"><p>If any two indices are the same:</p></li>
-<li class="fragment"><p><span class="math inline">\(\varepsilon_{112} = 0\)</span></p></li>
-<li class="fragment"><p><span class="math inline">\(\varepsilon_{233} = 0\)</span></p></li>
-<li class="fragment"><p><span class="math inline">\(\varepsilon_{111} = 0\)</span></p></li>
+<li class="fragment"><span class="math inline">\(\varepsilon_{112} = 0\)</span></li>
+<li class="fragment"><span class="math inline">\(\varepsilon_{233} = 0\)</span></li>
+<li class="fragment"><span class="math inline">\(\varepsilon_{111} = 0\)</span></li>
 </ul>
-</section>
-<section class="slide level2">
-
-<h4 id="properties"><strong>Properties</strong></h4>
+</div></div>
+<h4 class="fragment center" id="properties"><strong>Properties</strong></h4>
 <ul>
-<li class="fragment"><strong>Complete Antisymmetry</strong>. Interchanging any two indices changes the sign of the symbol:</li>
+<li class="fragment"><strong>Complete Antisymmetry</strong>. Interchanging any two indices changes the sign:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -1614,30 +1508,16 @@ l_{ip}l_{iq} = \delta_{pq}.
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><strong>Zero for Repeated Indices</strong>. If any two indices are equal:</li>
+<li class="fragment"><p><strong>Zero for Repeated Indices</strong>. If any two indices are equal: <span class="math inline">\(\;\varepsilon_{iik} = 0\)</span></p></li>
+<li class="fragment"><p><strong>Product Identity</strong>. The product of two Levi-Civita symbols is related to the Kronecker delta: <span class="math display">\[
+\varepsilon_{ijk}\varepsilon_{imn}=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}
+\]</span></p></li>
 </ul>
-<div class="fragment">
-<p><span class="math display">\[
-\varepsilon_{iik} = 0
-\]</span></p>
-</div>
-<ul>
-<li class="fragment"><strong>Product Identity</strong>. The product of two Levi-Civita symbols is related to the Kronecker delta:</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[
-\varepsilon_{ijk}\varepsilon_{imn}
-=
-\delta_{jm}\delta_{kn}
--
-\delta_{jn}\delta_{km}
-\]</span></p>
-</div>
 </section>
 <section class="slide level2">
 
-<h4 id="applications">Applications</h4>
-<p>The Levi-Civita symbol , <span class="math inline">\(\varepsilon_{ijk}\)</span>, has numerous applications in mathematics and physics.</p>
+<h4 class="center" id="applications">Applications</h4>
+<p>The Levi-Civita symbol , <span class="math inline">\(\varepsilon_{ijk}\)</span>, has numerous applications in maths and physics.</p>
 <div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
@@ -1645,7 +1525,7 @@ l_{ip}l_{iq} = \delta_{pq}.
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong><strong>Cross Product</strong> of two vectors can be expressed as</strong></p>
+<p><strong>Cross product of two vectors</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math display">\[
@@ -1658,65 +1538,51 @@ l_{ip}l_{iq} = \delta_{pq}.
 </div>
 </div>
 </div>
+<p><span class="space-out"></span></p>
 <div class="fragment">
-<p><strong>Example</strong>.</p>
-<p>If <span class="math inline">\(\mathbf{A} = (2,\,3,\,4)\)</span> and <span class="math inline">\(\mathbf{B} = (5,\,6,\,7)\)</span>, then the cross product <span class="math inline">\(\mathbf{A} \times \mathbf{B}\)</span> can be computed using the Levi-Civita symbol as follows.</p>
+<p><span style="color:blue;"><strong>Example:</strong></span> If <span class="math inline">\(\mathbf{A} = (2,\,3,\,4)\)</span> and <span class="math inline">\(\mathbf{B} = (5,\,6,\,7)\)</span>, then the cross product <span class="math inline">\(\mathbf{A} \times \mathbf{B}\)</span> can be computed using the Levi-Civita symbol as follows.</p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="step-1-compute-the-first-component-i1"><strong>Step 1</strong>: Compute the First Component (<span class="math inline">\(i=1\)</span>)</h4>
+<div class="fragment">
+<p><strong>Step 1</strong>: Compute the First Component (<span class="math inline">\(i=1\)</span>)</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 (\mathbf{A}\times\mathbf{B})_1
 =
 \varepsilon_{123}A_2B_3
 +
-\varepsilon_{132}A_3B_2
+\varepsilon_{132}A_3B_2 \qquad\qquad
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Substituting the values gives <span class="math display">\[
-\begin{aligned}
-(\mathbf{A}\times\mathbf{B})_1=&amp;
+<p><span class="math display">\[
+(\mathbf{A}\times\mathbf{B})_1=
 (+1)(3)(7)
 +
-(-1)(4)(6)\\
-=&amp;
-21-24
+(-1)(4)(6)
 =
 -3
-\end{aligned}
 \]</span></p>
 </div>
-<h4 class="fragment" id="step-2-compute-the-second-component-i2"><strong>Step 2</strong>: Compute the Second Component (<span class="math inline">\(i=2\)</span>)</h4>
+<div class="fragment">
+<p><strong>Step 2</strong>: Compute the Second Component (<span class="math inline">\(i=2\)</span>)</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 (\mathbf{A}\times\mathbf{B})_2
 =
 \varepsilon_{231}A_3B_1
 +
-\varepsilon_{213}A_1B_3\\
+\varepsilon_{213}A_1B_3 \qquad\quad
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Substituting the values yields gets</p>
 <p><span class="math display">\[
-\begin{aligned}
 (\mathbf{A}\times\mathbf{B})_2
-=&amp;
-\varepsilon_{231}A_3B_1
-+
-\varepsilon_{213}A_1B_3\\
-=&amp;
+=
 (+1)(4)(5)
 +
 (-1)(2)(7)
-\end{aligned}
-\]</span></p>
-<p><span class="math display">\[
-=
-20-14
 =
 6
 \]</span></p>
@@ -1724,46 +1590,33 @@ l_{ip}l_{iq} = \delta_{pq}.
 </section>
 <section class="slide level2">
 
-<h4 id="step-3-compute-the-third-component-i3"><strong>Step 3</strong>: Compute the Third Component (<span class="math inline">\(i=3\)</span>)</h4>
+<p><strong>Step 3</strong>: Compute the Third Component (<span class="math inline">\(i=3\)</span>)</p>
 <div class="fragment">
 <p><span class="math display">\[
 (\mathbf{A}\times\mathbf{B})_3
 =
 \varepsilon_{312}A_1B_2
 +
-\varepsilon_{321}A_2B_1
+\varepsilon_{321}A_2B_1 \qquad\qquad
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Substituting the values gives</p>
 <p><span class="math display">\[
-\begin{aligned}
 (\mathbf{A}\times\mathbf{B})_3
-=&amp;
+=
 (+1)(2)(6)
 +
-(-1)(3)(5)\\
-=&amp;
-12-15
+(-1)(3)(5)
 =
 -3
-\end{aligned}
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Therefore,</p>
-<p><span class="math display">\[
-\boxed{
-\mathbf{A}\times\mathbf{B}
-=
-(-3,\;6,\;-3)
-}
-\]</span></p>
+<p>Therefore, <span class="math inline">\(\hspace{7em}\boxed{\mathbf{A}\times\mathbf{B}=(-3,\;6,\;-3)}\)</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="verification-using-the-determinant-method"><strong>Verification Using the Determinant Method</strong></h4>
+<div class="fragment">
+<p><strong>Verification Using the Determinant Method</strong></p>
+</div>
 <div class="fragment">
 <p>The cross product can also be computed using the determinant:</p>
 <p><span class="math display">\[
@@ -1835,23 +1688,13 @@ l_{ip}l_{iq} = \delta_{pq}.
 </div>
 </div>
 </div>
-<h4 class="fragment" id="example.">Example.</h4>
 <div class="fragment">
-<p>Consider the matrix<br>
-<span class="math display">\[
-\displaystyle A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-4 &amp; 5 &amp; 6 \\
-7 &amp; 8 &amp; 10
-\end{bmatrix}.
-\]</span> Determine <span class="math inline">\(\det(A)\)</span>.</p>
+<p><span style="color:blue;"><strong>Example:</strong></span> Consider the matrix <span class="math inline">\(A=\begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 10 \end{bmatrix}.\)</span> Determine <span class="math inline">\(\det(A)\)</span>.</p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="step-1-expand-the-formula"><strong>Step 1</strong>: Expand the Formula</h4>
 <div class="fragment">
-<p>Only the six permutations of <span class="math inline">\((1,2,3)\)</span> contribute because all other terms have repeated indices and are zero.</p>
+<p><strong>Step 1</strong>: Expand the Formula</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 \begin{aligned}
 \det(A)=&amp;
@@ -1866,14 +1709,9 @@ l_{ip}l_{iq} = \delta_{pq}.
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Since</p>
+<p>Since <span class="math inline">\(\;\;\varepsilon_{123}=\varepsilon_{231}=\varepsilon_{312}=+1\;\)</span> and <span class="math inline">\(\;\varepsilon_{132}=\varepsilon_{213}=\varepsilon_{321}=-1\)</span></p>
 </div>
-<ul>
-<li class="fragment"><span class="math inline">\(\varepsilon_{123}=\varepsilon_{231}=\varepsilon_{312}=+1\)</span></li>
-<li class="fragment"><span class="math inline">\(\varepsilon_{132}=\varepsilon_{213}=\varepsilon_{321}=-1\)</span></li>
-</ul>
 <div class="fragment">
-<p>the expression becomes</p>
 <p><span class="math display">\[
 \begin{aligned}
 \det(A)=&amp;
@@ -1890,19 +1728,8 @@ A_{11}A_{22}A_{33}
 </section>
 <section class="slide level2">
 
-<h4 id="step-2-substitute-the-matrix-entries"><strong>Step 2</strong>: Substitute the Matrix Entries</h4>
+<p><strong>Step 2</strong>: Substitute the Matrix Entries</p>
 <div class="fragment">
-<p>From the matrix,</p>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;A_{11}=1,\quad A_{12}=2,\quad A_{13}=3,\\
-&amp;A_{21}=4,\quad A_{22}=5,\quad A_{23}=6,\\
-&amp;A_{31}=7,\quad A_{32}=8,\quad A_{33}=10.
-\end{aligned}
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Substituting these values,</p>
 <p><span class="math display">\[
 \begin{aligned}
 \det(A)=&amp;
@@ -1916,7 +1743,9 @@ A_{11}A_{22}A_{33}
 \end{aligned}
 \]</span></p>
 </div>
-<h4 class="fragment" id="step-3-evaluate"><strong>Step 3</strong>: Evaluate</h4>
+<div class="fragment">
+<p><strong>Step 3</strong>: Evaluate</p>
+</div>
 <div class="fragment">
 <p>Computing each term yields</p>
 <p><span class="math display">\[
@@ -1929,11 +1758,12 @@ A_{11}A_{22}A_{33}
 \end{aligned}
 \]</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="verification-using-the-standard-determinant-formula"><strong>Verification Using the Standard Determinant Formula</strong></h4>
+<div class="fragment">
+<p><strong>Verification Using the Standard Determinant Formula</strong></p>
+</div>
+<div class="fragment">
 <p>Find <span class="math inline">\(\det(A)\)</span> using the standard determinant formula for a <span class="math inline">\(3 \times 3\)</span> matrix.</p>
+</div>
 <div class="columns">
 <div class="column fragment">
 <p><span class="math display">\[
@@ -1983,7 +1813,7 @@ A_{11}A_{22}A_{33}
 </section>
 <section class="slide level2">
 
-<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout callout-tip callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1992,40 +1822,32 @@ A_{11}A_{22}A_{33}
 <p><strong><strong>Curl of a Vector Field</strong></strong></p>
 </div>
 <div class="callout-content">
-<p>The curl of a vector field is written as</p>
+<div class="columns">
+<div class="column" style="width:34%;">
 <p><span class="math display">\[
 (\nabla\times\mathbf{A})_i
 =
 \varepsilon_{ijk}
 \frac{\partial A_k}{\partial x_j}
 \]</span></p>
+</div><div class="column" style="width:66%;">
 <ul>
-<li class="fragment"><span class="math inline">\(A_k\)</span> is the <span class="math inline">\(k\)</span>-th component of the vector field.</li>
-<li class="fragment"><span class="math inline">\(x_1=x\)</span>, <span class="math inline">\(x_2=y\)</span>, and <span class="math inline">\(x_3=z\)</span>.</li>
+<li class="fragment"><span class="math inline">\(A_k:\)</span> <span class="math inline">\(k\)</span>-th component of the vector field</li>
+<li class="fragment"><span class="math inline">\(x_1=x\)</span>, <span class="math inline">\(x_2=y\)</span>, and <span class="math inline">\(x_3=z\)</span></li>
 </ul>
+</div></div>
 </div>
 </div>
-</div>
-<h4 class="fragment" id="example-curl-of-a-vector-field">Example: Curl of a Vector Field</h4>
-<div class="fragment">
-<p>Consider the vector field</p>
-<p><span class="math display">\[
-\mathbf{A}(x,y,z)=
-\left(
-y^2,\; z^2,\; x^2
-\right)
-\]</span></p>
 </div>
 <div class="fragment">
-<p>That is,</p>
-<p><span class="math display">\[
-A_1=y^2,\quad A_2=z^2,\quad A_3=x^2
-\]</span></p>
+<p><span style="color:blue;"><strong>Example:</strong></span> Consider the vector field <span class="math inline">\(\mathbf{A}(x,y,z)=\left(y^2,\; z^2,\; x^2\right)\)</span></p>
 </div>
-</section>
-<section class="slide level2">
-
-<h4 id="step-1-compute-the-first-component-i1-1"><strong>Step 1</strong>: Compute the First Component (<span class="math inline">\(i=1\)</span>)</h4>
+<div class="fragment">
+<p>That is, <span class="math inline">\(\hspace{4em}A_1=y^2,\quad A_2=z^2,\quad A_3=x^2\)</span></p>
+</div>
+<div class="fragment">
+<p><strong>Step 1</strong>: Compute the First Component</p>
+</div>
 <div class="fragment">
 <p><span class="math display">\[
 (\nabla \times \mathbf{A})_1
@@ -2036,63 +1858,36 @@ A_1=y^2,\quad A_2=z^2,\quad A_3=x^2
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Since <span class="math inline">\(\varepsilon_{123}=+1\)</span> and <span class="math inline">\(\varepsilon_{132}=-1\)</span>,</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_1
-=
-\frac{\partial A_3}{\partial y}
--
-\frac{\partial A_2}{\partial z}
-\]</span></p>
+<p>Since <span class="math inline">\(\varepsilon_{123}=+1\)</span> and <span class="math inline">\(\varepsilon_{132}=-1\)</span>, <span class="math inline">\((\nabla \times \mathbf{A})_1=\dfrac{\partial A_3}{\partial y}-\dfrac{\partial A_2}{\partial z}\)</span></p>
 </div>
 <div class="fragment">
-<p>Substituting <span class="math inline">\(A_3=x^2\)</span> and <span class="math inline">\(A_2=z^2\)</span> yields</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_1
-=
-\frac{\partial x^2}{\partial y}
--
-\frac{\partial z^2}{\partial z}=
-0-2z
-=
--2z
-\]</span></p>
+<p>Substituting <span class="math inline">\(A_3=x^2\)</span> and <span class="math inline">\(A_2=z^2\)</span>: <span class="math inline">\((\nabla \times \mathbf{A})_1=\dfrac{\partial x^2}{\partial y}-\dfrac{\partial z^2}{\partial z}=0-2z=-2z\)</span></p>
 </div>
-<ul>
-<li class="fragment">Similarly, we can compute the second and third components of the curl.</li>
-</ul>
+<div class="fragment">
+<p>Similarly, we can compute the second and third components of the curl.</p>
+</div>
 </section>
 <section class="slide level2">
 
-<h4 id="step-2-compute-the-second-component-i2-1"><strong>Step 2</strong>: Compute the Second Component (<span class="math inline">\(i=2\)</span>)</h4>
+<p><strong>Step 2</strong>: Compute the Second Component (<span class="math inline">\(i=2\)</span>)</p>
+<div class="fragment">
 <p><span class="math display">\[(\nabla \times \mathbf{A})_2
 =
 \varepsilon_{231}\frac{\partial A_1}{\partial x_3}
 +
 \varepsilon_{213}\frac{\partial A_3}{\partial x_1}
 \]</span></p>
-<p>Since <span class="math inline">\(\varepsilon_{231}=+1\)</span> and <span class="math inline">\(\varepsilon_{213}=-1\)</span>,</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_2
-=
-\frac{\partial A_1}{\partial z}
--
-\frac{\partial A_3}{\partial x}
-\]</span></p>
-<p>Substitute <span class="math inline">\(A_1=y^2\)</span> and <span class="math inline">\(A_3=x^2\)</span>:</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_2=
-\frac{\partial y^2}{\partial z}
--
-\frac{\partial x^2}{\partial x} =
-0-2x
-=
--2x
-\]</span></p>
-</section>
-<section class="slide level2">
-
-<h4 id="step-3-compute-the-third-component-i3-1"><strong>Step 3</strong>: Compute the Third Component (<span class="math inline">\(i=3\)</span>)</h4>
+</div>
+<div class="fragment">
+<p>Since <span class="math inline">\(\varepsilon_{231}=+1\)</span> and <span class="math inline">\(\varepsilon_{213}=-1\)</span>, <span class="math inline">\((\nabla \times \mathbf{A})_2=\dfrac{\partial A_1}{\partial z}-\dfrac{\partial A_3}{\partial x}\)</span></p>
+</div>
+<div class="fragment">
+<p>Substitute <span class="math inline">\(A_1=y^2\)</span> and <span class="math inline">\(A_3=x^2\)</span>: <span class="math inline">\((\nabla \times \mathbf{A})_2=\dfrac{\partial y^2}{\partial z}-\dfrac{\partial x^2}{\partial x} =0-2x=-2x\)</span></p>
+</div>
+<div class="fragment">
+<p><strong>Step 3</strong>: Compute the Third Component (<span class="math inline">\(i=3\)</span>)</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 (\nabla \times \mathbf{A})_3
 =
@@ -2100,36 +1895,21 @@ A_1=y^2,\quad A_2=z^2,\quad A_3=x^2
 +
 \varepsilon_{321}\frac{\partial A_1}{\partial x_2}
 \]</span></p>
-<p>Since <span class="math inline">\(\varepsilon_{312}=+1\)</span> and <span class="math inline">\(\varepsilon_{321}=-1\)</span>,</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_3
-=
-\frac{\partial A_2}{\partial x}
--
-\frac{\partial A_1}{\partial y}
-\]</span></p>
-<p>Substitute <span class="math inline">\(A_2=z^2\)</span> and <span class="math inline">\(A_1=y^2\)</span>:</p>
-<p><span class="math display">\[
-(\nabla \times \mathbf{A})_3=
-\frac{\partial z^2}{\partial x}
--
-\frac{\partial y^2}{\partial y}=
-0-2y
-=
--2y
-\]</span></p>
-<p>Therefore,</p>
-<p><span class="math display">\[
-\boxed{
-\nabla \times \mathbf{A}
-=
-(-2z,\;-2x,\;-2y)
-}
-\]</span></p>
+</div>
+<div class="fragment">
+<p>Since <span class="math inline">\(\varepsilon_{312}=+1\)</span> and <span class="math inline">\(\varepsilon_{321}=-1\)</span>, <span class="math inline">\((\nabla \times \mathbf{A})_3=\dfrac{\partial A_2}{\partial x}-\dfrac{\partial A_1}{\partial y}\)</span></p>
+</div>
+<div class="fragment">
+<p>Substitute <span class="math inline">\(A_2=z^2\)</span> and <span class="math inline">\(A_1=y^2\)</span>: <span class="math inline">\((\nabla \times \mathbf{A})_3=\dfrac{\partial z^2}{\partial x}-\dfrac{\partial y^2}{\partial y}=0-2y=-2y\)</span></p>
+</div>
+<div class="fragment">
+<p>Therefore, <span class="math inline">\(\hspace{7em}\boxed{\nabla \times \mathbf{A}=(-2z,\;-2x,\;-2y)}\)</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<h4 id="verification-using-the-standard-curl-formula"><strong>Verification Using the Standard Curl Formula</strong></h4>
+<p><strong>Verification Using the Standard Curl Formula</strong></p>
+<div class="fragment">
 <p>The standard formula for curl is</p>
 <p><span class="math display">\[
 \nabla \times \mathbf{A}
@@ -2140,6 +1920,8 @@ A_1=y^2,\quad A_2=z^2,\quad A_3=x^2
 A_1 &amp; A_2 &amp; A_3
 \end{vmatrix}
 \]</span></p>
+</div>
+<div class="fragment">
 <p>Substituting <span class="math inline">\(\mathbf{A}=(y^2,\;z^2,\;x^2)\)</span>, we get</p>
 <p><span class="math display">\[
 \nabla \times \mathbf{A}
@@ -2158,10 +1940,14 @@ A_1 &amp; A_2 &amp; A_3
 \frac{\partial y^2}{\partial y}
 \right)
 \]</span></p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 =
 (-2z,\;-2x,\;-2y)
 \]</span></p>
+</div>
+<div class="fragment">
 <p>The Levi-Civita symbol gives a compact index notation for the curl, i.e.,</p>
 <p><span class="math display">\[
 (\nabla \times \mathbf{A})_i
@@ -2169,23 +1955,30 @@ A_1 &amp; A_2 &amp; A_3
 \varepsilon_{ijk}
 \frac{\partial A_k}{\partial x_j}
 \]</span></p>
+</div>
 </section>
 <section class="slide level2">
 
-<h4 class="unnumbered" id="tensor-calculus"><strong>Tensor Calculus</strong></h4>
+<h4 id="levi-civita-symbol">Levi-Civita Symbol</h4>
 <p>The Levi-Civita symbol is widely used in:</p>
-<ul>
-<li class="fragment">Tensor algebra</li>
-<li class="fragment">Differential geometry</li>
-<li class="fragment">Electromagnetism</li>
-<li class="fragment">Fluid mechanics</li>
-<li class="fragment">Quantum mechanics</li>
-<li class="fragment">General relativity</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h4 id="levi-civita-symbol-in-n-dimensions">Levi-Civita Symbol in <span class="math inline">\(n\)</span> Dimensions</h4>
+<div class="columns">
+<div class="column center fragment block blue" style="width:30%;">
+<p>Tensor algebra</p>
+</div><div class="column center fragment block yellow" style="width:30%;">
+<p>Differential geometry</p>
+</div><div class="column center fragment block purple" style="width:30%;">
+<p>Electromagnetism</p>
+</div></div>
+<div class="columns">
+<div class="column center fragment block gray" style="width:30%;">
+<p>Fluid mechanics</p>
+</div><div class="column center fragment block orange" style="width:30%;">
+<p>Quantum mechanics</p>
+</div><div class="column center fragment block red" style="width:30%;">
+<p>General relativity</p>
+</div></div>
+<p><br></p>
+<div class="fragment">
 <p>In <span class="math inline">\(n\)</span> dimensions, the Levi-Civita symbol is defined as:</p>
 <p><span class="math display">\[
 \varepsilon_{i_1i_2\cdots i_n}
@@ -2196,44 +1989,10 @@ A_1 &amp; A_2 &amp; A_3
 0, &amp; \text{if any indices are repeated.}
 \end{cases}
 \]</span></p>
+</div>
+<div class="fragment">
 <p>It is completely antisymmetric with respect to the interchange of any pair of indices.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Symbol</td>
-<td><span class="math inline">\(\varepsilon_{ijk}\)</span></td>
-</tr>
-<tr class="even">
-<td>Possible Values</td>
-<td>+1, -1, 0</td>
-</tr>
-<tr class="odd">
-<td>Nature</td>
-<td>Completely antisymmetric</td>
-</tr>
-<tr class="even">
-<td>Zero Condition</td>
-<td>Any two indices are equal</td>
-</tr>
-<tr class="odd">
-<td>Main Uses</td>
-<td>Cross products, determinants, curls, tensor identities, and physics</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section class="slide level2">
-
+</div>
 
 </section>
     </div>
@@ -2273,7 +2032,7 @@ A_1 &amp; A_2 &amp; A_3
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3, h4, h5, h6"},
+'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3"},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -2428,7 +2187,7 @@ A_1 &amp; A_2 &amp; A_3
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
