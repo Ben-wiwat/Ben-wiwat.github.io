@@ -29,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="03_lecture_files/libs/revealjs/dist/theme/quarto-96788e83c092d5568b77a9a184cee969.css">
+  <link rel="stylesheet" href="03_lecture_files/libs/revealjs/dist/theme/quarto-732dc41fd9cf82e3e6efb95b11f77e1d.css">
   <link href="03_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="03_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="03_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -452,7 +452,204 @@ Figure&nbsp;3: Stress components on coordinate planes: (left) sign convention; (
 </section>
 <section class="slide level2">
 
-<h3 id="sign-convention">1.1. Sign Convention</h3>
+<p><span style="color:blue;"><strong>Example: Stress Notation</strong></span></p>
+<p>Consider the following stress tensor at a point in a three-dimensional material:</p>
+<p><span class="math display">\[
+[\sigma_{ij}]
+=
+\begin{bmatrix}
+80 &amp; 25 &amp; -10 \\
+25 &amp; 50 &amp; 15 \\
+-10 &amp; 15 &amp; 30
+\end{bmatrix}
+\text{ MPa}
+\]</span></p>
+<p>In the notation <span class="math inline">\(\sigma_{ij}\)</span>:</p>
+<ul>
+<li class="fragment">The first subscript, <span class="math inline">\(i\)</span>, identifies the plane whose outward normal is in the <span class="math inline">\(x_i\)</span> direction.</li>
+<li class="fragment">The second subscript, <span class="math inline">\(j\)</span>, identifies the direction in which the stress component acts.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="stress-components-on-the-x_1-plane">Stress Components on the <span class="math inline">\(x_1\)</span>-Plane</h4>
+<p>The outward normal to this plane is parallel to the <span class="math inline">\(x_1\)</span>-axis.</p>
+<p>The stress components are taken from the first row of the stress tensor:</p>
+<p><span class="math display">\[
+\sigma_{11}=80\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{12}=25\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{13}=-10\text{ MPa}
+\]</span></p>
+<p>Therefore, the traction vector on the <span class="math inline">\(x_1\)</span>-plane is</p>
+<p><span class="math display">\[
+\mathbf{t}^{(1)}
+=
+\begin{bmatrix}
+\sigma_{11} \\
+\sigma_{12} \\
+\sigma_{13}
+\end{bmatrix}
+=
+\begin{bmatrix}
+80 \\
+25 \\
+-10
+\end{bmatrix}
+\text{ MPa}
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\sigma_{11}\)</span> is the normal stress on the <span class="math inline">\(x_1\)</span>-plane.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{12}\)</span> is the shear stress acting in the <span class="math inline">\(x_2\)</span> direction.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{13}\)</span> is the shear stress acting in the negative <span class="math inline">\(x_3\)</span> direction.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="stress-components-on-the-x_2-plane">Stress Components on the <span class="math inline">\(x_2\)</span>-Plane</h4>
+<p>The outward normal to this plane is parallel to the <span class="math inline">\(x_2\)</span>-axis.</p>
+<p>The stress components are taken from the second row:</p>
+<p><span class="math display">\[
+\sigma_{21}=25\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{22}=50\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{23}=15\text{ MPa}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\mathbf{t}^{(2)}
+=
+\begin{bmatrix}
+\sigma_{21} \\
+\sigma_{22} \\
+\sigma_{23}
+\end{bmatrix}
+=
+\begin{bmatrix}
+25 \\
+50 \\
+15
+\end{bmatrix}
+\text{ MPa}
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\sigma_{22}\)</span> is the normal stress on the <span class="math inline">\(x_2\)</span>-plane.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{21}\)</span> is the shear stress acting in the <span class="math inline">\(x_1\)</span> direction.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{23}\)</span> is the shear stress acting in the <span class="math inline">\(x_3\)</span> direction.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="stress-components-on-the-x_3-plane">Stress Components on the <span class="math inline">\(x_3\)</span>-Plane</h4>
+<p>The outward normal to this plane is parallel to the <span class="math inline">\(x_3\)</span>-axis.</p>
+<p>The stress components are taken from the third row:</p>
+<p><span class="math display">\[
+\sigma_{31}=-10\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{32}=15\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{33}=30\text{ MPa}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\mathbf{t}^{(3)}
+=
+\begin{bmatrix}
+\sigma_{31} \\
+\sigma_{32} \\
+\sigma_{33}
+\end{bmatrix}
+=
+\begin{bmatrix}
+-10 \\
+15 \\
+30
+\end{bmatrix}
+\text{ MPa}
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\sigma_{33}\)</span> is the normal stress on the <span class="math inline">\(x_3\)</span>-plane.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{31}\)</span> is the shear stress acting in the negative <span class="math inline">\(x_1\)</span> direction.</li>
+<li class="fragment"><span class="math inline">\(\sigma_{32}\)</span> is the shear stress acting in the <span class="math inline">\(x_2\)</span> direction.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="summary-table">Summary Table</h4>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plane</th>
+<th style="text-align: right;">Normal stress</th>
+<th style="text-align: right;">First shear stress</th>
+<th style="text-align: right;">Second shear stress</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x_1\)</span>-plane</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{11}=80\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{12}=25\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{13}=-10\)</span> MPa</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(x_2\)</span>-plane</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{22}=50\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{21}=25\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{23}=15\)</span> MPa</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x_3\)</span>-plane</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{33}=30\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{31}=-10\)</span> MPa</td>
+<td style="text-align: right;"><span class="math inline">\(\sigma_{32}=15\)</span> MPa</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<h4 id="symmetry-of-the-stress-tensor">Symmetry of the Stress Tensor</h4>
+<p>For a material in static equilibrium without body couples, the stress tensor is symmetric:</p>
+<p><span class="math display">\[
+\sigma_{ij}=\sigma_{ji}
+\]</span></p>
+<p>For this example:</p>
+<p><span class="math display">\[
+\sigma_{12}=\sigma_{21}=25\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{13}=\sigma_{31}=-10\text{ MPa}
+\]</span></p>
+<p><span class="math display">\[
+\sigma_{23}=\sigma_{32}=15\text{ MPa}
+\]</span></p>
+<p>Thus, although the stress tensor contains nine components, only six components are independent:</p>
+<p><span class="math display">\[
+\sigma_{11},\ \sigma_{22},\ \sigma_{33},\
+\sigma_{12},\ \sigma_{13},\ \sigma_{23}
+\]</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="sign-convention">1.2. Sign Convention</h3>
 <p>A stress component is taken as <span style="color:green;">positive</span> if</p>
 <ul>
 <li class="fragment">it acts on a <span style="color:green;">positive</span> plane in the <span style="color:green;">positive</span> coordinate direction, or</li>
@@ -472,7 +669,180 @@ Figure&nbsp;3: Stress components on coordinate planes: (left) sign convention; (
 </section>
 <section class="slide level2">
 
-<h3 class="unnumbered" id="stress-relations-at-a-point">1.2. Stress Relations at a Point</h3>
+<p><span style="color:green;"><strong>Example: Sign Convention for Stress Components</strong></span></p>
+<p>Consider a small cubic element subjected to the following stress components:</p>
+<p><span class="math display">\[
+\sigma_{11}=60\text{ MPa}
+\]</span> <br> <span class="math display">\[
+\sigma_{22}=-25\text{ MPa}
+\]</span> <br> <span class="math display">\[
+\sigma_{12}=18\text{ MPa}
+\]</span> <br> <span class="math display">\[
+\sigma_{13}=-10\text{ MPa}
+\]</span> <br></p>
+<div class="fragment">
+<p>The <strong>first</strong> subscript identifies the <strong>plane</strong>, while the <strong>second </strong>subscript identifies the <strong>direction</strong> of the stress component.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>Example: Positive Normal Stress</strong></span></p>
+<p>Consider</p>
+<p><span class="math display">\[
+\sigma_{11}=60\text{ MPa}
+\]</span></p>
+<p>The component <span class="math inline">\(\sigma_{11}\)</span> acts on the <span class="math inline">\(x_1\)</span>-plane in the <span class="math inline">\(x_1\)</span> direction.</p>
+<p><br></p>
+<div class="fragment">
+<p>Since its value is positive:</p>
+</div>
+<ul>
+<li class="fragment">On the <strong>positive</strong> <span class="math inline">\(x_1\)</span>-plane, it acts in the <strong>positive</strong> <span class="math inline">\(x_1\)</span> direction.</li>
+<li class="fragment">On the <strong>negative </strong><span class="math inline">\(x_1\)</span>-plane, it acts in the <strong>negative</strong> <span class="math inline">\(x_1\)</span> direction.</li>
+</ul>
+<div class="fragment">
+<p>Therefore, <span class="math inline">\(\sigma_{11}\)</span> represents a <strong>tensile normal</strong> stress.</p>
+<p><br> <span class="math display">\[
+\sigma_{11}=+60\text{ MPa}
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>Example: Negative Normal Stress</strong></span></p>
+<p>Consider</p>
+<p><span class="math display">\[
+\sigma_{22}=-25\text{ MPa}
+\]</span></p>
+<p>The component <span class="math inline">\(\sigma_{22}\)</span> acts on the <span class="math inline">\(x_2\)</span>-plane in the <span class="math inline">\(x_2\)</span> direction.</p>
+<p><br></p>
+<div class="fragment">
+<p>Since its value is negative:</p>
+</div>
+<ul>
+<li class="fragment">On the positive <span class="math inline">\(x_2\)</span>-plane, it acts in the negative <span class="math inline">\(x_2\)</span> direction.</li>
+<li class="fragment">On the negative <span class="math inline">\(x_2\)</span>-plane, it acts in the positive <span class="math inline">\(x_2\)</span> direction.</li>
+</ul>
+<div class="fragment">
+<p>Therefore, <span class="math inline">\(\sigma_{22}\)</span> represents a <strong>compressive normal</strong> stress.</p>
+<p><br> <span class="math display">\[
+\sigma_{22}=-25\text{ MPa}
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>Example: Positive Shear Stress</strong></span></p>
+<p>Consider</p>
+<p><span class="math display">\[
+\sigma_{12}=18\text{ MPa}
+\]</span></p>
+<ul>
+<li class="fragment"><p>The first subscript indicates that the stress acts on the <span class="math inline">\(x_1\)</span>-plane.</p></li>
+<li class="fragment"><p>The second subscript indicates that it acts in the <span class="math inline">\(x_2\)</span> direction.</p></li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Since <span class="math inline">\(\sigma_{12}\)</span> is positive:</p>
+</div>
+<ul>
+<li class="fragment">On the positive <span class="math inline">\(x_1\)</span>-plane, it acts in the positive <span class="math inline">\(x_2\)</span> direction.</li>
+<li class="fragment">On the negative <span class="math inline">\(x_1\)</span>-plane, it acts in the negative <span class="math inline">\(x_2\)</span> direction.</li>
+</ul>
+<div class="fragment">
+<p>Thus,</p>
+<p><span class="math display">\[
+\sigma_{12}=+18\text{ MPa}
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>Example: Negative Shear Stress</strong></span></p>
+<p>Consider</p>
+<p><span class="math display">\[
+\sigma_{13}=-10\text{ MPa}
+\]</span></p>
+<ul>
+<li class="fragment">The component acts on the <span class="math inline">\(x_1\)</span>-plane in the <span class="math inline">\(x_3\)</span> direction.</li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Since its value is negative:</p>
+</div>
+<ul>
+<li class="fragment">On the positive <span class="math inline">\(x_1\)</span>-plane, it acts in the negative <span class="math inline">\(x_3\)</span> direction.</li>
+<li class="fragment">On the negative <span class="math inline">\(x_1\)</span>-plane, it acts in the positive <span class="math inline">\(x_3\)</span> direction.</li>
+</ul>
+<div class="fragment">
+<p>Thus,</p>
+<p><span class="math display">\[
+\sigma_{13}=-10\text{ MPa}
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>Summary Table</strong></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stress component</th>
+<th>Plane</th>
+<th>Direction</th>
+<th>Sign interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\sigma_{11}=+60\text{ MPa}\)</span></td>
+<td><span class="math inline">\(x_1\)</span>-plane</td>
+<td><span class="math inline">\(x_1\)</span> direction</td>
+<td>Tensile normal stress</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sigma_{22}=-25\text{ MPa}\)</span></td>
+<td><span class="math inline">\(x_2\)</span>-plane</td>
+<td><span class="math inline">\(x_2\)</span> direction</td>
+<td>Compressive normal stress</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma_{12}=+18\text{ MPa}\)</span></td>
+<td><span class="math inline">\(x_1\)</span>-plane</td>
+<td><span class="math inline">\(x_2\)</span> direction</td>
+<td>Positive shear stress</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sigma_{13}=-10\text{ MPa}\)</span></td>
+<td><span class="math inline">\(x_1\)</span>-plane</td>
+<td><span class="math inline">\(x_3\)</span> direction</td>
+<td>Negative shear stress</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<p><span style="color:green;"><strong>General Rule</strong></span></p>
+<p>A stress component <span class="math inline">\(\sigma_{ij}\)</span> is positive when:</p>
+<ul>
+<li class="fragment">it acts on a positive <span class="math inline">\(x_i\)</span>-plane in the positive <span class="math inline">\(x_j\)</span> direction, or</li>
+<li class="fragment">it acts on a negative <span class="math inline">\(x_i\)</span>-plane in the negative <span class="math inline">\(x_j\)</span> direction.</li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>A <strong>negative stress</strong> component acts in <strong>the direction opposite to the positive sign convention</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 class="unnumbered" id="stress-relations-at-a-point">1.3. Stress Relations at a Point</h3>
 <p>Different planes passing through the same point generally carry <strong>different traction vectors</strong>.</p>
 <blockquote>
 <p><strong>Question:</strong> If the stresses on the coordinate planes are known, can we determine the stress on any other plane?</p>
@@ -623,7 +993,7 @@ ds\sin\theta
 </section>
 <section class="slide level2">
 
-<h3 class="unnumbered" id="principal-stresses">1.3. Principal Stresses</h3>
+<h3 class="unnumbered" id="principal-stresses">1.4. Principal Stresses</h3>
 <p>The normal stress <span class="math inline">\(\sigma_{nn}\)</span> on the <span class="math inline">\(n\)</span>-plane depends on the angle <span class="math inline">\(\theta\)</span>.</p>
 <blockquote>
 <p><strong>Question:</strong> Which plane carries the <strong>maximum</strong> normal stress? Which plane carries the <strong>minimum</strong> normal stress?</p>
@@ -656,13 +1026,10 @@ Figure&nbsp;5: Principal plane orientations: (left) the angles <span class="math
 \frac{d\sigma_{nn}}{d\theta}=2\sigma_{11}\sin\theta\cos\theta - 2\sigma_{22}\sin\theta\cos\theta - 2\sigma_{12}\cos2\theta = 0.
 \]</span></p>
 <div class="fragment">
-<p>This gives</p>
-<p><span class="math display">\[
-\tan2\theta
+<p>This gives <span class="math inline">\(\quad\displaystyle\tan2\theta
 =
 \frac{2\sigma_{12}}
-{\sigma_{11}-\sigma_{22}}.
-\]</span></p>
+{\sigma_{11}-\sigma_{22}}.\)</span></p>
 </div>
 <div class="fragment">
 <p>Hence, the two <strong>principal planes</strong> are oriented at angles</p>
@@ -684,17 +1051,245 @@ Figure&nbsp;5: Principal plane orientations: (left) the angles <span class="math
 \]</span></p>
 </div>
 <div class="fragment">
-<p>The corresponding <strong>principal stresses</strong> are</p>
+<p>The corresponding <strong>principal stresses</strong> (the eigenvalues of the stress tensor) are</p>
 <p><span class="math display">\[
 \sigma_{1,2} = \frac{\sigma_{11}+\sigma_{22}}{2} \pm
 \left[\left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2 + \sigma_{12}^2\right]^{1/2}.
 \]</span></p>
-<p>These are the eigenvalues of the stress tensor.</p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(R=\left[\left(\frac{\sigma_{11}-\sigma_{22}}{2}\right)^2 + \sigma_{12}^2\right]^{1/2}\)</span> is the radius of Mohr’s Circle</p></li>
+<li class="fragment"><p><span class="math inline">\(\sigma_{\text{avg}} = \frac{\sigma_{11}+\sigma_{22}}{2}\)</span> is the average normal stress.</p></li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+
+<p><span style="color:blue;"><strong>Example: Two-Dimensional Stress Analysis</strong></span></p>
+<p>At a certain point in a two-dimensional stress field, the normal and shear stresses are given as</p>
+<ul>
+<li class="fragment"><p>Normal stress in the x-direction: <span class="math inline">\(\sigma_x = 2\ \text{MPa}\)</span></p></li>
+<li class="fragment"><p>Normal stress in the y-direction: <span class="math inline">\(\sigma_y = 8\ \text{MPa}\)</span></p></li>
+<li class="fragment"><p>Shear stress: <span class="math inline">\(\tau_{xy} = 4\ \text{MPa}\)</span></p></li>
+</ul>
+<div class="fragment">
+<p>Assume the positive shear stresses act upward on the positive x-face and toward the right on the positive y-face.</p>
+</div>
+<ol type="a">
+<li class="fragment"><p>Determine the values of the <strong>maximum and minimum normal stresses</strong> at the point and determine the <strong>directions of the principal stresses</strong>.</p></li>
+<li class="fragment"><p>Determine the value of the <strong>maximum in-plane shear stress</strong> and its <strong>orientation</strong>. Show the results on properly oriented stress elements.</p></li>
+</ol>
+</section>
+<section class="slide level2">
+
+<p><span style="color:blue;"><strong>(a) Principal Stresses</strong></span></p>
+<h5 class="fragment" id="step-1.-compute-the-average-normal-stress">Step 1. Compute the average normal stress</h5>
+<div class="fragment">
+<p><span class="math display">\[
+\sigma_{\text{avg}}
+=
+\frac{\sigma_x+\sigma_y}{2}
+=
+\frac{2+8}{2}
+=
+5\ \text{MPa}
+\]</span></p>
+</div>
+<h5 class="fragment" id="step-2.-compute-the-radius-of-mohrs-circle">Step 2. Compute the radius of Mohr’s Circle</h5>
+<div class="fragment">
+<p><span class="math display">\[
+R
+=
+\sqrt{
+\left(\frac{\sigma_x-\sigma_y}{2}\right)^2
++\tau_{xy}^2
+}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+=
+\sqrt{
+\left(\frac{2-8}{2}\right)^2
++4^2
+}
+=
+\sqrt{9+16}
+=
+5\ \text{MPa}
+\]</span></p>
+</div>
+<h5 class="fragment" id="step-3.-compute-the-principal-stresses">Step 3. Compute the principal stresses</h5>
+<div class="fragment">
+<p>Maximum principal stress:</p>
+<p><span class="math display">\[
+\sigma_1
+=
+\sigma_{\text{avg}}+R
+=
+5+5
+=
+10\ \text{MPa}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Minimum principal stress:</p>
+<p><span class="math display">\[
+\sigma_2
+=
+\sigma_{\text{avg}}-R
+=
+5-5
+=
+0\ \text{MPa}
+\]</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<h3 class="unnumbered" id="stress-equations-of-motion">1.4. Stress Equations of Motion</h3>
+<p><span style="color:blue;"><strong>Principal Stress Directions</strong></span></p>
+<div class="fragment">
+<p>Using</p>
+<p><span class="math display">\[
+\tan(2\theta_p)
+=
+\frac{2\tau_{xy}}
+{\sigma_x-\sigma_y}
+=
+\frac{2(4)}
+{2-8}
+=
+-\frac{4}{3}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+2\theta_p
+=
+126.87^\circ \quad \rightarrow\quad \theta_{p1}=63.43^\circ
+\]</span></p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>The second principal plane is</p>
+<p><span class="math display">\[
+\theta_{p2}=\theta_{p1} + 90^\circ = 153.43^\circ
+\]</span></p>
+</div>
+<div class="fragment">
+<p>or equivalently,</p>
+<p><span class="math display">\[
+\theta_{p2}=-26.57^\circ.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:blue;"><strong>Final Answers for Part (a)</strong></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Maximum principal stress, <span class="math inline">\(\sigma_1\)</span></td>
+<td style="text-align: right;"><strong>10 MPa</strong></td>
+</tr>
+<tr class="even">
+<td>Minimum principal stress, <span class="math inline">\(\sigma_2\)</span></td>
+<td style="text-align: right;"><strong>0 MPa</strong></td>
+</tr>
+<tr class="odd">
+<td>Direction of <span class="math inline">\(\sigma_1\)</span></td>
+<td style="text-align: right;"><strong>63.43° CCW from +x-axis</strong></td>
+</tr>
+<tr class="even">
+<td>Direction of <span class="math inline">\(\sigma_2\)</span></td>
+<td style="text-align: right;"><strong>−26.57° (or 153.43°)</strong></td>
+</tr>
+</tbody>
+</table>
+
+<img data-src="figs/Lec3-Fig1.png" class="quarto-figure quarto-figure-center r-stretch" width="500"></section>
+<section class="slide level2">
+
+<p><span style="color:blue;"><strong>(b) Maximum In-Plane Shear Stress</strong></span></p>
+<div class="fragment">
+<p>The maximum in-plane shear stress equals the radius of Mohr’s Circle:</p>
+<p><span class="math display">\[
+\tau_{\max}
+=
+R
+=
+5\ \text{MPa}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The normal stress acting on the maximum-shear planes is</p>
+<p><span class="math display">\[
+\sigma_n
+=
+\sigma_{\text{avg}}
+=
+5\ \text{MPa}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The maximum-shear planes occur 45° from the principal planes:</p>
+<p><span class="math display">\[
+\theta_s
+=
+\theta_{p1}
+-
+45^\circ
+=
+63.43^\circ
+-
+45^\circ
+=
+18.43^\circ
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The second maximum-shear plane is</p>
+<p><span class="math display">\[
+108.43^\circ
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><span style="color:blue;"><strong>Final Answers for Part (b)</strong></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Maximum in-plane shear stress</td>
+<td style="text-align: right;"><strong>5 MPa</strong></td>
+</tr>
+<tr class="even">
+<td>Normal stress on shear planes</td>
+<td style="text-align: right;"><strong>5 MPa</strong></td>
+</tr>
+<tr class="odd">
+<td>Shear plane orientations</td>
+<td style="text-align: right;"><strong>18.43° and 108.43°</strong></td>
+</tr>
+</tbody>
+</table>
+
+<img data-src="figs/Lec3-Fig2.png" class="quarto-figure quarto-figure-center r-stretch" width="500"></section>
+<section class="slide level2">
+
+<h3 class="unnumbered" id="stress-equations-of-motion">1.5. Stress Equations of Motion</h3>
 <p>Stress equations of motion describe how stress gradients and body forces produce acceleration.</p>
 <div class="columns">
 <div class="column fragment" style="width:45%;">
@@ -844,8 +1439,9 @@ ma_x
 <p>which indicates that the stress tensor is a second-order symmetric tensor.</p>
 </div>
 </section>
-<section id="strain-and-geometric-equations" class="slide level2 unnumbered">
-<h2>2. Strain and Geometric Equations</h2>
+<section class="slide level2">
+
+<h3 class="unnumbered" id="strain-and-geometric-equations">2. Strain and Geometric Equations</h3>
 <p>When external forces act on a body, material points are displaced and the body may change both <strong>size</strong> and <strong>shape</strong>. These effects are measured by the <strong>strain components</strong>.</p>
 <div class="columns">
 <div class="column fragment" style="width:55%;">
@@ -1017,8 +1613,9 @@ d\theta+d\beta \\
 </ul>
 </div></div>
 </section>
-<section id="the-continuity-equation" class="slide level2 unnumbered">
-<h2>3. The Continuity Equation</h2>
+<section class="slide level2">
+
+<h3 class="unnumbered" id="the-continuity-equation">3. The Continuity Equation</h3>
 <p>The continuity equation expresses <strong>conservation of mass</strong>. Since mass can neither be created nor destroyed, the density and velocity fields in a continuum satisfy</p>
 <p><span class="math display">\[
 \frac{\partial \rho}{\partial t} + \operatorname{div}(\rho \mathbf{v}) = 0.
@@ -1095,8 +1692,9 @@ Q = \iint_S \rho \, \mathbf{v}\cdot\mathbf{n} \, dS.
 <p>For an incompressible material, <span class="math inline">\(\partial \rho / \partial t = 0\)</span>, continuity eq reduces to <span class="math inline">\(v_{i,i} = 0.\)</span></p>
 </div>
 </section>
-<section id="constitutive-equations" class="slide level2 unnumbered">
-<h2>4. Constitutive Equations</h2>
+<section class="slide level2">
+
+<h3 class="unnumbered" id="constitutive-equations">4. Constitutive Equations</h3>
 <p>The equations developed so far describe</p>
 <ul>
 <li class="fragment">conservation of momentum,</li>
