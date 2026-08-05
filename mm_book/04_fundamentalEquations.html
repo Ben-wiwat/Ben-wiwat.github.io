@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./05_incompressibleFluid.html" rel="next">
 <link href="./03_indexNotation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -38,14 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-8df19c2dbc724390100333b991f6aca1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-a9e35dc4e119f4bdd691bf5483729296.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-774f581f871a14bd68681a78fcf41193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-06461a6aecc75111b898f483e183b344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-774f581f871a14bd68681a78fcf41193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -367,6 +368,12 @@ window.Quarto = {
  <span class="menu-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_incompressibleFluid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5 Mechanics of Incompressible Newtonian Fluids</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -653,7 +660,7 @@ ma_n, \\
 \rho\,dx_1dx_2\,a_n/2.
 \end{aligned}
 \]</span></p>
-<p>Using <a href="#eq-4.1" class="quarto-xref">Equation&nbsp;<span>1</span></a>, the above equation becomes</p>
+<p>Using (<a href="#eq-4.1" class="quarto-xref"><span>1</span></a>), the above equation becomes</p>
 <p><span class="math display">\[
 \sigma_{nn}\,ds
 -
@@ -691,7 +698,7 @@ ma_s,
 =
 \sigma_{ij}s_j\,n_i.
 \tag{3}\]</span></span></p>
-<p>In terms of the angle <span class="math inline">\(\theta\)</span>, <a href="#eq-4.2" class="quarto-xref">Equation&nbsp;<span>2</span></a> and <a href="#eq-4.3" class="quarto-xref">Equation&nbsp;<span>3</span></a> can be written as</p>
+<p>In terms of the angle <span class="math inline">\(\theta\)</span>, (<a href="#eq-4.2" class="quarto-xref"><span>2</span></a>) and (<a href="#eq-4.3" class="quarto-xref"><span>3</span></a>) can be written as</p>
 <p><span id="eq-4.4"><span class="math display">\[
 \sigma_{nn}
 =
@@ -710,7 +717,7 @@ ma_s,
 +
 \sigma_{21}\cos^2\theta.
 \tag{5}\]</span></span></p>
-<p><strong>Notes.</strong> The formulae, <a href="#eq-4.4" class="quarto-xref">Equation&nbsp;<span>4</span></a> and <a href="#eq-4.5" class="quarto-xref">Equation&nbsp;<span>5</span></a> with <span class="math inline">\((i,j=1,2,3)\)</span>, are applicable to the 3-dimensional stress field.</p>
+<p><strong>Notes.</strong> The formulae, (<a href="#eq-4.4" class="quarto-xref"><span>4</span></a>) and (<a href="#eq-4.5" class="quarto-xref"><span>5</span></a>) with <span class="math inline">\((i,j=1,2,3)\)</span>, are applicable to the 3-dimensional stress field.</p>
 <p>Therefore, the stresses on any plane passing through a point can be described in terms of the stress coordinate components. For the 2-D case, there will be four components required to completely define the <strong>stress state at a point</strong>, i.e.,</p>
 <p><span class="math display">\[
 \begin{pmatrix}
@@ -737,7 +744,7 @@ ma_s,
 </section>
 <section id="principal-stresses" class="level3">
 <h3 class="anchored" data-anchor-id="principal-stresses">4.1.3 Principal Stresses</h3>
-<p><a href="#eq-4.4" class="quarto-xref">Equation&nbsp;<span>4</span></a> shows that the normal stress <span class="math inline">\(\sigma_{nn}\)</span> on the <span class="math inline">\(n\)</span>-plane depends on the angle <span class="math inline">\(\theta\)</span>. In many problems, for example material failure analysis, it is important to determine the maximum and minimum normal stresses. From <a href="#eq-4.4" class="quarto-xref">Equation&nbsp;<span>4</span></a>, the plane on which the normal stress is a maximum or minimum can be determined by differentiating the equation with respect to <span class="math inline">\(\theta\)</span> and setting the derivative equal to zero, namely</p>
+<p>(<a href="#eq-4.4" class="quarto-xref"><span>4</span></a>) shows that the normal stress <span class="math inline">\(\sigma_{nn}\)</span> on the <span class="math inline">\(n\)</span>-plane depends on the angle <span class="math inline">\(\theta\)</span>. In many problems, for example material failure analysis, it is important to determine the maximum and minimum normal stresses. From (<a href="#eq-4.4" class="quarto-xref"><span>4</span></a>), the plane on which the normal stress is a maximum or minimum can be determined by differentiating the equation with respect to <span class="math inline">\(\theta\)</span> and setting the derivative equal to zero, namely</p>
 <p><span class="math display">\[
 \frac{d\sigma_{nn}}{d\theta}
 =
@@ -1004,7 +1011,7 @@ d\theta+d\beta
 2\varepsilon_{xy}.
 \tag{9}\]</span></span></p>
 <p>which is called the <strong>angular or shear strain</strong>.</p>
-<p>The <strong>strain–displacement relations</strong> <a href="#eq-4.7" class="quarto-xref">Equation&nbsp;<span>7</span></a>–<a href="#eq-4.9" class="quarto-xref">Equation&nbsp;<span>9</span></a> are called <strong>geometric equations</strong> and can be expressed in index notation by</p>
+<p>The <strong>strain–displacement relations</strong> (<a href="#eq-4.7" class="quarto-xref"><span>7</span></a>)–(<a href="#eq-4.9" class="quarto-xref"><span>9</span></a>) are called <strong>geometric equations</strong> and can be expressed in index notation by</p>
 <p><span id="eq-4.10"><span class="math display">\[
 \varepsilon_{ij}
 =
@@ -1574,6 +1581,9 @@ d_{ij} = \frac{1}{2}(v_{i,j} + v_{j,i})
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./05_incompressibleFluid.html" class="pagination-link" aria-label="Chapter 5 Mechanics of Incompressible Newtonian Fluids">
+        <span class="nav-page-text">Chapter 5 Mechanics of Incompressible Newtonian Fluids</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
