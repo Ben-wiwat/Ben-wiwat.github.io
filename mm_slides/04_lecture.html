@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="04_lecture_files/libs/clipboard/clipboard.min.js"></script>
+<script src="04_lecture_files/libs/quarto-html/tabby.min.js"></script>
+<script src="04_lecture_files/libs/quarto-html/popper.min.js"></script>
+<script src="04_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="04_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="04_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="04_lecture_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Prof.&nbsp;Benchawan Wiwatanapataphee">
+  <meta name="dcterms.date" content="2026-08-11">
+  <title>Lecture 4 — Mechanics of Incompressible Newtonian Fluids</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="04_lecture_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="04_lecture_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="04_lecture_files/libs/revealjs/dist/theme/quarto-1de548083f58796e3a0222fb97514f34.css">
+  <link href="04_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="04_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="04_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="04_lecture_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="04_lecture_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="04_lecture_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="04_lecture_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="04_lecture_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="04_lecture_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  
+  <script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
+  mermaid.registerLayoutLoaders(elkLayouts);
+  </script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Lecture 4 — Mechanics of Incompressible Newtonian Fluids</h1>
+  <p class="subtitle">MATH3001(5005) — Applied Mathematical Modelling (Topics)</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof.&nbsp;Benchawan Wiwatanapataphee 
+</div>
+        <p class="quarto-title-affiliation">
+            Curtin University
+          </p>
+    </div>
+</div>
+
+  <p class="date">11 Aug 2026</p>
+</section>
+<section id="goals-today" class="slide level2 scrollable">
+<h2>Goals today:</h2>
+<ol start="0" type="1">
+<li class="fragment">Introduction to Fluid Mechanics</li>
+<li class="fragment">Governing Equations — Navier-Stokes Equations</li>
+<li class="fragment">Boundary Conditions at a Solid-Fluid Interface</li>
+<li class="fragment">Some Solutions of the Navier-Stokes Equations</li>
+</ol>
+<h4 class="fragment" id="next-lecture">Next lecture:</h4>
+<ol start="4" type="1">
+<li class="fragment">Reynolds Number and Dynamic Similarity</li>
+<li class="fragment">Laminar Flow and Turbulent Flow</li>
+<li class="fragment">Irrotational Flow</li>
+<li class="fragment">Bernoulli’s Equation</li>
+</ol>
+</section>
+<section id="introduction-to-fluid-mechanics" class="slide level2">
+<h2>0. Introduction to Fluid Mechanics</h2>
+<div class="callout callout-note callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What is fluid dynamics?</strong></p>
+</div>
+<div class="callout-content">
+<p>Fluid dynamics (hydrodynamics) is the study of the movement of fluids, including their interactions as two fluids come into contact with each other. In this context, the term “fluid” refers to either liquid or gases.</p>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">As fluids flow, the <strong>density</strong> <span class="math inline">\((\rho)\)</span> and <strong>pressure</strong> <span class="math inline">\((p)\)</span> of the fluids are also crucial to understanding how they will interact.</li>
+<li class="fragment">The <strong>viscosity</strong> <span class="math inline">\((\mu)\)</span> determines how resistant the liquid is to change, so is also essential in studying the movement of the liquid.</li>
+<li class="fragment">The <strong>kinematic viscosity</strong> <span class="math inline">\((\nu=\mu/\rho)\)</span> is the ratio of the dynamic viscosity to the density of the fluid, and is also important in understanding how fluids flow.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+
+<img data-src="https://upload.wikimedia.org/wikipedia/commons/6/6f/T%C3%BAnel_de_viento%2C_v%C3%B3rtice_de_Von_Karman.gif?utm_source=en.wikipedia.org&amp;utm_campaign=imageinfo&amp;utm_content=original" class="quarto-figure quarto-figure-center r-stretch" id="fig-4.1"><p class="caption">
+Figure&nbsp;1: Computer generated animation of fluid in a tube flowing past a cylinder. The streamlines show the direction of the fluid flow, and the color gradient shows the pressure at each point, from blue to green, yellow, and red indicating increasing pressure. Animated GIF by PR (2012), Wikimedia Commons, licensed under CC BY-SA 3.0. Adapted from Wikimedia Commons. (<a href="https://en.wikipedia.org/wiki/Fluid_dynamics" target="_blank">source</a>)
+</p></section>
+<section class="slide level2">
+
+<h4 id="terminology">Terminology</h4>
+<div class="columns">
+<div class="column center block green fragment" style="width:47%;">
+<p><strong>Steady Flow</strong></p>
+<p>A flow in which the fluid properties (velocity, pressure, etc.) at a given point <u>does not change with time</u>.</p>
+</div><div class="column center block yellow fragment" style="width:47%;">
+<p><strong>Unsteady Flow</strong></p>
+<p>A flow in which the fluid properties (velocity, pressure, etc.) at a given point <u>changes with time</u>.</p>
+</div></div>
+<div class="columns">
+<div class="column center block blue fragment" style="width:47%;">
+<p><strong>Laminar Flow</strong></p>
+<p>A flow in which the fluid moves in <u>parallel layers</u> with no disruption between the layers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch5-fig3-1.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div><div class="column center block red fragment" style="width:47%;">
+<p><strong>Turbulent Flow</strong></p>
+<p>A flow that is characterised by <u>chaotic, irregular motion</u> of fluid particles, with eddies and vortices.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch5-fig3-2.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h4 id="terminology-cont.">Terminology (cont.)</h4>
+<div class="columns">
+<div class="column center block purple fragment" style="width:47%;">
+<p><strong>Pipe Flow</strong></p>
+<p>A flow that is in contact with rigid boundaries on all sides. Flows in a pipe are driven by either pressure or gravity.</p>
+<p><img data-src="figs/Ch5-fig3-1.png" class="quarto-figure quarto-figure-center"> <img data-src="figs/Ch5-ex4.png" class="quarto-figure quarto-figure-center"></p>
+</div><div class="column center block orange fragment" style="width:47%;">
+<p><strong>Open-Channel Flow</strong></p>
+<p>A flow that is at least partially bounded by a free surface. Flows in an open channel are driven solely by gravity, e.g., rivers, streams, and canals.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch5-ex3.png" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column center block blue fragment" style="width:47%;">
+<p><strong>Compressible Flow</strong></p>
+<p>A flow in which the fluid density changes significantly within the flow field. This typically occurs at high velocities, such as in supersonic flows.</p>
+<div id="fig-4.2" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-4.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="https://ckg.ethz.ch/research/high-speed-compressible-flows/_jcr_content/par/twocolumn/par_left/image/image.imageformat.lightbox.153440194.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Supersonic flow over an airfoil modeled using on-lattice compressible lattice Boltzmann model. Reproduced from High-Speed Compressible Flows, Computational Kinetics Group, ETH Zurich (<a href="https://ckg.ethz.ch/research/high-speed-compressible-flows.html" target="_blank">source</a>)
+</figcaption>
+</figure>
+</div>
+</div><div class="column center block red fragment" style="width:47%;">
+<p><strong>Incompressible Flow</strong></p>
+<p>A flow in which the fluid density is assumed to be constant. This is a valid assumption for liquids and for gases at low velocities.</p>
+<div id="fig-4.3" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-4.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="https://i0.wp.com/pediaa.com/wp-content/uploads/2023/10/Incompressible-Flow.jpg?resize=554%2C369&amp;ssl=1" class="quarto-figure quarto-figure-center" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Incompressible flow through a Venturi injector. Reproduced from Hasini A. (2023), What is the Difference Between Compressible and Incompressible Flow, Pediaa (<a href="https://pediaa.com/what-is-the-difference-between-compressible-and-incompressible-flow/" target="_blank">source</a>)
+</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h4 id="applications-of-fluid-mechanics">Applications of Fluid Mechanics</h4>
+<div class="columns">
+<div class="column">
+<ul>
+<li class="fragment"><strong>Oceanography:</strong>
+<ul>
+<li class="fragment">the motion of currents and waves</li>
+</ul></li>
+<li class="fragment"><strong>Meteorology:</strong>
+<ul>
+<li class="fragment">the motion of air masses and weather patterns</li>
+</ul></li>
+<li class="fragment"><strong>Climate Science:</strong>
+<ul>
+<li class="fragment">the motion of the atmosphere and its interaction with the oceans and land surfaces</li>
+</ul></li>
+<li class="fragment"><strong>Aeronautics:</strong>
+<ul>
+<li class="fragment">the flow of air to create drag/lift</li>
+</ul></li>
+</ul>
+</div><div class="column">
+<ul>
+<li class="fragment"><strong>Geology &amp; Geophysics:</strong>
+<ul>
+<li class="fragment">the motion of the heated matter within the liquid core of the Earth.</li>
+</ul></li>
+<li class="fragment"><strong>Hematology &amp; Hemodynamics:</strong>
+<ul>
+<li class="fragment">blood circulation through blood vessels</li>
+</ul></li>
+<li class="fragment"><strong>Astrophysics &amp; Cosmology:</strong>
+<ul>
+<li class="fragment">the process of stellar evolution involves the change of stars</li>
+</ul></li>
+<li class="fragment"><strong>Traffic Analysis:</strong>
+<ul>
+<li class="fragment">traffic flow on roads and highways</li>
+</ul></li>
+</ul>
+</div></div>
+<div class="block green center fragment">
+<p>Can you think of any other applications of fluid mechanics?</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="the-study-of-fluid-mechanics">The Study of Fluid Mechanics</h4>
+<ul>
+<li class="fragment">The study of fluids in motion. It concerns:</li>
+</ul>
+<div class="columns">
+<div class="column center block blue fragment" style="width:45%;">
+<p>Kinematics of the flow field</p>
+</div><div class="column center block red fragment" style="width:48%;">
+<p>Stress distribution throughout the field</p>
+</div></div>
+<ul>
+<li class="fragment">Classification is on the basis of <em>constitutive equations</em> for the fluid and in terms of <em>compressibility</em> of the fluid.</li>
+</ul>
+<div class="fragment" style="text-align:center">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">---
+config:
+  themeVariables:
+    fontSize: 24px
+---
+flowchart LR
+    A[Fluid Dynamics] --&gt; B[Compressible]
+    A --&gt; C[Incompressible]
+    B --&gt; D[Non-viscous]
+    B --&gt; E[Newtonian]
+    C --&gt; F[Non-Newtonian]
+    C --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-5.1" class="slide level2">
+<h2>5.1 Governing Eqs — the Navier–Stokes (N-S) Eqs</h2>
+<p>The equations governing the flow of an incompressible Newtonian fluid consist of</p>
+<div class="fragment">
+<p><span style="color:blue;"><strong>(i) the equations of motion</strong></span></p>
+<p><span id="eq-5.1"><span class="math display">\[
+\frac{\partial \sigma_{ji}}{\partial x_j}
++\rho X_i
+=
+\rho\frac{Dv_i}{Dt},
+\tag{1}\]</span></span></p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><span style="color:blue;"><strong>(ii) the continuity equation</strong></span></p>
+<p><span id="eq-5.2"><span class="math display">\[
+\operatorname{div}(\mathbf{v})
+=
+\frac{\partial v_j}{\partial x_j}
+=
+0,
+\tag{2}\]</span></span></p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="fragment">
+<p><span style="color:blue;"><strong>(iii) the constitutive equations</strong></span></p>
+<p><span id="eq-5.3"><span class="math display">\[
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+2\mu d_{ij},
+\tag{3}\]</span></span></p>
+</div>
+<p><span class="space-out"></span></p>
+<div class="columns">
+<div class="column fragment">
+<p><span style="color:blue;"><strong>(iv) the material derivative</strong></span></p>
+<p><span class="math display">\[
+\frac{Dv_i}{Dt}
+=
+\frac{\partial v_i}{\partial t}
++
+v_j\frac{\partial v_i}{\partial x_j}
+=
+a_i.
+\]</span></p>
+</div><div class="column fragment">
+<p><span style="color:blue;"><strong>(v) the rate of deformation</strong></span></p>
+<p><span class="math display">\[
+d_{ij}
+=
+\frac12
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+\]</span></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h4 id="i-the-equations-of-motion">(i) The equations of motion</h4>
+<p>The stress equation of motion is derived from the conservation of momentum and is a key equation in fluid dynamics. It relates the stress in the fluid to the acceleration experienced by a fluid element due to forces.</p>
+<p><span class="space-out"></span></p>
+<div class="columns">
+<div class="column fragment" data-fragment-index="2" style="width:30%;">
+<p><span style="color:blue; text-align:right; display:block;">Forces acting <span class="math inline">\(\longrightarrow\)</span><br>on a fluid element<span class="math inline">\(\qquad\)</span></span></p>
+</div><div class="column fragment" data-fragment-index="1" style="width:35%;">
+<p><span class="math display">\[
+\boxed{
+\color{blue}{\frac{\partial \sigma_{ji}}{\partial x_j}
++\rho X_i}}
+=
+\boxed{
+\color{green}{
+\rho\frac{Dv_i}{Dt},}}
+\]</span></p>
+</div><div class="column fragment" data-fragment-index="3" style="width:30%;">
+<p><span style="color:green;"><span class="math inline">\(\longleftarrow\)</span> Inertial response<br><span class="math inline">\(\qquad\)</span>(acceleration)</span></p>
+</div><p><span class="space-out"></span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(\frac{\partial \sigma_{ji}}{\partial x_j}\)</span>: spatial rate of change of the stress tensor <span class="math inline">\(\sigma_{ji}\)</span> in the direction <span class="math inline">\(x_j\)</span>, which represents the internal forces within the fluid.</li>
+<li class="fragment"><span class="math inline">\(\rho\)</span>: density of the fluid</li>
+<li class="fragment"><span class="math inline">\(X_i\)</span>: body force per unit mass acting on the fluid, such as gravity</li>
+<li class="fragment"><span class="math inline">\(\frac{Dv_i}{Dt}\)</span>: the material derivative of the velocity component <span class="math inline">\(v_i\)</span>, which represents the acceleration of a fluid particle.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="ii-the-continuity-equation">(ii) The continuity equation</h4>
+<p>The equation expresses the conservation of mass for an incompressible fluid. It ensures that the fluid density remains constant as it flows, which means that the amount of fluid entering a volume is equal to the amount leaving.</p>
+<p><span class="space-out"></span></p>
+<p><span class="math display">\[
+\operatorname{div}(\mathbf{v})
+=
+\frac{\partial v_j}{\partial x_j}
+=
+0,
+\]</span></p>
+<p><span class="space-out"></span></p>
+<ul>
+<li class="fragment"><span class="math inline">\(\operatorname{div}(\mathbf{v})\)</span>: the divergence of the velocity field <span class="math inline">\(\mathbf{v}\)</span>, which measures the net rate of flow of fluid out of a point in space.</li>
+<li class="fragment"><span class="math inline">\(\frac{\partial v_j}{\partial x_j}\)</span>: the rate of change of the velocity component <span class="math inline">\(v_j\)</span> with respect to the spatial coordinate <span class="math inline">\(x_j\)</span>, summed over all directions.</li>
+</ul>
+<div class="fragment">
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>For an incompressible fluid, the divergence of the velocity field is zero, indicating that there is <strong>no net volumetric expansion or compression at any point in the fluid</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="iii-the-constitutive-equations">(iii) The constitutive equations</h4>
+<p>The constitutive equation for an incompressible Newtonian fluid relates the stress tensor <span class="math inline">\(\sigma_{ij}\)</span> to the rate of deformation (strain rate) tensor. For a Newtonian fluid, the stress is linearly related to the rate of deformation.</p>
+<p><span class="space-out"></span></p>
+<p><span class="math display">\[
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+2\mu d_{ij},
+\]</span></p>
+<p><span class="space-out"></span></p>
+<ul>
+<li class="fragment"><span class="math inline">\(\sigma_{ij}\)</span>: the stress tensor, which represents the internal forces within the fluid.</li>
+<li class="fragment"><span class="math inline">\(p\)</span>: the pressure in the fluid, which acts isotropically (equally in all directions).</li>
+<li class="fragment"><span class="math inline">\(\delta_{ij}\)</span>: the Kronecker delta, which is 1 if <span class="math inline">\(i=j\)</span> and 0 otherwise, representing the identity matrix.</li>
+<li class="fragment"><span class="math inline">\(\mu\)</span>: the dynamic viscosity of the fluid, which measures its resistance to shear flow.</li>
+<li class="fragment"><span class="math inline">\(d_{ij}\)</span>: the rate of deformation (strain rate) tensor, which describes how the fluid is deforming over time.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h4 id="iv-the-material-derivative">(iv) The material derivative</h4>
+<p>Time rate of change of the velocity of a fluid particle as it moves along a flow path.</p>
+<p><span class="space-out"></span></p>
+<p><span class="math display">\[
+\frac{Dv_i}{Dt}
+=
+\frac{\partial v_i}{\partial t}
++
+v_j\frac{\partial v_i}{\partial x_j}
+=
+a_i,
+\]</span></p>
+<p><span class="space-out"></span></p>
+<ul>
+<li class="fragment"><span class="math inline">\(\frac{\partial v_i}{\partial t}\)</span>: the <strong>local acceleration</strong> or the rate of change of velocity at a fixed point.</li>
+<li class="fragment"><span class="math inline">\(v_j\frac{\partial v_i}{\partial x_j}\)</span>: the <strong>convective acceleration</strong>, which accounts for the change in velocity due to the movement of the fluid particle through the velocity field.</li>
+<li class="fragment"><span class="math inline">\(a_i\)</span>:the total acceleration of a fluid particle in the <span class="math inline">\(i\)</span>-th direction.</li>
+</ul>
+<h4 class="fragment" id="v-the-rate-of-deformation-d_ij">(v) The rate of deformation <span class="math inline">\(d_{ij}\)</span></h4>
+<div class="fragment">
+<p>The rate at which the fluid elements are deforming (stretching or shearing). For an incompressible fluid, the deformation tensor is symmetric.</p>
+<p><span class="space-out"></span></p>
+<p><span class="math display">\[
+d_{ij}
+=
+\frac12
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+\]</span></p>
+<p><span class="space-out"></span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="derivation-of-the-navierstokes-equations">5.1.1 Derivation of the Navier–Stokes Equations</h3>
+<p>Substituting (<a href="#/eq-5.3" class="quarto-xref">3</a>) into (<a href="#/eq-5.1" class="quarto-xref">1</a>) gives</p>
+<p><span id="eq-5.4"><span class="math display">\[
+\rho\frac{Dv_i}{Dt}
+=
+-\frac{\partial p}{\partial x_i}
++
+\rho X_i
++
+\mu
+\left(
+\frac{\partial^2v_i}{\partial x_j\partial x_j}
++
+\frac{\partial^2v_j}{\partial x_i\partial x_j}
+\right).
+\tag{4}\]</span></span></p>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.2" class="quarto-xref">2</a>), we have</p>
+<p><span class="math display">\[
+\frac{\partial v_j}{\partial x_j}=0,
+\]</span></p>
+</div>
+<div class="fragment">
+<p>hence</p>
+<p><span class="math display">\[
+\frac{\partial^2v_j}
+{\partial x_i\partial x_j}
+=
+0.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Therefore (<a href="#/eq-5.4" class="quarto-xref">4</a>) reduces to</p>
+<p><span id="eq-5.5"><span class="math display">\[
+\boxed{\rho\frac{Dv_i}{Dt}
+=
+-\frac{\partial p}{\partial x_i}
++
+\rho X_i
++
+\mu\nabla^2v_i},
+\tag{5}\]</span></span></p>
+<p>which are the <strong>Navier–Stokes equations</strong> for incompressible Newtonian fluids.</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+
+<p>Written in expanded form,</p>
+<p><span id="eq-5.6"><span class="math display">\[
+\begin{aligned}
+\rho\frac{Du}{Dt}
+&amp;=
+-\frac{\partial p}{\partial x}
++\rho X
++\mu\nabla^2u,
+\\
+\rho\frac{Dv}{Dt}
+&amp;=
+-\frac{\partial p}{\partial y}
++\rho Y
++\mu\nabla^2v,
+\\
+\rho\frac{Dw}{Dt}
+&amp;=
+-\frac{\partial p}{\partial z}
++\rho Z
++\mu\nabla^2w.
+\end{aligned}
+\tag{6}\]</span></span></p>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Remarks</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li class="fragment"><p>The Navier–Stokes equations for other classes of fluids can be derived using the same procedure but with different constitutive equations.</p></li>
+<li class="fragment"><p>The Navier–Stokes equations (<a href="#/eq-5.5" class="quarto-xref">5</a>), together with the continuity equation (<a href="#/eq-5.2" class="quarto-xref">2</a>), constitute a system of four partial differential equations for the four unknown variables <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, <span class="math inline">\(w\)</span>, and <span class="math inline">\(p\)</span>. Hence, in principle, the system is solvable.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-5.2" class="slide level2">
+<h2>5.2 Boundary Conditions (BCs) at a Solid–Fluid Interface</h2>
+<p>Consider the cases where fluids adhere to rigid surfaces bounding the fluid. Two types of BCs can be applied to the <strong>fluid velocity</strong> at the solid-fluid interface.</p>
+<div class="columns">
+<div class="column center fragment" style="width:45%;">
+<h4 id="normal-component-v_n0">Normal component <span class="math inline">\(v_n=0\)</span></h4>
+<p><span class="space-out"></span></p>
+<p>At a wall, the <span class="math inline">\(v_n\)</span> must be identical to that of the solid surface, since the fluid cannot penetrate the solid.</p>
+</div><div class="column center fragment" style="width:55%;">
+<h4 id="tangential-component-v_t">Tangential component <span class="math inline">\(v_t\)</span></h4>
+<ul>
+<li class="fragment"><strong>No-slip BC:</strong> same as the wall (<span class="math inline">\(v_t=0\)</span>)</li>
+<li class="fragment"><strong>Slip BC:</strong> between fluid and wall (<span class="math inline">\(v_t\!=\!v_\text{slip}\)</span>)</li>
+</ul>
+</div></div>
+<div class="columns">
+<div class="column fragment center">
+<div id="fig-noslip" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-noslip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="figs/Ch5-noslip.png" class="quarto-figure quarto-figure-center" style="width:74.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-noslip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: No-slip Boundary Condition
+</figcaption>
+</figure>
+</div>
+</div><div class="column fragment center">
+<div id="fig-slip" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-slip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="figs/Ch5-slip.png" class="quarto-figure quarto-figure-center" style="width:81.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slip-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Slip Boundary Condition
+</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="some-solutions-of-the-navierstokes-equations" class="slide level2">
+<h2>5.3 Some Solutions of the Navier–Stokes Equations</h2>
+<h3 id="example-1-steady-flow-between-parallel-plates">Example 1: Steady Flow Between Parallel Plates</h3>
+<div class="example">
+<p>Consider an incompressible Newtonian fluid located between two infinite parallel plates. Let the lower plate be fixed and the upper plate move with a constant velocity <span class="math inline">\(U\)</span>.</p>
+<div style="text-align:center">
+<div id="cell-fig-example-5.1" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-example-5.1" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-example-5.1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="04_lecture_files/figure-revealjs/fig-example-5.1-output-1.png" class="quarto-figure quarto-figure-center" width="470" height="177">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-5.1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Steady flow between two parallel plates.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Assume that the only body forces are due to gravity and that the motion of the fluid is caused entirely by the movement of the upper plate. Hence, <span class="math inline">\(\frac{\partial p}{\partial x}=0.\)</span></p>
+<p>Determine (a) the velocity field, (b) the pressure distribution, and (c) the stress components in the fluid.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="a-velocity-field">(a) Velocity field</h4>
+<div class="columns">
+<div class="column">
+<p>The governing eqs are the <strong>N-S eqs</strong> and the <strong>continuity eq</strong>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{Du}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
++X
++\frac{\mu}{\rho}\nabla^2u, \\
+\frac{Dv}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
++Y
++\frac{\mu}{\rho}\nabla^2v, \\
+\frac{Dw}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial z}
++Z
++\frac{\mu}{\rho}\nabla^2w, \\
+&amp;\frac{\partial u}{\partial x}
++
+\frac{\partial v}{\partial y}
++
+\frac{\partial w}{\partial z}
+=0.
+\end{aligned}
+\]</span></p>
+</div><div class="column">
+<ul>
+<li class="fragment">The <strong>no-slip BCs</strong> are</li>
+</ul>
+<div class="fragment">
+<p><span id="eq-5.7"><span class="math display">\[
+u|_{y=0}=0
+\;
+u|_{y=h}=U.
+\tag{7}\]</span></span></p>
+</div>
+<ul>
+<li class="fragment">Other given conditions are</li>
+</ul>
+<div class="fragment">
+<p><span id="eq-5.8"><span class="math display">\[
+\begin{aligned}
+\frac{\partial p}{\partial x}&amp;=0,
+\quad
+X=0,
+\\
+Y&amp;=-g,
+\quad
+Z=0.
+\end{aligned}
+\tag{8}\]</span></span></p>
+</div>
+<ul>
+<li class="fragment">Assumptions based on large, parallel plates are <span class="math inline">\(v=0=w=0.\)</span></li>
+</ul>
+</div></div>
+<div class="fragment">
+<p>Substituting <span class="math inline">\(v=w=0\)</span> into the continuity eq gives <span class="math inline">\(\dfrac{\partial u}{\partial x}=0 \;\Longrightarrow\;u=u(y,z,t).\)</span></p>
+</div>
+<div class="fragment">
+<p>As flow is steady and plates are infinite in <span class="math inline">\(z\)</span>-direction, there is no variation in velocity in <span class="math inline">\(t\)</span> &amp; <span class="math inline">\(z\)</span>, thus <span class="math inline">\(u=u(y)\)</span>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Using (<a href="#/eq-5.8" class="quarto-xref">8</a>), <span class="math inline">\(u=u(y)\)</span> and <span class="math inline">\(v=w=0\)</span>, the N-S eqs reduce to</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{aligned}
+\frac{Du}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
++X
++\frac{\mu}{\rho}\nabla^2u, \\
+\frac{Dv}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
++Y
++\frac{\mu}{\rho}\nabla^2v, \\
+\frac{Dw}{Dt}
+&amp;=
+-\frac{1}{\rho}\frac{\partial p}{\partial z}
++Z
++\frac{\mu}{\rho}\nabla^2w
+\end{aligned}
+\]</span></p>
+</div><div class="column fragment" style="width:10%;">
+<p><span id="eq-5.9"><span class="math display">\[
+\begin{aligned}
+&amp;\Longrightarrow\frac{\partial^2u}{\partial y^2}=0,
+\\
+&amp;\Longrightarrow-\frac{1}{\rho}\frac{\partial p}{\partial y}-g=0,
+\\
+&amp;\Longrightarrow\frac{\partial p}{\partial z}=0.
+\end{aligned}
+\tag{9}\]</span></span></p>
+</div></div>
+<div class="fragment">
+<p>From (<a href="#/eq-5.9" class="quarto-xref">9</a>) <span class="math inline">\(_1\)</span>, integrating twice with respect to <span class="math inline">\(y\)</span>,</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{\partial u}{\partial y}=A \;\;\Longrightarrow\;\; u=Ay+B, \quad A,B\in\mathbb{R}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.7" class="quarto-xref">7</a>), <span class="math inline">\(\quad u(0)=0 \; \Longrightarrow\; B=0, \quad u(h)=U \; \Longrightarrow\; Ah=U.\)</span></p>
+</div>
+<div class="fragment">
+<p>Therefore, the velocity distribution is <span id="eq-5.10"><span class="math display">\[
+\begin{aligned}
+u(y)=\frac{U}{h}y,\;v=0,\;w=0
+\; \text{or}\;
+\mathbf{v}=\left(\frac{Uy}{h},\,0,\,0\right)
+\end{aligned}
+\tag{10}\]</span></span></p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+
+<h4 id="b-pressure-distribution">(b) Pressure distribution</h4>
+<p>From the <span class="math inline">\(y\)</span>-direction Navier–Stokes equation,</p>
+<div class="fragment">
+<p><span class="math display">\[
+\begin{aligned}
+-\frac{1}{\rho}\frac{\partial p}{\partial y}-g&amp;=0\\
+\frac{\partial p}{\partial y}&amp;=-\rho g.
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Since <span class="math inline">\(\frac{\partial p}{\partial x}=0\)</span> and <span class="math inline">\(\frac{\partial p}{\partial z}=0,\)</span> the pressure depends only on <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
+p=p(y).
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Integrating,</p>
+<p><span class="math display">\[
+p(y)=-\rho gy+C, \quad C\in\mathbb{R}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>If the pressure is <span class="math inline">\(p_0\)</span> at <span class="math inline">\(y=0\)</span>, then <span class="math inline">\(C=p_0\)</span>, and consequently</p>
+<p><span class="math display">\[
+p(y)=p_0-\rho gy.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, the pressure distribution is <em>hydrostatic</em><sup>1</sup>.</p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><strong>Hydrostatic pressure:</strong> The pressure exerted by a fluid at equilibrium due to the force of gravity.</p></li></ol></aside></section>
+<section class="slide level2 scrollable">
+
+<h4 id="c-stress-components">(c) Stress components</h4>
+<div class="fragment">
+<p>For an incompressible Newtonian fluid, the constitutive equation is</p>
+<p><span id="eq-5.11"><span class="math display">\[
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\mu
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+\tag{11}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>For the velocity field in (<a href="#/eq-5.10" class="quarto-xref">10</a>) the only nonzero velocity derivative is <span class="math inline">\(\frac{\partial u}{\partial y}=\frac{U}{h}.\)</span></p>
+</div>
+<div class="columns" style="font-size: 95%;">
+<div class="column fragment">
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{xx}
+&amp;=
+-p
++
+2\mu\frac{\partial u}{\partial x}
+=
+-p,\\
+\sigma_{yy}
+&amp;=
+-p
++
+2\mu\frac{\partial v}{\partial y}
+=
+-p,\\
+\sigma_{zz}
+&amp;=
+-p
++
+2\mu\frac{\partial w}{\partial z}
+=
+-p,
+\end{aligned}
+\]</span></p>
+</div><div class="column fragment">
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{xy}
+&amp;=
+\mu
+\left(
+\frac{\partial u}{\partial y}
++
+\frac{\partial v}{\partial x}
+\right)
+=
+\mu U/h,\\
+\sigma_{yz}
+&amp;=
+\mu
+\left(
+\frac{\partial v}{\partial z}
++
+\frac{\partial w}{\partial y}
+\right)
+=
+0,\\
+\sigma_{zx}
+&amp;=
+\mu
+\left(
+\frac{\partial w}{\partial x}
++
+\frac{\partial u}{\partial z}
+\right)
+=
+0.
+\end{aligned}
+\]</span></p>
+</div></div>
+<div class="columns" style="font-size: 95%;">
+<div class="column fragment" style="width:25%;">
+<p>By symmetry of the stress tensor, <span class="math inline">\(\sigma_{ij} = \sigma_{ji}\)</span>.</p>
+</div><div class="column fragment" style="width:40%;">
+<p><span class="math display">\[
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+-p &amp; \mu U/h &amp; 0\\
+\mu U/h &amp; -p &amp; 0\\
+0 &amp; 0 &amp; -p
+\end{pmatrix},
+\]</span></p>
+</div><div class="column fragment" style="width:35%;">
+<p>where <span class="math inline">\(p(y)=p_0-\rho gy.\)</span></p>
+<div class="fragment">
+<p>This is commonly known as <em>plane Couette flow</em><sup>1</sup>.</p>
+</div>
+</div></div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p><strong>Plane Couette flow:</strong> Flow of a viscous fluid between 2 parallel plates, one of which is moving relative to the other.</p></li></ol></aside></section>
+<section class="slide level2">
+
+<h3 id="example-2-steady-flow-through-a-straight-circular-tube-of-constant-cross-section">Example 2: Steady Flow Through a Straight Circular Tube of Constant Cross-Section</h3>
+<div class="example">
+<p>Consider the steady flow of an incompressible Newtonian fluid through a horizontal circular tube of radius <span class="math inline">\(a\)</span>. Assume that the flow is parallel to the tube wall.</p>
+<div style="text-align:center">
+<div id="cell-fig-example-5.2" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-example-5.2" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-example-5.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="04_lecture_files/figure-revealjs/fig-example-5.2-output-1.png" class="quarto-figure quarto-figure-center" width="758" height="252">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-5.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Steady flow through a straight circular tube.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Determine (a) the pressure distribution, (b) the velocity field, (c) the volume flow rate, and (d) the mean velocity.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="a-pressure-distribution">(a) Pressure distribution</h4>
+<div class="columns">
+<div class="column">
+<div id="0ab844b6" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="04_lecture_files/figure-revealjs/cell-4-output-1.png" class="quarto-figure quarto-figure-center" width="470" height="166"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column fragment">
+<p>Let the axis of the tube be aligned with the <span class="math inline">\(z\)</span>-direction. Since the flow is parallel to the tube wall:</p>
+<p><span id="eq-5.12"><span class="math display">\[
+u=v=0.
+\tag{12}\]</span></span></p>
+<div class="fragment">
+<p>Equivalently, <span class="math inline">\(\mathbf{v}=(0,0,w).\)</span></p>
+</div>
+</div></div>
+<div class="fragment">
+<p>Substitute (<a href="#/eq-5.12" class="quarto-xref">12</a>) into the continuity equation,</p>
+<p><span id="eq-5.13"><span class="math display">\[
+\begin{aligned}
+\frac{\partial u}{\partial x}
++
+\frac{\partial v}{\partial y}
++
+\frac{\partial w}{\partial z}
+=
+0. \; \Longrightarrow \; \frac{\partial w}{\partial z}=0
+\; \Longrightarrow \; w=w(x,y).
+\end{aligned}
+\tag{13}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>The <strong>N-S equations</strong> thus reduce to</p>
+<p><span id="eq-5.14"><span class="math display">\[
+\begin{aligned}
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
+=0,
+\quad
+-g-\frac{1}{\rho}\frac{\partial p}{\partial y}
+=0,
+\quad
+-\frac{1}{\rho}\frac{\partial p}{\partial z}
++
+\frac{\mu}{\rho}\nabla^2w
+=0.
+\end{aligned}
+\tag{14}\]</span></span></p>
+</div>
+<div class="columns">
+<div class="column fragment">
+<p>(<a href="#/eq-5.14" class="quarto-xref">14</a>) <span class="math inline">\(_1\)</span> gives</p>
+<p><span id="eq-5.15"><span class="math display">\[
+\begin{aligned}
+\frac{\partial p}{\partial x}=0 \Longrightarrow p=p(y,z).
+\end{aligned}
+\tag{15}\]</span></span></p>
+</div><div class="column fragment">
+<p>(<a href="#/eq-5.14" class="quarto-xref">14</a>) <span class="math inline">\(_2\)</span> gives</p>
+<p><span id="eq-5.16"><span class="math display">\[
+\begin{aligned}
+\frac{\partial p}{\partial y}
+=
+-\rho g.
+\end{aligned}
+\tag{16}\]</span></span></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<p>From (<a href="#/eq-5.15" class="quarto-xref">15</a>) and (<a href="#/eq-5.16" class="quarto-xref">16</a>), integrating with respect to <span class="math inline">\(y\)</span>, we have</p>
+<p><span id="eq-5.17"><span class="math display">\[
+\begin{aligned}
+p=-\rho gy+f(z),
+\end{aligned}
+\tag{17}\]</span></span></p>
+<div class="columns">
+<div class="column fragment" style="width:25%;">
+<p>(<a href="#/eq-5.14" class="quarto-xref">14</a>) <span class="math inline">\(_3\)</span> reduces to</p>
+</div><div class="column fragment" style="width:50%;">
+<p><span class="math display">\[
+\begin{aligned}
+\mu\nabla^2w
+=
+\frac{\partial p}{\partial z}.
+\end{aligned}
+\]</span></p>
+</div></div>
+<div class="columns">
+<div class="column fragment" style="width:55%;">
+<p>Differentiating (<a href="#/eq-5.14" class="quarto-xref">14</a>) <span class="math inline">\(_3\)</span> with respect to <span class="math inline">\(z\)</span> gives</p>
+</div><div class="column fragment" style="width:45%;">
+<p><span class="math display">\[
+-\frac{1}{\rho}
+\frac{\partial^2p}{\partial z^2}
++
+\frac{\mu}{\rho}
+\frac{\partial}{\partial z}
+\left(
+\nabla^2w
+\right)
+=
+0.
+\]</span></p>
+</div></div>
+<div class="columns">
+<div class="column fragment" style="width:65%;">
+<p>(<a href="#/eq-5.13" class="quarto-xref">13</a>) is independent of <span class="math inline">\(z\;\Rightarrow\;\dfrac{\partial}{\partial z}\left(\nabla^2w\right)=0\)</span>, then</p>
+</div><div class="column fragment" style="width:25%;">
+<p><span id="eq-5.18"><span class="math display">\[
+\begin{aligned}
+\frac{\partial^2p}{\partial z^2}=0.
+\end{aligned}
+\tag{18}\]</span></span></p>
+</div></div>
+<div class="fragment">
+<p>Substituting (<a href="#/eq-5.17" class="quarto-xref">17</a>) into (<a href="#/eq-5.18" class="quarto-xref">18</a>), we have</p>
+<p><span class="math display">\[
+\frac{d^2f}{dz^2}=0, \;\Longrightarrow \;
+f(z)=-\alpha z+\beta, \quad \alpha,\beta\in\mathbb{R}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, the <strong>pressure distribution</strong> is</p>
+<p><span id="eq-5.19"><span class="math display">\[
+\begin{aligned}
+p=-\rho gy-\alpha z+\beta,
+\qquad
+\frac{\partial p}{\partial z}=-\alpha,
+\end{aligned}
+\tag{19}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>where <span class="math inline">\(\alpha\)</span> represents the magnitude of the pressure gradient driving the flow.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="b-velocity-field">(b) Velocity field</h4>
+<div class="columns" style="font-size: 95%;">
+<div class="column fragment" style="width:50%;">
+<p>Substituting (<a href="#/eq-5.19" class="quarto-xref">19</a>) <span class="math inline">\(_2\)</span> into (<a href="#/eq-5.14" class="quarto-xref">14</a>) <span class="math inline">\(_3\)</span> gives</p>
+</div><div class="column fragment" style="width:30%;">
+<p><span id="eq-5.20"><span class="math display">\[
+\begin{aligned}
+\nabla^2w
+= -\alpha/\mu.
+\end{aligned}
+\tag{20}\]</span></span></p>
+</div></div>
+<div class="fragment" style="font-size: 95%;">
+<p>Introducing <strong>cylindrical polar coordinates</strong> <span class="math inline">\((r,\theta,z)\)</span> with velocity <span class="math inline">\((u_r, u_\theta, w)\)</span>:</p>
+</div>
+<div class="fragment" style="font-size: 95%;">
+<p><span class="math display">\[
+\nabla^2w
+=
+\frac{1}{r}
+\frac{\partial}{\partial r}
+\left(
+r\frac{\partial w}{\partial r}
+\right)
++
+\frac{1}{r^2}
+\frac{\partial^2w}{\partial\theta^2}
++
+\frac{\partial^2w}{\partial z^2}.
+\]</span></p>
+</div>
+<div class="fragment" style="font-size: 95%;">
+<p>The flow is axisymmetric <span class="math inline">\((\partial w / \partial \theta = 0)\)</span> and fully developed <span class="math inline">\((\partial w / \partial z = 0)\)</span>, thus (<a href="#/eq-5.20" class="quarto-xref">20</a>) reduces to <span class="math inline">\(w=w(r)\)</span> and becomes</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{1}{r}
+\frac{d}{dr}
+\left(
+r\frac{dw}{dr}
+\right)
+=
+-\frac{\alpha}{\mu}
+\end{aligned}
+\]</span></p>
+</div>
+<div class="columns" style="font-size: 95%;">
+<div class="column fragment">
+<p>Integrating once with respect to <span class="math inline">\(r\)</span>,</p>
+</div><div class="column fragment">
+<p><span class="math display">\[
+\begin{aligned}
+r\frac{dw}{dr}=
+-\frac{\alpha}{2\mu}r^2+A, \quad A\in\mathbb{R}.
+\end{aligned}
+\]</span></p>
+</div></div>
+<div class="columns" style="font-size: 95%;">
+<div class="column fragment">
+<p>Dividing by <span class="math inline">\(r\)</span> both sides,</p>
+</div><div class="column fragment" style="width:40%;">
+<p><span class="math display">\[
+\frac{dw}{dr}
+=
+-\frac{\alpha}{2\mu}r+\frac{A}{r}.
+\]</span></p>
+</div></div>
+<div class="fragment" style="font-size: 95%;">
+<p>Integrating again with respect to <span class="math inline">\(r, \quad w=-\dfrac{\alpha}{4\mu}r^2+A\ln r+B, \quad B\in\mathbb{R}.\)</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Thus, the general solution is</p>
+<p><span class="math display">\[
+w(r)
+=
+-\frac{\alpha}{4\mu}r^2
++
+A\ln r
++
+B.
+\]</span></p>
+<div class="fragment">
+<p>The constants <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are determined from <strong>(i) the condition of symmetry</strong> at <span class="math inline">\(r=0\)</span> and <strong>(ii) the no-slip condition</strong> at <span class="math inline">\(r=a\)</span>.</p>
+</div>
+<h4 class="fragment" id="i-condition-at-the-centreline-r0">(i) Condition at the centreline <span class="math inline">\((r=0)\)</span></h4>
+<div class="fragment">
+<p>The velocity must remain finite at <span class="math inline">\(r=0\)</span>. Since <span class="math inline">\(\ln r\)</span> is singular at <span class="math inline">\(r=0\)</span>, it follows</p>
+<p><span class="math display">\[
+A=0.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Equivalently, symmetry at the centreline requires</p>
+<p><span class="math display">\[
+\left.\frac{dw}{dr}\right|_{r=0}=0,
+\]</span></p>
+<p>which also gives <span class="math inline">\(A=0\)</span>.</p>
+</div>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+w(r)
+=
+-\frac{\alpha}{4\mu}r^2+B.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+
+<h4 id="ii-no-slip-condition-at-the-tube-wall-ra">(ii) No-slip condition at the tube wall <span class="math inline">\((r=a)\)</span></h4>
+<div class="fragment">
+<p>At <span class="math inline">\(r=a\)</span>, <span class="math inline">\(w(a)=0.\)</span> Hence,</p>
+<p><span class="math display">\[
+0
+=
+-\frac{\alpha}{4\mu}a^2+B \quad\Longrightarrow\quad
+B
+=
+\frac{\alpha a^2}{4\mu}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Therefore, the <strong>axial velocity distribution</strong> is</p>
+<p><span class="math display">\[
+w(r)
+=
+\frac{\alpha}{4\mu}
+\left(
+a^2-r^2
+\right).
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Since <span class="math inline">\(\alpha=-\frac{\partial p}{\partial z},\)</span> the velocity may also be written as</p>
+<p><span class="math display">\[
+w(r)
+=
+-\frac{1}{4\mu}
+\frac{\partial p}{\partial z}
+\left(
+a^2-r^2
+\right).
+\]</span></p>
+</div>
+<div class="fragment">
+<p>The velocity profile is parabolic, with its maximum at the centreline:</p>
+<p><span id="eq-5.21"><span class="math display">\[
+w_{\max}
+=
+w(0)
+=
+\frac{\alpha a^2}{4\mu}.
+\tag{21}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>The velocity vanishes at the wall, i.e., <span class="math inline">\(w(a)=0\)</span>. This is known as <em>Poiseuille flow</em><sup>1</sup>.</p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn3"><p><strong>Poiseuille flow:</strong> A steady, laminar flow of a viscous fluid in a pipe</p></li></ol></aside></section>
+<section class="slide level2">
+
+<h4 id="c-volume-flow-rate">(c) Volume flow rate</h4>
+<div class="fragment">
+<p>The volume flow rate through any cross-section of the tube is <span class="math inline">\(Q=\int_A w\,dA.\)</span></p>
+</div>
+<div class="fragment">
+<p>In cylindrical coordinates, <span class="math inline">\(\qquad\quad dA=r\,dr\,d\theta,\)</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+Q
+=
+\int_0^{2\pi}
+\int_0^a
+w(r)\,r\,dr\,d\theta.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Substituting <span class="math inline">\(w(r)\)</span> and solving the integral, we have</p>
+<p><span class="math display">\[
+\begin{aligned}
+Q
+=
+\int_0^{2\pi}
+\int_0^a
+\frac{\alpha}{4\mu}
+\left(
+a^2-r^2
+\right)
+r\,dr\,d\theta
+&amp;=
+\frac{\alpha}{4\mu}
+\int_0^{2\pi}d\theta
+\int_0^a
+\left(
+a^2r-r^3
+\right)\,dr
+\\
+&amp;=
+\frac{\alpha}{4\mu}
+(2\pi)
+\left[
+\frac{a^2r^2}{2}
+-
+\frac{r^4}{4}
+\right]_0^a
+\\
+&amp;=
+\frac{\alpha\pi}{2\mu}
+\left(
+\frac{a^4}{2}
+-
+\frac{a^4}{4}
+\right)
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span id="eq-5.22"><span class="math display">\[
+\qquad\qquad
+Q
+=
+\frac{\pi\alpha a^4}{8\mu}.
+\tag{22}\]</span></span></p>
+<p>which is the total flow rate through the pipe.</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+
+<div class="columns">
+<div class="column" style="width:35%;">
+<p>Using (<a href="#/eq-5.19" class="quarto-xref">19</a>) <span class="math inline">\(_2,\)</span></p>
+</div><div class="column fragment" style="width:30%;">
+<p><span class="math display">\[
+Q=-\dfrac{\pi a^4}{8\mu}\dfrac{\partial p}{\partial z}.
+\]</span></p>
+</div></div>
+<div class="fragment">
+<p>For a tube of length <span class="math inline">\(L\)</span> with pressure drop <span class="math inline">\(\Delta p=p_{\mathrm{in}}-p_{\mathrm{out}}, \quad -\dfrac{\partial p}{\partial z}=\dfrac{\Delta p}{L},\)</span></p>
+</div>
+<div class="fragment">
+<p>and hence the <strong>volume flow rate</strong> is</p>
+<p><span class="math display">\[
+Q
+=
+\frac{\pi a^4}{8\mu L}\Delta p.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>This is also known as the <em>Hagen–Poiseuille law</em><sup>1</sup>.</p>
+</div>
+<h4 class="fragment" id="d-mean-velocity">(d) Mean velocity</h4>
+<div class="fragment">
+<p>The mean axial velocity is <span class="math inline">\(\qquad \overline{w}=\dfrac{Q}{\pi a^2}.\)</span></p>
+</div>
+<div class="fragment">
+<p>Substituting the volume flow rate (<a href="#/eq-5.22" class="quarto-xref">22</a>), we have <span class="math inline">\(\qquad \overline{w}=\dfrac{\alpha a^2}{8\mu}.\)</span></p>
+</div>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.21" class="quarto-xref">21</a>), the maximum velocity is <span class="math inline">\(\qquad w_{\max}=2\overline{w}.\)</span></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn4"><p><strong>Hagen–Poiseuille law:</strong> The law explains the relationship between the pressure drop and the volume flow rate for a viscous fluid in a pipe.</p></li></ol></aside></section>
+<section class="slide level2">
+
+<h3 id="example-3-pressure-driven-flow-between-2-fixed-parallel-plates">Example 3: Pressure-Driven Flow Between 2 Fixed Parallel Plates</h3>
+<div class="example">
+<p>Consider an incompressible Newtonian fluid between two infinite, stationary parallel plates located at <span class="math inline">\(y=-h\)</span> and <span class="math inline">\(y=h\)</span>. Let the flow be steady and fully developed in the <span class="math inline">\(x\)</span>-direction and be driven by a constant pressure gradient,</p>
+<p><span class="math display">\[
+\frac{\partial p}{\partial x}=-\alpha,
+\qquad
+\alpha&gt;0.
+\]</span></p>
+<p>Assume that gravity acts in the negative <span class="math inline">\(y\)</span>-direction. Determine (a) the velocity field, (b) the volume flow rate per unit width, and (c) the mean velocity.</p>
+</div>
+<div style="text-align:center">
+<div id="cell-fig-example-5.3" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-example-5.3" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-example-5.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="04_lecture_files/figure-revealjs/fig-example-5.3-output-1.png" class="quarto-figure quarto-figure-center" width="566" height="270">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-5.3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Pressure-driven flow between two fixed parallel plates.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="a-velocity-field-1">(a) Velocity field</h4>
+<div class="fragment">
+<p>Since the plates are infinite and the flow is fully developed, the only nonzero velocity component is in the <span class="math inline">\(x\)</span>-direction. Therefore,</p>
+<p><span class="math display">\[
+u=u(y),
+\qquad
+v=w=0.
+\]</span></p>
+<p>For this velocity field, the material acceleration is zero.</p>
+</div>
+<div class="fragment">
+<p>The <span class="math inline">\(x\)</span>-direction N-S equation therefore reduces to</p>
+<p><span class="math display">\[
+0
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
++
+\frac{\mu}{\rho}\frac{d^2u}{dy^2}.
+\]</span></p>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:30%;">
+<p>Using <span class="math inline">\(\quad \dfrac{\partial p}{\partial x}=-\alpha,\)</span></p>
+</div><div class="column fragment" style="width:40%;">
+<p>we obtain <span class="math inline">\(\quad \dfrac{d^2u}{dy^2}=-\dfrac{\alpha}{\mu}.\)</span></p>
+</div></div>
+<div class="columns">
+<div class="column fragment" style="width:30%;">
+<p>Integrating twice w.r.t. <span class="math inline">\(y,\)</span></p>
+</div><div class="column fragment" style="width:70%;">
+<p><span class="math display">\[
+\begin{aligned}
+\frac{du}{dy}
+&amp;=
+-\frac{\alpha}{\mu}y+A,
+\quad
+A\in\mathbb{R} \\
+u(y)
+&amp;=
+-\frac{\alpha}{2\mu}y^2
++
+Ay+B,
+\quad
+B\in\mathbb{R}.
+\end{aligned}
+\]</span></p>
+</div></div>
+</section>
+<section class="slide level2">
+
+<p>The <strong>no-slip BCs</strong> at the two stationary plates are <span class="math inline">\(\;u(-h)=0,\;u(h)=0.\)</span></p>
+<div class="fragment">
+<p>Applying these conditions gives <span class="math inline">\(\quad A=0,\quad B=\dfrac{\alpha h^2}{2\mu}.\)</span></p>
+</div>
+<div class="fragment">
+<p>Therefore, the <strong>velocity distribution</strong> is</p>
+<p><span id="eq-5.23"><span class="math display">\[
+u(y)
+=
+\frac{\alpha}{2\mu}
+\left(
+h^2-y^2
+\right),
+\qquad
+v=w=0.
+\tag{23}\]</span></span></p>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:30%;">
+<p>Since <span class="math inline">\(\;\;\alpha=-\dfrac{\partial p}{\partial x},\)</span></p>
+</div><div class="column fragment">
+<p><span class="math display">\[
+u(y)
+=
+-\frac{1}{2\mu}
+\frac{\partial p}{\partial x}
+\left(
+h^2-y^2
+\right).
+\]</span></p>
+</div></div>
+<div class="fragment">
+<p>The maximum velocity occurs at the centreline, <span class="math inline">\(y=0\)</span>, and is</p>
+<p><span id="eq-5.24"><span class="math display">\[
+u_{\max}
+=
+u(0)
+=
+\frac{\alpha h^2}{2\mu}.
+\tag{24}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>The velocity vanishes at both plates:</p>
+<p><span class="math display">\[
+u(-h)=u(h)=0.
+\]</span></p>
+<p>This flow is commonly known as <em>plane Poiseuille flow</em>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="b-volume-flow-rate-per-unit-width">(b) Volume flow rate per unit width</h4>
+<div class="fragment">
+<p>The volume flow rate per unit width of the plates is <span class="math inline">\(\;\; q=\displaystyle\int_{-h}^{h}u(y)\,dy.\)</span></p>
+</div>
+<div class="fragment">
+<p>Substituting the velocity distribution (<a href="#/eq-5.23" class="quarto-xref">23</a>),</p>
+<p><span class="math display">\[
+\begin{aligned}
+q
+=
+\int_{-h}^{h}
+\frac{\alpha}{2\mu}
+\left(
+h^2-y^2
+\right)
+\,dy
+=
+\frac{\alpha}{2\mu}
+\left[
+h^2y-\frac{y^3}{3}
+\right]_{-h}^{h}
+=
+\frac{2\alpha h^3}{3\mu}.
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Hence, the <strong>volume flow rate per unit width</strong> is</p>
+<p><span id="eq-5.25"><span class="math display">\[
+q
+=
+\frac{2\alpha h^3}{3\mu}.
+\tag{25}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>Equivalently,</p>
+<p><span class="math display">\[
+q
+=
+-\frac{2h^3}{3\mu}
+\frac{\partial p}{\partial x}.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="c-mean-velocity">(c) Mean velocity</h4>
+<div class="fragment">
+<p>The mean velocity is the volume flow rate per unit width divided by the distance between the plates:</p>
+<p><span class="math display">\[
+\overline{u}
+=
+\frac{q}{2h}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.25" class="quarto-xref">25</a>),</p>
+<p><span id="eq-5.26"><span class="math display">\[
+\overline{u}
+=
+\frac{\alpha h^2}{3\mu}.
+\tag{26}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>Comparing this result with the maximum velocity (<a href="#/eq-5.24" class="quarto-xref">24</a>),</p>
+<p><span class="math display">\[
+u_{\max}
+=
+\frac{3}{2}\overline{u}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, for plane Poiseuille flow, the maximum velocity is <span class="math inline">\(1.5\)</span> times the mean velocity.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="example-4-steady-flow-of-a-liquid-film-down-an-inclined-plane">Example 4: Steady Flow of a Liquid Film Down an Inclined Plane</h3>
+<p>Consider a steady, incompressible Newtonian liquid flowing down a wide plane inclined at an <span class="math inline">\(\theta\)</span> to the horizontal. The liquid forms a uniform film of thickness <span class="math inline">\(h\)</span>.</p>
+<div class="columns">
+<div class="column center" style="width:45%;">
+<div id="6074bd91" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="04_lecture_files/figure-revealjs/cell-6-output-1.png" class="quarto-figure quarto-figure-center" width="440" height="280"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<p>Let the <span class="math inline">\(x\)</span>-axis point down the plane and the <span class="math inline">\(y\)</span>-axis be normal to it, with <span class="math inline">\(y=0\)</span> at the wall and <span class="math inline">\(y=h\)</span> at the free surface.</p>
+<p>Assume fully developed flow with constant atmospheric pressure <span class="math inline">\(p_0\)</span> at the free surface.</p>
+<p>Determine (a) pressure distribution, (b) velocity field, (c) flow rate per unit width, and (d) mean velocity.</p>
+</div></div>
+<div class="fragment">
+<p>For a steady, incompressible, fully developed flow down the inclined plane,</p>
+<p><span class="math display">\[
+u=u(y),
+\qquad
+v=w=0.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Body-force components due to gravity are <span class="math inline">\(X=g\sin\theta,\; Y=-g\cos\theta,\; Z=0.\)</span></p>
+</div>
+<div class="fragment">
+<p>Since the velocity depends only on <span class="math inline">\(y\)</span>, all material-acceleration terms vanish.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="a-pressure-distribution-1">(a) Pressure distribution</h4>
+<div class="fragment">
+<p>The <span class="math inline">\(y\)</span>-direction Navier–Stokes equation is</p>
+<p><span class="math display">\[
+\begin{aligned}
+0
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial y}
+-g\cos\theta
+\;\Longrightarrow\;
+\frac{\partial p}{\partial y}
+= -\rho g\cos\theta.
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Integrating with respect to <span class="math inline">\(y\)</span>,</p>
+<p><span class="math display">\[
+p
+=
+-\rho gy\cos\theta+C.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>At the free surface, <span class="math inline">\(y=h\)</span>, the pressure is atmospheric: <span class="math inline">\(p=p_0.\)</span></p>
+</div>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+p_0
+=
+-\rho gh\cos\theta+C,
+\]</span></p>
+</div>
+<div class="fragment">
+<p>so that</p>
+<p><span class="math display">\[
+C
+=
+p_0+\rho gh\cos\theta.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, the pressure distribution is</p>
+<p><span id="eq-5.27"><span class="math display">\[
+\boxed{
+p(y)
+=
+p_0+\rho g(h-y)\cos\theta
+}.
+\tag{27}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>The pressure varies hydrostatically across the film thickness.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="b-velocity-field-1">(b) Velocity field</h4>
+<div class="fragment">
+<p>The <span class="math inline">\(x\)</span>-direction Navier–Stokes equation reduces to</p>
+<p><span class="math display">\[
+0
+=
+-\frac{1}{\rho}\frac{\partial p}{\partial x}
++
+g\sin\theta
++
+\frac{\mu}{\rho}\frac{d^2u}{dy^2}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Because the film thickness is uniform and the free-surface pressure is constant,</p>
+<p><span class="math display">\[
+\frac{\partial p}{\partial x}=0.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Therefore, <span class="math inline">\(\quad g\sin\theta+\dfrac{\mu}{\rho}\dfrac{d^2u}{dy^2}=0 \quad\Longrightarrow\quad \dfrac{d^2u}{dy^2}=-\dfrac{\rho g\sin\theta}{\mu}.\)</span></p>
+</div>
+<div class="fragment">
+<p>Integrating twice w.r.t <span class="math inline">\(y\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{du}{dy}
+&amp;=
+-\frac{\rho g\sin\theta}{\mu}y+A,
+\qquad
+A\in\mathbb{R}
+\\
+u(y)
+&amp;=
+-\frac{\rho g\sin\theta}{2\mu}y^2
++
+Ay+B,
+\qquad
+B\in\mathbb{R}.
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>At the solid surface, the no-slip condition gives <span class="math inline">\(u(0)=0,\)</span> and therefore <span class="math inline">\(B=0.\)</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>At the free surface, the shear stress is zero: <span class="math inline">\(\quad\tau_{xy}=\mu\frac{du}{dy}=0\)</span> at <span class="math inline">\(y=h.\)</span></p>
+<div class="fragment">
+<p>Hence, <span class="math inline">\(\qquad -\rho gh\sin\theta+\mu A=0,\quad \Longrightarrow \quad A=\dfrac{\rho gh\sin\theta}{\mu}.\)</span></p>
+</div>
+<div class="fragment">
+<p>Substituting <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> into the velocity expression gives</p>
+<p><span id="eq-5.28"><span class="math display">\[
+\boxed{
+u(y)
+=
+\frac{\rho g\sin\theta}{\mu}
+\left(
+hy-\frac{y^2}{2}
+\right)
+},
+\qquad
+v=w=0.
+\tag{28}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>The maximum velocity occurs at the free surface. Since</p>
+<p><span class="math display">\[
+\frac{du}{dy}
+=
+\frac{\rho g\sin\theta}{\mu}(h-y),
+\]</span></p>
+</div>
+<div class="fragment">
+<p>we have <span class="math inline">\(\frac{du}{dy}=0\)</span> at <span class="math inline">\(y=h.\)</span> Therefore,</p>
+<p><span id="eq-5.29"><span class="math display">\[
+u_{\max}
+=
+u(h)
+=
+\boxed{
+\frac{\rho g h^2\sin\theta}{2\mu}
+}.
+\tag{29}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>Thus, the velocity profile is parabolic, with zero velocity at the solid surface and maximum velocity at the free surface.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="c-volume-flow-rate-per-unit-width">(c) Volume flow rate per unit width</h4>
+<div class="fragment">
+<p>For a strip of unit width, the volume flow rate is <span class="math inline">\(\quad q=\displaystyle\int_0^h u(y)\,dy.\)</span></p>
+</div>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.28" class="quarto-xref">28</a>),</p>
+<p><span class="math display">\[
+\begin{aligned}
+q
+&amp;=
+\int_0^h
+\frac{\rho g\sin\theta}{\mu}
+\left(
+hy-\frac{y^2}{2}
+\right)
+\,dy
+\\
+&amp;=
+\frac{\rho g\sin\theta}{\mu}
+\left[
+\frac{hy^2}{2}
+-
+\frac{y^3}{6}
+\right]_0^h
+\\
+&amp;=
+\frac{\rho g\sin\theta}{\mu}
+\left(
+\frac{h^3}{2}
+-
+\frac{h^3}{6}
+\right)
+\\
+&amp;=
+\frac{\rho g h^3\sin\theta}{3\mu}.
+\end{aligned}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Hence,</p>
+<p><span id="eq-5.30"><span class="math display">\[
+\boxed{
+q
+=
+\frac{\rho g h^3\sin\theta}{3\mu}
+}.
+\tag{30}\]</span></span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="d-mean-velocity-1">(d) Mean velocity</h4>
+<div class="fragment">
+<p>The mean velocity is the volume flow rate per unit width divided by the film thickness:</p>
+<p><span class="math display">\[
+\overline{u}
+=
+\frac{q}{h}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Using (<a href="#/eq-5.30" class="quarto-xref">30</a>),</p>
+<p><span id="eq-5.31"><span class="math display">\[
+\boxed{
+\overline{u}
+=
+\frac{\rho g h^2\sin\theta}{3\mu}
+}.
+\tag{31}\]</span></span></p>
+</div>
+<div class="fragment">
+<p>Comparing this result with (<a href="#/eq-5.29" class="quarto-xref">29</a>),</p>
+<p><span class="math display">\[
+u_{\max}
+=
+\frac{\rho g h^2\sin\theta}{2\mu},
+\qquad
+\overline{u}
+=
+\frac{\rho g h^2\sin\theta}{3\mu}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+u_{\max}
+=
+\frac{3}{2}\overline{u}
+}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, the maximum velocity at the free surface is <span class="math inline">\(1.5\)</span> times the mean velocity.</p>
+</div>
+
+</section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="figs/curtin-logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="04_lecture_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="04_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="04_lecture_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="04_lecture_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3"},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const xrefs = window.document.querySelectorAll('a.quarto-xref');
+        const processXRef = (id, note) => {
+          // Strip column container classes
+          const stripColumnClz = (el) => {
+            el.classList.remove("page-full", "page-columns");
+            if (el.children) {
+              for (const child of el.children) {
+                stripColumnClz(child);
+              }
+            }
+          }
+          stripColumnClz(note)
+          if (id === null || id.startsWith('sec-')) {
+            // Special case sections, only their first couple elements
+            const container = document.createElement("div");
+            if (note.children && note.children.length > 2) {
+              container.appendChild(note.children[0].cloneNode(true));
+              for (let i = 1; i < note.children.length; i++) {
+                const child = note.children[i];
+                if (child.tagName === "P" && child.innerText === "") {
+                  continue;
+                } else {
+                  container.appendChild(child.cloneNode(true));
+                  break;
+                }
+              }
+              if (window.Quarto?.typesetMath) {
+                window.Quarto.typesetMath(container);
+              }
+              return container.innerHTML
+            } else {
+              if (window.Quarto?.typesetMath) {
+                window.Quarto.typesetMath(note);
+              }
+              return note.innerHTML;
+            }
+          } else {
+            // Remove any anchor links if they are present
+            const anchorLink = note.querySelector('a.anchorjs-link');
+            if (anchorLink) {
+              anchorLink.remove();
+            }
+            if (window.Quarto?.typesetMath) {
+              window.Quarto.typesetMath(note);
+            }
+            if (note.classList.contains("callout")) {
+              return note.outerHTML;
+            } else {
+              return note.innerHTML;
+            }
+          }
+        }
+        for (var i=0; i<xrefs.length; i++) {
+          const xref = xrefs[i];
+          tippyHover(xref, undefined, function(instance) {
+            instance.disable();
+            let url = xref.getAttribute('href');
+            let hash = undefined; 
+            if (url.startsWith('#')) {
+              hash = url;
+            } else {
+              try { hash = new URL(url).hash; } catch {}
+            }
+            if (hash) {
+              const id = hash.replace(/^#\/?/, "");
+              const note = window.document.getElementById(id);
+              if (note !== null) {
+                try {
+                  const html = processXRef(id, note.cloneNode(true));
+                  instance.setContent(html);
+                } finally {
+                  instance.enable();
+                  instance.show();
+                }
+              } else {
+                // See if we can fetch this
+                fetch(url.split('#')[0])
+                .then(res => res.text())
+                .then(html => {
+                  const parser = new DOMParser();
+                  const htmlDoc = parser.parseFromString(html, "text/html");
+                  const note = htmlDoc.getElementById(id);
+                  if (note !== null) {
+                    const html = processXRef(id, note);
+                    instance.setContent(html);
+                  } 
+                }).finally(() => {
+                  instance.enable();
+                  instance.show();
+                });
+              }
+            } else {
+              // See if we can fetch a full url (with no hash to target)
+              // This is a special case and we should probably do some content thinning / targeting
+              fetch(url)
+              .then(res => res.text())
+              .then(html => {
+                const parser = new DOMParser();
+                const htmlDoc = parser.parseFromString(html, "text/html");
+                const note = htmlDoc.querySelector('main.content');
+                if (note !== null) {
+                  // This should only happen for chapter cross references
+                  // (since there is no id in the URL)
+                  // remove the first header
+                  if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                    note.children[0].remove();
+                  }
+                  const html = processXRef(null, note);
+                  instance.setContent(html);
+                } 
+              }).finally(() => {
+                instance.enable();
+                instance.show();
+              });
+            }
+          }, function(instance) {
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
