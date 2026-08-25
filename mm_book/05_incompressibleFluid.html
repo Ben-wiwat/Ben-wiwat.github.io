@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./06_heatTransfer.html" rel="next">
 <link href="./04_fundamentalEquations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -376,6 +377,12 @@ window.Quarto = {
  <span class="menu-text">Chapter 5 Mechanics of Incompressible Newtonian Fluids</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_heatTransfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6 Heat Transfer Modelling</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -404,9 +411,9 @@ window.Quarto = {
   <li><a href="#sec-5.6" id="toc-sec-5.6" class="nav-link" data-scroll-target="#sec-5.6">5.6 Irrotational Flow</a></li>
   <li><a href="#sec-5.7" id="toc-sec-5.7" class="nav-link" data-scroll-target="#sec-5.7">5.7 Bernoulli’s Equation</a>
   <ul>
-  <li><a href="#physical-interpretation-1" id="toc-physical-interpretation-1" class="nav-link" data-scroll-target="#physical-interpretation-1">5.7.2 Physical Interpretation</a></li>
-  <li><a href="#assumptions-and-limitations" id="toc-assumptions-and-limitations" class="nav-link" data-scroll-target="#assumptions-and-limitations">5.7.3 Assumptions and Limitations</a></li>
-  <li><a href="#applications-of-bernoullis-equation" id="toc-applications-of-bernoullis-equation" class="nav-link" data-scroll-target="#applications-of-bernoullis-equation">5.7.4 Applications of Bernoulli’s Equation</a></li>
+  <li><a href="#physical-interpretation-1" id="toc-physical-interpretation-1" class="nav-link" data-scroll-target="#physical-interpretation-1">5.7.1 Physical Interpretation</a></li>
+  <li><a href="#assumptions-and-limitations" id="toc-assumptions-and-limitations" class="nav-link" data-scroll-target="#assumptions-and-limitations">5.7.2 Assumptions and Limitations</a></li>
+  <li><a href="#applications-of-bernoullis-equation" id="toc-applications-of-bernoullis-equation" class="nav-link" data-scroll-target="#applications-of-bernoullis-equation">5.7.3 Applications of Bernoulli’s Equation</a></li>
   <li><a href="#a1-discharge-through-an-orifice-torricellis-theorem" id="toc-a1-discharge-through-an-orifice-torricellis-theorem" class="nav-link" data-scroll-target="#a1-discharge-through-an-orifice-torricellis-theorem"><strong>A1:</strong> Discharge Through an Orifice: Torricelli’s Theorem</a></li>
   <li><a href="#a2-flow-through-a-contracting-tube" id="toc-a2-flow-through-a-contracting-tube" class="nav-link" data-scroll-target="#a2-flow-through-a-contracting-tube"><strong>A2:</strong> Flow Through a Contracting Tube</a></li>
   <li><a href="#a3-the-venturi-meter" id="toc-a3-the-venturi-meter" class="nav-link" data-scroll-target="#a3-the-venturi-meter"><strong>A3:</strong> The Venturi Meter</a></li>
@@ -415,7 +422,7 @@ window.Quarto = {
   <li><a href="#a6-stagnation-pressure" id="toc-a6-stagnation-pressure" class="nav-link" data-scroll-target="#a6-stagnation-pressure"><strong>A6:</strong> Stagnation Pressure</a></li>
   <li><a href="#a7-siphon-flow" id="toc-a7-siphon-flow" class="nav-link" data-scroll-target="#a7-siphon-flow"><strong>A7:</strong> Siphon Flow</a></li>
   <li><a href="#a8-pressure-at-the-highest-point-of-a-siphon" id="toc-a8-pressure-at-the-highest-point-of-a-siphon" class="nav-link" data-scroll-target="#a8-pressure-at-the-highest-point-of-a-siphon"><strong>A8:</strong> Pressure at the Highest Point of a Siphon</a></li>
-  <li><a href="#extended-bernoulli-equation-for-real-flows" id="toc-extended-bernoulli-equation-for-real-flows" class="nav-link" data-scroll-target="#extended-bernoulli-equation-for-real-flows">5.7.5 Extended Bernoulli Equation for Real Flows</a></li>
+  <li><a href="#extended-bernoulli-equation-for-real-flows" id="toc-extended-bernoulli-equation-for-real-flows" class="nav-link" data-scroll-target="#extended-bernoulli-equation-for-real-flows">5.7.4 Extended Bernoulli Equation for Real Flows</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -631,7 +638,6 @@ d_{ij}
 <section id="sec-5.3" class="level2">
 <h2 class="anchored" data-anchor-id="sec-5.3">5.3 Some Solutions of the Navier–Stokes Equations</h2>
 <p>In principle, the Navier–Stokes equations together with the continuity equation can be solved to yield an <strong>exact solution</strong> for any flow of a Newtonian fluid. However, it is generally very difficult to obtain an exact solution to the Navier–Stokes equations for a given problem, except in certain simple cases.</p>
-<p>In this section, two exact solutions that have proved to be particularly useful are presented.</p>
 <section id="example-1-steady-flow-between-parallel-plates" class="level4">
 <h4 class="anchored" data-anchor-id="example-1-steady-flow-between-parallel-plates">Example 1: Steady Flow Between Parallel Plates</h4>
 <div class="example">
@@ -900,7 +906,7 @@ p(y)=p_0-\rho gy.
 <div id="fig-example-5.2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-example-5.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="05_incompressibleFluid_files/figure-html/fig-example-5.2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="470" height="166">
+<img src="05_incompressibleFluid_files/figure-html/fig-example-5.2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="470" height="165">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-5.2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Steady flow through a straight circular tube.
@@ -2750,9 +2756,10 @@ C
 \frac{p}{\rho},
 \]</span></p>
 <p>and (<a href="#eq-5.62" class="quarto-xref"><span>59</span></a>) reduces to (<a href="#eq-5.52" class="quarto-xref"><span>53</span></a>).</p>
+<hr>
 </section>
 <section id="physical-interpretation-1" class="level4">
-<h4 class="anchored" data-anchor-id="physical-interpretation-1">5.7.2 Physical Interpretation</h4>
+<h4 class="anchored" data-anchor-id="physical-interpretation-1">5.7.1 Physical Interpretation</h4>
 <p>Bernoulli’s equation represents conservation of mechanical energy per unit mass of fluid.</p>
 <p>The three terms have the dimensions of energy per unit mass:</p>
 <p><span class="math display">\[
@@ -2798,9 +2805,10 @@ z_1=z_2,
 \frac{v_2^2}{2}.
 \]</span></p>
 <p>Therefore, an increase in speed is accompanied by a decrease in pressure.</p>
+<hr>
 </section>
 <section id="assumptions-and-limitations" class="level4">
-<h4 class="anchored" data-anchor-id="assumptions-and-limitations">5.7.3 Assumptions and Limitations</h4>
+<h4 class="anchored" data-anchor-id="assumptions-and-limitations">5.7.2 Assumptions and Limitations</h4>
 <p>The form</p>
 <p><span class="math display">\[
 \frac{p}{\rho}
@@ -2867,10 +2875,11 @@ C
 <li><p>to an unsteady flow without including the appropriate unsteady contribution.</p></li>
 </ul>
 <p>For real engineering flows, Bernoulli’s equation is often extended by adding terms representing pump head, turbine head, and head loss.</p>
+<hr>
 </section>
 </section>
 <section id="applications-of-bernoullis-equation" class="level4">
-<h4 class="anchored" data-anchor-id="applications-of-bernoullis-equation">5.7.4 Applications of Bernoulli’s Equation</h4>
+<h4 class="anchored" data-anchor-id="applications-of-bernoullis-equation">5.7.3 Applications of Bernoulli’s Equation</h4>
 <p>Bernoulli’s equation may be applied between two points lying on the same streamline:</p>
 <p><span class="math display">\[
 \frac{p_1}{\rho g}
@@ -3537,7 +3546,7 @@ p+\frac{1}{2}\rho v^2.
 </section>
 </section>
 <section id="extended-bernoulli-equation-for-real-flows" class="level4">
-<h4 class="anchored" data-anchor-id="extended-bernoulli-equation-for-real-flows">5.7.5 Extended Bernoulli Equation for Real Flows</h4>
+<h4 class="anchored" data-anchor-id="extended-bernoulli-equation-for-real-flows">5.7.4 Extended Bernoulli Equation for Real Flows</h4>
 <p>For real-fluid flow between sections <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>, Bernoulli’s equation may be extended to include mechanical-energy addition, mechanical-energy removal, and head loss:</p>
 <p><span id="eq-5.99"><span class="math display">\[
 \frac{p_1}{\rho g}
@@ -6320,6 +6329,9 @@ change in the magnitude or direction of fluid momentum. -->
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./06_heatTransfer.html" class="pagination-link" aria-label="Chapter 6 Heat Transfer Modelling">
+        <span class="nav-page-text">Chapter 6 Heat Transfer Modelling</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
