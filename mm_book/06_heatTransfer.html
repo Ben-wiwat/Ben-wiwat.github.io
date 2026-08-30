@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Chapter 6 Heat Transfer Modelling – Applied Mathematical Modelling</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -30,22 +36,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./07_convectionDiffusion.html" rel="next">
 <link href="./05_incompressibleFluid.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a473e0dd63122af86f9cbc1d981c1bf5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9bb34144124e223c74d81e239c224944.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b4639d2bc0c44faaa91d40aa7fdb6ccb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -379,6 +385,18 @@ window.Quarto = {
  <span class="menu-text">Chapter 6 Heat Transfer Modelling</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_convectionDiffusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7 Convection-Diffusion Process and Applications</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_trafficflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8 Traffic Modelling</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -389,81 +407,49 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#fourier-series-and-separation-of-variables-for-pdes" id="toc-fourier-series-and-separation-of-variables-for-pdes" class="nav-link active" data-scroll-target="#fourier-series-and-separation-of-variables-for-pdes">6.1 Fourier Series and Separation of Variables for PDEs</a>
+  <li><a href="#partial-differential-equations-and-fourier-methods" id="toc-partial-differential-equations-and-fourier-methods" class="nav-link active" data-scroll-target="#partial-differential-equations-and-fourier-methods">6.1 Partial Differential Equations and Fourier Methods</a>
   <ul>
-  <li><a href="#review-of-partial-differential-equations" id="toc-review-of-partial-differential-equations" class="nav-link" data-scroll-target="#review-of-partial-differential-equations">6.1.1 Review of Partial Differential Equations</a>
+  <li><a href="#definition-and-classification-of-pdes" id="toc-definition-and-classification-of-pdes" class="nav-link" data-scroll-target="#definition-and-classification-of-pdes">6.1.1 Definition and Classification of PDEs</a></li>
+  <li><a href="#fourier-series" id="toc-fourier-series" class="nav-link" data-scroll-target="#fourier-series">6.1.2 Fourier Series</a>
   <ul class="collapse">
-  <li><a href="#classification-of-partial-differential-equations" id="toc-classification-of-partial-differential-equations" class="nav-link" data-scroll-target="#classification-of-partial-differential-equations">Classification of Partial Differential Equations</a></li>
-  <li><a href="#first-order-and-higher-order-pdes" id="toc-first-order-and-higher-order-pdes" class="nav-link" data-scroll-target="#first-order-and-higher-order-pdes">1. First-Order and Higher-Order PDEs</a></li>
-  <li><a href="#linear-and-nonlinear-pdes" id="toc-linear-and-nonlinear-pdes" class="nav-link" data-scroll-target="#linear-and-nonlinear-pdes">2. Linear and Nonlinear PDEs</a></li>
-  <li><a href="#homogeneous-and-nonhomogeneous-pdes" id="toc-homogeneous-and-nonhomogeneous-pdes" class="nav-link" data-scroll-target="#homogeneous-and-nonhomogeneous-pdes">3. Homogeneous and Nonhomogeneous PDEs</a></li>
+  <li><a href="#periodic-functions-and-orthogonality" id="toc-periodic-functions-and-orthogonality" class="nav-link" data-scroll-target="#periodic-functions-and-orthogonality">Periodic Functions and Orthogonality</a></li>
+  <li><a href="#fourier-coefficients-and-the-general-series" id="toc-fourier-coefficients-and-the-general-series" class="nav-link" data-scroll-target="#fourier-coefficients-and-the-general-series">Fourier Coefficients and the General Series</a></li>
+  <li><a href="#even-odd-and-half-range-expansions" id="toc-even-odd-and-half-range-expansions" class="nav-link" data-scroll-target="#even-odd-and-half-range-expansions">Even, Odd, and Half-range expansions</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples">Worked Examples</a></li>
+  <li><a href="#convergence-and-parsevals-identity" id="toc-convergence-and-parsevals-identity" class="nav-link" data-scroll-target="#convergence-and-parsevals-identity">Convergence and Parseval’s Identity</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#fourier-series-and-separation-of-variables" id="toc-fourier-series-and-separation-of-variables" class="nav-link" data-scroll-target="#fourier-series-and-separation-of-variables">6.1.2 Fourier Series and Separation of Variables</a>
-  <ul class="collapse">
-  <li><a href="#periodic-functions" id="toc-periodic-functions" class="nav-link" data-scroll-target="#periodic-functions"><strong>Periodic Functions</strong></a></li>
-  <li><a href="#orthogonal-functions" id="toc-orthogonal-functions" class="nav-link" data-scroll-target="#orthogonal-functions"><strong>Orthogonal Functions</strong></a></li>
-  <li><a href="#fourier-series-formula" id="toc-fourier-series-formula" class="nav-link" data-scroll-target="#fourier-series-formula"><strong>Fourier Series Formula</strong></a></li>
-  <li><a href="#even-and-odd-functions" id="toc-even-and-odd-functions" class="nav-link" data-scroll-target="#even-and-odd-functions"><strong>Even and Odd Functions</strong></a></li>
-  <li><a href="#half-range-expansions" id="toc-half-range-expansions" class="nav-link" data-scroll-target="#half-range-expansions"><strong>Half-Range Expansions</strong></a></li>
+  <li><a href="#general-separation-of-variables-procedure" id="toc-general-separation-of-variables-procedure" class="nav-link" data-scroll-target="#general-separation-of-variables-procedure">6.1.3 General Separation-of-Variables Procedure</a></li>
   </ul></li>
-  <li><a href="#example-of-a-fourier-sine-series" id="toc-example-of-a-fourier-sine-series" class="nav-link" data-scroll-target="#example-of-a-fourier-sine-series"><strong>Example of a Fourier Sine Series</strong></a>
-  <ul class="collapse">
-  <li><a href="#example-of-a-fourier-cosine-series" id="toc-example-of-a-fourier-cosine-series" class="nav-link" data-scroll-target="#example-of-a-fourier-cosine-series"><strong>Example of a Fourier Cosine Series</strong></a></li>
-  <li><a href="#convergence-of-fourier-series" id="toc-convergence-of-fourier-series" class="nav-link" data-scroll-target="#convergence-of-fourier-series"><strong>Convergence of Fourier Series</strong></a></li>
-  <li><a href="#parsevals-identity" id="toc-parsevals-identity" class="nav-link" data-scroll-target="#parsevals-identity"><strong>Parseval’s Identity</strong></a></li>
-  </ul></li>
-  <li><a href="#general-separation-of-variables-procedure" id="toc-general-separation-of-variables-procedure" class="nav-link" data-scroll-target="#general-separation-of-variables-procedure"><strong>General Separation-of-Variables Procedure</strong></a></li>
-  <li><a href="#step-1-write-the-pde-and-boundary-conditions" id="toc-step-1-write-the-pde-and-boundary-conditions" class="nav-link" data-scroll-target="#step-1-write-the-pde-and-boundary-conditions">Step 1: Write the PDE and Boundary Conditions</a></li>
-  <li><a href="#step-2-assume-a-product-solution" id="toc-step-2-assume-a-product-solution" class="nav-link" data-scroll-target="#step-2-assume-a-product-solution">Step 2: Assume a Product Solution</a></li>
-  <li><a href="#step-3-separate-the-variables" id="toc-step-3-separate-the-variables" class="nav-link" data-scroll-target="#step-3-separate-the-variables">Step 3: Separate the Variables</a></li>
-  <li><a href="#step-4-consider-the-possible-signs-of-the-separation-constant" id="toc-step-4-consider-the-possible-signs-of-the-separation-constant" class="nav-link" data-scroll-target="#step-4-consider-the-possible-signs-of-the-separation-constant">Step 4: Consider the Possible Signs of the Separation Constant</a></li>
-  <li><a href="#step-5-apply-the-homogeneous-boundary-conditions" id="toc-step-5-apply-the-homogeneous-boundary-conditions" class="nav-link" data-scroll-target="#step-5-apply-the-homogeneous-boundary-conditions">Step 5: Apply the Homogeneous Boundary Conditions</a></li>
-  <li><a href="#step-6-solve-the-remaining-ode" id="toc-step-6-solve-the-remaining-ode" class="nav-link" data-scroll-target="#step-6-solve-the-remaining-ode">Step 6: Solve the Remaining ODE</a></li>
-  <li><a href="#step-7-form-a-superposition-of-separated-solutions" id="toc-step-7-form-a-superposition-of-separated-solutions" class="nav-link" data-scroll-target="#step-7-form-a-superposition-of-separated-solutions">Step 7: Form a Superposition of Separated Solutions</a></li>
-  <li><a href="#step-8-apply-the-nonhomogeneous-boundary-condition" id="toc-step-8-apply-the-nonhomogeneous-boundary-condition" class="nav-link" data-scroll-target="#step-8-apply-the-nonhomogeneous-boundary-condition">Step 8: Apply the Nonhomogeneous Boundary Condition</a></li>
-  <li><a href="#the-solution-is" id="toc-the-solution-is" class="nav-link" data-scroll-target="#the-solution-is">The solution is</a></li>
-  </ul></li>
-  <li><a href="#mathematical-modeling-of-heat-transfer" id="toc-mathematical-modeling-of-heat-transfer" class="nav-link" data-scroll-target="#mathematical-modeling-of-heat-transfer">6.2 Mathematical Modeling of Heat Transfer</a></li>
+  <li><a href="#mathematical-modelling-of-heat-transfer" id="toc-mathematical-modelling-of-heat-transfer" class="nav-link" data-scroll-target="#mathematical-modelling-of-heat-transfer">6.2 Mathematical Modelling of Heat Transfer</a>
+  <ul>
   <li><a href="#basic-modes-of-heat-transfer" id="toc-basic-modes-of-heat-transfer" class="nav-link" data-scroll-target="#basic-modes-of-heat-transfer">6.2.1 Basic Modes of Heat Transfer</a>
-  <ul>
-  <li><a href="#conduction" id="toc-conduction" class="nav-link" data-scroll-target="#conduction"><strong>Conduction</strong></a>
   <ul class="collapse">
-  <li><a href="#fouriers-law-of-heat-conduction" id="toc-fouriers-law-of-heat-conduction" class="nav-link" data-scroll-target="#fouriers-law-of-heat-conduction">Fourier’s Law of Heat Conduction</a></li>
-  </ul></li>
-  <li><a href="#convection" id="toc-convection" class="nav-link" data-scroll-target="#convection"><strong>Convection</strong></a></li>
-  <li><a href="#radiation" id="toc-radiation" class="nav-link" data-scroll-target="#radiation"><strong>Radiation</strong></a>
-  <ul class="collapse">
-  <li><a href="#stefanboltzmann-law-of-thermal-radiation" id="toc-stefanboltzmann-law-of-thermal-radiation" class="nav-link" data-scroll-target="#stefanboltzmann-law-of-thermal-radiation">Stefan–Boltzmann Law of Thermal Radiation</a></li>
+  <li><a href="#conduction" id="toc-conduction" class="nav-link" data-scroll-target="#conduction">Conduction</a></li>
+  <li><a href="#convection" id="toc-convection" class="nav-link" data-scroll-target="#convection">Convection</a></li>
+  <li><a href="#radiation" id="toc-radiation" class="nav-link" data-scroll-target="#radiation">Radiation</a></li>
   </ul></li>
   <li><a href="#the-fundamental-law-of-conservation" id="toc-the-fundamental-law-of-conservation" class="nav-link" data-scroll-target="#the-fundamental-law-of-conservation">6.2.2 The Fundamental Law of Conservation</a></li>
   <li><a href="#governing-pde-for-heat-transfer" id="toc-governing-pde-for-heat-transfer" class="nav-link" data-scroll-target="#governing-pde-for-heat-transfer">6.2.3 Governing PDE for Heat Transfer</a></li>
-  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions">6.2.4 Boundary Conditions</a>
+  <li><a href="#boundary-and-initial-conditions" id="toc-boundary-and-initial-conditions" class="nav-link" data-scroll-target="#boundary-and-initial-conditions">6.2.4 Boundary and Initial Conditions</a>
   <ul class="collapse">
-  <li><a href="#specified-temperature-or-dirichlet-condition" id="toc-specified-temperature-or-dirichlet-condition" class="nav-link" data-scroll-target="#specified-temperature-or-dirichlet-condition">1. Specified Temperature or Dirichlet Condition</a></li>
-  <li><a href="#specified-heat-flux-or-neumann-condition" id="toc-specified-heat-flux-or-neumann-condition" class="nav-link" data-scroll-target="#specified-heat-flux-or-neumann-condition">2. Specified Heat Flux or Neumann Condition</a></li>
-  <li><a href="#convective-or-robin-condition" id="toc-convective-or-robin-condition" class="nav-link" data-scroll-target="#convective-or-robin-condition">3. Convective or Robin Condition</a></li>
-  <li><a href="#radiative-boundary-condition" id="toc-radiative-boundary-condition" class="nav-link" data-scroll-target="#radiative-boundary-condition">4. Radiative Boundary Condition</a></li>
+  <li><a href="#bc1.-dirichlet-condition" id="toc-bc1.-dirichlet-condition" class="nav-link" data-scroll-target="#bc1.-dirichlet-condition">BC1. Dirichlet Condition</a></li>
+  <li><a href="#bc2.-neumann-condition" id="toc-bc2.-neumann-condition" class="nav-link" data-scroll-target="#bc2.-neumann-condition">BC2. Neumann Condition</a></li>
+  <li><a href="#bc3.-robin-condition" id="toc-bc3.-robin-condition" class="nav-link" data-scroll-target="#bc3.-robin-condition">BC3. Robin Condition</a></li>
+  <li><a href="#bc4.-radiative-condition" id="toc-bc4.-radiative-condition" class="nav-link" data-scroll-target="#bc4.-radiative-condition">BC4. Radiative Condition</a></li>
+  <li><a href="#ic1.-initial-condition" id="toc-ic1.-initial-condition" class="nav-link" data-scroll-target="#ic1.-initial-condition">IC1. Initial Condition</a></li>
   </ul></li>
-  <li><a href="#initial-condition" id="toc-initial-condition" class="nav-link" data-scroll-target="#initial-condition">Initial Condition</a></li>
-  </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
-  <ul>
-  <li><a href="#steady-state-heat-transfer" id="toc-steady-state-heat-transfer" class="nav-link" data-scroll-target="#steady-state-heat-transfer">Steady-State Heat Transfer</a>
+  <li><a href="#worked-examples-1" id="toc-worked-examples-1" class="nav-link" data-scroll-target="#worked-examples-1">6.2.5 Worked Examples</a>
   <ul class="collapse">
-  <li><a href="#one-dimensional-conduction-through-a-plane-wall" id="toc-one-dimensional-conduction-through-a-plane-wall" class="nav-link" data-scroll-target="#one-dimensional-conduction-through-a-plane-wall">One-Dimensional Conduction Through a Plane Wall</a></li>
-  <li><a href="#heat-transfer-rate" id="toc-heat-transfer-rate" class="nav-link" data-scroll-target="#heat-transfer-rate">Heat-Transfer Rate</a></li>
-  </ul></li>
-  <li><a href="#unsteady-state-heat-transfer" id="toc-unsteady-state-heat-transfer" class="nav-link" data-scroll-target="#unsteady-state-heat-transfer">Unsteady-State Heat Transfer</a>
-  <ul class="collapse">
-  <li><a href="#method-of-separation-of-variables" id="toc-method-of-separation-of-variables" class="nav-link" data-scroll-target="#method-of-separation-of-variables">Method of Separation of Variables</a></li>
-  <li><a href="#numerical-techniques" id="toc-numerical-techniques" class="nav-link" data-scroll-target="#numerical-techniques">Numerical Techniques</a></li>
-  <li><a href="#application-of-heat-equation" id="toc-application-of-heat-equation" class="nav-link" data-scroll-target="#application-of-heat-equation">Application of Heat Equation</a></li>
-  <li><a href="#initial-condition-1" id="toc-initial-condition-1" class="nav-link" data-scroll-target="#initial-condition-1">Initial Condition</a></li>
-  <li><a href="#boundary-conditions-1" id="toc-boundary-conditions-1" class="nav-link" data-scroll-target="#boundary-conditions-1">Boundary Conditions</a></li>
-  <li><a href="#typical-mathematical-model" id="toc-typical-mathematical-model" class="nav-link" data-scroll-target="#typical-mathematical-model"><strong>Typical Mathematical Model</strong></a></li>
+  <li><a href="#steady-state-heat-transfer" id="toc-steady-state-heat-transfer" class="nav-link" data-scroll-target="#steady-state-heat-transfer">Steady-State Heat Transfer</a></li>
+  <li><a href="#two-dimensional-steady-state-conduction" id="toc-two-dimensional-steady-state-conduction" class="nav-link" data-scroll-target="#two-dimensional-steady-state-conduction">Two-Dimensional Steady-State Conduction</a></li>
+  <li><a href="#two-dimensional-steady-conduction-with-mixed-bcs-dimensionless-form" id="toc-two-dimensional-steady-conduction-with-mixed-bcs-dimensionless-form" class="nav-link" data-scroll-target="#two-dimensional-steady-conduction-with-mixed-bcs-dimensionless-form">Two-Dimensional Steady Conduction with Mixed BCs: Dimensionless Form</a></li>
+  <li><a href="#unsteady-state-heat-transfer" id="toc-unsteady-state-heat-transfer" class="nav-link" data-scroll-target="#unsteady-state-heat-transfer">Unsteady-State Heat Transfer</a></li>
+  <li><a href="#two-dimensional-unsteady-conduction-rectangular-plate-with-mixed-bcs" id="toc-two-dimensional-unsteady-conduction-rectangular-plate-with-mixed-bcs" class="nav-link" data-scroll-target="#two-dimensional-unsteady-conduction-rectangular-plate-with-mixed-bcs">Two-Dimensional Unsteady Conduction: Rectangular Plate with Mixed BCs</a></li>
+  <li><a href="#numerical-methods-and-applications" id="toc-numerical-methods-and-applications" class="nav-link" data-scroll-target="#numerical-methods-and-applications">Numerical Methods and Applications</a></li>
+  <li><a href="#typical-mathematical-model" id="toc-typical-mathematical-model" class="nav-link" data-scroll-target="#typical-mathematical-model">Typical Mathematical Model</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -493,17 +479,14 @@ window.Quarto = {
 <p>Many physical phenomena such as heat conduction, vibration of strings, sound propagation, electrostatic potential, are governed by partial differential equations (PDEs).</p>
 <p>Unlike ordinary differential equations, PDEs involve derivatives with respect to two or more independent variables. Analytical solutions of PDEs usually require special mathematical techniques. One of the most powerful methods is the combination of <strong>Fourier Series</strong> and the <strong>Method of Separation of Variables</strong>.</p>
 <p>The basic idea is to decompose a complicated function into an infinite series of sine and cosine functions, which naturally satisfy many boundary conditions encountered in engineering and physics.</p>
-<section id="fourier-series-and-separation-of-variables-for-pdes" class="level2">
-<h2 class="anchored" data-anchor-id="fourier-series-and-separation-of-variables-for-pdes">6.1 Fourier Series and Separation of Variables for PDEs</h2>
-<section id="review-of-partial-differential-equations" class="level3">
-<h3 class="anchored" data-anchor-id="review-of-partial-differential-equations">6.1.1 Review of Partial Differential Equations</h3>
+<section id="partial-differential-equations-and-fourier-methods" class="level2">
+<h2 class="anchored" data-anchor-id="partial-differential-equations-and-fourier-methods">6.1 Partial Differential Equations and Fourier Methods</h2>
+<section id="definition-and-classification-of-pdes" class="level3">
+<h3 class="anchored" data-anchor-id="definition-and-classification-of-pdes">6.1.1 Definition and Classification of PDEs</h3>
 <p>A partial differential equation contains partial derivatives of an unknown function with respect to two or more independent variables.</p>
-<section id="classification-of-partial-differential-equations" class="level4">
-<h4 class="anchored" data-anchor-id="classification-of-partial-differential-equations">Classification of Partial Differential Equations</h4>
-<p>Partial differential equations (PDEs) can be classified in several ways depending on their <strong>order</strong>, <strong>linearity</strong>, and whether the equation is <strong>homogeneous or nonhomogeneous</strong>.</p>
-</section>
-<section id="first-order-and-higher-order-pdes" class="level4">
-<h4 class="anchored" data-anchor-id="first-order-and-higher-order-pdes">1. First-Order and Higher-Order PDEs</h4>
+<p>PDEs can be classified in several ways depending on their <strong>order</strong>, <strong>linearity</strong>, and whether the equation is <strong>homogeneous or nonhomogeneous</strong>.</p>
+<section id="first-order-and-higher-order-pdes" class="level5">
+<h5 class="anchored" data-anchor-id="first-order-and-higher-order-pdes"><strong>1. First-Order and Higher-Order PDEs</strong></h5>
 <p>The <strong>order of a PDE</strong> is determined by the highest-order partial derivative appearing in the equation.</p>
 <ul>
 <li><p><strong>First-order PDE:</strong> Contains only first-order partial derivatives as its highest derivatives.</p>
@@ -525,10 +508,11 @@ window.Quarto = {
 </ul>
 <p>In general, the order is determined solely by the <strong>highest derivative present</strong>, regardless of the order of the other derivatives.</p>
 </section>
-<section id="linear-and-nonlinear-pdes" class="level4">
-<h4 class="anchored" data-anchor-id="linear-and-nonlinear-pdes">2. Linear and Nonlinear PDEs</h4>
+<section id="linear-and-nonlinear-pdes" class="level5">
+<h5 class="anchored" data-anchor-id="linear-and-nonlinear-pdes"><strong>2. Linear and Nonlinear PDEs</strong></h5>
 <p>A PDE is <strong>linear</strong> if the dependent variable (u) and all of its derivatives appear only to the first power and are not multiplied together. The coefficients may depend on the independent variables.</p>
 <p>A general second-order linear PDE in two variables can be written as</p>
+<div style="font-size: 0.8em;">
 <p><span class="math display">\[
 A(x,y)u_{xx}
 +B(x,y)u_{xy}
@@ -538,11 +522,8 @@ A(x,y)u_{xx}
 +F(x,y)u
 =G(x,y).
 \]</span></p>
-<p>For example,</p>
-<p><span class="math display">\[
-u_{xx}+u_{yy}=0
-\]</span></p>
-<p>is linear.</p>
+</div>
+<p>For example, <span class="math inline">\(u_{xx}+u_{yy}=0\)</span> is linear.</p>
 <p>A PDE is <strong>nonlinear</strong> if <span class="math inline">\(u\)</span> or its derivatives occur nonlinearly—for example, if they are squared, multiplied together, or appear inside nonlinear functions.</p>
 <p>Examples include</p>
 <p><span class="math display">\[
@@ -555,8 +536,8 @@ u_{xx}+(u_y)^2=0,
 <p>because <span class="math inline">\(u_y\)</span> is squared.</p>
 <p>Nonlinear PDEs are generally more difficult to solve because the <strong>superposition principle does not apply</strong>.</p>
 </section>
-<section id="homogeneous-and-nonhomogeneous-pdes" class="level4">
-<h4 class="anchored" data-anchor-id="homogeneous-and-nonhomogeneous-pdes">3. Homogeneous and Nonhomogeneous PDEs</h4>
+<section id="homogeneous-and-nonhomogeneous-pdes" class="level5">
+<h5 class="anchored" data-anchor-id="homogeneous-and-nonhomogeneous-pdes"><strong>3. Homogeneous and Nonhomogeneous PDEs</strong></h5>
 <p>For <strong>linear PDEs</strong>, the terms homogeneous and nonhomogeneous refer to whether an external forcing or source term is present.</p>
 <p>A linear PDE can be written abstractly as</p>
 <p><span class="math display">\[
@@ -584,15 +565,17 @@ u_{xx}+u_{yy}=x^2+y^2.
 u=C_1u_1+C_2u_2
 \]</span></p>
 <p>is also a solution for arbitrary constants <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>.</p>
-</section>
-</section>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
-<table class="caption-top table">
+<div id="tbl-pde-classification" class="striped hover quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[20,40,40]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pde-classification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Summary of PDE Classification
+</figcaption>
+<div aria-describedby="tbl-pde-classification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 65%">
-<col style="width: 21%">
+<col style="width: 20%">
+<col style="width: 40%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -634,27 +617,22 @@ u=C_1u_1+C_2u_2
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
-<section id="fourier-series-and-separation-of-variables" class="level3">
-<h3 class="anchored" data-anchor-id="fourier-series-and-separation-of-variables">6.1.2 Fourier Series and Separation of Variables</h3>
+</section>
+<section id="fourier-series" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-series">6.1.2 Fourier Series</h3>
 <p>A Fourier series expresses a periodic function as an infinite sum of sine and cosine functions.</p>
-<section id="periodic-functions" class="level4">
-<h4 class="anchored" data-anchor-id="periodic-functions"><strong>Periodic Functions</strong></h4>
+<section id="periodic-functions-and-orthogonality" class="level4">
+<h4 class="anchored" data-anchor-id="periodic-functions-and-orthogonality">Periodic Functions and Orthogonality</h4>
 <p>A function <span class="math inline">\(f(x)\)</span> is periodic with period <span class="math inline">\(T\)</span> if</p>
 <p><span class="math display">\[
 f(x+T)=f(x)
 \]</span> for all values of <span class="math inline">\(x\)</span>.</p>
-<p>Examples include</p>
-<p><span class="math display">\[
-\sin x,\qquad
-\cos x,\qquad
-\sin 2x,\qquad
-\cos 3x.
-\]</span></p>
-</section>
-<section id="orthogonal-functions" class="level4">
-<h4 class="anchored" data-anchor-id="orthogonal-functions"><strong>Orthogonal Functions</strong></h4>
-<p>The trigonometric functions satisfy the orthogonality relations</p>
+<p>Examples include <span class="math inline">\(\sin x,\;\cos x,\;\sin 2x,\;\cos 3x.\)</span></p>
+<p>The trigonometric functions satisfy the <strong>orthogonality relations</strong></p>
 <p><span class="math display">\[
 \int_{-\pi}^{\pi}
 \sin(mx)\sin(nx)\,dx
@@ -678,8 +656,8 @@ f(x+T)=f(x)
 \sin(mx)\cos(nx)\,dx=0.
 \]</span> These orthogonality properties allow the Fourier coefficients to be computed independently.</p>
 </section>
-<section id="fourier-series-formula" class="level4">
-<h4 class="anchored" data-anchor-id="fourier-series-formula"><strong>Fourier Series Formula</strong></h4>
+<section id="fourier-coefficients-and-the-general-series" class="level4">
+<h4 class="anchored" data-anchor-id="fourier-coefficients-and-the-general-series">Fourier Coefficients and the General Series</h4>
 <p>For a function defined on <span class="math inline">\((-\pi,\pi)\)</span>,</p>
 <p><span class="math display">\[
 f(x)
@@ -715,24 +693,21 @@ b_n
 f(x)\sin(nx)\,dx.
 \]</span></p>
 </section>
-<section id="even-and-odd-functions" class="level4">
-<h4 class="anchored" data-anchor-id="even-and-odd-functions"><strong>Even and Odd Functions</strong></h4>
+<section id="even-odd-and-half-range-expansions" class="level4">
+<h4 class="anchored" data-anchor-id="even-odd-and-half-range-expansions">Even, Odd, and Half-range expansions</h4>
 <p>An even function satisfies <span class="math inline">\(f(-x)=f(x)\)</span>, while an odd function satisfies <span class="math inline">\(f(-x)=-f(x)\)</span>.</p>
 <p>For even functions, the Fourier series contains only cosine terms, while for odd functions, it contains only sine terms.</p>
-<p>Examples of even functions include</p>
+<p>Examples of <strong>even functions</strong> include</p>
 <p><span class="math display">\[
 x^2,\qquad
 \cos x,\qquad
 \cos 3x.
 \]</span></p>
-<p>Odd functions include: <span class="math display">\[
+<p><strong>Odd functions</strong> include: <span class="math display">\[
 \sin x,\qquad
 \sin 2x.
 \]</span></p>
-</section>
-<section id="half-range-expansions" class="level4">
-<h4 class="anchored" data-anchor-id="half-range-expansions"><strong>Half-Range Expansions</strong></h4>
-<p>The sine and cosine series on <span class="math inline">\((0,L)\)</span> are also called half-range Fourier expansions because the original function is specified over only one-half of the interval <span class="math inline">\((-L,L)\)</span>.</p>
+<p>The sine and cosine series on <span class="math inline">\((0,L)\)</span> are also called <strong>half-range Fourier expansions</strong> because the original function is specified over only one-half of the interval <span class="math inline">\((-L,L)\)</span>.</p>
 <p>The half-range sine expansion is <span class="math display">\[
 f(x)
     \sim
@@ -761,9 +736,10 @@ f(x)
 \]</span></p>
 <p>The integration variable <span class="math inline">\(\xi\)</span> is used inside the coefficients to distinguish it from the independent variable <span class="math inline">\(x\)</span> in the resulting series.</p>
 </section>
-</section>
-<section id="example-of-a-fourier-sine-series" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-a-fourier-sine-series"><strong>Example of a Fourier Sine Series</strong></h3>
+<section id="worked-examples" class="level4">
+<h4 class="anchored" data-anchor-id="worked-examples">Worked Examples</h4>
+<div class="example">
+<p><strong>Example 1: Fourier Sine Series of <span class="math inline">\(f(x)=x\)</span></strong></p>
 <p>Consider <span class="math display">\[
     f(x)=x,
     \qquad 0&lt;x&lt;L.
@@ -789,8 +765,9 @@ f(x)
     \sin\left(\frac{n\pi x}{L}\right),
     \qquad 0&lt;x&lt;L.
 \]</span></p>
-<section id="example-of-a-fourier-cosine-series" class="level4">
-<h4 class="anchored" data-anchor-id="example-of-a-fourier-cosine-series"><strong>Example of a Fourier Cosine Series</strong></h4>
+</div>
+<div class="example">
+<p><strong>Example 2: Fourier Cosine Series of <span class="math inline">\(f(x)=x\)</span></strong></p>
 <p>For the same function <span class="math display">\[
     f(x)=x,
     \qquad 0&lt;x&lt;L,
@@ -841,9 +818,10 @@ f(x)
     \frac{1}{(2m+1)^2}
     \cos\left(\frac{(2m+1)\pi x}{L}\right).
 \]</span></p>
+</div>
 </section>
-<section id="convergence-of-fourier-series" class="level4">
-<h4 class="anchored" data-anchor-id="convergence-of-fourier-series"><strong>Convergence of Fourier Series</strong></h4>
+<section id="convergence-and-parsevals-identity" class="level4">
+<h4 class="anchored" data-anchor-id="convergence-and-parsevals-identity">Convergence and Parseval’s Identity</h4>
 <p>If <span class="math inline">\(f(x)\)</span> and its derivative are piecewise continuous, its Fourier series converges at an interior point <span class="math inline">\(x\)</span> to <span class="math display">\[
     \frac{f(x^-)+f(x^+)}{2}.
 \]</span></p>
@@ -852,15 +830,12 @@ f(x)
 \]</span> so the Fourier series converges to the function itself. At a jump discontinuity, the series converges to the average of the left-hand and right-hand limits. Oscillations may occur near a discontinuity; this behavior is known as the Gibbs phenomenon.</p>
 <p>For a half-range sine series, the endpoint values are determined by the odd periodic extension. In particular, the series tends to zero at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=L\)</span> when interpreted through that extension.</p>
 <p>For a half-range cosine series, the endpoint behavior is determined by the even periodic extension.</p>
-</section>
-<section id="parsevals-identity" class="level4">
-<h4 class="anchored" data-anchor-id="parsevals-identity"><strong>Parseval’s Identity</strong></h4>
 <p>For the Fourier sine series <span class="math display">\[
     f(x)
     \sim
     \sum_{n=1}^{\infty}
     b_n\sin\left(\frac{n\pi x}{L}\right),
-\]</span> Parseval’s identity is <span class="math display">\[
+\]</span> <strong>Parseval’s identity</strong> is <span class="math display">\[
     \int_0^L |f(x)|^2\,dx
     =
     \frac{L}{2}
@@ -883,17 +858,26 @@ f(x)
 </section>
 </section>
 <section id="general-separation-of-variables-procedure" class="level3">
-<h3 class="anchored" data-anchor-id="general-separation-of-variables-procedure"><strong>General Separation-of-Variables Procedure</strong></h3>
-<p>The method of separation of variables is used to solve certain linear partial differential equations by expressing the unknown function as a product of functions, each depending on only one independent variable.</p>
+<h3 class="anchored" data-anchor-id="general-separation-of-variables-procedure">6.1.3 General Separation-of-Variables Procedure</h3>
+<p>The method of separation of variables is used to solve certain linear PDEs by expressing the unknown function as a product of functions, each depending on only one independent variable.</p>
 <p>For a function <span class="math display">\[
     u=u(x,y),
 \]</span> assume a separated solution of the form <span class="math display">\[
     u(x,y)=X(x)Y(y),
 \]</span> where <span class="math inline">\(X\)</span> depends only on <span class="math inline">\(x\)</span> and <span class="math inline">\(Y\)</span> depends only on <span class="math inline">\(y\)</span>.</p>
-<p>The general procedure is as follows.</p>
-</section>
-<section id="step-1-write-the-pde-and-boundary-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-write-the-pde-and-boundary-conditions">Step 1: Write the PDE and Boundary Conditions</h3>
+<p>The general procedure is</p>
+<ol type="1">
+<li><a href="#step-1-write-the-pde-and-boundary-conditions">Write the PDE and boundary conditions</a></li>
+<li><a href="#step-2-assume-a-product-solution">Assume a product solution</a></li>
+<li><a href="#step-3-separate-the-variables">Separate the variables</a></li>
+<li><a href="#step-4-consider-the-possible-signs-of-the-separation-constant">Consider the possible signs of the separation constant</a></li>
+<li><a href="#step-5-apply-the-homogeneous-boundary-conditions">Apply the homogeneous boundary conditions</a></li>
+<li><a href="#step-6-solve-the-remaining-ode">Solve the remaining ODE</a></li>
+<li><a href="#step-7-form-a-superposition-of-separated-solutions">Form a superposition of separated solutions</a></li>
+<li><a href="#step-8-apply-the-nonhomogeneous-boundary-condition">Apply the nonhomogeneous boundary condition</a></li>
+</ol>
+<section id="step-1-write-the-pde-and-boundary-conditions" class="level5">
+<h5 class="anchored" data-anchor-id="step-1-write-the-pde-and-boundary-conditions">Step 1: Write the PDE and Boundary Conditions</h5>
 <p>Consider a second-order linear PDE defined in a rectangular domain <span class="math display">\[
     0&lt;x&lt;L,
     \qquad
@@ -915,8 +899,8 @@ f(x)
     u(x,H)=f(x).
 \]</span></p>
 </section>
-<section id="step-2-assume-a-product-solution" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-assume-a-product-solution">Step 2: Assume a Product Solution</h3>
+<section id="step-2-assume-a-product-solution" class="level5">
+<h5 class="anchored" data-anchor-id="step-2-assume-a-product-solution">Step 2: Assume a Product Solution</h5>
 <p>Assume <span class="math display">\[
     u(x,y)=X(x)Y(y).
 \]</span></p>
@@ -933,8 +917,8 @@ f(x)
     X''(x)Y(y)+X(x)Y''(y)=0.
 \]</span></p>
 </section>
-<section id="step-3-separate-the-variables" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-separate-the-variables">Step 3: Separate the Variables</h3>
+<section id="step-3-separate-the-variables" class="level5">
+<h5 class="anchored" data-anchor-id="step-3-separate-the-variables">Step 3: Separate the Variables</h5>
 <p>Divide by <span class="math inline">\(X(x)Y(y)\)</span>, assuming that neither function is identically zero: <span class="math display">\[
     \frac{X''(x)}{X(x)}
     +
@@ -962,8 +946,8 @@ f(x)
     Y''-\lambda Y=0.
 \]</span></p>
 </section>
-<section id="step-4-consider-the-possible-signs-of-the-separation-constant" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-consider-the-possible-signs-of-the-separation-constant">Step 4: Consider the Possible Signs of the Separation Constant</h3>
+<section id="step-4-consider-the-possible-signs-of-the-separation-constant" class="level5">
+<h5 class="anchored" data-anchor-id="step-4-consider-the-possible-signs-of-the-separation-constant">Step 4: Consider the Possible Signs of the Separation Constant</h5>
 <p>The form of the solutions depends on whether <span class="math inline">\(\lambda\)</span> is positive, zero, or negative.</p>
 <p><strong>Case 1: <span class="math inline">\(\lambda=\mu^2&gt;0\)</span></strong></p>
 <p>The equations become <span class="math display">\[
@@ -1002,8 +986,8 @@ f(x)
     Y(y)=C\cos(\mu y)+D\sin(\mu y).
 \]</span></p>
 </section>
-<section id="step-5-apply-the-homogeneous-boundary-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="step-5-apply-the-homogeneous-boundary-conditions">Step 5: Apply the Homogeneous Boundary Conditions</h3>
+<section id="step-5-apply-the-homogeneous-boundary-conditions" class="level5">
+<h5 class="anchored" data-anchor-id="step-5-apply-the-homogeneous-boundary-conditions">Step 5: Apply the Homogeneous Boundary Conditions</h5>
 <p>Using <span class="math display">\[
     u(0,y)=0,
     \qquad
@@ -1043,8 +1027,8 @@ f(x)
     \sin\left(\frac{n\pi x}{L}\right).
 \]</span></p>
 </section>
-<section id="step-6-solve-the-remaining-ode" class="level3">
-<h3 class="anchored" data-anchor-id="step-6-solve-the-remaining-ode">Step 6: Solve the Remaining ODE</h3>
+<section id="step-6-solve-the-remaining-ode" class="level5">
+<h5 class="anchored" data-anchor-id="step-6-solve-the-remaining-ode">Step 6: Solve the Remaining ODE</h5>
 <p>For each eigenvalue <span class="math display">\[
     \mu_n=\frac{n\pi}{L},
 \]</span> the equation for <span class="math inline">\(Y\)</span> is <span class="math display">\[
@@ -1079,8 +1063,8 @@ f(x)
     \sinh\left(\frac{n\pi y}{L}\right).
 \]</span></p>
 </section>
-<section id="step-7-form-a-superposition-of-separated-solutions" class="level3">
-<h3 class="anchored" data-anchor-id="step-7-form-a-superposition-of-separated-solutions">Step 7: Form a Superposition of Separated Solutions</h3>
+<section id="step-7-form-a-superposition-of-separated-solutions" class="level5">
+<h5 class="anchored" data-anchor-id="step-7-form-a-superposition-of-separated-solutions">Step 7: Form a Superposition of Separated Solutions</h5>
 <p>Because Laplace’s equation is linear, a sum of separated solutions is also a solution. Therefore, <span class="math display">\[
     u(x,y)
     =
@@ -1097,8 +1081,8 @@ f(x)
     u(x,0)=0.
 \]</span></p>
 </section>
-<section id="step-8-apply-the-nonhomogeneous-boundary-condition" class="level3">
-<h3 class="anchored" data-anchor-id="step-8-apply-the-nonhomogeneous-boundary-condition">Step 8: Apply the Nonhomogeneous Boundary Condition</h3>
+<section id="step-8-apply-the-nonhomogeneous-boundary-condition" class="level5">
+<h5 class="anchored" data-anchor-id="step-8-apply-the-nonhomogeneous-boundary-condition">Step 8: Apply the Nonhomogeneous Boundary Condition</h5>
 <p>Apply <span class="math display">\[
     u(x,H)=f(x).
 \]</span> Then <span class="math display">\[
@@ -1129,8 +1113,8 @@ f(x)
 \]</span></p>
 <p>The variable <span class="math inline">\(\xi\)</span> is used as the integration variable to distinguish it from the independent variable <span class="math inline">\(x\)</span>.</p>
 </section>
-<section id="the-solution-is" class="level3">
-<h3 class="anchored" data-anchor-id="the-solution-is">The solution is</h3>
+<section id="the-solution-is" class="level5">
+<h5 class="anchored" data-anchor-id="the-solution-is"><strong>The solution is</strong></h5>
 <p><span class="math display">\[
 u(x,y)
     =
@@ -1140,7 +1124,13 @@ u(x,y)
     \sinh\left(\frac{n\pi y}{L}\right).
 \]</span></p>
 <p><strong>Remark:</strong> The type of homogeneous boundary conditions determines the eigenfunctions.</p>
-<table class="caption-top table">
+<div id="tbl-typical-eigenfunctions" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-typical-eigenfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Typical Eigenfunctions for Common Boundary Conditions
+</figcaption>
+<div aria-describedby="tbl-typical-eigenfunctions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 46%">
 <col style="width: 53%">
@@ -1170,24 +1160,28 @@ u(x,y)
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>Thus, the boundary conditions determine the appropriate Fourier expansion and the allowable eigenvalues.</p>
+<hr>
 </section>
 </section>
-<section id="mathematical-modeling-of-heat-transfer" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-modeling-of-heat-transfer">6.2 Mathematical Modeling of Heat Transfer</h2>
-<p>Heat transfer is the study of the transport of thermal energy resulting from a temperature difference. Thermal energy naturally flows from a region of higher temperature to one of lower temperature until thermal equilibrium is reached. Understanding temperature fields and heat transfer is essential in many natural and industrial processes, including melting and solidification, combustion, and frost penetration into the ground. Mathematical modeling provides a systematic framework for describing, analyzing, and predicting temperature distributions and heat-transfer rates in engineering systems. Common units of heat transfer include the joule (J), calorie (cal), and kilocalorie (kcal), while heat-transfer rate is commonly expressed in kilowatts (kW).</p>
+</section>
+<section id="mathematical-modelling-of-heat-transfer" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-modelling-of-heat-transfer">6.2 Mathematical Modelling of Heat Transfer</h2>
+<p>Heat transfer is the study of the transport of thermal energy resulting from a temperature difference. Thermal energy naturally flows from a region of higher temperature to one of lower temperature until thermal equilibrium is reached. Understanding temperature fields and heat transfer is essential in many natural and industrial processes, including melting and solidification, combustion, and frost penetration into the ground. Mathematical modelling provides a systematic framework for describing, analysing, and predicting temperature distributions and heat-transfer rates in engineering systems. Common units of heat transfer include the joule (J), calorie (cal), and kilocalorie (kcal), while heat-transfer rate is commonly expressed in kilowatts (kW).</p>
 <p>A complete mathematical model of heat transfer generally begins by identifying the relevant modes of heat transfer and applying the principle of conservation of energy. These considerations are used to formulate an appropriate governing differential equation that describes how temperature varies with position and time. The model must also include suitable initial and boundary conditions that represent the physical conditions of the system. Once the mathematical problem has been established, analytical methods may be used when an exact solution is possible, while numerical techniques are often required for more complex geometries, material properties, or boundary conditions.</p>
-</section>
-<section id="basic-modes-of-heat-transfer" class="level2">
-<h2 class="anchored" data-anchor-id="basic-modes-of-heat-transfer">6.2.1 Basic Modes of Heat Transfer</h2>
+<section id="basic-modes-of-heat-transfer" class="level3">
+<h3 class="anchored" data-anchor-id="basic-modes-of-heat-transfer">6.2.1 Basic Modes of Heat Transfer</h3>
 <p>Heat can be transferred through three basic mechanisms: <strong>conduction, convection, and radiation</strong>. In many practical systems, two or more of these heat-transfer mechanisms occur simultaneously. Identifying the dominant mode of heat transfer is an important first step in developing an appropriate mathematical model for a thermal system.</p>
-<section id="conduction" class="level3">
-<h3 class="anchored" data-anchor-id="conduction"><strong>Conduction</strong></h3>
+<section id="conduction" class="level4">
+<h4 class="anchored" data-anchor-id="conduction">Conduction</h4>
 <p>The mechanism of <strong>heat conduction</strong> is associated with interactions and collisions between atoms and molecules. Particles in a region of higher temperature possess greater kinetic energy and therefore move or vibrate more rapidly. When these energetic particles interact with slower particles in a colder region, energy is transferred from the faster particles to the slower ones. As a result, thermal energy is transported from regions of higher temperature to regions of lower temperature.</p>
 <p>When a <strong>temperature gradient</strong> exists within a material, heat flows naturally in the direction of decreasing temperature. This process is known as <strong>conduction heat transfer</strong>. Conduction therefore refers to the transfer of thermal energy through a stationary medium as a result of molecular interactions and temperature differences.</p>
 <p>The <strong>heat flux</strong> <span class="math inline">\(\mathbf{q}\)</span> is a vector quantity whose direction represents the direction of heat flow. Its magnitude describes the amount of heat transferred per unit area per unit time and is measured in <span class="math inline">\(\mathrm{W/m^2}\)</span>. The ability of a material to conduct heat is characterized by its <strong>thermal conductivity</strong>, denoted by <span class="math inline">\(k\)</span>, with units of <span class="math inline">\(\mathrm{W/(m,^{\circ}C)}\)</span> or equivalently <span class="math inline">\(\mathrm{W/(m,K)}\)</span>.</p>
-<section id="fouriers-law-of-heat-conduction" class="level4">
-<h4 class="anchored" data-anchor-id="fouriers-law-of-heat-conduction">Fourier’s Law of Heat Conduction</h4>
+<section id="fouriers-law-of-heat-conduction" class="level5">
+<h5 class="anchored" data-anchor-id="fouriers-law-of-heat-conduction">Fourier’s Law of Heat Conduction</h5>
 <p>Fourier’s law describes the relationship between heat transfer and the temperature gradient. In terms of heat-transfer rate through a surface, it can be written as</p>
 <p><span class="math display">\[
 \mathbf{Q}=-kA_s\nabla T,
@@ -1210,8 +1204,8 @@ Q_x=-kA_s\frac{dT}{dx}.
 <p>Again, the negative sign indicates that heat flows from a region of higher temperature to a region of lower temperature.</p>
 </section>
 </section>
-<section id="convection" class="level3">
-<h3 class="anchored" data-anchor-id="convection"><strong>Convection</strong></h3>
+<section id="convection" class="level4">
+<h4 class="anchored" data-anchor-id="convection">Convection</h4>
 <p><strong>Convection</strong> is the transfer of thermal energy through the bulk motion of a fluid, such as a liquid or gas. It typically involves a combination of heat conduction near a solid surface and the movement of the fluid, which transports thermal energy from one location to another.</p>
 <p>In a typical convective heat-transfer process, a surface at a higher temperature transfers heat to an adjacent fluid. As the fluid moves, it carries the transferred thermal energy away from the surface. Similarly, when a cold surface is exposed to a warmer fluid, heat is transferred from the fluid to the surface.</p>
 <p>Examples of <strong>convection</strong> include boiling water, land and sea breezes, air conditioners, blood circulation, melting of chilled drinks, convection ovens, hot-air balloons, refrigerators, car radiators, and the defrosting of frozen meat.</p>
@@ -1227,11 +1221,11 @@ Q=hA_s(T_s-T_\infty),
 <p>where <span class="math inline">\(h\)</span> is the convective heat-transfer coefficient, <span class="math inline">\(A_s\)</span> is the surface area, <span class="math inline">\(T_s\)</span> is the surface temperature, and <span class="math inline">\(T_\infty\)</span> is the temperature of the fluid away from the surface. The sign and magnitude of <span class="math inline">\(T_s-T_\infty\)</span> determine the direction and rate of heat transfer. When <span class="math inline">\(T_s&gt;T_\infty\)</span>, heat is transferred from the surface to the fluid; when <span class="math inline">\(T_s&lt;T_\infty\)</span>, heat is transferred from the fluid to the surface.</p>
 <p>A familiar example is <strong>heating a pot of water over a flame</strong>. Water near the bottom of the pot is heated first, causing it to expand and become less dense. The warmer water rises while the cooler, denser water moves downward. This continuous movement produces a circulation pattern known as a <strong>convection current</strong>, which helps distribute thermal energy throughout the liquid.</p>
 </section>
-<section id="radiation" class="level3">
-<h3 class="anchored" data-anchor-id="radiation"><strong>Radiation</strong></h3>
+<section id="radiation" class="level4">
+<h4 class="anchored" data-anchor-id="radiation">Radiation</h4>
 <p><strong>Radiation</strong> is the transfer of thermal energy through <strong>electromagnetic waves</strong>. Unlike conduction and convection, radiation does not require a material medium and can therefore occur through a vacuum. For example, thermal energy from the Sun reaches the Earth primarily through radiation.</p>
-<section id="stefanboltzmann-law-of-thermal-radiation" class="level4">
-<h4 class="anchored" data-anchor-id="stefanboltzmann-law-of-thermal-radiation">Stefan–Boltzmann Law of Thermal Radiation</h4>
+<section id="stefanboltzmann-law-of-thermal-radiation" class="level5">
+<h5 class="anchored" data-anchor-id="stefanboltzmann-law-of-thermal-radiation">Stefan–Boltzmann Law of Thermal Radiation</h5>
 <p>The thermal radiation emitted by an ideal <strong>blackbody</strong> is described by the Stefan–Boltzmann law:</p>
 <p><span class="math display">\[
 \dot{Q}_{\mathrm{rad}}
@@ -1257,6 +1251,7 @@ T_s^4-T_{\mathrm{sur}}^4
 \]</span></p>
 <p>where <span class="math inline">\(\varepsilon\)</span> is the <strong>surface emissivity</strong>, with <span class="math inline">\(0\leq\varepsilon\leq1\)</span>, and <span class="math inline">\(T_{\mathrm{sur}}\)</span> is the absolute temperature of the surroundings.</p>
 <p>If <span class="math inline">\(T_s&gt;T_{\mathrm{sur}}\)</span>, the surface experiences a net loss of thermal energy by radiation. If <span class="math inline">\(T_s&lt;T_{\mathrm{sur}}\)</span>, the surface experiences a net gain of thermal energy from its surroundings.</p>
+</section>
 </section>
 </section>
 <section id="the-fundamental-law-of-conservation" class="level3">
@@ -1334,19 +1329,21 @@ k\nabla^2T+\dot{q}_v.
 \nabla^2T=0.
 \]</span></p>
 </section>
-<section id="boundary-conditions" class="level3">
-<h3 class="anchored" data-anchor-id="boundary-conditions">6.2.4 Boundary Conditions</h3>
+<section id="boundary-and-initial-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-and-initial-conditions">6.2.4 Boundary and Initial Conditions</h3>
 <p>Boundary conditions describe the thermal behavior at the boundaries of the solution domain. Together with the governing differential equation, they are required to obtain a unique temperature distribution. Common thermal boundary conditions include the following.</p>
-<section id="specified-temperature-or-dirichlet-condition" class="level4">
-<h4 class="anchored" data-anchor-id="specified-temperature-or-dirichlet-condition">1. Specified Temperature or Dirichlet Condition</h4>
+<section id="bc1.-dirichlet-condition" class="level4">
+<h4 class="anchored" data-anchor-id="bc1.-dirichlet-condition">BC1. Dirichlet Condition</h4>
+<p>The Dirichlet condition specifies the <strong>temperature at the boundary</strong>.</p>
 <p>The temperature at the boundary is prescribed:</p>
 <p><span class="math display">\[
 T=T_s,
 \]</span></p>
 <p>where <span class="math inline">\(T_s\)</span> is the specified surface temperature.</p>
 </section>
-<section id="specified-heat-flux-or-neumann-condition" class="level4">
-<h4 class="anchored" data-anchor-id="specified-heat-flux-or-neumann-condition">2. Specified Heat Flux or Neumann Condition</h4>
+<section id="bc2.-neumann-condition" class="level4">
+<h4 class="anchored" data-anchor-id="bc2.-neumann-condition">BC2. Neumann Condition</h4>
+<p>The Neumann condition specifies the <strong>heat flux at the boundary</strong>.</p>
 <p>The heat flux normal to the boundary is prescribed:</p>
 <p><span class="math display">\[
 -k\frac{\partial T}{\partial n}=q_s'',
@@ -1361,8 +1358,9 @@ q_s''=0,
 \frac{\partial T}{\partial n}=0.
 \]</span></p>
 </section>
-<section id="convective-or-robin-condition" class="level4">
-<h4 class="anchored" data-anchor-id="convective-or-robin-condition">3. Convective or Robin Condition</h4>
+<section id="bc3.-robin-condition" class="level4">
+<h4 class="anchored" data-anchor-id="bc3.-robin-condition">BC3. Robin Condition</h4>
+<p>The Robin condition specifies a <strong>convective heat transfer</strong> at the boundary.</p>
 <p>When a solid surface exchanges heat with a surrounding fluid by convection, the boundary condition can be written as</p>
 <p><span class="math display">\[
 -k\frac{\partial T}{\partial n}
@@ -1372,8 +1370,8 @@ h\left(T_s-T_\infty\right),
 <p>where <span class="math inline">\(h\)</span> is the convective heat-transfer coefficient, <span class="math inline">\(T_s\)</span> is the surface temperature, and <span class="math inline">\(T_\infty\)</span> is the temperature of the surrounding fluid.</p>
 <p>This condition relates heat conduction at the surface to heat transfer by convection between the surface and the fluid.</p>
 </section>
-<section id="radiative-boundary-condition" class="level4">
-<h4 class="anchored" data-anchor-id="radiative-boundary-condition">4. Radiative Boundary Condition</h4>
+<section id="bc4.-radiative-condition" class="level4">
+<h4 class="anchored" data-anchor-id="bc4.-radiative-condition">BC4. Radiative Condition</h4>
 <p>When heat is exchanged between a surface and its surroundings by thermal radiation, the boundary condition is</p>
 <p><span class="math display">\[
 -k\frac{\partial T}{\partial n}
@@ -1383,9 +1381,9 @@ h\left(T_s-T_\infty\right),
 <p>where <span class="math inline">\(\varepsilon\)</span> is the surface emissivity, <span class="math inline">\(\sigma\)</span> is the Stefan–Boltzmann constant, <span class="math inline">\(T_s\)</span> is the absolute surface temperature, and <span class="math inline">\(T_{\mathrm{sur}}\)</span> is the absolute temperature of the surroundings.</p>
 <p>Because temperature appears to the fourth power, the radiative boundary condition is <strong>nonlinear</strong>.</p>
 </section>
-</section>
-<section id="initial-condition" class="level3">
-<h3 class="anchored" data-anchor-id="initial-condition">Initial Condition</h3>
+<section id="ic1.-initial-condition" class="level4">
+<h4 class="anchored" data-anchor-id="ic1.-initial-condition">IC1. Initial Condition</h4>
+<p>Additionally, an <strong>initial condition</strong> is needed to specify the temperature distribution at the initial time for transient heat conduction problems.</p>
 <p>For a <strong>transient heat-transfer problem</strong>, the temperature distribution must also be specified at an initial time, usually <span class="math inline">\(t=0\)</span>. The initial condition is written as</p>
 <p><span class="math display">\[
 T(\mathbf{x},0)=T_i(\mathbf{x}),
@@ -1394,18 +1392,32 @@ T(\mathbf{x},0)=T_i(\mathbf{x}),
 <p>Thus, a complete transient heat-transfer problem generally consists of the <strong>governing heat equation</strong>, appropriate <strong>boundary conditions</strong>, and an <strong>initial condition</strong>.</p>
 </section>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="worked-examples-1" class="level3">
+<h3 class="anchored" data-anchor-id="worked-examples-1">6.2.5 Worked Examples</h3>
 <p>Example problems demonstrate how the governing heat equation and associated boundary conditions are adapted to particular physical situations. Heat-transfer problems are commonly classified as <strong>steady-state</strong> or <strong>unsteady-state (transient)</strong> problems, depending on whether the temperature varies with time.</p>
-<section id="steady-state-heat-transfer" class="level3">
-<h3 class="anchored" data-anchor-id="steady-state-heat-transfer">Steady-State Heat Transfer</h3>
+<section id="steady-state-heat-transfer" class="level4">
+<h4 class="anchored" data-anchor-id="steady-state-heat-transfer">Steady-State Heat Transfer</h4>
 <p>In <strong>steady-state heat transfer</strong>, the temperature at every point in a system remains constant with time. The temperature may still vary from one position to another, but at any fixed location there is no temporal change. Therefore,</p>
 <p><span class="math display">\[
 \frac{\partial T}{\partial t}=0.
 \]</span></p>
 <p>Under steady-state conditions, there is no accumulation of thermal energy within the material. The rate of heat entering a region must therefore balance the rate of heat leaving it, provided there is no internal heat generation.</p>
-<section id="one-dimensional-conduction-through-a-plane-wall" class="level4">
-<h4 class="anchored" data-anchor-id="one-dimensional-conduction-through-a-plane-wall">One-Dimensional Conduction Through a Plane Wall</h4>
+<div class="example">
+<p><strong>Example 3: One-Dimensional Conduction Through a Plane Wall</strong></p>
+<div id="cell-fig-plane-wall-book" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-plane-wall-book" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plane-wall-book-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06_heatTransfer_files/figure-html/fig-plane-wall-book-output-1.png" width="470" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plane-wall-book-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Steady-state one-dimensional heat conduction through a plane wall.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Consider a plane wall of thickness <span class="math inline">\(L\)</span> and cross-sectional area <span class="math inline">\(A\)</span>. Assume that</p>
 <ul>
 <li>heat transfer occurs only in the <span class="math inline">\(x\)</span>-direction,</li>
@@ -1418,42 +1430,25 @@ T(\mathbf{x},0)=T_i(\mathbf{x}),
 <p><span class="math display">\[
 \frac{d^2T}{dx^2}=0.
 \]</span></p>
-<p>Integrating once with respect to <span class="math inline">\(x\)</span> gives</p>
+<p>Integrating twice with respect to <span class="math inline">\(x\)</span> gives</p>
 <p><span class="math display">\[
-\frac{dT}{dx}=C_1,
-\]</span></p>
-<p>and integrating a second time gives</p>
-<p><span class="math display">\[
-T(x)=C_1x+C_2,
+\begin{aligned}
+\frac{dT}{dx}&amp;=C_1 \\
+T(x)&amp;=C_1x+C_2,
+\end{aligned}
 \]</span></p>
 <p>where <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> are constants determined from the boundary conditions.</p>
-<p>Suppose the wall occupies the region</p>
+<p>Suppose the wall occupies the region <span class="math inline">\(0\leq x\leq L,\)</span> with prescribed surface temperatures</p>
 <p><span class="math display">\[
-0\leq x\leq L,
+T(0)=T_1 \quad \text{and} \quad T(L)=T_2.
 \]</span></p>
-<p>with prescribed surface temperatures</p>
+<p>Applying the first boundary condition gives</p>
 <p><span class="math display">\[
-T(0)=T_1
+T(0)=C_2=T_1 \Rightarrow C_2=T_1.
 \]</span></p>
-<p>and</p>
+<p>Applying the second boundary condition gives</p>
 <p><span class="math display">\[
-T(L)=T_2.
-\]</span></p>
-<p>Applying the first boundary condition,</p>
-<p><span class="math display">\[
-T(0)=C_2=T_1,
-\]</span></p>
-<p>so that</p>
-<p><span class="math display">\[
-C_2=T_1.
-\]</span></p>
-<p>Applying the second boundary condition,</p>
-<p><span class="math display">\[
-T_2=C_1L+T_1,
-\]</span></p>
-<p>which gives</p>
-<p><span class="math display">\[
-C_1=\frac{T_2-T_1}{L}.
+T_2=C_1L+T_1 \Rightarrow C_1=\frac{T_2-T_1}{L}.
 \]</span></p>
 <p>Therefore, the temperature distribution within the wall is</p>
 <p><span class="math display">\[
@@ -1462,9 +1457,9 @@ T(x)=T_1+\frac{T_2-T_1}{L}x
 }.
 \]</span></p>
 <p>This result shows that the temperature varies <strong>linearly</strong> through a plane wall when the thermal conductivity is constant and there is no internal heat generation.</p>
-</section>
-<section id="heat-transfer-rate" class="level4">
-<h4 class="anchored" data-anchor-id="heat-transfer-rate">Heat-Transfer Rate</h4>
+</div>
+<div class="example">
+<p><strong>Example 4: Heat Transfer Through a Plane Wall</strong></p>
 <p>Fourier’s law for one-dimensional heat conduction is</p>
 <p><span class="math display">\[
 \dot{Q}=-kA\frac{dT}{dx}.
@@ -1488,22 +1483,6 @@ T(x)=T_1+\frac{T_2-T_1}{L}x
 }.
 \]</span></p>
 <p>Here, <span class="math inline">\(k\)</span> is the thermal conductivity, <span class="math inline">\(A\)</span> is the cross-sectional area perpendicular to the direction of heat flow, and <span class="math inline">\(L\)</span> is the wall thickness. If <span class="math inline">\(T_1&gt;T_2\)</span>, heat flows from the surface at <span class="math inline">\(x=0\)</span> toward the surface at <span class="math inline">\(x=L\)</span>, consistent with the principle that heat flows from higher to lower temperature.</p>
-<div style="text-align: center">
-<div id="cell-fig-plane-wall" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div id="fig-plane-wall" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-plane-wall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06_heatTransfer_files/figure-html/fig-plane-wall-output-1.png" width="566" height="374" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plane-wall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Steady-state one-dimensional heat conduction through a plane wall.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
 <p>The corresponding heat flux is</p>
 <p><span class="math display">\[
 \boxed{
@@ -1524,12 +1503,267 @@ R_{\mathrm{cond}}=\frac{L}{kA}.
 \frac{T_1-T_2}{R_{\mathrm{cond}}}
 }.
 \]</span></p>
-<p>This thermal-resistance form is particularly useful when analyzing systems containing several material layers or multiple heat-transfer mechanisms.</p>
+<p>This thermal-resistance form is particularly useful when analysing systems containing several material layers or multiple heat-transfer mechanisms.</p>
+</div>
+</section>
+<section id="two-dimensional-steady-state-conduction" class="level4">
+<h4 class="anchored" data-anchor-id="two-dimensional-steady-state-conduction">Two-Dimensional Steady-State Conduction</h4>
+<div class="example">
+<p><strong>Example 5: Heat Transfer Through a Rectangular Plate</strong></p>
+<p>For 2-D steady state conduction problems, we consider the system of figure below. Three sides of the rectangular plate are maintained at a constant temperature <span class="math inline">\(T_i\)</span>, while the fourth side is maintained at a constant temperature <span class="math inline">\(T_s \neq T_i\)</span>. We are interested in the temperature distribution <span class="math inline">\(T(x,y)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/rectangular_plate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>The (temperature field) are <span class="math display">\[
+\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} = 0
+\]</span> <span class="math display">\[
+T(0,y) = T_1, \quad T(L,y) = T_1,
+\]</span> <span id="eq-A1"><span class="math display">\[
+T(x,0) = T_1, \quad T(x,W) = T_2
+\tag{1}\]</span></span></p>
+<p>To reduce the number of <strong>non-homogeneous BCs</strong>, introduce the transformation <span id="eq-A2"><span class="math display">\[
+\theta = \frac{T - T_1}{T_2 - T_1} \quad \text{(or } \theta = T - T_1 \text{)}
+\tag{2}\]</span></span></p>
+<p>Substituting (<a href="#eq-A2" class="quarto-xref"><span>2</span></a>) into (<a href="#eq-A1" class="quarto-xref"><span>1</span></a>), we obtain <span id="eq-A3"><span class="math display">\[
+\frac{\partial^2 \theta}{\partial x^2} + \frac{\partial^2 \theta}{\partial y^2} = 0
+\tag{3}\]</span></span></p>
+<p><span class="math display">\[
+\theta(0,y) = 0, \quad \theta(x,0) = 0,
+\]</span> <span class="math display">\[
+\theta(L,y) = 0, \quad \theta(x,W) = 1
+\]</span></p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Remarks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Through the transformation</p>
+<ul>
+<li>3 of 4 BCs are now <strong>homogeneous</strong>, and</li>
+<li>the value of <span class="math inline">\(\theta\)</span> is restricted to the range from 0 to 1.</li>
+</ul>
+</div>
+</div>
+<p>We now solve the equation by the <strong>separation of variables</strong> technique. Let <span id="eq-A4"><span class="math display">\[
+\theta(x,y) = X(x)\cdot Y(y)
+\tag{4}\]</span></span></p>
+<p>Substituting the above into (<a href="#eq-A3" class="quarto-xref"><span>3</span></a>) and dividing by <span class="math inline">\(XY\)</span>, we obtain <span id="eq-A5"><span class="math display">\[
+- \frac{1}{X}\frac{d^2 X}{dx^2} = \frac{1}{Y}\frac{d^2 Y}{dy^2}
+\tag{5}\]</span></span></p>
+<p>Now, the left-hand side of the equation depends only on <span class="math inline">\(x\)</span> and the RHS only on <span class="math inline">\(y\)</span>.<br>
+Hence the equation is valid for any <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> if and only if both sides are equal to the same constant.</p>
+<p>Let the separation constant be <span class="math inline">\(\mu\)</span>, and solve the problem for <span class="math inline">\(\mu = -\lambda^2 &lt; 0, \ \lambda^2 &gt; 0\)</span>.<br>
+It is found that non-trivial solution exists only for <span class="math inline">\(\mu = \lambda^2\)</span> and <span id="eq-A6"><span class="math display">\[
+\frac{d^2 X}{dx^2} + \lambda^2 X = 0
+\tag{6}\]</span></span> <span id="eq-A7"><span class="math display">\[
+\frac{d^2 Y}{dy^2} - \lambda^2 Y = 0
+\tag{7}\]</span></span></p>
+<p>The general solutions to (<a href="#eq-A6" class="quarto-xref"><span>6</span></a>) and (<a href="#eq-A7" class="quarto-xref"><span>7</span></a>) are, respectively.</p>
+<p><strong>Applying Boundary Conditions</strong></p>
+<p><span id="eq-A8"><span class="math display">\[
+X = C_1 \cos \lambda x + C_2 \sin \lambda x
+\tag{8}\]</span></span> <span id="eq-A9"><span class="math display">\[
+Y = C_3 e^{-\lambda y} + C_4 e^{\lambda y}
+\tag{9}\]</span></span></p>
+<p>Now consider the BCs. <span id="eq-A10"><span class="math display">\[
+\theta(0,y) = X(0)Y(y) = 0 \quad \Rightarrow \quad X(0) = 0
+\tag{10}\]</span></span></p>
+<p>or otherwise trivial solution. <span id="eq-A11"><span class="math display">\[
+\theta(L,y) = X(L)Y(y) = 0 \quad \Rightarrow \quad X(L) = 0
+\tag{11}\]</span></span> <span id="eq-A12"><span class="math display">\[
+\theta(x,0) = X(x)Y(0) = 0 \quad \Rightarrow \quad Y(0) = 0
+\tag{12}\]</span></span></p>
+<p>Substituting (<a href="#eq-A8" class="quarto-xref"><span>8</span></a>) into (<a href="#eq-A10" class="quarto-xref"><span>10</span></a>): <span class="math display">\[
+X(0) = C_1 = 0
+\]</span></p>
+<p>From (<a href="#eq-A8" class="quarto-xref"><span>8</span></a>) and (<a href="#eq-A11" class="quarto-xref"><span>11</span></a>), we have <span class="math display">\[
+X(L) = C_2 \sin \lambda L = 0
+\quad \Rightarrow \quad \lambda = \frac{n\pi}{L}, \quad \text{as } C_2 \neq 0
+\]</span> <span class="math display">\[
+\therefore \quad X(x) = C_2 \sin \left(\frac{n \pi x}{L}\right)
+\]</span> From (<a href="#eq-A9" class="quarto-xref"><span>9</span></a>) and (<a href="#eq-A12" class="quarto-xref"><span>12</span></a>), we get <span class="math display">\[
+Y(0) = C_3 + C_4 = 0 \quad \Rightarrow \quad C_3 = -C_4
+\]</span> <span class="math display">\[
+\therefore \quad Y(y) = C_4 \left(e^{n\pi y / L} - e^{-n\pi y / L}\right)
+= 2 C_4 \sinh \left(\frac{n\pi y}{L}\right)
+\]</span></p>
+<p><strong>General Solution</strong></p>
+<p>The general solution of the problem is</p>
+<p><span class="math display">\[
+\theta = 2C_2 C_4 \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\]</span> <span id="eq-A13"><span class="math display">\[
+\Rightarrow \theta(x,y) = C_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\tag{13}\]</span></span></p>
+<p>A more general solution may be obtained using the principle of superposition <span id="eq-A14"><span class="math display">\[
+\theta(x,y) = \sum_{n=1}^{\infty} C_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}  
+\tag{14}\]</span></span></p>
+<p>To determine <span class="math inline">\(C_n\)</span>, we apply the remaining BC (the non-homogeneous BC):</p>
+<p><span id="eq-A15"><span class="math display">\[
+\begin{aligned}
+    \theta(x,W) = 1 =&amp; \sum_{n=1}^{\infty} C_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi W}{L} \\
+&amp; = \sum_{n=1}^{\infty} \left[ C_n \sinh \frac{n\pi W}{L} \right] \sin \frac{n\pi x}{L}
+\end{aligned}
+\tag{15}\]</span></span></p>
+<p>The right hand side of (<a href="#eq-A15" class="quarto-xref"><span>15</span></a>) can be considered as the Fourier sine series expansion of the function <span class="math inline">\(f(x)=1\)</span>. Thus</p>
+<p><span class="math display">\[
+\begin{aligned}
+C_n \sinh \frac{n\pi W}{L} &amp;= \frac{2}{L} \int_0^L \left[1 \cdot \sin \frac{n\pi x}{L}\right] dx\\
+   &amp;= \frac{2}{L} \left[ -\frac{L}{n\pi} \cos \frac{n\pi x}{L} \right]_0^L \\
+&amp; = \frac{-2}{n\pi} \left( \cos n\pi - 1 \right) \\
+&amp; = \frac{2}{n\pi} \left(1 - \cos n\pi \right) = \frac{2}{n\pi} \left[1 - (-1)^n\right]
+\end{aligned}
+\]</span></p>
+<p><span id="eq-A16"><span class="math display">\[
+\therefore \quad C_n = \frac{2\left[1 - (-1)^n\right]}{n\pi \sinh \dfrac{n\pi W}{L}}
+\tag{16}\]</span></span></p>
+<p><strong>Note</strong></p>
+<p>The Fourier sine series expansionof <span class="math inline">\(f(x)\)</span> defined on <span class="math inline">\([0,L]\)</span> is <span class="math display">\[
+f(x) = \sum_{n=1}^{\infty} b_n \sin \frac{n\pi x}{L}
+\qquad \text{with} \qquad
+b_n = \frac{2}{L} \int_0^L f(x) \sin \frac{n\pi x}{L} \, dx
+\]</span></p>
+<p>Substituting (<a href="#eq-A16" class="quarto-xref"><span>16</span></a>) into (<a href="#eq-A14" class="quarto-xref"><span>14</span></a>), we then obtain <span id="eq-A17"><span class="math display">\[
+\theta(x,y) = \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^{n+1} + 1}{n}
+\sin \frac{n\pi x}{L} \, \frac{\sinh \left(\dfrac{n\pi y}{L}\right)}{\sinh \left(\dfrac{n\pi W}{L}\right)}
+\tag{17}\]</span></span></p>
+<p>From which the value of <span class="math inline">\(\theta\)</span> may be computed for any <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>We consider a thin rectangular plate of dimensions <span class="math inline">\(L \times W\)</span>, governed by the steady-state 2-D heat conduction equation:</p>
+<p><span class="math display">\[
+\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} = 0,
+\quad 0 &lt; x &lt; L, \, 0 &lt; y &lt; W
+\]</span></p>
+<p>Boundary conditions are:</p>
+<ul>
+<li>Left side (<span class="math inline">\(x=0\)</span>): isothermal,<br>
+<span class="math display">\[
+  T(0,y) = T_0, \quad 0 \le y \le W
+  \]</span></li>
+<li>Right side (<span class="math inline">\(x=L\)</span>): isothermal,<br>
+<span class="math display">\[
+  T(L,y) = T_1, \quad 0 \le y \le W
+  \]</span></li>
+<li>Bottom side (<span class="math inline">\(y=0\)</span>): insulated,<br>
+<span class="math display">\[
+  \frac{\partial T}{\partial y}(x,0) = 0, \quad 0 \le x \le L
+  \]</span></li>
+<li>Top side (<span class="math inline">\(y=W\)</span>): convection to ambient, <span class="math display">\[
+  -k \frac{\partial T}{\partial y}(x,W) = h \left[ T(x,W) - T_\infty \right],
+  \quad 0 \le x \le L
+  \]</span></li>
+</ul>
+</div>
+<p><strong>Task:</strong> Solve for the temperature distribution <span class="math inline">\(T(x,y)\)</span> in the plate.</p>
+<ol type="1">
+<li><p>Write the dimensionless form of the governing equation and boundary conditions.</p></li>
+<li><p>Use separation of variables to find the general solution for the dimensionless temperature <span class="math inline">\(\theta(x,y)\)</span>.</p></li>
+<li><p>Apply the boundary conditions to determine the eigenvalues and eigenfunctions.</p></li>
+<li><p>Express the final solution as a Fourier series and discuss how to compute the coefficients based on the initial and boundary conditions.</p></li>
+<li><p>Sketch or compute the isotherms for a plate with: <span class="math display">\[
+L = 1\,\text{m}, \quad W = 1\,\text{m}, \quad
+T_0 = 100^\circ\text{C}, \quad T_1 = 50^\circ\text{C}, \quad T_\infty = 25^\circ\text{C}
+\]</span> <span class="math display">\[
+h = 20\,\text{W/m}^2\cdot K, \quad k = 200\,\text{W/m}\cdot K
+\]</span></p></li>
+<li><p>Discuss the physical interpretation of the solution and how it relates to heat transfer in the plate.</p></li>
+</ol>
+</section>
+<section id="two-dimensional-steady-conduction-with-mixed-bcs-dimensionless-form" class="level4">
+<h4 class="anchored" data-anchor-id="two-dimensional-steady-conduction-with-mixed-bcs-dimensionless-form">Two-Dimensional Steady Conduction with Mixed BCs: Dimensionless Form</h4>
+<p><strong>Governing PDE (dimensional)</strong>:</p>
+<p><span class="math display">\[
+\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2}=0,
+\qquad 0&lt;x&lt;L,\; 0&lt;y&lt;W
+\]</span></p>
+<p><strong>BCs (dimensional):</strong></p>
+<span class="math display">\[\begin{aligned}
+T(0,y)&amp;=T_0, &amp; T(L,y)&amp;=T_1,\\
+\frac{\partial T}{\partial y}(x,0)&amp;=0, &amp;
+-k\,\frac{\partial T}{\partial y}(x,W)&amp;=h\,[T(x,W)-T_\infty].
+\end{aligned}\]</span>
+<p><strong>Nondimensionalisation.</strong></p>
+<p>Define the reference scales <span class="math display">\[
+x^*=\frac{x}{L},\qquad y^*=\frac{y}{W},\qquad
+\theta=\frac{T-T_1}{T_0-T_1},
+\]</span> and the based on the height <span class="math inline">\(W\)</span>: <span class="math display">\[
+\mathrm{Bi}=\frac{hW}{k}.
+\]</span></p>
+<p>Because the plate is rectangular with different side lengths, it is convenient to introduce the aspect ratio <span class="math display">\[
+\gamma=\frac{L}{W}.
+\]</span></p>
+<p><strong>Dimensionless BCs:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+\theta(0,y^*)&amp;=1, &amp; \theta(1,y^*)&amp;=0,\\
+\frac{\partial \theta}{\partial y^*}(x^*,0)&amp;=0, &amp;
+-\frac{\partial \theta}{\partial y^*}(x^*,1)&amp;=\mathrm{Bi}\,
+\big[\theta(x^*,1)-\theta_\infty\big],
+\end{aligned}
+\]</span> where <span class="math inline">\(\displaystyle \theta_\infty=\frac{T_\infty-T_1}{T_0-T_1}\)</span>.</p>
+<p>Seek a product solution <span class="math inline">\(\theta(x^*,y^*)=X(x^*)Y(y^*)\)</span>. Substitution into the PDE gives <span class="math display">\[
+\frac{X''}{X}=-\gamma^2\,\frac{Y''}{Y}=-\lambda^2,
+\]</span> hence <span class="math display">\[
+X''+\lambda^2 X=0,\qquad
+Y''-\frac{\lambda^2}{\gamma^2}Y=0.
+\]</span></p>
+<p><strong>BCs for <span class="math inline">\(X\)</span></strong> (Dirichlet at <span class="math inline">\(x^*=0,1\)</span> after shifting to homogeneous form):</p>
+<p>Introduce <span class="math inline">\(u=\theta-\theta_b(x^*)\)</span> with a simple bridging function <span class="math inline">\(\theta_b(x^*)=1-x^*\)</span> so that <span class="math inline">\(u(0,y^*)=u(1,y^*)=0\)</span>. Then expand <span class="math inline">\(u\)</span> in a sine series: <span class="math display">\[
+u(x^*,y^*)=\sum_{n=1}^\infty A_n\,\sin(n\pi x^*)\,Y_n(y^*),
+\quad X_n(x^*)=\sin(n\pi x^*),\ \lambda_n=n\pi.
+\]</span></p>
+<p><strong>BCs for <span class="math inline">\(Y_n\)</span></strong>: <span class="math display">\[
+Y_n''-\left(\frac{n\pi}{\gamma}\right)^2 Y_n=0,\qquad
+Y_n'(0)=0,\qquad
+-\,Y_n'(1)=\mathrm{Bi}\,Y_n(1).
+\]</span></p>
+<p>Solution for <span class="math inline">\(Y_n\)</span> (using <span class="math inline">\(Y_n' (0)=0,\,\, \Rightarrow\)</span> cosineh form): <span class="math display">\[
+Y_n(y^*)=\cosh\!\left(\frac{n\pi}{\gamma} y^*\right)
++\alpha_n\,\sinh\!\left(\frac{n\pi}{\gamma} y^*\right),
+\]</span> with <span class="math display">\[
+\alpha_n=\frac{\frac{n\pi}{\gamma}\,\sinh\!\left(\frac{n\pi}{\gamma}\right)-\mathrm{Bi}\,\cosh\!\left(\frac{n\pi}{\gamma}\right)}
+{\mathrm{Bi}\,\sinh\!\left(\frac{n\pi}{\gamma}\right)+\frac{n\pi}{\gamma}\,\cosh\!\left(\frac{n\pi}{\gamma}\right)}.
+\]</span></p>
+<p>Final representation is <span class="math display">\[
+\theta(x^*,y^*) = \theta_b(x^*) +
+\sum_{n=1}^{\infty} A_n \sin(n\pi x^*)\,Y_n(y^*),
+\]</span> where <span class="math inline">\(A_n\)</span> follow from projecting the residual at <span class="math inline">\(y^*=1\)</span> onto <span class="math inline">\(\sin(n\pi x^*)\)</span>.</p>
+<p><strong>Determination of Coefficients <span class="math inline">\(A_n\)</span></strong></p>
+<p>We expanded <span class="math display">\[
+u(x^*,y^*)=\sum_{n=1}^\infty A_n \sin(n\pi x^*)\,Y_n(y^*),
+\qquad Y_n(y^*)=\cosh\!\left(\frac{n\pi}{\gamma}y^*\right),
+\]</span> with <span class="math inline">\(\gamma=L/W\)</span> and <span class="math inline">\(u=\theta-\theta_b(x^*)\)</span>, <span class="math inline">\(\theta_b(x^*)=1-x^*\)</span>.</p>
+<p><strong>Top boundary condition:</strong> <span class="math display">\[
+-\,u_{y^*}(x^*,1)-\mathrm{Bi}\,u(x^*,1)=\mathrm{Bi}\,[\,\theta_b(x^*)-\theta_\infty\,],
+\]</span> where <span class="math inline">\(\theta_\infty=\dfrac{T_\infty-T_1}{T_0-T_1}\)</span>.</p>
+<p>Projecting onto <span class="math inline">\(\sin(n\pi x^*)\)</span> yields <span class="math display">\[
+-\,A_n\,\alpha_n\sinh(\alpha_n)
+= \mathrm{Bi}\Big[\,A_n\cosh(\alpha_n)+b_n\,\Big],
+\qquad \alpha_n=\frac{n\pi}{\gamma},
+\]</span> with <span class="math display">\[
+b_n=\frac{2}{n\pi}\int_{0}^{1}\big(1-x^*-\theta_\infty\big)\sin(n\pi x^*)\,dx^*
+=\frac{2}{n\pi}\Big[1-\theta_\infty(1-(-1)^n)\Big].
+\]</span></p>
+<p><span class="math display">\[
+\therefore A_n=-\,\frac{\mathrm{Bi}\,b_n}{\alpha_n\sinh(\alpha_n)+\mathrm{Bi}\cosh(\alpha_n)}
+\]</span></p>
+<p>Parity of <span class="math inline">\(b_n\)</span>:</p>
+<p><span class="math display">\[
+b_n=
+\begin{cases}
+\dfrac{2}{n\pi}, &amp; n\ \text{even}, \\[6pt]
+\dfrac{2}{n\pi}\,(1-2\theta_\infty), &amp; n\ \text{odd}.
+\end{cases}
+\]</span></p>
 <hr>
 </section>
-</section>
-<section id="unsteady-state-heat-transfer" class="level3">
-<h3 class="anchored" data-anchor-id="unsteady-state-heat-transfer">Unsteady-State Heat Transfer</h3>
+<section id="unsteady-state-heat-transfer" class="level4">
+<h4 class="anchored" data-anchor-id="unsteady-state-heat-transfer">Unsteady-State Heat Transfer</h4>
 <p>In <strong>unsteady-state</strong>, or <strong>transient</strong>, heat transfer, the temperature changes with both position and time. For one-dimensional conduction with constant thermal properties and no internal heat generation, the governing equation is</p>
 <p><span class="math display">\[
 \frac{\partial T}{\partial t}
@@ -1546,8 +1780,8 @@ C_nX_n(x)e^{-\alpha\lambda_n^2t},
 \]</span></p>
 <p>where <span class="math inline">\(X_n(x)\)</span> are the spatial eigenfunctions, <span class="math inline">\(\lambda_n\)</span> are the corresponding eigenvalues, and <span class="math inline">\(C_n\)</span> are Fourier coefficients determined from the initial temperature distribution.</p>
 <p>Fourier-series solutions are especially useful for transient heat-conduction problems involving finite geometries such as <strong>plane walls, cylinders, and spheres</strong>.</p>
-<section id="method-of-separation-of-variables" class="level4">
-<h4 class="anchored" data-anchor-id="method-of-separation-of-variables">Method of Separation of Variables</h4>
+<section id="method-of-separation-of-variables" class="level5">
+<h5 class="anchored" data-anchor-id="method-of-separation-of-variables">Method of Separation of Variables</h5>
 <p>The <strong>method of separation of variables</strong> converts a partial differential equation into separate ordinary differential equations by assuming that the solution can be expressed as a product of functions, each depending on only one independent variable.</p>
 <p>For the one-dimensional transient heat equation, assume</p>
 <p><span class="math display">\[
@@ -1596,9 +1830,291 @@ X\frac{d\Theta}{dt}
 \alpha\lambda^2\Theta=0.
 \]</span></p>
 <p>The boundary conditions determine the allowable eigenvalues <span class="math inline">\(\lambda_n\)</span> and eigenfunctions <span class="math inline">\(X_n(x)\)</span>, while the initial condition determines the Fourier coefficients <span class="math inline">\(C_n\)</span>. Combining these results produces the complete transient temperature distribution.</p>
+<p><strong>One-dimensional Transient Heat Conduction</strong></p>
+<p>Consider the infinite plate of thickness <span class="math inline">\(2L\)</span> shown in Figure below. The plate is initially at a uniform temperature <span class="math inline">\(T_i\)</span>. At time <span class="math inline">\(t=0\)</span>, the surface temperatures are suddenly lowered to <span class="math inline">\(T=T_1\)</span>. The goal is to determine the temperature as a function of time and position.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/infinite_plate.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>THe governing differential equation is</p>
+<p><span id="eq-B1"><span class="math display">\[
+\frac{\partial^2 T}{\partial x^2} = \frac{1}{\alpha}\,\frac{\partial T}{\partial t}
+\tag{18}\]</span></span></p>
+<p>with the initial and boundary conditions</p>
+<p><span id="eq-B2"><span class="math display">\[
+T = T_i \quad \text{at } t=0, \; 0 \leq x \leq 2L
+\tag{19}\]</span></span></p>
+<p><span id="eq-B3"><span class="math display">\[
+T = T_1 \quad \text{at } t&gt;0, \; x=0, 2L
+\tag{20}\]</span></span></p>
+<p>To reduce the number of non-homogeneous BCs so as to apply the , let <span class="math display">\[
+\theta = T - T_1.
+\]</span></p>
+<p>Then <span id="eq-B4"><span class="math display">\[
+\frac{\partial^2 \theta}{\partial x^2} = \frac{1}{\alpha}\,\frac{\partial \theta}{\partial t}
+\tag{21}\]</span></span></p>
+<p><span id="eq-B5"><span class="math display">\[
+\theta = \theta_i = T_i - T_1
+\quad \text{at } t=0,\; 0 \leq x \leq 2L
+\tag{22}\]</span></span></p>
+<p><span id="eq-B6"><span class="math display">\[
+\theta = 0 \quad \text{at } x=0,2L,\;\; t&gt;0
+\tag{23}\]</span></span></p>
+<p>To solve the problem, use separation of variables.</p>
+<p>Let <span id="eq-B7"><span class="math display">\[
+\theta = X(x)T(t)  
+\tag{24}\]</span></span></p>
+<p>Substituting (<a href="#eq-B7" class="quarto-xref"><span>24</span></a>) into (<a href="#eq-B4" class="quarto-xref"><span>21</span></a>), <span id="eq-B8"><span class="math display">\[
+\frac{1}{X}\frac{d^2X}{dx^2} = \frac{1}{\alpha T}\frac{dT}{dt} = -\lambda^2
+\tag{25}\]</span></span></p>
+<p>From the homogeneous BCs (<a href="#eq-B6" class="quarto-xref"><span>23</span></a>), we have <span id="eq-B9"><span class="math display">\[
+\theta(0,t)=X(0)T(t)=0 \;\;\Rightarrow\;\; X(0)=0
+\tag{26}\]</span></span></p>
+<p><span id="eq-B10"><span class="math display">\[
+\theta(2L,t)=X(2L)T(t)=0 \;\;\Rightarrow\;\; X(2L)=0
+\tag{27}\]</span></span></p>
+<p>It can be shown that <span class="math inline">\(\beta=0,\;\beta=-\mu^2\)</span> would only yield trivial solutions.</p>
+<p>For <span class="math inline">\(\beta=-\lambda^2\)</span>, we have two ordinary DEs: <span id="eq-B11"><span class="math display">\[
+\frac{d^2 X}{dx^2} + \lambda^2 X = 0
+\tag{28}\]</span></span></p>
+<p><span id="eq-B12"><span class="math display">\[
+\frac{dT}{dt} + \lambda^2 \alpha T = 0
+\tag{29}\]</span></span></p>
+<p>Solutions are <span id="eq-B13"><span class="math display">\[
+\!X = C_1 \cos \lambda x + C_2 \sin \lambda x
+\tag{30}\]</span></span></p>
+<p><span id="eq-B14"><span class="math display">\[
+T = D e^{-\alpha \lambda^2 t}
+\tag{31}\]</span></span></p>
+<p><strong>Series Solution</strong></p>
+<p>From (<a href="#eq-B9" class="quarto-xref"><span>26</span></a>) and (<a href="#eq-B13" class="quarto-xref"><span>30</span></a>), we have <span class="math display">\[
+X = C_1 = 0
+\]</span></p>
+<p>From (<a href="#eq-B10" class="quarto-xref"><span>27</span></a>) and (<a href="#eq-B13" class="quarto-xref"><span>30</span></a>), we get <span class="math display">\[
+X(2L) = C_2 \sin 2\lambda L = 0
+\;\;\Rightarrow\;\; 2\lambda L = n\pi \quad \text{or} \quad
+\lambda = \frac{n\pi}{2L}
+\]</span></p>
+<p><span class="math display">\[
+\therefore X(x) = C_2 \sin \frac{n\pi}{2L}x.
+\]</span></p>
+<p>Thus, a desired solution has the form</p>
+<p><span class="math display">\[
+\theta_n = C_n \sin \frac{n\pi}{2L}x \, e^{-\alpha \left(\frac{n\pi}{2L}\right)^2 t},
+\qquad n=1,2,3,\ldots
+\]</span></p>
+<p>The final series form of the solution is therefore <span class="math display">\[
+\theta = \sum_{n=1}^\infty
+C_n e^{-\left[\tfrac{n\pi}{2L}\right]^2 \alpha t}
+\sin \frac{n\pi}{2L}x
+\]</span></p>
+<p>The constants <span class="math inline">\(C_n\)</span> are determined from the non-homogeneous initial condition (<a href="#eq-B2" class="quarto-xref"><span>19</span></a>). Hence <span class="math display">\[
+C_n = \frac{1}{L}\int_0^{2L} \theta_i \sin\!\left(\frac{n\pi x}{2L}\right) dx
+= \frac{4}{n\pi}\,\theta_i,
+\qquad n=1,3,5,\ldots
+\]</span></p>
+<p>The final series solution is therefore <span class="math display">\[
+\frac{\theta}{\theta_i} = \frac{T-T_1}{T_i-T_1}
+= \frac{4}{\pi}\sum_{n=1,3,5,\ldots}^\infty
+\frac{1}{n}\,e^{-\left[\tfrac{n\pi}{2L}\right]^2\alpha t}
+\sin\!\left(\frac{n\pi x}{2L}\right)
+\]</span></p>
+<p><span class="math display">\[
+T=T_1 + \frac{4}{\pi}\sum_{n=1,3,5,\ldots}^\infty
+\frac{1}{n}\,(T_i-T_1)\,e^{-\left[\tfrac{n\pi}{2L}\right]^2\alpha t}
+\sin\!\left(\frac{n\pi x}{2L}\right)
+\]</span></p>
 </section>
-<section id="numerical-techniques" class="level4">
-<h4 class="anchored" data-anchor-id="numerical-techniques">Numerical Techniques</h4>
+</section>
+<section id="two-dimensional-unsteady-conduction-rectangular-plate-with-mixed-bcs" class="level4">
+<h4 class="anchored" data-anchor-id="two-dimensional-unsteady-conduction-rectangular-plate-with-mixed-bcs">Two-Dimensional Unsteady Conduction: Rectangular Plate with Mixed BCs</h4>
+<p>Governing PDE (dimensional):</p>
+<p><span class="math display">\[
+\frac{\partial T}{\partial t}
+=\alpha\!\left(\frac{\partial^2 T}{\partial x^2}+\frac{\partial^2 T}{\partial y^2}\right),
+\quad 0&lt;x&lt;L,\;0&lt;y&lt;W,\quad \alpha=\frac{k}{\rho c}.
+\]</span></p>
+<p>Initial condition: <span class="math display">\[
+T(x,y,0)=T_i,\quad 0&lt;x&lt;L,\;0&lt;y&lt;W
+\]</span></p>
+<p>Boundary conditions (dimensional):</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Boundary Conditions</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Left (Dirichlet)</td>
+<td style="text-align: left;"><span class="math inline">\(T(0,y,t)=T_0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bottom (Neumann/insulated)</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\partial T}{\partial y}(x,0,t)=0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Right (Robin/convection)</td>
+<td style="text-align: left;"><span class="math inline">\(-k\,\dfrac{\partial T}{\partial x}(L,y,t)=h\,[T(L,y,t)-T_\infty]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Top (Dirichlet)</td>
+<td style="text-align: left;"><span class="math inline">\(T(x,W,t)=T_1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nondimensionalisation</strong></p>
+<p><span class="math display">\[
+x^*=\frac{x}{L},\quad y^*=\frac{y}{W},\quad
+t^*=\frac{\alpha t}{L^2},\quad
+\theta=\frac{T-T_1}{T_i-T_1},\]
+\[\gamma=\frac{L}{W},\quad
+\mathrm{Bi}_x=\frac{hL}{k}.
+\]</span></p>
+<p><span class="math display">\[
+\theta_{t^*}=\theta_{x^{*}x^{*}}+\gamma^{2}\theta_{y^{*}y^{*}},
+\]</span></p>
+<p>subject to initial and boundary conditions</p>
+<p><span class="math display">\[
+\theta(x^*,y^*,0)=1,
+\]</span></p>
+<p><span class="math display">\[
+\theta(0,y^*,t^*)=\frac{T_0-T_1}{T_i-T_1},
+\qquad\quad
+\theta_{y^*}(x^*,0,t^*)=0,
+\]</span></p>
+<p><span class="math display">\[
+-\theta_{x^*}(1,y^*,t^*)=\mathrm{Bi}_x\,\theta(1,y^*,t^*),\;\;
+\theta(x^*,1,t^*)=0.
+\]</span></p>
+<p><strong>Tasks</strong></p>
+<ol type="1">
+<li>Write the full dimensionless IC/BCs (above).</li>
+<li>Set up separation of variables for <span class="math inline">\(\theta(x^*,y^*,t^*)\)</span> (Robin–Dirichlet in <span class="math inline">\(x^*\)</span>, Neumann–Dirichlet in <span class="math inline">\(y^*\)</span>).</li>
+<li>For given data, plot isotherms at <span class="math inline">\(t=10,60,300\,\mathrm{s}\)</span> and the cooling curve at <span class="math inline">\((L/2,W/2)\)</span>S.</li>
+</ol>
+<section id="solution" class="level5">
+<h5 class="anchored" data-anchor-id="solution">Solution</h5>
+<p>Separation of variables (Robin–Dirichlet in <span class="math inline">\(x^*\)</span>, Neumann–Dirichlet in <span class="math inline">\(y^*\)</span>)</p>
+<p>First remove the inhomogeneous boundaries with a steady part <span class="math inline">\(\theta_s(x^*,y^*)\)</span> that solves Laplace:</p>
+<p><span class="math display">\[
+\begin{aligned}
+   &amp; \theta_{s,\,x^*x^*}+\gamma^2\theta_{s,\,y^*y^*}=0,\\
+&amp;\theta_s(0,y^*)=\theta_L,\;\theta_{s,y^*}(x^*,0)=0,\\
+   -&amp;\theta_{s,x^*}(1,y^*)=\mathrm{Bi}_x \theta_s(1,y^*),\;\theta_s(x^*,1)=0.
+\end{aligned}
+\]</span></p>
+<p>Then the transient <span class="math inline">\(\phi=\theta-\theta_s\)</span> satisfies the problem</p>
+<p><span class="math display">\[
+\phi_{t^*}=\phi_{x^{*}x^{*}}+\gamma^2\phi_{y^{*}y^{*}},
+\]</span></p>
+<p>subject to initial condition</p>
+<p><span class="math display">\[
+\phi(x^*,y^*,0)=1-\theta_s(x^*,y^*)
+\]</span> and boundary conditions <span class="math display">\[\begin{align*}
+\phi(0,y^*,t^*)&amp;=0,\\
+\phi_{y^*}(x^*,0,t^*)&amp;=0,\\
+-\phi_{x^*}(1,y^*,t^*)&amp;=\mathrm{Bi}_x\,\phi(1,y^*,t^*),\\
+\phi(x^*,1,t^*)&amp;=0.
+\end{align*}\]</span></p>
+<p>Seek separated solutions <span class="math inline">\(\phi=X(x^*)Y(y^*)e^{-\lambda t^*}\)</span> giving</p>
+<p><span class="math display">\[\begin{align*}
+  &amp;  \frac{X''}{X}+\gamma^2\frac{Y''}{Y}=-\lambda
+\;\Rightarrow\;X''+\mu^2 X=0,\\
+&amp; Y''+\nu^2 Y=0,\quad \lambda=\mu^2+\gamma^2\nu^2.
+\end{align*}\]</span></p>
+<p><strong><span class="math inline">\(y\)</span>-eigenproblem (Neumann at <span class="math inline">\(0\)</span>, Dirichlet at <span class="math inline">\(1\)</span>)</strong></p>
+<p><span class="math display">\[
+Y'(0)=0,\;Y(1)=0\Rightarrow Y_n(y^*)=\cos(\nu_n y^*),\]
+\[\nu_n=\dfrac{(2n-1)\pi}{2},\;n=1,2,\ldots
+\]</span></p>
+<p><strong><span class="math inline">\(x\)</span>-eigenproblem (Dirichlet at <span class="math inline">\(0\)</span>, Robin at <span class="math inline">\(1\)</span>)</strong></p>
+<p><span class="math display">\[
+X(0)=0,\;-X'(1)=\mathrm{Bi}_x X(1)\Rightarrow X_m(x^*)=\sin(\mu_m x^*),
+\]</span> where the <span class="math inline">\(\mu_m\)</span> are the positive roots of the Robin transcendental equation <span class="math display">\[
+mu_m\cot\mu_m=-\mathrm{Bi}_x\;\]</span></p>
+<p><span class="math display">\[\text{(one root in each interval }((m-\tfrac12)\pi,(m+\tfrac12)\pi)
+\]</span></p>
+<p>The transient expansion is</p>
+<p><span class="math display">\[
+\phi(x^*,y^*,t^*)=\sum_{m=1}^{\infty}\sum_{n=1}^{\infty}
+B_{mn}\,\sin(\mu_m x^*)\cos(\nu_n y^*)\,\exp\!\left[-\big(\mu_m^2+\gamma^2\nu_n^2\big)t^*\right].
+\]</span></p>
+<p><strong>Coefficients</strong>. With the standard inner product on <span class="math inline">\([0,1]^2\)</span> (these are Sturm–Liouville systems), the norms are <span class="math display">\[\displaystyle \int_0^1\sin^2(\mu_m x)\,dx=\tfrac12\!\left(1-\dfrac{\sin 2\mu_m}{2\mu_m}\right)=:I_m,\quad
+\int_0^1\cos^2(\nu_n y)\,dy=\tfrac12.\]</span> Projecting the initial condition <span class="math inline">\(\phi(x,y,0)=1-\theta_s(x,y)\)</span> gives</p>
+<p><span class="math display">\[
+B_{mn}=\frac{2}{I_m}\int_0^1\!\!\int_0^1\Big(1-\theta_s(x,y)\Big)\sin(\mu_m x)\cos(\nu_n y)\,dx\,dy.
+\]</span></p>
+<p><strong>Steady part in closed form.</strong> Expand in the <span class="math inline">\(y\)</span>-basis (which already enforces the Neumann–Dirichlet pair):</p>
+<p><span class="math display">\[
+\theta_s(x,y)=\sum_{n=1}^\infty A_n(x)\cos(\nu_n y),\qquad
+A_n''-\gamma^2\nu_n^2 A_n=0.
+\]</span></p>
+<p>With <span class="math inline">\(A_n(0)=g_n,\; -A_n'(1)=\mathrm{Bi}_x A_n(1)\)</span> and the cosine-series of the left-wall constant <span class="math inline">\(\theta_L\)</span>,</p>
+<p><span class="math display">\[
+g_n=\frac{\langle \theta_L,\cos(\nu_n y)\rangle}{\langle \cos,\cos\rangle}
+=2\theta_L\frac{\sin\nu_n}{\nu_n}
+=2\theta_L\frac{(-1)^{n+1}}{\nu_n},
+\]</span></p>
+<p><span class="math display">\[
+A_n(x)=g_n\cosh(\gamma\nu_n x)+D_n\sinh(\gamma\nu_n x)\]</span> <span class="math display">\[
+\text{with}\,\,D_n=-g_n\,\frac{\mathrm{Bi}_x\cosh(\gamma\nu_n)+\gamma\nu_n\sinh(\gamma\nu_n)}
+{\gamma\nu_n\cosh(\gamma\nu_n)+\mathrm{Bi}_x\sinh(\gamma\nu_n)}.
+\]</span></p>
+<p>Finally, the steady solution is <span class="math display">\[
+\theta(x,y,t^*)=\theta_s(x,y)+
+\sum_{m=1}^{\infty}\sum_{n=1}^{\infty}
+B_{mn}\,\sin(\mu_m x)\cos(\nu_n y)\,e^{-(\mu_m^2+\gamma^2\nu_n^2)t^*}.
+\]</span> Recover the dimensional temperature via <span class="math inline">\(T=T_1+(T_i-T_1)\theta\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/output1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>At this early stage, the plate interior remains hot.<br>
+The left and top edges (Dirichlet boundaries at <span class="math inline">\(20^\circ\mathrm{C}\)</span>) have cooled significantly, producing densely packed isotherms near these sides.<br>
+The insulated bottom boundary yields nearly horizontal isotherms, since no heat escapes through it.<br>
+On the right edge, cooling occurs by convection; however, because the Biot number is moderate, the gradient at this wall is less steep than at the fixed–temperature boundaries.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/output2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Heat has penetrated further into the plate, and the overall temperature has decreased.<br>
+The isotherms are smoother and extend deeper into the interior.<br>
+Competition between the different boundary conditions is evident:<br>
+* the fixed–temperature left and top edges,<br>
+* the Robin (convection) boundary on the right, and<br>
+* the insulated bottom edge, which reflects heat and produces nearly flat contours near <span class="math inline">\(y=0\)</span>.<br>
+The interior remains warmer, but the temperature field is becoming more uniform.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/output3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>At long times, the plate approaches equilibrium with the surroundings.<br>
+The temperature field is nearly uniform, close to <span class="math inline">\(20^\circ\mathrm{C}\)</span>, and the isotherms are sparse.<br>
+Only a weak gradient persists, primarily near the insulated bottom edge, which slightly delays complete equilibration.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/output4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>This curve represents the temporal decay of the center–point temperature.</p>
+<p>Starting from <span class="math inline">\(80^\circ\mathrm{C}\)</span>, the temperature drops rapidly within the first minute, after which the cooling rate slows down as the system approaches equilibrium.</p>
+<p>By <span class="math inline">\(t\approx 300\;\mathrm{s}\)</span>, the center temperature is already very close to <span class="math inline">\(20^\circ\mathrm{C}\)</span>, although the approach to the ambient temperature is asymptotic.</p>
+<p>The scatter points plotted at <span class="math inline">\(t=10,60,300\;\mathrm{s}\)</span> agree with the smooth exponential–like cooling trend.</p>
+<hr>
+</section>
+</section>
+<section id="numerical-methods-and-applications" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-methods-and-applications">Numerical Methods and Applications</h4>
 <p>Analytical solutions are generally limited to simple geometries, constant material properties, and idealized boundary conditions. Numerical techniques are used when the geometry, properties, heat sources, or boundary conditions are too complex for a closed-form solution.</p>
 <p>Common numerical methods include the finite-difference method, finite-volume method, and finite-element method. These methods divide the physical domain into discrete points, control volumes, or elements and approximate the governing differential equation by a system of algebraic equations.</p>
 <p>For example, the second derivative in a one-dimensional finite-difference model may be approximated by <span class="math display">\[
@@ -1607,9 +2123,8 @@ X\frac{d\Theta}{dt}
     \frac{T_{i+1}-2T_i+T_{i-1}}{\Delta x^2}.
 \]</span></p>
 <p>The resulting algebraic equations are solved to obtain approximate temperatures at the discrete locations throughout the domain.</p>
-</section>
-<section id="application-of-heat-equation" class="level4">
-<h4 class="anchored" data-anchor-id="application-of-heat-equation">Application of Heat Equation</h4>
+<section id="application-of-heat-equation" class="level5">
+<h5 class="anchored" data-anchor-id="application-of-heat-equation">Application of Heat Equation</h5>
 <ul>
 <li><strong>Cooling of electronic devices.</strong></li>
 </ul>
@@ -1635,8 +2150,8 @@ X\frac{d\Theta}{dt}
 +
 \frac{Q_0}{\rho c_p}.\]</span></p>
 </section>
-<section id="initial-condition-1" class="level4">
-<h4 class="anchored" data-anchor-id="initial-condition-1">Initial Condition</h4>
+<section id="initial-condition" class="level5">
+<h5 class="anchored" data-anchor-id="initial-condition">Initial Condition</h5>
 <p>The initial condition specifies the temperature distribution in the electronic device at the beginning of the cooling process.</p>
 <p>For example, if the entire device is initially at a uniform temperature of <span class="math inline">\(80^\circ\)</span>C, at time <span class="math inline">\(t=0\)</span>: <span class="math display">\[
 u(x,0)=80^\circ\text{C},
@@ -1647,8 +2162,8 @@ u(x,0)=f(x),
 \]</span></p>
 <p>where <span class="math inline">\(f(x)\)</span> is the initial temperature distribution.</p>
 </section>
-<section id="boundary-conditions-1" class="level4">
-<h4 class="anchored" data-anchor-id="boundary-conditions-1">Boundary Conditions</h4>
+<section id="boundary-conditions" class="level5">
+<h5 class="anchored" data-anchor-id="boundary-conditions">Boundary Conditions</h5>
 <p>Several types of boundary conditions are commonly used.</p>
 <p><strong>(a) Dirichlet Boundary Condition</strong> (Prescribed Temperature)</p>
 <p>Suppose the two ends of the electronic component are attached to a perfect heat sink maintained at constant temperature.</p>
@@ -1687,8 +2202,9 @@ h\left[u(L,t)-u_\infty\right].
 \]</span></p>
 <p>This boundary condition models cooling by air, fans, or heat sinks.</p>
 </section>
+</section>
 <section id="typical-mathematical-model" class="level4">
-<h4 class="anchored" data-anchor-id="typical-mathematical-model"><strong>Typical Mathematical Model</strong></h4>
+<h4 class="anchored" data-anchor-id="typical-mathematical-model">Typical Mathematical Model</h4>
 <ul>
 <li><strong>Cooling of an Electronic Chip</strong></li>
 </ul>
@@ -2005,9 +2521,115 @@ T_4(x),
 \end{aligned}
 \]</span></p>
 <p>No initial condition is required because the problem is steady state.</p>
-
-
+<hr>
 </section>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="question-6.1" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.1">Question 6.1</h5>
+<p>Plane Wall with Convective Cooling: A wall of thickness <span class="math inline">\(L = 0.1\ \text{m}\)</span> and thermal conductivity <span class="math inline">\(k = 2.5\ \text{W/m·K}\)</span> has its inner surface maintained at <span class="math inline">\(T_{\text{in}} = 200^\circ \text{C}\)</span>.<br>
+The outer surface is exposed to air at <span class="math inline">\(T_\infty = 25^\circ \text{C}\)</span> with a heat transfer coefficient <span class="math inline">\(h = 30\ \text{W/m}^2\text{K}\)</span>.</p>
+<ul>
+<li>Derive the temperature distribution <span class="math inline">\(T(x)\)</span>.<br>
+</li>
+<li>Find the outer surface temperature.<br>
+</li>
+<li>Compute the heat flux through the wall.</li>
+</ul>
+</section>
+<section id="question-6.2" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.2">Question 6.2</h5>
+<p>Composite Wall: A furnace wall consists of two layers:</p>
+<ul>
+<li>Layer 1: thickness <span class="math inline">\(L_1 = 0.08\ \text{m}, \quad k_1 = 1.4\ \text{W/m·K}\)</span>,<br>
+</li>
+<li>Layer 2: thickness <span class="math inline">\(L_2 = 0.12\ \text{m}, \quad k_2 = 0.8\ \text{W/m·K}\)</span>.</li>
+</ul>
+<p>The inner surface is maintained at <span class="math inline">\(T_{\text{in}} = 900^\circ \text{C}\)</span>, while the outer surface is exposed to ambient air at <span class="math inline">\(T_\infty = 30^\circ \text{C}\)</span> with a convection coefficient of <span class="math inline">\(h = 25\ \text{W/m}^2\text{K}\)</span>.</p>
+<ul>
+<li>Find the overall thermal resistance.<br>
+</li>
+<li>Determine the heat flux.<br>
+</li>
+<li>Calculate the interface temperature between the two layers.</li>
+</ul>
+</section>
+<section id="question-6.3" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.3">Question 6.3</h5>
+<p>Cylindrical Conduction with Heat Generation:<br>
+A long cylindrical rod of radius <span class="math inline">\(R = 0.05\ \text{m}\)</span> is made of a material with <span class="math inline">\(k = 15\ \text{W/m·K}\)</span> and has a uniform heat generation of <span class="math inline">\(q''' = 2 \times 10^6\ \text{W/m}^3\)</span>.<br>
+The outer surface is maintained at <span class="math inline">\(T(R) = 200^\circ \text{C}\)</span>.</p>
+<ul>
+<li>Derive the temperature distribution <span class="math inline">\(T(r)\)</span>.<br>
+</li>
+<li>Find the maximum temperature at the centerline of the rod.</li>
+</ul>
+</section>
+<section id="question-6.4" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.4">Question 6.4</h5>
+<p>Plane Wall with Radiation and Convection: A wall of thickness <span class="math inline">\(L = 0.25\ \text{m}\)</span> and thermal conductivity <span class="math inline">\(k\)</span> has its inner surface temperature fixed at <span class="math inline">\(27^\circ \text{C}\)</span>.<br>
+The outer surface is exposed to convection with <span class="math inline">\(h = 10\ \text{W/m}^2\text{K}\)</span> and ambient air at <span class="math inline">\(40^\circ \text{C}\)</span>.<br>
+It also exchanges radiation with large surroundings at <span class="math inline">\(40^\circ \text{C}\)</span> with emissivity <span class="math inline">\(\varepsilon = 0.85\)</span>.</p>
+<ul>
+<li>Write the energy balance equation for the outer surface.<br>
+</li>
+<li>If the measured outer surface temperature is <span class="math inline">\(T_{\text{out}} = 50^\circ \text{C}\)</span>, calculate the thermal conductivity <span class="math inline">\(k\)</span>.</li>
+</ul>
+</section>
+<section id="question-6.5" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.5">Question 6.5</h5>
+<p>In the diagram shown. The surface AB is insulated. Surface BC and DC have prescribed temperatures as shown. Transfer of heat on AD is by convection only.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch6-ex1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="275"></p>
+</figure>
+</div>
+<p>Set up the necessary equations for the steady state temperature field in the domain ABCD.</p>
+</section>
+<section id="question-6.6" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.6">Question 6.6</h5>
+<p>For the block shown,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch6-ex2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="675"></p>
+</figure>
+</div>
+<p>set up the equations governing the steady-state temperature distribution.</p>
+</section>
+<section id="question-6.7" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.7">Question 6.7</h5>
+<p>The steel plate shown is surrounded by an insulating block and is initially at a uniform temperature of 50<span class="math inline">\(^\circ C\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch6-ex3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="225"></p>
+</figure>
+</div>
+<p>The plate is suddenly exposed to a convection environment with parameters <span class="math inline">\(h\)</span> and <span class="math inline">\(T_\infty\)</span>. Assume that the properties of steel are given by conductivity <span class="math inline">\(k\)</span>, density <span class="math inline">\(\rho\)</span>, and specific heat <span class="math inline">\(c\)</span>.</p>
+<p>Set up the equations necessary for the determination of the transient temperature field in the plate.</p>
+</section>
+<section id="question-6.8" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.8">Question 6.8</h5>
+<p>An infinite plate shown has one face insulated and is initially at a uniform temperature of 100<span class="math inline">\(^\circ C\)</span>. At time zero, the face is suddenly exposed to a convection environment at 10<span class="math inline">\(^\circ C\)</span> and h=70 <span class="math inline">\(W/m^2{}^\circ C\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch6-ex4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="225"></p>
+</figure>
+</div>
+<p>Determine the equations for the transient temperature field in the plate.</p>
+</section>
+<section id="question-6.9" class="level5">
+<h5 class="anchored" data-anchor-id="question-6.9">Question 6.9</h5>
+<p>A 2-D rectangular plate is subject to the boundary conditions shown.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch6-ex5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="225"></p>
+</figure>
+</div>
+<p>Derive an expression for the steady-state temperature distribution <span class="math inline">\(T(x,y)\)</span>.</p>
+
+
 </section>
 </section>
 
@@ -2432,6 +3054,9 @@ T_4(x),
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./07_convectionDiffusion.html" class="pagination-link" aria-label="Chapter 7 Convection-Diffusion Process and Applications">
+        <span class="nav-page-text">Chapter 7 Convection-Diffusion Process and Applications</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

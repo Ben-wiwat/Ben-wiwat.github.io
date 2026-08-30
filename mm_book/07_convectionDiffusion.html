@@ -1,0 +1,3278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 7 Convection-Diffusion Process and Applications – Applied Mathematical Modelling</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./08_trafficflow.html" rel="next">
+<link href="./06_heatTransfer.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b4639d2bc0c44faaa91d40aa7fdb6ccb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_convectionDiffusion.html">Chapter 7 Convection-Diffusion Process and Applications</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Mathematical Modelling</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Introduction to Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_python_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Installation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Revision Workshop</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1 Introduction to Mathematical Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_basicVector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_indexNotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Index Notation and Cartesian Tensors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_fundamentalEquations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_incompressibleFluid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5 Mechanics of Incompressible Newtonian Fluids</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_heatTransfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6 Heat Transfer Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_convectionDiffusion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 7 Convection-Diffusion Process and Applications</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_trafficflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 8 Traffic Modelling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#governing-equations-for-convection-diffusion" id="toc-governing-equations-for-convection-diffusion" class="nav-link active" data-scroll-target="#governing-equations-for-convection-diffusion">7.1 Governing equations for convection-diffusion</a>
+  <ul>
+  <li><a href="#non-dimensionalization-and-key-parameters" id="toc-non-dimensionalization-and-key-parameters" class="nav-link" data-scroll-target="#non-dimensionalization-and-key-parameters">7.2 Non-dimensionalization and key parameters</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">7.3 Applications</a>
+  <ul class="collapse">
+  <li><a href="#analytical-solutions-in-1-d" id="toc-analytical-solutions-in-1-d" class="nav-link" data-scroll-target="#analytical-solutions-in-1-d">7.3.1 Analytical solutions in 1-D</a></li>
+  <li><a href="#example---pure-diffusion-semi-infinite-domain-step-input." id="toc-example---pure-diffusion-semi-infinite-domain-step-input." class="nav-link" data-scroll-target="#example---pure-diffusion-semi-infinite-domain-step-input."><strong>Example - Pure diffusion,</strong> semi-infinite domain (step input).</a></li>
+  <li><a href="#example---advectiondiffusion-semi-infinite-moving-front." id="toc-example---advectiondiffusion-semi-infinite-moving-front." class="nav-link" data-scroll-target="#example---advectiondiffusion-semi-infinite-moving-front."><strong>Example - Advection–diffusion,</strong> semi-infinite (moving front).</a></li>
+  <li><a href="#example---advectiondiffusion-with-impulse-greens-function." id="toc-example---advectiondiffusion-with-impulse-greens-function." class="nav-link" data-scroll-target="#example---advectiondiffusion-with-impulse-greens-function."><strong>Example - Advection–diffusion with impulse (Green’s function).</strong></a></li>
+  <li><a href="#example---steady-1-d-advectiondiffusion-between-two-boundaries." id="toc-example---steady-1-d-advectiondiffusion-between-two-boundaries." class="nav-link" data-scroll-target="#example---steady-1-d-advectiondiffusion-between-two-boundaries."><strong>Example - Steady 1-D advection–diffusion between two boundaries.</strong></a></li>
+  <li><a href="#example---cooling-slab-pure-conduction" id="toc-example---cooling-slab-pure-conduction" class="nav-link" data-scroll-target="#example---cooling-slab-pure-conduction"><strong>Example - Cooling slab, pure conduction</strong></a></li>
+  <li><a href="#example---1d-steady-river-pollutant-transport" id="toc-example---1d-steady-river-pollutant-transport" class="nav-link" data-scroll-target="#example---1d-steady-river-pollutant-transport"><strong>Example - 1D Steady River Pollutant Transport</strong></a></li>
+  </ul></li>
+  <li><a href="#analytical-solutions-in-2-d" id="toc-analytical-solutions-in-2-d" class="nav-link" data-scroll-target="#analytical-solutions-in-2-d">7.3.2 Analytical solutions in 2-D</a>
+  <ul class="collapse">
+  <li><a href="#example---2-d-diffusion-in-a-rectangle" id="toc-example---2-d-diffusion-in-a-rectangle" class="nav-link" data-scroll-target="#example---2-d-diffusion-in-a-rectangle"><strong>Example - 2-D diffusion in a rectangle</strong></a></li>
+  <li><a href="#example---2-d-diffusion-in-a-rectangle-with-mixed-boundary-conditions" id="toc-example---2-d-diffusion-in-a-rectangle-with-mixed-boundary-conditions" class="nav-link" data-scroll-target="#example---2-d-diffusion-in-a-rectangle-with-mixed-boundary-conditions"><strong>Example - 2-D diffusion in a rectangle with mixed boundary conditions</strong></a></li>
+  </ul></li>
+  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link" data-scroll-target="#separation-of-variables">1. Separation of variables</a></li>
+  </ul></li>
+  <li><a href="#solution-in-the-x-direction" id="toc-solution-in-the-x-direction" class="nav-link" data-scroll-target="#solution-in-the-x-direction">2. Solution in the <span class="math inline">\(x\)</span>-direction</a></li>
+  <li><a href="#solution-in-the-y-direction" id="toc-solution-in-the-y-direction" class="nav-link" data-scroll-target="#solution-in-the-y-direction">3. Solution in the <span class="math inline">\(y\)</span>-direction</a></li>
+  <li><a href="#solution-of-the-time-equation" id="toc-solution-of-the-time-equation" class="nav-link" data-scroll-target="#solution-of-the-time-equation">4. Solution of the time equation</a></li>
+  <li><a href="#individual-separated-solutions" id="toc-individual-separated-solutions" class="nav-link" data-scroll-target="#individual-separated-solutions">5. Individual separated solutions</a></li>
+  <li><a href="#apply-the-initial-condition" id="toc-apply-the-initial-condition" class="nav-link" data-scroll-target="#apply-the-initial-condition">6. Apply the initial condition</a>
+  <ul>
+  <li><a href="#orthogonality-in-the-x-direction" id="toc-orthogonality-in-the-x-direction" class="nav-link" data-scroll-target="#orthogonality-in-the-x-direction">7. Orthogonality in the <span class="math inline">\(x\)</span>-direction</a></li>
+  <li><a href="#orthogonality-in-the-y-direction" id="toc-orthogonality-in-the-y-direction" class="nav-link" data-scroll-target="#orthogonality-in-the-y-direction">8. Orthogonality in the <span class="math inline">\(y\)</span>-direction</a></li>
+  </ul></li>
+  <li><a href="#fourier-coefficients-for-m0" id="toc-fourier-coefficients-for-m0" class="nav-link" data-scroll-target="#fourier-coefficients-for-m0">9. Fourier coefficients for <span class="math inline">\(m=0\)</span></a></li>
+  <li><a href="#fourier-coefficients-for-mgeq1" id="toc-fourier-coefficients-for-mgeq1" class="nav-link" data-scroll-target="#fourier-coefficients-for-mgeq1">10. Fourier coefficients for <span class="math inline">\(m\geq1\)</span></a></li>
+  <li><a href="#compact-form-of-the-solution" id="toc-compact-form-of-the-solution" class="nav-link" data-scroll-target="#compact-form-of-the-solution">11. Compact form of the solution</a></li>
+  <li><a href="#verification-of-the-boundary-conditions" id="toc-verification-of-the-boundary-conditions" class="nav-link" data-scroll-target="#verification-of-the-boundary-conditions">12. Verification of the boundary conditions</a>
+  <ul>
+  <li><a href="#boundary-at-x0" id="toc-boundary-at-x0" class="nav-link" data-scroll-target="#boundary-at-x0">Boundary at <span class="math inline">\(x=0\)</span></a></li>
+  <li><a href="#boundary-at-xl" id="toc-boundary-at-xl" class="nav-link" data-scroll-target="#boundary-at-xl">Boundary at <span class="math inline">\(x=L\)</span></a></li>
+  <li><a href="#boundary-at-y0" id="toc-boundary-at-y0" class="nav-link" data-scroll-target="#boundary-at-y0">Boundary at <span class="math inline">\(y=0\)</span></a></li>
+  </ul></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">13. Physical interpretation</a></li>
+  <li><a href="#example-with-a-specific-initial-concentration" id="toc-example-with-a-specific-initial-concentration" class="nav-link" data-scroll-target="#example-with-a-specific-initial-concentration">14. Example with a specific initial concentration</a>
+  <ul>
+  <li><a href="#final-result" id="toc-final-result" class="nav-link" data-scroll-target="#final-result">Final result</a>
+  <ul class="collapse">
+  <li><a href="#example---axisymmetric-2-d-diffusion-in-a-cylinder" id="toc-example---axisymmetric-2-d-diffusion-in-a-cylinder" class="nav-link" data-scroll-target="#example---axisymmetric-2-d-diffusion-in-a-cylinder"><strong>Example - Axisymmetric 2-D diffusion in a cylinder</strong></a></li>
+  <li><a href="#example---2d-filtration-problem" id="toc-example---2d-filtration-problem" class="nav-link" data-scroll-target="#example---2d-filtration-problem"><strong>Example - 2D Filtration Problem</strong></a></li>
+  <li><a href="#example---2d-unsteady-convected-gaussian-plume" id="toc-example---2d-unsteady-convected-gaussian-plume" class="nav-link" data-scroll-target="#example---2d-unsteady-convected-gaussian-plume"><strong>Example - 2D Unsteady Convected Gaussian plume</strong></a></li>
+  <li><a href="#references-and-further-reading" id="toc-references-and-further-reading" class="nav-link" data-scroll-target="#references-and-further-reading"><strong>References and further reading</strong></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 7 Convection-Diffusion Process and Applications</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This section develops the scalar transport equation for a generic conserved quantity <span class="math inline">\(c(x,t)\)</span> (e.g.&nbsp;concentration of a solute, temperature, dye intensity), clarifies the underlying assumptions, and presents canonical examples with closed-form solutions.</p>
+<section id="governing-equations-for-convection-diffusion" class="level2">
+<h2 class="anchored" data-anchor-id="governing-equations-for-convection-diffusion">7.1 Governing equations for convection-diffusion</h2>
+<p><strong>Diffusion transport of mass</strong></p>
+<p>Diffusion is a process in which mass is transported from regions of higher concentration to regions of lower concentration. Typical examples include the spread of pollution in the atmosphere, changes in salinity in water, or heat transfer by conduction.</p>
+<p>Let <span class="math inline">\(C\)</span> be the concentration (volume density) of a solute. If the distribution is not uniform, mass flows down the concentration gradient. states that the diffusive mass flux is proportional to the gradient of concentration: <span class="math display">\[\begin{equation}
+\mathbf q_d \;=\; -\,D\,\nabla C,
+\tag{7.1}
+\end{equation}\]</span> where <span class="math inline">\(D&gt;0\)</span> is the diffusivity.</p>
+<p><strong>Convection (advection) transport of mass</strong></p>
+<p>Transport of mass via bulk motion of the fluid is called convection (or advection). If <span class="math inline">\(\mathbf v\)</span> is the fluid velocity, the convective mass flux is <span class="math display">\[\begin{equation}
+\mathbf q_c \;=\; C\,\mathbf v.
+\tag{7.2}
+\end{equation}\]</span></p>
+<p><strong>Remark</strong>. The equations governing diffusive/convective flux are analogous to those for heat flux by conduction/convection.</p>
+<p><strong>Balance, fluxes, and the PDE</strong></p>
+<p>Consider a control volume <span class="math inline">\(V\subset\Omega\)</span> with outward unit normal <span class="math inline">\(\mathbf n\)</span> and boundary <span class="math inline">\(\partial V\)</span>. Conservation of <span class="math inline">\(c\)</span> reads <span class="math display">\[
+\frac{d}{dt}\int_V C\,dV
+= -\int_{\partial V} \underbrace{\mathbf j\cdot\mathbf n}_{\text{net outflux}}\,d\Gamma
+  + \int_V Q\,dV,
+\]</span> where <span class="math inline">\(Q\)</span> is a volumetric source (production <span class="math inline">\(&gt;0\)</span>; consumption <span class="math inline">\(&lt;0\)</span>) and the total flux <span class="math inline">\(\mathbf j\)</span> is the sum of diffusive and convective parts: <span class="math display">\[
+\mathbf j = \mathbf q_d + \mathbf q_c
+= \underbrace{-\,\mathbf D\,\nabla C}_{\text{diffusion (Fick/Fourier)}}\
++ \underbrace{C\,\mathbf v}_{\text{convection/advection}} .
+\]</span> Here <span class="math inline">\(\mathbf D(x)\)</span> is a (possibly anisotropic) diffusivity tensor; <span class="math inline">\(\mathbf v(x,t)\)</span> is the carrier velocity (for heat, <span class="math inline">\(\mathbf v\)</span> is a fluid velocity in forced convection; in pure conduction <span class="math inline">\(\mathbf v\equiv\mathbf 0\)</span>).</p>
+<p>Applying the divergence theorem and localizing gives the <strong>convection–diffusion equation</strong> <span class="math display">\[\begin{equation}
+\frac{\partial C}{\partial t}
++ \nabla\!\cdot(C\,\mathbf v)
+= \nabla\!\cdot(\mathbf D\,\nabla C) + Q
+\quad\text{in }\Omega\times(0,t_f].
+\tag{7.3}
+\end{equation}\]</span> For incompressible flow (<span class="math inline">\(\nabla\!\cdot\mathbf v=0\)</span>) this reduces to</p>
+<p><span class="math display">\[\displaystyle C_t + \mathbf v\!\cdot\nabla C = \nabla\!\cdot(\mathbf D\,\nabla C)+Q.\]</span> Typical boundary conditions on <span class="math inline">\(\Gamma=\partial\Omega\)</span> are <span class="math display">\[
+\text{Dirichlet: } C=C_D,\qquad
+\text{Neumann: } -\mathbf n\,\,\!\cdot\!\,\,(\mathbf D\nabla C) = \bar q,\qquad
+\text{Robin: } -\mathbf n\,\,\!\cdot\!\,\,(\mathbf D\nabla C)=k\,(C-C_\infty).
+\]</span></p>
+<p><strong>Analogies.</strong> For heat transport,</p>
+<ul>
+<li><p><span class="math inline">\(C\mapsto T\)</span> (temperature),</p></li>
+<li><p><span class="math inline">\(\mathbf D\mapsto \alpha=\dfrac{k}{\rho c_p}\)</span> (thermal diffusivity),</p></li>
+<li><p><span class="math inline">\(Q\mapsto \dfrac{q''' }{\rho c_p}\)</span>,</p></li>
+<li><p>Fourier’s law: <span class="math inline">\(\mathbf q_c=-k\nabla T\)</span> replaces <span class="math inline">\(-\,\mathbf D\nabla C\)</span>.</p></li>
+</ul>
+<p>For solute transport in liquids or gases,</p>
+<ul>
+<li><span class="math inline">\(\mathbf D\)</span> is the molecular (or turbulent) diffusivity,</li>
+<li>and <span class="math inline">\(Q\)</span> accounts for reactions or sources.</li>
+</ul>
+<p><strong>Initial and boundary conditions.</strong></p>
+<p>To close a PDE model we supply an initial condition</p>
+<ul>
+<li><p>For unsteady problems, the initial concentration distribution is specified by <span class="math display">\[
+C(\mathbf{x},0)=C_0, \quad \mathbf{x} \in \Omega
+\]</span> and appropriate boundary conditions (Dirichlet/Neumann/Robin types) on <span class="math inline">\(\Gamma=\partial\Omega\)</span>.</p></li>
+<li><p>For steady problems, boundary conditions alone suffice.</p></li>
+</ul>
+<section id="non-dimensionalization-and-key-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="non-dimensionalization-and-key-parameters">7.2 Non-dimensionalization and key parameters</h3>
+<p>Let <span class="math inline">\(C^\ast, L, U\)</span> be characteristic scales for <span class="math inline">\(C\)</span>, length and speed, and <span class="math inline">\(t^\ast=L/U\)</span>. Introduce <span class="math display">\[
+\hat C=\frac{C}{C^\ast},\quad
+\hat{\mathbf x}=\frac{\mathbf x}{L},\quad
+\hat t=\frac{t}{t^\ast},\quad
+\hat{\mathbf v}=\frac{\mathbf v}{U},\quad
+\hat{\mathbf D}=\frac{\mathbf D}{D_0}.
+\]</span> Then (7.3) becomes (dropping hats) <span class="math display">\[
+\frac{\partial C}{\partial t}
++ \nabla\!\cdot(C\,\mathbf v)
+= \frac{1}{\mathrm{Pe}}\;\nabla\!\cdot(\hat{\mathbf D}\,\nabla C)
++ \tilde Q,
+\]</span> where <span class="math inline">\(\displaystyle\mathrm{Pe}=\frac{UL}{D_0} \quad\text{(Péclet number)}.\)</span></p>
+<p>For a 1-D problem with constant <span class="math inline">\(v\)</span> and <span class="math inline">\(D\)</span>, the dimensionless equation is <span class="math display">\[
+\frac{\partial C}{\partial t} + \mathrm{Pe}\,\left(v\,\frac{\partial C}{\partial x}\right)
+= \frac{\partial^2 C}{\partial x^2} + \tilde Q.
+\]</span></p>
+<p>For a 2-D problem with constant <span class="math inline">\(v\)</span> and <span class="math inline">\(D\)</span>, the dimensionless equation is <span class="math display">\[
+\frac{\partial C}{\partial t} + \mathrm{Pe}\,\left(v_x\,\frac{\partial C}{\partial x}
++ v_y\,\frac{\partial C}{\partial y}\right)
+= \frac{\partial^2 C}{\partial x^2} + \frac{\partial^2 C}{\partial y^2} + \tilde Q.
+\]</span></p>
+<p>For a 3-D problem with constant <span class="math inline">\(v\)</span> and <span class="math inline">\(D\)</span>, the dimensionless equation is <span class="math display">\[
+\frac{\partial C}{\partial t} + \mathrm{Pe}\,\left(v_x\,\frac{\partial C}{\partial x}
++ v_y\,\frac{\partial C}{\partial y} + v_z\,\frac{\partial C}{\partial z}\right)
+\]</span> <span class="math display">\[
+= \frac{\partial^2 C}{\partial x^2} + \frac{\partial^2 C}{\partial y^2} + \frac{\partial^2 C}{\partial z^2} + \tilde Q.
+\]</span></p>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">7.3 Applications</h3>
+<p>Physical examples of diffusion and convection-diffusion processes include:</p>
+<ul>
+<li>Molecular solute in water at room T: <span class="math inline">\(D\sim 10^{-9}\,\mathrm{m^2/s}\)</span>.</li>
+<li>Gas-phase diffusion (air): <span class="math inline">\(D\sim 10^{-5}\,\mathrm{m^2/s}\)</span>.</li>
+<li>Thermal diffusivity of liquids/solids: <span class="math inline">\(\alpha\sim 10^{-7}\)</span>–<span class="math inline">\(10^{-5}\,\mathrm{m^2/s}\)</span>.</li>
+<li>Microchannel mixing (<span class="math inline">\(U\sim 10^{-3}\)</span>–<span class="math inline">\(10^{-1}\)</span> m/s, <span class="math inline">\(L\sim 10^{-4}\)</span>–<span class="math inline">\(10^{-3}\)</span> m): <span class="math inline">\(\mathrm{Pe}\)</span> often <span class="math inline">\(10^2\)</span>–<span class="math inline">\(10^5\)</span> <span class="math inline">\(\Rightarrow\)</span> advection-dominated.</li>
+<li>Groundwater plumes (<span class="math inline">\(U\sim 10^{-6}\)</span>–<span class="math inline">\(10^{-4}\)</span> m/s, <span class="math inline">\(L\sim 10\)</span>–<span class="math inline">\(10^3\)</span> m): dispersion (effective <span class="math inline">\(D\)</span>) <span class="math inline">\(10^{-6}\)</span>–<span class="math inline">\(10^{-2}\,\mathrm{m^2/s}\)</span>.</li>
+</ul>
+<section id="analytical-solutions-in-1-d" class="level4">
+<h4 class="anchored" data-anchor-id="analytical-solutions-in-1-d">7.3.1 Analytical solutions in 1-D</h4>
+<p>Let <span class="math inline">\(x\in(0,L)\)</span>, <span class="math inline">\(D&gt;0\)</span>, <span class="math inline">\(v\)</span> constant, <span class="math inline">\(Q=0\)</span> unless stated.</p>
+</section>
+<section id="example---pure-diffusion-semi-infinite-domain-step-input." class="level4">
+<h4 class="anchored" data-anchor-id="example---pure-diffusion-semi-infinite-domain-step-input."><strong>Example - Pure diffusion,</strong> semi-infinite domain (step input).</h4>
+<p>For <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(t&gt;0\)</span>, <span class="math display">\[
+\frac{\partial C}{\partial t} = D\,\frac{\partial^2 C}{\partial x^2}
+\]</span> subject to <span class="math display">\[
+C(x,0)=0,\quad C(0,t)=C_0,\quad C(\infty,t)=0.
+\]</span> Solution (error-function profile): <span class="math display">\[
+\boxed{\
+C(x,t)=c_0\,\mathrm{erfc}\!\left(\frac{x}{2\sqrt{D t}}\right).
+\ }
+\]</span> The penetration depth grows like <span class="math inline">\(\delta\sim\sqrt{Dt}\)</span> and the total mass in the domain grows like <span class="math inline">\(M(t)\sim\sqrt{Dt}\)</span>.</p>
+<p>The error-function solution is a similarity solution with variable <span class="math inline">\(\eta=x/(2\sqrt{Dt})\)</span>, where <span class="math display">\[
+\mathrm{erfc}(\eta)=\frac{2}{\sqrt{\pi}}\int_\eta^\infty e^{-s^2}\,ds.
+\]</span></p>
+<p>The complementary error function <span class="math inline">\(\mathrm{erfc}(\eta)\)</span>, together with the complementary error function <span class="math inline">\(\mathrm{erf}(\eta)=1-\mathrm{erfc}(\eta)\)</span>, is a standard special function in diffusion problems.</p>
+<p>Calculate the total mass in the domain:</p>
+<p><span class="math display">\[
+M(t)=\int_0^\infty C(x,t)\,dx = C_0 \int_0^\infty \mathrm{erfc}\!\left(\frac{x}{2\sqrt{D t}}\right)\,dx
+\]</span> <span class="math display">\[
+= 2 C_0 \sqrt{D t} \int_0^\infty \mathrm{erfc}(u)\,du = C_0 \sqrt{\pi D t}.
+\]</span></p>
+</section>
+<section id="example---advectiondiffusion-semi-infinite-moving-front." class="level4">
+<h4 class="anchored" data-anchor-id="example---advectiondiffusion-semi-infinite-moving-front."><strong>Example - Advection–diffusion,</strong> semi-infinite (moving front).</h4>
+<p><span class="math display">\[
+C_t + v\,C_x = D\,C_{xx},\qquad C(x,0)=0,\qquad C(0,t)=C_0,\qquad C(\infty,t)=0.
+\]</span> Galilean shift <span class="math inline">\(\,\xi=x-vt\,\)</span> yields <span class="math display">\[
+\boxed{\
+C(x,t)=C_0\,\mathrm{erfc}\!\left(\frac{x-vt}{2\sqrt{D t}}\right).
+\ }
+\]</span> A diffusive front convects with speed <span class="math inline">\(v\)</span> and spreads with <span class="math inline">\(\sqrt{Dt}\)</span>.</p>
+</section>
+<section id="example---advectiondiffusion-with-impulse-greens-function." class="level4">
+<h4 class="anchored" data-anchor-id="example---advectiondiffusion-with-impulse-greens-function."><strong>Example - Advection–diffusion with impulse (Green’s function).</strong></h4>
+<p>With initial pulse <span class="math inline">\(C(x,0)=M\,\delta(x-x_0)\)</span> and zero boundary flux, <span class="math display">\[
+\boxed{\
+C(x,t)=\frac{M}{\sqrt{4\pi D t}}\,
+\exp\!\left(-\frac{(x-x_0-vt)^2}{4Dt}\right).
+\ }
+\]</span> A Gaussian packet convects and diffuses; mass <span class="math inline">\(M\)</span> is conserved.</p>
+</section>
+<section id="example---steady-1-d-advectiondiffusion-between-two-boundaries." class="level4">
+<h4 class="anchored" data-anchor-id="example---steady-1-d-advectiondiffusion-between-two-boundaries."><strong>Example - Steady 1-D advection–diffusion between two boundaries.</strong></h4>
+<p><span class="math display">\[
+D\,C'' - v\,C' = 0,\qquad C(0)=C_0,\quad C(L)=C_L.
+\]</span> Let <span class="math inline">\(\mathrm{Pe}=vL/D\)</span>. The solution is <span class="math display">\[
+\boxed{\
+C(x)=C_0 + (C_L-C_0)\,
+\frac{e^{\mathrm{Pe}\,x/L}-1}{e^{\mathrm{Pe}}-1}.
+\ }
+\]</span> As <span class="math inline">\(\mathrm{Pe}\!\to\!0\)</span>, <span class="math inline">\(C(x)\)</span> tends to the linear profile <span class="math inline">\(C_0+(C_L-C_0)\,x/L\)</span>; for large <span class="math inline">\(\mathrm{Pe}\!&gt;\!0\)</span> a thin layer forms near <span class="math inline">\(x=L\)</span> (outflow boundary).</p>
+<p><strong>Wall mass transfer (Robin/film model).</strong></p>
+<ul>
+<li><p>At <span class="math inline">\(x=0\)</span>, <span class="math inline">\(\quad-D\,C_x = k_m\,(C-C_\infty)\)</span>;</p></li>
+<li><p>At <span class="math inline">\(x=L\)</span>, <span class="math inline">\(\quad C(L)=C_L\)</span>.</p></li>
+</ul>
+<p>For <span class="math inline">\(Q=0\)</span> and constant <span class="math inline">\(v,D,k_m\)</span>, the steady solution is <span class="math display">\[
+C(x)=C_L + \frac{(C_0-C_\infty)-\beta(C_L-C_\infty)}{1-\beta}
+\left(1-\frac{e^{\mathrm{Pe}\,x/L}-1}{e^{\mathrm{Pe}}-1}\right)
+\]</span> with <span class="math inline">\(\displaystyle\beta=\frac{k_m L}{D}\,\frac{1}{\mathrm{Pe}},\)</span> which reduces to a linear wall law as <span class="math inline">\(v\to0\)</span>.</p>
+</section>
+<section id="example---cooling-slab-pure-conduction" class="level4">
+<h4 class="anchored" data-anchor-id="example---cooling-slab-pure-conduction"><strong>Example - Cooling slab, pure conduction</strong></h4>
+<p>A semi-infinite solid <span class="math inline">\(x\in(0,\infty)\)</span>, initially at uniform temperature <span class="math inline">\(T_i\)</span>, is exposed at <span class="math inline">\(x=0\)</span> to a fluid at temperature <span class="math inline">\(T_\infty\)</span>. Heat is extracted at the surface by convection with heat–transfer coefficient <span class="math inline">\(h\ge 0\)</span>. The solid has constant conductivity <span class="math inline">\(k\)</span>, density <span class="math inline">\(\rho\)</span>, heat capacity <span class="math inline">\(c_p\)</span>, and thermal diffusivity <span class="math inline">\(\displaystyle \alpha=\frac{k}{\rho c_p}\)</span>.</p>
+<p>Find <span class="math inline">\(T(x,t)\)</span> such that <span class="math display">\[\begin{align}
+\frac{\partial T}{\partial t} &amp;= \alpha\,\frac{\partial^2 T}{\partial x^2},
+&amp;&amp; x&gt;0,\ t&gt;0, \\
+-k\,\frac{\partial T}{\partial x}(0,t) &amp;= h\big(T(0,t)-T_\infty\big),
+&amp;&amp; t&gt;0, \\
+\lim_{x\to\infty} T(x,t) &amp;= T_\infty,
+&amp;&amp; t&gt;0, \tag{7.3}\\
+T(x,0) &amp;= T_i,
+&amp;&amp; x&gt;0.
+\end{align}\]</span></p>
+<p>Let <span class="math inline">\(\theta(x,t)=T(x,t)-T_\infty,\quad
+\theta_i=T_i-T_\infty,\)</span></p>
+<p>For a cooling solid occupying <span class="math inline">\(x&gt;0\)</span>, the physically consistent convection condition is</p>
+<p><span class="math display">\[
+k\theta_x(0,t)=h\theta(0,t)
+\quad\Longleftrightarrow\quad
+\theta_x(0,t)=\beta\theta(0,t),
+\]</span> where <span class="math inline">\(\displaystyle\beta=\frac{h}{k}.\)</span></p>
+<p>Thus, we have the Robin boundary condition at <span class="math inline">\(x=0\)</span> and the Dirichlet condition at <span class="math inline">\(x\to\infty\)</span>.</p>
+<p>We solve</p>
+<p><span class="math display">\[\begin{align}
+\theta_t &amp;=\alpha\theta_{xx},\qquad x&gt;0,\ t&gt;0,\\
+\theta_x(0,t)&amp;=\beta\theta(0,t),\tag{7.4}\\
+\theta(\infty,t)&amp;=0,\\
+\theta(x,0)&amp;=\theta_i.
+\end{align}\]</span></p>
+<p>The solution is derived entirely by <strong>separation of variables + generalized Fourier expansion</strong>. By assumption, the solution is of the form</p>
+<p><span class="math display">\[
+\theta(x,t)=X(x)G(t).
+\]</span></p>
+<p>Substitution gives</p>
+<p><span class="math display">\[
+XG'=\alpha X''G,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\frac{G'}{\alpha G}
+=
+\frac{X''}{X}
+=-\lambda.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+G'+\alpha\lambda G=0
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+X''+\lambda X=0.
+\]</span></p>
+<p>For the continuous spectrum, put</p>
+<p><span class="math display">\[
+\lambda=\mu^2,\qquad \mu&gt;0.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+G(t)=e^{-\alpha\mu^2t}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+X''+\mu^2X=0.
+\]</span></p>
+<p>The general spatial solution is</p>
+<p><span class="math display">\[
+X(x)=A\cos\mu x+B\sin\mu x.
+\]</span></p>
+<p>Its derivative is</p>
+<p><span class="math display">\[
+X'(x)=-A\mu\sin\mu x+B\mu\cos\mu x.
+\]</span></p>
+<p>At (x=0),</p>
+<p><span class="math display">\[
+X(0)=A,\qquad X'(0)=B\mu.
+\]</span></p>
+<p>The Robin condition requires</p>
+<p><span class="math display">\[
+X'(0)=\beta X(0),
+\]</span></p>
+<p>hence</p>
+<p><span class="math display">\[
+B\mu=\beta A,
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+B=\frac{\beta}{\mu}A.
+\]</span></p>
+<p>We may therefore choose the eigenfunction</p>
+<p><span class="math display">\[
+\boxed{
+X_\mu(x)=
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+}.
+\]</span></p>
+<p>Hence an individual separated solution is</p>
+<p><span class="math display">\[
+\theta_\mu(x,t)
+=
+\left(
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+\right)e^{-\alpha\mu^2t}.
+\]</span></p>
+<p>Because <span class="math inline">\(0&lt;x&lt;\infty\)</span>, <span class="math inline">\(\mu\)</span> is not discrete. Therefore we superpose all values of <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>2. Fourier integral solution</strong></p>
+<p>Write</p>
+<p><span class="math display">\[
+\theta(x,t)
+=
+\int_0^\infty
+A(\mu)
+\left(
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+\right)
+e^{-\alpha\mu^2t}\,d\mu .
+\]</span></p>
+<p>At <span class="math inline">\(t=0\)</span>,</p>
+<p><span class="math display">\[
+\theta_i
+=
+\int_0^\infty
+A(\mu)
+\left(
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+\right)d\mu.
+\]</span></p>
+<p>This is the generalized Fourier expansion associated with the Robin boundary condition.</p>
+<p>The eigenfunctions satisfy the generalized orthogonality relation</p>
+<p><span class="math display">\[
+\int_0^\infty
+X_\mu(x)X_\nu(x)\,dx
+=
+\frac{\pi}{2}
+\left(1+\frac{\beta^2}{\mu^2}\right)
+\delta(\mu-\nu).
+\]</span></p>
+<p>Consequently, for a function <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[
+A(\mu)
+=
+\frac{2}{\pi}
+\frac{1}{1+\beta^2/\mu^2}
+\int_0^\infty
+f(x)
+\left(
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+\right)dx.
+\]</span></p>
+<p>Here</p>
+<p><span class="math display">\[
+f(x)=\theta_i.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+A(\mu)
+=
+\frac{2\theta_i}{\pi}
+\frac{\mu^2}{\mu^2+\beta^2}
+\left[
+\int_0^\infty\cos\mu x\,dx
++
+\frac{\beta}{\mu}
+\int_0^\infty\sin\mu x\,dx
+\right].
+\]</span></p>
+<p>For <span class="math inline">\(\mu&gt;0\)</span>, in the generalized Fourier sense,</p>
+<p><span class="math display">\[
+\int_0^\infty\cos\mu x\,dx=0,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\int_0^\infty\sin\mu x\,dx=\frac1\mu.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+A(\mu)
+=
+\frac{2\theta_i}{\pi}
+\frac{\mu^2}{\mu^2+\beta^2}
+\frac{\beta}{\mu^2}.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+A(\mu)
+=
+\frac{2\theta_i\beta}
+{\pi(\mu^2+\beta^2)}
+\]</span></p>
+<p><strong>3. Fourier-integral representation</strong></p>
+<p>Substituting <span class="math inline">\(A(\mu)\)</span>,</p>
+<p><span class="math display">\[
+\theta(x,t)
+=
+\frac{2\theta_i\beta}{\pi}
+\int_0^\infty
+\frac{
+\displaystyle
+\cos\mu x+\frac{\beta}{\mu}\sin\mu x
+}
+{\mu^2+\beta^2}
+e^{-\alpha\mu^2t}\,d\mu.
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\frac{\theta(x,t)}{\theta_i}
+=
+\frac{2\beta}{\pi}
+\int_0^\infty
+\frac{
+\mu\cos(\mu x)+\beta\sin(\mu x)
+}
+{\mu(\mu^2+\beta^2)}
+e^{-\alpha\mu^2t}\,d\mu.
+\]</span></p>
+<p>This is the answer obtained directly by <strong>separation of variables and Fourier expansion</strong>.</p>
+<p>Because the domain is semi-infinite, this is technically a <strong>Fourier integral rather than a Fourier series</strong>.</p>
+<p><strong>4. Evaluation of the Fourier integral</strong></p>
+<p>The integral can be evaluated in terms of the error functions.</p>
+<p>Introduce</p>
+<p><span class="math display">\[
+\eta=\frac{x}{2\sqrt{\alpha t}},
+\qquad
+\gamma=\beta\sqrt{\alpha t}
+=
+\frac{h\sqrt{\alpha t}}{k}.
+\]</span></p>
+<p>The Fourier integral evaluates to</p>
+<p><span class="math display">\[
+\frac{\theta(x,t)}{\theta_i}
+=
+\operatorname{erf}(\eta)
++
+e^{\,2\eta\gamma+\gamma^2}
+\operatorname{erfc}(\eta+\gamma).
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+2\eta\gamma
+=
+2\left(\frac{x}{2\sqrt{\alpha t}}\right)
+\left(\frac{h\sqrt{\alpha t}}{k}\right)
+=
+\frac{hx}{k},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\gamma^2
+=
+\frac{h^2\alpha t}{k^2},
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[\begin{align}
+\frac{\theta(x,t)}{\theta_i}
+=&amp;\,\,
+\operatorname{erf}\left(
+\frac{x}{2\sqrt{\alpha t}}
+\right)\\
+&amp;+
+\exp\left(
+\frac{hx}{k}
++
+\frac{h^2\alpha t}{k^2}
+\right)
+\operatorname{erfc}\left(
+\frac{x}{2\sqrt{\alpha t}}
++
+\frac{h\sqrt{\alpha t}}{k}
+\right).
+\end{align}\]</span></p>
+<p>Finally,</p>
+<p><span class="math display">\[
+\theta=T-T_\infty,
+\qquad
+\theta_i=T_i-T_\infty,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[\begin{align}
+T(x,t)=T_\infty&amp;+
+(T_i-T_\infty)
+\left[
+\operatorname{erf}\left(
+\frac{x}{2\sqrt{\alpha t}}
+\right)\right.\\
+&amp;+ \left.
+\exp\left(
+\frac{hx}{k}
++\frac{h^2\alpha t}{k^2}
+\right)
+\operatorname{erfc}\left(
+\frac{x}{2\sqrt{\alpha t}}
++\frac{h\sqrt{\alpha t}}{k}
+\right)
+\right].
+\end{align}\]</span></p>
+<p><strong>5. Verification of the initial condition</strong></p>
+<p>At <span class="math inline">\(t\to0^+\)</span>, for a fixed <span class="math inline">\(x&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\frac{x}{2\sqrt{\alpha t}}\to\infty.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\operatorname{erf}
+\left(
+\frac{x}{2\sqrt{\alpha t}}
+\right)\to1,
+\]</span></p>
+<p>while the second term tends to zero. Hence</p>
+<p><span class="math display">\[
+\frac{\theta(x,0)}{\theta_i}=1,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+T(x,0)=T_i.
+\]</span></p>
+<p>At <span class="math inline">\(x\to\infty\)</span> and any <span class="math inline">\(t&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\theta(x,t)\to0,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+T(x,t)\to T_\infty.
+\]</span></p>
+<section id="note.-about-the-minus-sign-in-the-original-question" class="level5">
+<h5 class="anchored" data-anchor-id="note.-about-the-minus-sign-in-the-original-question"><strong>Note.</strong> About the minus sign in the original question</h5>
+<p>Your problem statement writes</p>
+<p><span class="math display">\[
+-k\theta_x(0,t)=h\theta(0,t).
+\]</span></p>
+<p>For <span class="math inline">\(x&gt;0\)</span>, this sign corresponds mathematically to</p>
+<p><span class="math display">\[
+X'(0)=-\beta X(0),
+\]</span></p>
+<p>and the spatial eigenfunctions become</p>
+<p><span class="math display">\[
+X_\mu(x)
+=
+\cos\mu x-\frac{\beta}{\mu}\sin\mu x.
+\]</span></p>
+<p>More importantly, an additional eigenfunction appears:</p>
+<p><span class="math display">\[
+X_b(x)=e^{-\beta x},
+\qquad
+\lambda=-\beta^2,
+\]</span></p>
+<p>whose time dependence is <span class="math inline">\(\displaystyle e^{+\alpha\beta^2t}\)</span>.</p>
+<p>Thus the solution contains an exponentially <strong>growing</strong> mode, which is inconsistent with the stated physical situation of cooling. This is why the usual convection-cooling boundary condition for a half-space <span class="math inline">\(x&gt;0\)</span> is</p>
+<p><span class="math display">\[
+kT_x(0,t)=h[T(0,t)-T_\infty].
+\]</span></p>
+<p>So the Fourier-integral solution above is the standard separation-of-variables solution for the intended <strong>cooling semi-infinite slab</strong>.</p>
+</section>
+</section>
+<section id="example---1d-steady-river-pollutant-transport" class="level4">
+<h4 class="anchored" data-anchor-id="example---1d-steady-river-pollutant-transport"><strong>Example - 1D Steady River Pollutant Transport</strong></h4>
+<p>Let <span class="math inline">\(C(x)\)</span> be the cross-sectionally averaged concentration along a long straight reach (<span class="math inline">\(x&gt;0\)</span>). Assume constant mean velocity <span class="math inline">\(v\)</span> (taken positive downstream) and constant axial diffusivity <span class="math inline">\(D\)</span>. Neglect sources/sinks and time dependence. A common 1-D steady advection–diffusion model for the excess <span class="math inline">\(C-C_\infty\)</span> is <span class="math display">\[\begin{equation}
+D\,C''(x)+v\,C'(x)=0,\qquad x&gt;0,
+\tag{7.5}
+\end{equation}\]</span> together with the boundary conditions <span class="math display">\[\begin{equation}
+C(0)=C_0,\qquad \lim_{x\to\infty}C(x)=C_\infty .
+\tag{7.6}
+\end{equation}\]</span></p>
+<p><strong>Sign convention:</strong></p>
+<ul>
+<li>The conservative steady balance can be written as <span class="math display">\[
+\dfrac{d}{dx}\!\big(vC-D C'\big)=0,
+\]</span> which, after expanding, yields <span class="math display">\[
+vC'-DC''=0.
+\]</span></li>
+<li>Reversing the <span class="math inline">\(x\)</span>-axis (or equivalently letting <span class="math inline">\(v\mapsto -v\)</span> produces (7.5).</li>
+<li>The exponential downstream of an inlet condition occurs with (7.5).</li>
+</ul>
+<p><strong>Derivation of the exponential profile</strong></p>
+<p>Let <span class="math inline">\(y(x):=C(x)-C_\infty\)</span> so that <span class="math inline">\(y(\infty)=0\)</span>. Then (7.5) becomes <span class="math display">\[\begin{equation}
+D\,y''+v\,y'=0.
+\tag{7.7}
+\end{equation}\]</span> Set <span class="math inline">\(p=y'\)</span>. Equation (7.7) gives <span class="math inline">\(D\,p'+v\,p=0\)</span>, hence <span class="math display">\[
+\frac{p'}{p}=-\frac{v}{D}\quad\Rightarrow\quad
+p(x)=K\,e^{-(v/D)x}.
+\]</span></p>
+<p>Integrating once, <span class="math display">\[
+y(x)=\int p(x)\,dx
+= -\,\frac{KD}{v}\,e^{-(v/D)x}+A.
+\]</span> The far-field condition <span class="math inline">\(y(\infty)=0\)</span> forces <span class="math inline">\(A=0\)</span>. The inlet condition <span class="math inline">\(y(0)=C_0-C_\infty\)</span> determines <span class="math inline">\(-KD/v=C_0-C_\infty\)</span>. Therefore <span class="math display">\[
+C(x)=C_\infty+(C_0-C_\infty)\,e^{-(v/D)\,x}.
+\]</span></p>
+<p><strong>Characteristic equation</strong> (alternative)</p>
+<p>Seeking <span class="math inline">\(y\sim e^{rx}\)</span> in (7.7) yields <span class="math display">\[
+D r^2 + v r=0\Rightarrow r\in\{0,-v/D\}$.
+\]</span></p>
+<p>Hence, <span class="math display">\[
+y(x)=A + B e^{-(v/D)x}.
+\]</span> Boundedness at <span class="math inline">\(+\infty\)</span> gives</p>
+<p><span class="math display">\[
+A=0; \quad B=C_0-C_\infty.
+\]</span></p>
+<p><strong>Checks and interpretation</strong></p>
+<p>With <span class="math inline">\(C(x)\)</span> above, <span class="math display">\[
+C' = -\tfrac{v}{D}(C_0-C_\infty)e^{-(v/D)x}
+\]</span> and <span class="math display">\[
+C'' = \tfrac{v^2}{D^2}(C_0-C_\infty)e^{-(v/D)x},
+\]</span> so <span class="math display">\[
+D C''+v C' = (v^2/D)-(v^2/D)=0.
+\]</span></p>
+<p><strong>E-folding length.</strong> The solution decays exponentially with characteristic length <span class="math display">\[
+\ell= \frac{D}{v}.
+\]</span></p>
+<p>After a distance <span class="math inline">\(\ell\)</span> the inlet excess has decayed to <span class="math inline">\(1/e\)</span>: <span class="math display">\[
+\big(C(\ell)-C_\infty\big)/(C_0-C_\infty)=e^{-1}.
+\]</span></p>
+<p><strong>Dimensionless form and Péclet number.</strong></p>
+<p>Let <span class="math inline">\(\xi=x/\ell=x\,v/D\)</span>. Then <span class="math display">\[
+\frac{C(x)-C_\infty}{C_0-C_\infty}=e^{-\xi}.
+\]</span> On a finite reach of length <span class="math inline">\(L\)</span>, the Péclet number is <span class="math inline">\(\mathrm{Pe}=vL/D\)</span>, and <span class="math display">\[
+\big(C(L)-C_\infty\big)/(C_0-C_\infty)=e^{-\mathrm{Pe}}.
+\]</span></p>
+<p><strong>Flux viewpoint.</strong></p>
+<p>The total axial flux <span class="math inline">\(j=vC-DC'\)</span> is generally not constant in <span class="math inline">\(x\)</span> under (7.5). In fact, for the decaying solution, <span class="math display">\[
+j'=vC'-DC''=2vC'\neq 0.
+\]</span> The conservative steady form <span class="math display">\[
+\frac{d}{dx}(vC-DC')=0
+\]</span> corresponds to the opposite sign in the differential equation and, with <span class="math display">\[
+C(\infty)=C_\infty
+\]</span> on a semi-infinite domain, yields the trivial constant solution unless additional physics (reaction, lateral exchange) is included.</p>
+<p><strong>Common extensions </strong> include lateral exchange with a reservoir, first-order decay, and time-dependent inlet conditions. These lead to more complex models that can still be analyzed using similar techniques.</p>
+<section id="i-first-order-decay-reaction-with-rate-kappa0." class="level5">
+<h5 class="anchored" data-anchor-id="i-first-order-decay-reaction-with-rate-kappa0.">(i) First-order decay (reaction) with rate <span class="math inline">\(\kappa&gt;0\)</span>.</h5>
+<p>Model <span class="math inline">\(-\kappa\,(C-C_\infty)\)</span> as a volumetric sink: <span class="math display">\[
+D\,y''+v\,y'-\kappa\,y=0,\qquad y=C-C_\infty.
+\]</span> Characteristic roots <span class="math inline">\(r=\dfrac{-v\pm\sqrt{v^2+4\kappa D}}{2D}\)</span> give the bounded solution <span class="math display">\[
+C(x)=C_\infty+(C_0-C_\infty)\,\exp\!\left(-\frac{x}{\ell_\kappa}\right),
+\]</span> where the e-folding length is <span class="math display">\[
+\ell_\kappa=\frac{2D}{\,v+\sqrt{v^2+4\kappa D}\,}\;&lt;\;\frac{D}{v}.
+\]</span></p>
+</section>
+<section id="ii-finite-interval-xin0l-with-dirichlet-ends." class="level5">
+<h5 class="anchored" data-anchor-id="ii-finite-interval-xin0l-with-dirichlet-ends.">(ii) Finite interval <span class="math inline">\(x\in[0,L]\)</span> with Dirichlet ends.</h5>
+<p>Solve <span class="math inline">\(D C''+v C'=0\)</span> with <span class="math inline">\(C(0)=C_0\)</span>, <span class="math inline">\(C(L)=C_L\)</span>: <span class="math display">\[
+C(x)=C_0+(C_L-C_0)\,
+\frac{e^{-(v/D)\,x}-1}{e^{-(v/D)\,L}-1}.
+\]</span></p>
+</section>
+<section id="iii-robin-inlet-with-semi-infinite-domain-compatibility" class="level5">
+<h5 class="anchored" data-anchor-id="iii-robin-inlet-with-semi-infinite-domain-compatibility">(iii) Robin inlet with semi-infinite domain (compatibility)</h5>
+<p>Take <span class="math display">\[
+-D C'(0)=k_m\,[C(0)-C_\infty]\quad\text{for}\quad C(\infty)=C_\infty,
+\]</span> we have <span class="math display">\[
+C(x)=C_\infty+B e^{-(v/D)x},
+\]</span> the inlet condition becomes <span class="math display">\[
+v\,B=k_m\,B,
+\]</span> so a nontrivial exponential (<span class="math inline">\(B\neq 0\)</span>) requires <span class="math inline">\(k_m=v\)</span> [m/s]. Otherwise the only bounded solution is <span class="math inline">\(C\equiv C_\infty\)</span>. Nontrivial Robin problems on a semi-infinite domain usually arise when additional sinks (e.g.&nbsp;reactions or lateral exchange) are present.</p>
+<p><strong>Bottom line</strong> Under (7.5)–(7.6), the solution is an exponential decay of the inlet excess concentration with characteristic length <span class="math inline">\(D/v\)</span>: <span class="math display">\[
+C(x)=C_\infty+(C_0-C_\infty)\,\exp\!\left(-\frac{v}{D}\,x\right),
+\qquad \ell=\frac{D}{v}.
+\]</span> A conservative tracer is injected at <span class="math inline">\(x=0\)</span>; far downstream <span class="math inline">\(C\to C_\infty\)</span>. Take <span class="math inline">\(v&gt;0\)</span>, <span class="math inline">\(D\)</span> constant. The steady ODE <span class="math display">\[
+D C'' - v C' = 0,
+\]</span> with <span class="math inline">\(C(0)=C_0\)</span> and <span class="math inline">\(C(\infty)=C_\infty\)</span>, gives <span class="math display">\[
+C(x)=C_\infty + (C_0-C_\infty)\,\exp\left(-\frac{v}{D}\,x\right).
+\]</span></p>
+<p>The e-folding length <span class="math inline">\(D/v=L/\mathrm{Pe}\)</span> characterizes downstream dilution.</p>
+<p>Extensions to include reactions, finite domains, and Robin boundary conditions can be handled similarly.</p>
+</section>
+</section>
+</section>
+<section id="analytical-solutions-in-2-d" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-solutions-in-2-d">7.3.2 Analytical solutions in 2-D</h3>
+<p>For anisotropic media (e.g.&nbsp;crystals, layered composites), tensor diffusion is described by a symmetric positive-definite matrix <span class="math inline">\(\mathbf D\)</span>: <span class="math display">\[
+\mathbf D=\text{R}(\theta)
+\begin{bmatrix}D_1&amp;0\\0&amp;D_2\end{bmatrix}
+\text{R}(\theta)^\top
+\]</span> with rotation <span class="math inline">\(\text{R}(\theta)\)</span>.</p>
+<section id="example---2-d-diffusion-in-a-rectangle" class="level4">
+<h4 class="anchored" data-anchor-id="example---2-d-diffusion-in-a-rectangle"><strong>Example - 2-D diffusion in a rectangle</strong></h4>
+<p>Consider a rectangular domain <span class="math inline">\(0&lt;x&lt;L\)</span>, <span class="math inline">\(0&lt;y&lt;H\)</span> with constant isotropic diffusivity <span class="math inline">\(D&gt;0\)</span>. The governing equation is <span class="math display">\[
+\frac{\partial C}{\partial t}
+= D\,\left(\frac{\partial^2 C}{\partial x^2}+\frac{\partial^2 C}{\partial y^2}\right),\quad t&gt;0,
+\]</span> with initial condition <span class="math inline">\(C(x,y,0)=f(x,y)\)</span> and boundary conditions such as <span class="math display">\[
+C(0,y,t)=f_1(y,t),\quad C(L,y,t)=f_2(y,t),
+\]</span> <span class="math display">\[
+C(x,0,t)=f_3(x,t),\quad C(x,H,t)=f_4(x,t).
+\]</span></p>
+<p>Solution methods include separation of variables, Fourier series, and Green’s functions, depending on the boundary conditions.</p>
+<p>For the rectangular diffusion problem</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial t}
+=
+D\left(
+\frac{\partial^2 C}{\partial x^2}
++
+\frac{\partial^2 C}{\partial y^2}
+\right),
+\qquad
+0&lt;x&lt;L,\quad 0&lt;y&lt;H,
+\]</span></p>
+<p>the cleanest separation-of-variables solution is obtained first for <strong>homogeneous Dirichlet boundary conditions</strong>. General nonzero boundary data can then be handled by subtracting a function that satisfies the prescribed boundary values.</p>
+<section id="homogeneous-boundary-conditions" class="level5">
+<h5 class="anchored" data-anchor-id="homogeneous-boundary-conditions">1. Homogeneous boundary conditions</h5>
+<p>Consider first</p>
+<p><span class="math display">\[
+C(0,y,t)=C(L,y,t)=0,
+\]</span></p>
+<p><span class="math display">\[
+C(x,0,t)=C(x,H,t)=0,
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+C(x,y,0)=f(x,y).
+\]</span></p>
+<p>Assume a separated solution</p>
+<p><span class="math display">\[
+C(x,y,t)=X(x)Y(y)T(t).
+\]</span></p>
+<p>Substituting into the PDE,</p>
+<p><span class="math display">\[
+XYT'
+=
+D\left(X''YT+XY''T\right).
+\]</span></p>
+<p>Divide by (DXYT):</p>
+<p><span class="math display">\[
+\frac{1}{D}\frac{T'}{T}
+=
+\frac{X''}{X}
++\frac{Y''}{Y}.
+\]</span></p>
+<p>Since the left-hand side depends only on <span class="math inline">\(t\)</span>, while the right-hand side depends on <span class="math inline">\(x,y\)</span>, each part must be constant. Let</p>
+<p><span class="math display">\[
+\frac{X''}{X}=-\lambda,
+\qquad
+\frac{Y''}{Y}=-\mu.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\frac{T'}{DT}=-(\lambda+\mu).
+\]</span></p>
+<p>Thus the separated ODEs are</p>
+<p><span class="math display">\[
+X''+\lambda X=0,
+\]</span></p>
+<p><span class="math display">\[
+Y''+\mu Y=0,
+\]</span></p>
+<p><span class="math display">\[
+T'+D(\lambda+\mu)T=0.
+\]</span></p>
+</section>
+<section id="x-direction-eigenvalue-problem" class="level5">
+<h5 class="anchored" data-anchor-id="x-direction-eigenvalue-problem">2. <span class="math inline">\(x\)</span>-direction eigenvalue problem</h5>
+<p>The boundary conditions are</p>
+<p><span class="math display">\[
+X(0)=0,\qquad X(L)=0.
+\]</span></p>
+<p>For nontrivial solutions,</p>
+<p><span class="math display">\[
+\lambda_n=\left(\frac{n\pi}{L}\right)^2,
+\qquad n=1,2,3,\ldots
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+X_n(x)=\sin\left(\frac{n\pi x}{L}\right)
+}.
+\]</span></p>
+</section>
+<section id="y-direction-eigenvalue-problem" class="level5">
+<h5 class="anchored" data-anchor-id="y-direction-eigenvalue-problem">3. <span class="math inline">\(y\)</span>-direction eigenvalue problem</h5>
+<p>Similarly,</p>
+<p><span class="math display">\[
+Y(0)=0,\qquad Y(H)=0
+\]</span></p>
+<p>gives</p>
+<p><span class="math display">\[
+\mu_m=\left(\frac{m\pi}{H}\right)^2,
+\qquad m=1,2,3,\ldots
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+Y_m(y)=\sin\left(\frac{m\pi y}{H}\right)
+}.
+\]</span></p>
+</section>
+<section id="t-dependent-part" class="level5">
+<h5 class="anchored" data-anchor-id="t-dependent-part">4. <span class="math inline">\(t\)</span>-dependent part</h5>
+<p>The time equation becomes</p>
+<p><span class="math display">\[
+T'
++
+D
+\left[
+\left(\frac{n\pi}{L}\right)^2
++
+\left(\frac{m\pi}{H}\right)^2
+\right]T
+=0.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\boxed{
+T_{nm}(t)
+=
+\exp\left\{
+-D\left[
+\left(\frac{n\pi}{L}\right)^2
++
+\left(\frac{m\pi}{H}\right)^2
+\right]t
+\right\}.
+}
+\]</span></p>
+<p>Therefore one separated solution is</p>
+<p><span class="math display">\[
+C_{nm}
+=
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+e^{-D[(n\pi/L)^2+(m\pi/H)^2]t}.
+\]</span></p>
+<p>By superposition, the general solution is the double Fourier sine series</p>
+<p><span class="math display">\[
+\boxed{
+C(x,y,t)
+=
+\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+e^{-D[(n\pi/L)^2+(m\pi/H)^2]t}.
+}
+\]</span></p>
+</section>
+<section id="determine-the-fourier-coefficients" class="level5">
+<h5 class="anchored" data-anchor-id="determine-the-fourier-coefficients">5. Determine the Fourier coefficients</h5>
+<p>At <span class="math inline">\(t=0\)</span>,</p>
+<p><span class="math display">\[
+f(x,y)
+=
+\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right).
+\]</span></p>
+<p>Using orthogonality,</p>
+<p><span class="math display">\[
+\int_0^L
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{p\pi x}{L}\right)dx
+=
+\begin{cases}
+0,&amp;n\ne p,\\[2mm]
+L/2,&amp;n=p,
+\end{cases}
+\]</span></p>
+<p>and similarly,</p>
+<p><span class="math display">\[
+\int_0^H
+\sin\left(\frac{m\pi y}{H}\right)
+\sin\left(\frac{q\pi y}{H}\right)dy
+=
+\begin{cases}
+0,&amp;m\ne q,\\[2mm]
+H/2,&amp;m=q.
+\end{cases}
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\boxed{
+A_{nm}
+=
+\frac{4}{LH}
+\int_0^L\int_0^H
+f(x,y)
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+\,dy\,dx.
+}
+\]</span></p>
+<p>Therefore, for zero boundary values,</p>
+<p><span class="math display">\[
+\begin{aligned}
+C(x,y,t)
+&amp;=
+\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+\left[
+\frac{4}{LH}
+\int_0^L\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi \xi}{L}\right)
+\sin\left(\frac{m\pi \eta}{H}\right)
+\,d\eta\,d\xi
+\right]\\
+&amp;\quad\times
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+\exp\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+\end{aligned}
+\]</span></p>
+<p>This is the standard <strong>2-D Fourier-series solution</strong>.</p>
+<hr>
+</section>
+<section id="nonhomogeneous-boundary-conditions" class="level5">
+<h5 class="anchored" data-anchor-id="nonhomogeneous-boundary-conditions">6. Nonhomogeneous boundary conditions</h5>
+<p>Now suppose</p>
+<p><span class="math display">\[
+C(0,y,t)=f_1(y,t),\qquad
+C(L,y,t)=f_2(y,t),
+\]</span></p>
+<p><span class="math display">\[
+C(x,0,t)=f_3(x,t),\qquad
+C(x,H,t)=f_4(x,t).
+\]</span></p>
+<p>Introduce</p>
+<p><span class="math display">\[
+\boxed{
+C(x,y,t)=u(x,y,t)+v(x,y,t),
+}
+\]</span></p>
+<p>where <span class="math inline">\(v\)</span> is chosen to satisfy the nonhomogeneous boundary conditions. Then <span class="math inline">\(u\)</span> satisfies homogeneous boundary conditions.</p>
+<p>For example, a convenient boundary-lifting function can be constructed in the form</p>
+<p><span class="math display">\[
+v(x,y,t)
+=
+\left(1-\frac{x}{L}\right)f_1(y,t)
++
+\frac{x}{L}f_2(y,t)
++
+\left(1-\frac{y}{H}\right)g_3(x,t)
++
+\frac{y}{H}g_4(x,t),
+\]</span></p>
+<p>where <span class="math inline">\(g_3\)</span> and <span class="math inline">\(g_4\)</span> are adjusted to avoid double-counting the corner values.</p>
+<p>Then</p>
+<p><span class="math display">\[
+u=C-v.
+\]</span></p>
+<p>Substituting into the diffusion equation gives</p>
+<p><span class="math display">\[
+u_t
+=
+D(u_{xx}+u_{yy})
++
+F(x,y,t),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\boxed{
+F(x,y,t)
+=
+D(v_{xx}+v_{yy})-v_t.
+}
+\]</span></p>
+<p>The boundary conditions for (u) are homogeneous:</p>
+<p><span class="math display">\[
+u(0,y,t)=u(L,y,t)=0,
+\]</span></p>
+<p><span class="math display">\[
+u(x,0,t)=u(x,H,t)=0.
+\]</span></p>
+<p>Therefore expand <span class="math inline">\(u\)</span> as</p>
+<p><span class="math display">\[
+u(x,y,t)
+=
+\sum_{n=1}^\infty
+\sum_{m=1}^\infty
+a_{nm}(t)
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right).
+\]</span></p>
+<p>Similarly, expand the forcing term:</p>
+<p><span class="math display">\[
+F(x,y,t)
+=
+\sum_{n=1}^\infty
+\sum_{m=1}^\infty
+F_{nm}(t)
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+F_{nm}(t)
+=
+\frac{4}{LH}
+\int_0^L\int_0^H
+F(x,y,t)
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+\,dy\,dx.
+\]</span></p>
+<p>Substitution gives</p>
+<p><span class="math display">\[
+\frac{da_{nm}}{dt}
++
+D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)
+a_{nm}
+=
+F_{nm}(t).
+\]</span></p>
+<p>Let</p>
+<p><span class="math display">\[
+\lambda_{nm}
+=
+D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right).
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+a_{nm}'+\lambda_{nm}a_{nm}=F_{nm}(t),
+\]</span></p>
+<p>whose solution is</p>
+<p><span class="math display">\[
+a_{nm}(t)
+=
+a_{nm}(0)e^{-\lambda_{nm}t}
++
+\int_0^t
+e^{-\lambda_{nm}(t-\tau)}
+F_{nm}(\tau)\,d\tau.
+\]</span></p>
+<p>The initial coefficients follow from</p>
+<p><span class="math display">\[
+u(x,y,0)=f(x,y)-v(x,y,0),
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+a_{nm}(0)
+=
+\frac{4}{LH}
+\int_0^L\int_0^H
+[f(x,y)-v(x,y,0)]
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+\,dy\,dx.
+\]</span></p>
+<p>Finally,</p>
+<p><span class="math display">\[
+C(x,y,t)
+=
+v(x,y,t)
++
+\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+a_{nm}(t)
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right).
+\]</span></p>
+<p>For the especially common case of <strong>zero concentration on all four boundaries</strong>, <span class="math inline">\(v=0\)</span>, and the solution reduces directly to the double Fourier sine series derived above.</p>
+</section>
+</section>
+<section id="example---2-d-diffusion-in-a-rectangle-with-mixed-boundary-conditions" class="level4">
+<h4 class="anchored" data-anchor-id="example---2-d-diffusion-in-a-rectangle-with-mixed-boundary-conditions"><strong>Example - 2-D diffusion in a rectangle with mixed boundary conditions</strong></h4>
+<p>Consider diffusion in the rectangular domain</p>
+<p><span class="math display">\[
+0&lt;x&lt;L,\qquad 0&lt;y&lt;H,
+\]</span></p>
+<p>with constant diffusivity <span class="math inline">\(D&gt;0\)</span>. The concentration <span class="math inline">\(C(x,y,t)\)</span> satisfies</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial t}
+=
+D\left(
+\frac{\partial^2 C}{\partial x^2}
++
+\frac{\partial^2 C}{\partial y^2}
+\right),
+\qquad t&gt;0.
+\]</span></p>
+<p>As a representative example of <strong>mixed boundary conditions</strong>, suppose the concentration is prescribed to be zero on the vertical boundaries, while the horizontal boundaries are impermeable:</p>
+<p><span class="math display">\[
+C(0,y,t)=0,\qquad C(L,y,t)=0,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial y}(x,0,t)=0,
+\qquad
+\frac{\partial C}{\partial y}(x,H,t)=0.
+\]</span></p>
+<p>The initial concentration is prescribed as</p>
+<p><span class="math display">\[
+C(x,y,0)=f(x,y).
+\]</span></p>
+<p>Thus, the complete problem is</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+C_t &amp;=D(C_{xx}+C_{yy}),
+&amp;&amp;0&lt;x&lt;L,\quad 0&lt;y&lt;H,\quad t&gt;0,\\
+C(0,y,t)&amp;=0,
+&amp;&amp;0&lt;y&lt;H,\\
+C(L,y,t)&amp;=0,
+&amp;&amp;0&lt;y&lt;H,\\
+C_y(x,0,t)&amp;=0,
+&amp;&amp;0&lt;x&lt;L,\\
+C_y(x,H,t)&amp;=0,
+&amp;&amp;0&lt;x&lt;L,\\
+C(x,y,0)&amp;=f(x,y).
+\end{aligned}
+}
+\]</span></p>
+<p>The conditions at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=L\)</span> are <strong>Dirichlet conditions</strong>, while those at <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=H\)</span> are <strong>Neumann conditions</strong>. Therefore, this is a mixed-boundary-value diffusion problem.</p>
+<hr>
+</section>
+</section>
+<section id="separation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="separation-of-variables">1. Separation of variables</h3>
+<p>Assume a separated solution of the form</p>
+<p><span class="math display">\[
+C(x,y,t)=X(x)Y(y)T(t).
+\]</span></p>
+<p>Substitution into the diffusion equation gives</p>
+<p><span class="math display">\[
+X(x)Y(y)T'(t)
+=
+D
+\left[
+X''(x)Y(y)T(t)
++
+X(x)Y''(y)T(t)
+\right].
+\]</span></p>
+<p>Dividing by <span class="math inline">\(DXYT\)</span> gives</p>
+<p><span class="math display">\[
+\frac{1}{D}\frac{T'}{T}
+=
+\frac{X''}{X}
++
+\frac{Y''}{Y}.
+\]</span></p>
+<p>The left-hand side depends only on <span class="math inline">\(t\)</span>, while the right-hand side depends only on <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Consequently, both sides must be constant.</p>
+<p>Introduce two separation constants <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> such that</p>
+<p><span class="math display">\[
+\frac{X''}{X}=-\lambda,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{Y''}{Y}=-\mu.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\frac{1}{D}\frac{T'}{T}
+=
+-(\lambda+\mu).
+\]</span></p>
+<p>The original PDE therefore reduces to the three ordinary differential equations</p>
+<p><span class="math display">\[
+X''+\lambda X=0,
+\]</span></p>
+<p><span class="math display">\[
+Y''+\mu Y=0,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+T'+D(\lambda+\mu)T=0.
+\]</span></p>
+<p>We now solve each eigenvalue problem separately.</p>
+<hr>
+</section>
+</section>
+<section id="solution-in-the-x-direction" class="level2">
+<h2 class="anchored" data-anchor-id="solution-in-the-x-direction">2. Solution in the <span class="math inline">\(x\)</span>-direction</h2>
+<p>The <span class="math inline">\(x\)</span>-dependent equation is</p>
+<p><span class="math display">\[
+X''+\lambda X=0,
+\]</span></p>
+<p>with boundary conditions</p>
+<p><span class="math display">\[
+X(0)=0,
+\qquad
+X(L)=0.
+\]</span></p>
+<p>Consider <span class="math inline">\(\lambda&gt;0\)</span> and write</p>
+<p><span class="math display">\[
+\lambda=p^2.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+X''+p^2X=0,
+\]</span></p>
+<p>whose general solution is</p>
+<p><span class="math display">\[
+X(x)=A\cos(px)+B\sin(px).
+\]</span></p>
+<p>Using the boundary condition at <span class="math inline">\(x=0\)</span>,</p>
+<p><span class="math display">\[
+X(0)=A=0.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+X(x)=B\sin(px).
+\]</span></p>
+<p>The second boundary condition gives</p>
+<p><span class="math display">\[
+X(L)=B\sin(pL)=0.
+\]</span></p>
+<p>For a nontrivial solution <span class="math inline">\(B\ne0\)</span>, we require</p>
+<p><span class="math display">\[
+\sin(pL)=0.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+pL=n\pi,
+\qquad
+n=1,2,3,\ldots
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+p_n=\frac{n\pi}{L}.
+\]</span></p>
+<p>Hence the eigenvalues are</p>
+<p><span class="math display">\[
+\boxed{
+\lambda_n=
+\left(\frac{n\pi}{L}\right)^2,
+\qquad n=1,2,3,\ldots
+}
+\]</span></p>
+<p>and the corresponding eigenfunctions are</p>
+<p><span class="math display">\[
+\boxed{
+X_n(x)=
+\sin\left(\frac{n\pi x}{L}\right).
+}
+\]</span></p>
+<p>Notice that the Dirichlet boundary conditions naturally produce a <strong>Fourier sine series</strong> in the <span class="math inline">\(x\)</span>-direction.</p>
+<hr>
+</section>
+<section id="solution-in-the-y-direction" class="level2">
+<h2 class="anchored" data-anchor-id="solution-in-the-y-direction">3. Solution in the <span class="math inline">\(y\)</span>-direction</h2>
+<p>The <span class="math inline">\(y\)</span>-dependent equation is</p>
+<p><span class="math display">\[
+Y''+\mu Y=0,
+\]</span></p>
+<p>with Neumann boundary conditions</p>
+<p><span class="math display">\[
+Y'(0)=0,
+\qquad
+Y'(H)=0.
+\]</span></p>
+<p>For <span class="math inline">\(\mu&gt;0\)</span>, write</p>
+<p><span class="math display">\[
+\mu=q^2.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+Y''+q^2Y=0,
+\]</span></p>
+<p>and the general solution is</p>
+<p><span class="math display">\[
+Y(y)=A\cos(qy)+B\sin(qy).
+\]</span></p>
+<p>Differentiating,</p>
+<p><span class="math display">\[
+Y'(y)
+=
+-Aq\sin(qy)
++
+Bq\cos(qy).
+\]</span></p>
+<p>At <span class="math inline">\(y=0\)</span>,</p>
+<p><span class="math display">\[
+Y'(0)=Bq=0.
+\]</span></p>
+<p>For <span class="math inline">\(q\ne0\)</span>,</p>
+<p><span class="math display">\[
+B=0.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+Y(y)=A\cos(qy).
+\]</span></p>
+<p>Applying the condition at <span class="math inline">\(y=H\)</span>,</p>
+<p><span class="math display">\[
+Y'(H)
+=
+-Aq\sin(qH)=0.
+\]</span></p>
+<p>For a nontrivial solution,</p>
+<p><span class="math display">\[
+\sin(qH)=0.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+qH=m\pi,
+\]</span></p>
+<p>so that</p>
+<p><span class="math display">\[
+q_m=\frac{m\pi}{H}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\mu_m=
+\left(\frac{m\pi}{H}\right)^2.
+}
+\]</span></p>
+<p>There is an important difference from the Dirichlet problem: the Neumann problem permits</p>
+<p><span class="math display">\[
+m=0.
+\]</span></p>
+<p>When <span class="math inline">\(m=0\)</span>,</p>
+<p><span class="math display">\[
+\mu_0=0,
+\]</span></p>
+<p>and the corresponding differential equation is</p>
+<p><span class="math display">\[
+Y''=0.
+\]</span></p>
+<p>Its general solution is</p>
+<p><span class="math display">\[
+Y=A+By.
+\]</span></p>
+<p>The Neumann conditions require <span class="math inline">\(B=0\)</span>, giving the constant eigenfunction</p>
+<p><span class="math display">\[
+Y_0=1.
+\]</span></p>
+<p>Thus the complete set of <span class="math inline">\(y\)</span>-direction eigenfunctions is</p>
+<p><span class="math display">\[
+\boxed{
+Y_m(y)
+=
+\cos\left(\frac{m\pi y}{H}\right),
+\qquad m=0,1,2,\ldots
+}
+\]</span></p>
+<p>with eigenvalues</p>
+<p><span class="math display">\[
+\boxed{
+\mu_m=
+\left(\frac{m\pi}{H}\right)^2,
+\qquad m=0,1,2,\ldots
+}
+\]</span></p>
+<p>The Neumann boundary conditions therefore give a <strong>Fourier cosine series</strong> in the <span class="math inline">\(y\)</span>-direction.</p>
+<hr>
+</section>
+<section id="solution-of-the-time-equation" class="level2">
+<h2 class="anchored" data-anchor-id="solution-of-the-time-equation">4. Solution of the time equation</h2>
+<p>For the modes <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, the time equation becomes</p>
+<p><span class="math display">\[
+T_{nm}'
++
+D(\lambda_n+\mu_m)T_{nm}=0.
+\]</span></p>
+<p>Substituting the eigenvalues,</p>
+<p><span class="math display">\[
+T_{nm}'
++
+D
+\left[
+\left(\frac{n\pi}{L}\right)^2
++
+\left(\frac{m\pi}{H}\right)^2
+\right]
+T_{nm}
+=0.
+\]</span></p>
+<p>Separating variables,</p>
+<p><span class="math display">\[
+\frac{dT_{nm}}{T_{nm}}
+=
+-D
+\left[
+\left(\frac{n\pi}{L}\right)^2
++
+\left(\frac{m\pi}{H}\right)^2
+\right]dt.
+\]</span></p>
+<p>Integrating,</p>
+<p><span class="math display">\[
+\ln T_{nm}
+=
+-D
+\left[
+\left(\frac{n\pi}{L}\right)^2
++
+\left(\frac{m\pi}{H}\right)^2
+\right]t
++
+\text{constant}.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+T_{nm}(t)
+=
+\exp
+\left[
+-D
+\left(
+\frac{n^2\pi^2}{L^2}
++
+\frac{m^2\pi^2}{H^2}
+\right)t
+\right].
+}
+\]</span></p>
+<hr>
+</section>
+<section id="individual-separated-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="individual-separated-solutions">5. Individual separated solutions</h2>
+<p>Combining <span class="math inline">\(X_n\)</span>, <span class="math inline">\(Y_m\)</span>, and <span class="math inline">\(T_{nm}\)</span> gives</p>
+<p><span class="math display">\[
+C_{nm}(x,y,t)
+=
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+\]</span></p>
+<p>Because the diffusion equation is linear, an arbitrary linear combination of these modes is also a solution.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+C(x,y,t)
+=
+\sum_{n=1}^{\infty}
+\sum_{m=0}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+}
+\]</span></p>
+<p>The remaining task is to determine <span class="math inline">\(A_{nm}\)</span> from the initial condition.</p>
+<hr>
+</section>
+<section id="apply-the-initial-condition" class="level1">
+<h1>6. Apply the initial condition</h1>
+<p>At <span class="math inline">\(t=0\)</span>,</p>
+<p><span class="math display">\[
+C(x,y,0)=f(x,y).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+f(x,y)
+=
+\sum_{n=1}^{\infty}
+\sum_{m=0}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right).
+\]</span></p>
+<p>This is a mixed two-dimensional Fourier expansion: a sine series in <span class="math inline">\(x\)</span> and a cosine series in <span class="math inline">\(y\)</span>.</p>
+<p>To determine the coefficients, we use orthogonality.</p>
+<hr>
+<section id="orthogonality-in-the-x-direction" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonality-in-the-x-direction">7. Orthogonality in the <span class="math inline">\(x\)</span>-direction</h2>
+<p>The sine functions satisfy</p>
+<p><span class="math display">\[
+\int_0^L
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{r\pi x}{L}\right)
+dx
+=
+\begin{cases}
+0, &amp; n\ne r,\\[6pt]
+\dfrac{L}{2}, &amp; n=r.
+\end{cases}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\int_0^L X_n(x)X_r(x)\,dx
+=
+\frac{L}{2}\delta_{nr}.
+\]</span></p>
+<hr>
+</section>
+<section id="orthogonality-in-the-y-direction" class="level2">
+<h2 class="anchored" data-anchor-id="orthogonality-in-the-y-direction">8. Orthogonality in the <span class="math inline">\(y\)</span>-direction</h2>
+<p>For <span class="math inline">\(m,q\geq1\)</span>,</p>
+<p><span class="math display">\[
+\int_0^H
+\cos\left(\frac{m\pi y}{H}\right)
+\cos\left(\frac{q\pi y}{H}\right)
+dy
+=
+\begin{cases}
+0, &amp;m\ne q,\\[6pt]
+\dfrac{H}{2}, &amp;m=q.
+\end{cases}
+\]</span></p>
+<p>However, the zero mode <span class="math inline">\(m=0\)</span> must be treated separately because</p>
+<p><span class="math display">\[
+Y_0(y)=1.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\int_0^H Y_0^2\,dy=H,
+\]</span></p>
+<p>whereas for <span class="math inline">\(m\geq1\)</span>,</p>
+<p><span class="math display">\[
+\int_0^H Y_m^2\,dy=\frac{H}{2}.
+\]</span></p>
+<p>Consequently, the coefficients for <span class="math inline">\(m=0\)</span> and <span class="math inline">\(m\geq1\)</span> have slightly different normalization factors.</p>
+<hr>
+</section>
+</section>
+<section id="fourier-coefficients-for-m0" class="level1">
+<h1>9. Fourier coefficients for <span class="math inline">\(m=0\)</span></h1>
+<p>For the zero <span class="math inline">\(y\)</span>-mode, multiply the initial expansion by</p>
+<p><span class="math display">\[
+\sin\left(\frac{r\pi x}{L}\right)
+\]</span></p>
+<p>and integrate over the rectangle.</p>
+<p>The result is</p>
+<p><span class="math display">\[
+\boxed{
+A_{n0}
+=
+\frac{2}{LH}
+\int_0^L
+\int_0^H
+f(x,y)
+\sin\left(\frac{n\pi x}{L}\right)
+\,dy\,dx.
+}
+\]</span></p>
+<p>The <span class="math inline">\(m=0\)</span> contribution is therefore</p>
+<p><span class="math display">\[
+C_0(x,y,t)
+=
+\sum_{n=1}^{\infty}
+A_{n0}
+\sin\left(\frac{n\pi x}{L}\right)
+\exp\left(
+-\frac{Dn^2\pi^2}{L^2}t
+\right).
+\]</span></p>
+<p>This part of the solution is independent of <span class="math inline">\(y\)</span>.</p>
+<hr>
+</section>
+<section id="fourier-coefficients-for-mgeq1" class="level1">
+<h1>10. Fourier coefficients for <span class="math inline">\(m\geq1\)</span></h1>
+<p>For <span class="math inline">\(m\geq1\)</span>, orthogonality gives</p>
+<p><span class="math display">\[
+\boxed{
+A_{nm}
+=
+\frac{4}{LH}
+\int_0^L
+\int_0^H
+f(x,y)
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\,dy\,dx,
+\qquad m\geq1.
+}
+\]</span></p>
+<p>Therefore, the complete solution may be written as</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+C(x,y,t)
+={}&amp;
+\sum_{n=1}^{\infty}
+A_{n0}
+\sin\left(\frac{n\pi x}{L}\right)
+e^{-Dn^2\pi^2t/L^2}
+\\
+&amp;+
+\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\\
+&amp;\qquad\times
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+\end{aligned}
+}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\boxed{
+A_{n0}
+=
+\frac{2}{LH}
+\int_0^L
+\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi \xi}{L}\right)
+\,d\eta\,d\xi,
+}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+A_{nm}
+=
+\frac{4}{LH}
+\int_0^L
+\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi \xi}{L}\right)
+\cos\left(\frac{m\pi \eta}{H}\right)
+\,d\eta\,d\xi,
+\qquad m\geq1.
+}
+\]</span></p>
+<p>Here <span class="math inline">\(\xi\)</span> and <span class="math inline">\(\eta\)</span> have been used as dummy integration variables to distinguish them from the observation point <span class="math inline">\((x,y)\)</span>.</p>
+<hr>
+</section>
+<section id="compact-form-of-the-solution" class="level1">
+<h1>11. Compact form of the solution</h1>
+<p>It is convenient to define</p>
+<p><span class="math display">\[
+\gamma_m=
+\begin{cases}
+1, &amp;m=0,\\
+2, &amp;m\geq1.
+\end{cases}
+\]</span></p>
+<p>Then the Fourier coefficients can be written in a single expression:</p>
+<p><span class="math display">\[
+\boxed{
+A_{nm}
+=
+\frac{2\gamma_m}{LH}
+\int_0^L
+\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi \xi}{L}\right)
+\cos\left(\frac{m\pi \eta}{H}\right)
+\,d\eta\,d\xi.
+}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+C(x,y,t)
+={}&amp;
+\sum_{n=1}^{\infty}
+\sum_{m=0}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\\
+&amp;\times
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+\end{aligned}
+}
+\]</span></p>
+<p>This is the required <strong>separation-of-variables and Fourier-series solution</strong>.</p>
+<hr>
+</section>
+<section id="verification-of-the-boundary-conditions" class="level1">
+<h1>12. Verification of the boundary conditions</h1>
+<section id="boundary-at-x0" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-at-x0">Boundary at <span class="math inline">\(x=0\)</span></h3>
+<p>Since</p>
+<p><span class="math display">\[
+\sin\left(\frac{n\pi(0)}{L}\right)=0,
+\]</span></p>
+<p>we immediately obtain</p>
+<p><span class="math display">\[
+C(0,y,t)=0.
+\]</span></p>
+</section>
+<section id="boundary-at-xl" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-at-xl">Boundary at <span class="math inline">\(x=L\)</span></h3>
+<p>Since</p>
+<p><span class="math display">\[
+\sin\left(\frac{n\pi L}{L}\right)
+=
+\sin(n\pi)=0,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+C(L,y,t)=0.
+\]</span></p>
+<p>Therefore, both Dirichlet boundary conditions are satisfied.</p>
+<hr>
+</section>
+<section id="boundary-at-y0" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-at-y0">Boundary at <span class="math inline">\(y=0\)</span></h3>
+<p>Differentiate the solution with respect to <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
+C_y
+=
+-\sum_{n=1}^{\infty}
+\sum_{m=1}^{\infty}
+A_{nm}
+\frac{m\pi}{H}
+\sin\left(\frac{n\pi x}{L}\right)
+\sin\left(\frac{m\pi y}{H}\right)
+e^{-\lambda_{nm}t},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\lambda_{nm}
+=
+D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right).
+\]</span></p>
+<p>At <span class="math inline">\(y=0\)</span>,</p>
+<p><span class="math display">\[
+\sin\left(\frac{m\pi(0)}{H}\right)=0.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+C_y(x,0,t)=0.
+\]</span></p>
+<p>Similarly, at <span class="math inline">\(y=H\)</span>,</p>
+<p><span class="math display">\[
+\sin\left(\frac{m\pi H}{H}\right)
+=
+\sin(m\pi)=0,
+\]</span></p>
+<p>and consequently</p>
+<p><span class="math display">\[
+C_y(x,H,t)=0.
+\]</span></p>
+<p>Thus all four boundary conditions are satisfied.</p>
+<hr>
+</section>
+</section>
+<section id="physical-interpretation" class="level1">
+<h1>13. Physical interpretation</h1>
+<p>The solution consists of an infinite collection of diffusion modes:</p>
+<p><span class="math display">\[
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right).
+\]</span></p>
+<p>Each mode decays exponentially according to</p>
+<p><span class="math display">\[
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right].
+\]</span></p>
+<p>The decay rate is therefore</p>
+<p><span class="math display">\[
+\boxed{
+\lambda_{nm}
+=
+D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right).
+}
+\]</span></p>
+<p>Higher spatial frequencies have larger <span class="math inline">\(n\)</span> or <span class="math inline">\(m\)</span>, and therefore decay more rapidly.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+\lambda_{11}
+=
+D\pi^2
+\left(
+\frac{1}{L^2}
++
+\frac{1}{H^2}
+\right),
+\]</span></p>
+<p>while</p>
+<p><span class="math display">\[
+\lambda_{32}
+=
+D\pi^2
+\left(
+\frac{9}{L^2}
++
+\frac{4}{H^2}
+\right).
+\]</span></p>
+<p>Hence the <span class="math inline">\((3,2)\)</span> mode disappears much faster than the <span class="math inline">\((1,1)\)</span> mode.</p>
+<p>The special modes with <span class="math inline">\(m=0\)</span> decay according to</p>
+<p><span class="math display">\[
+\exp\left(
+-\frac{Dn^2\pi^2}{L^2}t
+\right).
+\]</span></p>
+<p>Since no concentration can escape through <span class="math inline">\(y=0\)</span> or <span class="math inline">\(y=H\)</span>, diffusion in the <span class="math inline">\(y\)</span>-direction does not remove the spatially uniform <span class="math inline">\(y\)</span> component. Concentration can, however, leave through the absorbing boundaries <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=L\)</span>, so every allowed mode eventually decays.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\lim_{t\rightarrow\infty}C(x,y,t)=0.
+}
+\]</span></p>
+<hr>
+</section>
+<section id="example-with-a-specific-initial-concentration" class="level1">
+<h1>14. Example with a specific initial concentration</h1>
+<p>Suppose, for example,</p>
+<p><span class="math display">\[
+f(x,y)=C_0
+\sin\left(\frac{\pi x}{L}\right)
+\left[
+1+a\cos\left(\frac{2\pi y}{H}\right)
+\right],
+\]</span></p>
+<p>where <span class="math inline">\(C_0\)</span> and <span class="math inline">\(a\)</span> are constants.</p>
+<p>The initial concentration contains only two eigenmodes:</p>
+<p><span class="math display">\[
+(n,m)=(1,0)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+(n,m)=(1,2).
+\]</span></p>
+<p>Thus no infinite calculation is necessary.</p>
+<p>For the first mode,</p>
+<p><span class="math display">\[
+A_{10}=C_0.
+\]</span></p>
+<p>For the second mode,</p>
+<p><span class="math display">\[
+A_{12}=aC_0.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+C(x,y,t)
+={}&amp;
+C_0
+\sin\left(\frac{\pi x}{L}\right)
+\exp\left(
+-\frac{D\pi^2}{L^2}t
+\right)
+\\
+&amp;+
+aC_0
+\sin\left(\frac{\pi x}{L}\right)
+\cos\left(\frac{2\pi y}{H}\right)
+\\
+&amp;\qquad\times
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{1}{L^2}
++
+\frac{4}{H^2}
+\right)t
+\right].
+\end{aligned}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+C(x,y,t)
+={}&amp;
+C_0
+\sin\left(\frac{\pi x}{L}\right)
+\bigg[
+e^{-D\pi^2t/L^2}
+\\
+&amp;\qquad+
+a\cos\left(\frac{2\pi y}{H}\right)
+e^{-D\pi^2(1/L^2+4/H^2)t}
+\bigg].
+\end{aligned}
+}
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+D\pi^2
+\left(
+\frac{1}{L^2}
++
+\frac{4}{H^2}
+\right)
+&gt;
+\frac{D\pi^2}{L^2},
+\]</span></p>
+<p>the <span class="math inline">\(y\)</span>-dependent part decays more rapidly. At sufficiently large time,</p>
+<p><span class="math display">\[
+C(x,y,t)
+\sim
+C_0
+\sin\left(\frac{\pi x}{L}\right)
+e^{-D\pi^2t/L^2}.
+\]</span></p>
+<p>Thus the concentration first becomes approximately uniform in the <span class="math inline">\(y\)</span>-direction and then continues to decay through diffusion toward the absorbing boundaries at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=L\)</span>.</p>
+<hr>
+<section id="final-result" class="level2">
+<h2 class="anchored" data-anchor-id="final-result">Final result</h2>
+<p>For the mixed boundary-value problem</p>
+<p><span class="math display">\[
+C(0,y,t)=C(L,y,t)=0,
+\]</span></p>
+<p><span class="math display">\[
+C_y(x,0,t)=C_y(x,H,t)=0,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+C(x,y,0)=f(x,y),
+\]</span></p>
+<p>the solution is</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+C(x,y,t)
+={}&amp;
+\sum_{n=1}^{\infty}
+\sum_{m=0}^{\infty}
+A_{nm}
+\sin\left(\frac{n\pi x}{L}\right)
+\cos\left(\frac{m\pi y}{H}\right)
+\\
+&amp;\times
+\exp
+\left[
+-D\pi^2
+\left(
+\frac{n^2}{L^2}
++
+\frac{m^2}{H^2}
+\right)t
+\right],
+\end{aligned}
+}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\boxed{
+A_{n0}
+=
+\frac{2}{LH}
+\int_0^L
+\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi\xi}{L}\right)
+\,d\eta\,d\xi
+}
+\]</span></p>
+<p>and, for <span class="math inline">\(m\geq1\)</span>,</p>
+<p><span class="math display">\[
+\boxed{
+A_{nm}
+=
+\frac{4}{LH}
+\int_0^L
+\int_0^H
+f(\xi,\eta)
+\sin\left(\frac{n\pi\xi}{L}\right)
+\cos\left(\frac{m\pi\eta}{H}\right)
+\,d\eta\,d\xi.
+}
+\]</span></p>
+<p>The essential feature of the mixed conditions is therefore that <strong>Dirichlet conditions generate sine eigenfunctions</strong>, whereas <strong>homogeneous Neumann conditions generate cosine eigenfunctions, including the zero mode <span class="math inline">\(m=0\)</span></strong>.</p>
+<section id="example---axisymmetric-2-d-diffusion-in-a-cylinder" class="level4">
+<h4 class="anchored" data-anchor-id="example---axisymmetric-2-d-diffusion-in-a-cylinder"><strong>Example - Axisymmetric 2-D diffusion in a cylinder</strong></h4>
+<p>Level sets of <span class="math inline">\(C\)</span> diffuse faster along directions of larger eigenvalues. In axisymmetric coordinates <span class="math inline">\((r,z)\)</span> with <span class="math inline">\(C=C(r,z,t)\)</span> (no <span class="math inline">\(\theta\)</span> dependence), <span class="math display">\[
+\nabla\!\cdot(\mathbf D\nabla C)=
+\frac{1}{r}\frac{\partial}{\partial r}
+\!\left(r\,D_{rr}\frac{\partial C}{\partial r}\right)
++\frac{\partial}{\partial z}\!\left(D_{zz}\frac{\partial C}{\partial z}\right),
+\]</span> and advection adds <span class="math inline">\(v_r C_r + v_z C_z\)</span> if <span class="math inline">\(\nabla\!\cdot\mathbf v=0\)</span>.</p>
+<p>Consider an axially symmetric problem with <span class="math inline">\(C=C(r,z,t)\)</span> independent of the azimuthal angle <span class="math inline">\(\theta\)</span> in cylindrical coordinates <span class="math inline">\((r,\theta,z)\)</span>, over <span class="math inline">\(0&lt;r&lt;a,\, 0&lt;z&lt;\ell\)</span>. The governing equation is <span class="math display">\[
+\frac{\partial C}{\partial t}
+= \nabla\!\cdot(D\,\nabla C)
+\]</span> with <span class="math display">\[
+\nabla^2 C
+= \frac{1}{r}\frac{\partial}{\partial r}\!\left(r\,\frac{\partial C}{\partial r}\right)
++ \frac{\partial^2 C}{\partial z^2}
+\quad (\text{axial symmetry}).
+\]</span> Specify data such as <span class="math inline">\(C(r,z,0=f(r,z)\)</span> and boundary conditions <span class="math display">\[
+C(0,z,t)=f_1(z,t),\quad C(r,0,t)=f_2(r,t),\quad \text{etc.}\]</span></p>
+<p>With constant isotropic diffusivity <span class="math inline">\(D&gt;0\)</span>, the diffusion equation reads <span class="math display">\[\begin{equation}
+\frac{\partial C}{\partial t}
+= D\,\nabla^2 C,\quad t&gt;0,
+\tag{7.8}
+\end{equation}\]</span> where <span class="math display">\[
+\nabla^2 C
+= \frac{1}{r}\frac{\partial}{\partial r}\!\left(r\,\frac{\partial C}{\partial r}\right)
++ \frac{\partial^2 C}{\partial z^2},
+\qquad (r,z)\in(0,a)\times(0,\ell).
+\]</span></p>
+<p>Initial condition and boundary conditions (BCs) must be specified. Below we work out a canonical case (homogeneous Dirichlet at <span class="math inline">\(r=a\)</span>, <span class="math inline">\(z=0\)</span> and <span class="math inline">\(z=\ell\)</span>) and list variants.</p>
+<p>Assume <span class="math display">\[\begin{align}
+C(a,z,t) &amp;= 0, &amp; 0&lt;z&lt;\ell,\ t&gt;0, \\
+C(r,0,t) &amp;= 0, &amp; 0&lt;r&lt;a,\ t&gt;0, \\
+C(r,\ell,t) &amp;= 0, &amp; 0&lt;r&lt;a,\ t&gt;0, \\
+C(r,z,0) &amp;= f(r,z), &amp; 0&lt;r&lt;a,\ 0&lt;z&lt;\ell.
+\end{align}\]</span></p>
+<p>We seek a separated solution <span class="math inline">\(C(r,z,t)=R(r)\,Z(z)\,T(t)\)</span>. Substituting into (7.8) and dividing by <span class="math inline">\(D\)</span> and <span class="math inline">\(RZT\)</span> yields <span class="math display">\[
+\frac{1}{D}\frac{T'}{T}
+= \frac{R''+\tfrac{1}{r}R'}{R} + \frac{Z''}{Z}
+= -\sigma,
+\]</span> for some separation constant <span class="math inline">\(\sigma&gt;0\)</span>. Further separating <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>, <span class="math display">\[
+Z'' + \mu^2 Z = 0, \qquad
+R'' + \frac{1}{r}R' + \nu^2 R = 0,
+\]</span></p>
+<p>with <span class="math inline">\(\sigma=\mu^2+\nu^2,\)</span> and the time factor <span class="math inline">\(T\)</span> satisfies <span class="math display">\[
+T'+D\sigma T=0.
+\]</span></p>
+<p><strong>Axial eigenproblem (<span class="math inline">\(z\)</span>-dependence)</strong></p>
+<p>Dirichlet at <span class="math inline">\(z=0,\ell\)</span> gives <span class="math display">\[
+Z_m(z) = \sin\!\left(\frac{m\pi z}{\ell}\right),
+\qquad \mu_m=\frac{m\pi}{\ell},\qquad m=1,2,\dots
+\]</span> with orthogonality <span class="math inline">\(\displaystyle \int_0^\ell Z_m(z)\,Z_p(z)\,dz = \frac{\ell}{2}\,\delta_{mp}.\)</span></p>
+<p><strong>Radial eigenproblem (<span class="math inline">\(r\)</span>-dependence)</strong></p>
+<p>Regularity at <span class="math inline">\(r=0\)</span> eliminates <span class="math inline">\(Y_0\)</span>; the bounded solutions are Bessel <span class="math inline">\(J_0\)</span>. The boundary <span class="math inline">\(R(a)=0\)</span> imposes <span class="math display">\[
+R_n(r) = J_0\!\left(\frac{\alpha_n r}{a}\right),
+\qquad \nu_n=\frac{\alpha_n}{a},
+\]</span> where <span class="math inline">\(\alpha_n\)</span> is the <span class="math inline">\(n\)</span>-th positive zero of <span class="math inline">\(J_0(\cdot)\)</span>: <span class="math inline">\(J_0(\alpha_n)=0\)</span>, <span class="math inline">\(n=1,2,\dots\)</span> Orthogonality: <span class="math display">\[
+\int_0^a r\, R_n(r)\,R_p(r)\,dr
+= \frac{a^2}{2}\,J_1(\alpha_n)^2\,\delta_{np}.
+\]</span></p>
+<p><strong>Time factor</strong> <span class="math display">\[
+T_n(t) = \exp(-D\sigma_n t),\qquad \sigma_n = \mu_m^2 + \nu_n^2.
+\]</span></p>
+<p>Expanding the initial data <span class="math inline">\(f\)</span> in the complete orthogonal set <span class="math inline">\(\{R_n(r)Z_m(z)\}\)</span> gives</p>
+<p><span class="math display">\[\begin{equation}
+C(r,z,t)
+= \sum_{n=1}^{\infty}\sum_{m=1}^{\infty}
+A_{nm}\,
+J_0\!\left(\frac{\alpha_n r}{a}\right)\,
+\sin\!\left(\frac{m\pi z}{\ell}\right)\,
+\exp\!\left(-D\left[\left(\frac{\alpha_n}{a}\right)^2+\left(\frac{m\pi}{\ell}\right)^2\right]t\right).
+\end{equation}\]</span></p>
+<p>The coefficients <span class="math inline">\(A_{nm}\)</span> are obtained by orthogonality: <span class="math display">\[\begin{equation}
+A_{nm}
+= \frac{4}{\ell\,a^2\,J_1(\alpha_n)^2}
+\int_0^\ell\!\int_0^a
+f(r,z)\,
+J_0\!\left(\frac{\alpha_n r}{a}\right)\,
+\sin\!\left(\frac{m\pi z}{\ell}\right)\,
+r\,dr\,dz.
+\end{equation}\]</span></p>
+</section>
+<section id="example---2d-filtration-problem" class="level4">
+<h4 class="anchored" data-anchor-id="example---2d-filtration-problem"><strong>Example - 2D Filtration Problem</strong></h4>
+<p>A 2-D filtration problem: a salt solution moves along a duct in the <span class="math inline">\(x\)</span>-direction, with half-height <span class="math inline">\(h\)</span> (we model <span class="math inline">\(0\le y\le h\)</span>), driven by pressure. Water is extracted through semi-permeable membranes at <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=2h\)</span> (symmetry allows reduction to <span class="math inline">\(0\le y\le h\)</span>). The horizontal velocity profile is approximated as fully developed and linear in <span class="math inline">\(y\)</span>: <span class="math display">\[
+v_1(y)=u_0\,\frac{y}{h},\quad 0\le y \le h,
+\qquad
+v_2(y)=-\,q\quad(\text{constant permeation}).
+\]</span> The steady convection–diffusion model (neglecting axial diffusion to leading order) becomes <span class="math display">\[\begin{equation}
+u_0\,\frac{y}{h}\,\frac{\partial C}{\partial x}
+- q\,\frac{\partial C}{\partial y}
+= D\,\frac{\partial^2 C}{\partial y^2},
+\qquad x&gt;0,\quad 0&lt;y&lt;h,
+\tag{7.9}
+\end{equation}\]</span> subject to <span class="math display">\[\begin{align}
+C(0,y) &amp;= c_0, &amp;&amp; 0\le y\le h, \\
+-\,D\,\frac{\partial C}{\partial y}(x,0) - q\,C(x,0) &amp;= 0, &amp;&amp; x&gt;0 \quad \text{(no salt crosses the membrane)},\\
+\frac{\partial C}{\partial y}(x,h)&amp;=0, &amp;&amp; x&gt;0 \quad \text{(symmetry at the centerline)}.
+\end{align}\]</span></p>
+<p>Collecting these gives the half-duct boundary value problem <span class="math display">\[
+u_0\,\frac{y}{h}\,C_x - q\,C_y = D\,C_{yy},
+\]</span> subject to <span class="math display">\[
+C(0,y)=c_0,
+\quad
+D\,C_y(x,0) = -q\,C(x,0),
+\quad
+C_y(x,h)=0.
+\]</span></p>
+<p><strong>Non-dimensionalization</strong></p>
+<p>Define the dimensionless variables <span class="math display">\[
+X=\frac{x}{h},\qquad
+Y=\frac{y}{h},\qquad
+Q=\frac{q}{u_0},\quad \alpha=\dfrac{D}{u_0 h}
+\]</span> and <span class="math display">\[
+\zeta(X,Y)=\frac{C(x,y)-c_0}{c_0}.
+\]</span></p>
+<p>Then (7.9) transforms, after division by <span class="math inline">\(u_0\)</span>, to a dimensionless system. Under the assumption that advection in <span class="math inline">\(x\)</span> dominates advection in <span class="math inline">\(y\)</span>, the simplified leading-order model is <span class="math display">\[\begin{equation}
+\zeta_X \;=\; \alpha\,\zeta_{YY},
+\quad X&gt;0,\ 0&lt;Y&lt;1;
+\tag{7.10}
+\end{equation}\]</span> subject to</p>
+<p><span class="math display">\[
+\zeta(0,Y)=0,\quad
+\zeta_Y(X,0)=-Q\,\zeta(X,0),\quad
+\zeta_Y(X,1)=0.
+\]</span></p>
+<p><strong>A General Transformation</strong></p>
+<p>Consider the stretching transformations <span class="math display">\[\begin{equation}
+X^*=e^{a}X,\qquad Y^*=e^{b}Y,\qquad \psi=e^{c}\zeta,
+\tag{7.11}
+\end{equation}\]</span> and choose <span class="math inline">\(a,b,c\)</span> so that the PDE and BCs are invariant. One finds <span class="math inline">\(a=3b\)</span> and <span class="math inline">\(c=b\)</span>, leading to the invariant variable <span class="math display">\[\begin{equation}
+\eta \;=\; \frac{Y}{X^{1/3}},
+\end{equation}\]</span> and the similarity form <span class="math display">\[\begin{equation}
+\zeta(X,Y)=X^{1/3}\,f(\eta).
+\tag{7.12}
+\end{equation}\]</span> (7.12) into (7.10) gives the ODE <span class="math display">\[\begin{equation}
+\alpha\,f''(\eta)\;-\;\frac{\eta}{3}\,f'(\eta)\;-\;f(\eta)=0,
+\tag{7.13}
+\end{equation}\]</span> <span class="math display">\[\begin{equation}
+f(\infty)=0,
+\qquad
+f'(0) = -\,\frac{Q}{\alpha}.
+\tag{7.14}
+\end{equation}\]</span></p>
+<p>A solution satisfying <span class="math inline">\(f(\infty)=0\)</span> admits the integral representation <span class="math display">\[\begin{equation}
+f(\eta)
+= \gamma\,\eta\int_{\eta}^{\infty} \frac{1}{v^2}\,
+\exp\!\left(-\frac{\alpha v^{3}}{9}\right)\,dv,
+\tag{7.15}
+\end{equation}\]</span> which, after integration by parts, can be written as <span class="math display">\[\begin{equation}
+f(\eta)
+= -\,\frac{3\gamma}{\alpha}\,\eta\int_{\eta}^{\infty}
+v\,\exp\!\left(-\frac{\alpha v^{3}}{9}\right)\,dv.
+\tag{7.16}
+\end{equation}\]</span> Imposing (f’(0)=-Q/) determines (=), where <span class="math display">\[\begin{equation}
+I_0 \;=\; \int_{0}^{\infty} v\,\exp\!\left(-\frac{\alpha v^{3}}{9}\right)\,dv
+\;=\;
+\frac{1}{3}\,\Gamma\!\left(\frac{2}{3}\right)
+\left(\frac{9}{\alpha}\right)^{2/3}.
+\tag{7.19}
+\end{equation}\]</span> Hence <span class="math display">\[
+\zeta(X,0) \;=\; \frac{3Q}{I_0}\,X^{1/3},
+\]</span></p>
+<p><span class="math display">\[
+\Rightarrow\qquad
+\frac{C(x,0)}{c_0} \;=\; 1 + \frac{3Q}{I_0}\,\left(\frac{x}{h}\right)^{1/3}.
+\]</span></p>
+<p>Numerically, with representative parameters one finds <span class="math display">\[
+\frac{C(x,0)}{c_0} \approx 1 + 0.009\,x^{1/3} \quad \text{(SI units for } x\text{)}.
+\]</span></p>
+</section>
+<section id="example---2d-unsteady-convected-gaussian-plume" class="level4">
+<h4 class="anchored" data-anchor-id="example---2d-unsteady-convected-gaussian-plume"><strong>Example - 2D Unsteady Convected Gaussian plume</strong></h4>
+<p>Let <span class="math inline">\(C(x,y,t)\)</span> be the concentration of a passive (conservative) tracer released into an unbounded, quiescent medium with constant, uniform wind <span class="math inline">\(\mathbf v=(U,0)\)</span> and isotropic molecular (or eddy) diffusivity <span class="math inline">\(D&gt;0\)</span>. The governing PDE and data are <span class="math display">\[\begin{align}
+\frac{\partial C}{\partial t} + U\,\frac{\partial C}{\partial x}
+&amp;= D\,\left(\frac{\partial^2 C}{\partial x^2}+\frac{\partial^2 C}{\partial y^2}\right),
+&amp;&amp; (x,y)\in\mathbb R^2,\ t&gt;0, \\
+C(x,y,0) &amp;= M\,\delta(x-x_0)\,\delta(y-y_0),
+&amp; \\
+\lim_{\sqrt{x^2+y^2}\to\infty} &amp;C(x,y,t)= 0,
+&amp;&amp; t&gt;0, \tag{7.8}
+\end{align}\]</span> where <span class="math inline">\(M\)</span> is the total mass of the tracer released at <span class="math inline">\((x_0,y_0)\)</span> at <span class="math inline">\(t=0\)</span>, and <span class="math inline">\(\delta(\cdot)\)</span> is the Dirac delta function. The far-field condition ensures that the plume vanishes at infinity.</p>
+<p><strong>Note.</strong> Units: <span class="math inline">\([C]=\mathrm{mass}/\mathrm{area}\)</span>, <span class="math inline">\([M]=\mathrm{mass}\)</span>, <span class="math inline">\([U]=\mathrm{length}/\mathrm{time}\)</span>, <span class="math inline">\([D]=\mathrm{length}^2/\mathrm{time}\)</span>.</p>
+<p><strong>Solution by Galilean transformation (co-moving frame)</strong></p>
+<p>Introduce the translating coordinate <span class="math display">\[
+\xi = x - U t,\qquad \eta = y,
+\]</span> <span class="math display">\[
+W(\xi,\eta,t) := C(x,y,t)=C(\xi+Ut,\eta,t).
+\]</span> By the chain rule, <span class="math display">\[
+\frac{\partial W}{\partial t}
+= \frac{\partial C}{\partial t} + U\,\frac{\partial C}{\partial x},\qquad
+\frac{\partial^2 W}{\partial \xi^2}=\frac{\partial^2 C}{\partial x^2},\quad
+\frac{\partial^2 W}{\partial \eta^2}=\frac{\partial^2 C}{\partial y^2}.
+\]</span> Hence, the problembecomes the 2-D heat equation <span class="math display">\[
+W_t = D\,(W_{\xi\xi}+W_{\eta\eta}),\qquad (\xi,\eta)\in\mathbb R^2,\ t&gt;0,
+\]</span> with initial condition (from (7.8)<span class="math inline">\(_2\)</span>) <span class="math display">\[
+W(\xi,\eta,0)=C(\xi,\eta,0)=M\,\delta(\xi-x_0)\,\delta(\eta-y_0).
+\]</span> The fundamental (Green’s) solution of the 2-D heat equation is the Gaussian kernel <span class="math display">\[
+G(\xi,\eta,t)=\frac{1}{4\pi D t}\,
+\exp\!\left(-\frac{\xi^2+\eta^2}{4Dt}\right),\qquad t&gt;0.
+\]</span> Convolving the initial delta with <span class="math inline">\(G\)</span> gives</p>
+<p><span class="math display">\[\begin{align}
+W(\xi,\eta,t)&amp;=M\,G(\xi-x_0,\eta-y_0,t)\\
+&amp;=\frac{M}{4\pi D t}\,
+\exp\!\left(-\frac{(\xi-x_0)^2+(\eta-y_0)^2}{4Dt}\right).
+\end{align}\]</span></p>
+<p>Transforming back to <span class="math inline">\((x,y)\)</span> (recall <span class="math inline">\(\xi=x-Ut\)</span>) yields the convected plume, <span class="math inline">\(t&gt;0\)</span>: <span class="math display">\[\begin{equation}
+C(x,y,t)
+=\frac{M}{4\pi D t}\,
+\exp\!\left(-\frac{(x-x_0-Ut)^2+(y-y_0)^2}{4Dt}\right).\tag{7.9}
+\end{equation}\]</span></p>
+<p><strong>Verification and properties</strong></p>
+<ul>
+<li><p><strong>Mass conservation.</strong> Integrating (7.9) over <span class="math inline">\(\mathbb R^2\)</span>, <span class="math display">\[\begin{align}
+&amp;\int_{\mathbb R^2} C(x,y,t)\,dx\,dy \\
+&amp;= \frac{M}{4\pi D t}\,\Big( \int_{\mathbb R} e^{-(x-x_0-Ut)^2/(4Dt)}\,dx \Big)
+\Big( \int_{\mathbb R} e^{-(y-y_0)^2/(4Dt)}\,dy \Big) = M.
+\end{align}\]</span></p></li>
+<li><p><strong>Initial condition (distributional limit).</strong></p></li>
+</ul>
+<p><span class="math display">\[
+C(\cdot,\cdot,t)\rightharpoonup M\,\delta(x-x_0)\delta(y-y_0)\quad \text{as}\quad t\downarrow 0.
+\]</span></p>
+<ul>
+<li><strong>Mean position and spread.</strong> The plume center moves with the wind, <span class="math inline">\(\langle x\rangle=x_0+Ut\)</span>, <span class="math inline">\(\langle y\rangle=y_0\)</span>. The standard deviations grow as <span class="math inline">\(\sigma_x=\sigma_y=\sqrt{2Dt}\)</span>, so the plume spreads isotropically in the crosswind direction while being advected downstream.</li>
+</ul>
+<p><strong>Extensions</strong></p>
+<ul>
+<li><p><strong>General uniform advection.</strong> For <span class="math inline">\(\mathbf v=(U,V)\)</span>, replace <span class="math inline">\(x_0\)</span> by <span class="math inline">\(x_0+Ut\)</span> and <span class="math inline">\(y_0\)</span> by <span class="math inline">\(y_0+Vt\)</span> in (7.9).</p></li>
+<li><p><strong>Anisotropic diffusion.</strong> If the diffusion tensor is a constant SPD matrix <span class="math inline">\(K\in\mathbb R^{2\times2}\)</span>, the kernel becomes <span class="math display">\[
+C(x,y,t)=\frac{M}{4\pi t\sqrt{\det K}}\,
+\exp\!\Big(-\tfrac{1}{4t}\,(\mathbf r - \mathbf v t)^\top K^{-1}(\mathbf r - \mathbf v t)\Big),
+\quad \mathbf r=(x-x_0,\ y-y_0)^\top,
+\]</span> with ellipsoidal contours aligned with the eigenvectors of <span class="math inline">\(K\)</span>.</p></li>
+<li><p><strong>Continuous point source (rate <span class="math inline">\(Q\)</span>).</strong> Superpose impulses: <span class="math display">\[
+C(x,y,t)=\displaystyle\int_0^t \frac{Q}{4\pi D (t-\tau)}
+\exp\!\big(-\tfrac{(x-x_0-U(t-\tau))^2+(y-y_0)^2}{4D(t-\tau)}\big)\,d\tau.
+\]</span> In an unbounded 2-D domain, impulsive point release <span class="math inline">\(M\)</span> at <span class="math inline">\((x_0,y_0)\)</span>, uniform wind <span class="math inline">\(\mathbf v=(U,0)\)</span>, isotropic <span class="math inline">\(D\)</span>: <span class="math display">\[
+C(x,y,t)
+=\frac{M}{4\pi D t}\,
+\exp\!\left(-\frac{(x-x_0-Ut)^2+(y-y_0)^2}{4Dt}\right).
+\]</span> Contours are circles that translate at speed <span class="math inline">\(U\)</span> while diffusing.</p></li>
+<li><p>Generalizations to include wind shear, variable diffusivity, and reaction terms can be handled using similar techniques, often leading to more complex Gaussian-like solutions.</p></li>
+<li><p>Extensions to three-dimensional flows can be treated similarly, with the Green’s function becoming a 3-D Gaussian kernel.</p></li>
+<li><p>Coupling with boundary conditions, such as impermeable walls or open boundaries, can be incorporated using image methods or numerical techniques.</p></li>
+</ul>
+<section id="wall-mass-transfer-in-a-channel" class="level5">
+<h5 class="anchored" data-anchor-id="wall-mass-transfer-in-a-channel"><strong>Wall Mass Transfer in a Channel</strong></h5>
+<p>In a channel flow with large <span class="math inline">\(\mathrm{Pe}\)</span>, a thin concentration boundary layer <span class="math inline">\(\,\delta\ll h\,\)</span> forms. A classical similarity analysis (Lévêque) gives the local wall flux <span class="math display">\[
+J_w(x)\sim D\,\partial_y c|_{y=0}\propto x^{-1/3}
+\]</span> and the Sherwood number <span class="math display">\[
+\mathrm{Sh}(x)=\dfrac{J_w\,h}{D(c_b-c_w)}\propto \mathrm{Re}^{1/3}\mathrm{Sc}^{1/3}(x/h)^{-1/3},
+\]</span> linking momentum (<span class="math inline">\(\mathrm{Re}\)</span>) and mass transfer (<span class="math inline">\(\mathrm{Sc}=\nu/D\)</span>).</p>
+<p>Convection–diffusion problems are governed by a balance between transport by the flow and molecular (or turbulent) smoothing by diffusion. The Péclet number <span class="math inline">\(\mathrm{Pe}=UL/D\)</span> organizes regimes, analytic approximations, and numerical choices.</p>
+<p><strong>Physical setting and assumptions.</strong></p>
+<p>Consider steady laminar flow in a straight channel with half-gap <span class="math inline">\(h\)</span> (wall at <span class="math inline">\(y=0\)</span>, core toward <span class="math inline">\(y\to\infty\)</span> in a boundary–layer approximation). A dilute, conservative solute has bulk concentration <span class="math inline">\(c_b\)</span> in the core and an absorbing wall concentration <span class="math inline">\(c_w\)</span> at <span class="math inline">\(y=0\)</span> (with <span class="math inline">\(c_b&gt;c_w\)</span>). Let <span class="math inline">\(u(y)\)</span> be the streamwise velocity. In the entrance region, the concentration boundary layer thickness <span class="math inline">\(\delta(x)\ll h\)</span> and the longitudinal diffusion <span class="math inline">\(\partial^2 c/\partial x^2\)</span> are negligible. Near the wall the velocity is approximately linear: <span class="math display">\[
+u(y)\;\approx\; S\,y, \qquad S:=\left.\frac{du}{dy}\right|_{y=0} \quad\text{(wall shear rate)}.
+\]</span> For fully developed plane Poiseuille flow of mean speed <span class="math inline">\(U\)</span> in a channel of half-gap <span class="math inline">\(h\)</span>, <span class="math inline">\(S=3U/h\)</span>.</p>
+<p><strong>Boundary-layer model (Lévêque approximation).</strong></p>
+<p>With isotropic molecular diffusivity <span class="math inline">\(D&gt;0\)</span>, the steady advection–diffusion equation becomes <span class="math display">\[\begin{equation}
+S\,y\,\frac{\partial c}{\partial x}
+\;=\;
+D\,\frac{\partial^2 c}{\partial y^2},
+\qquad x&gt;0,\quad y&gt;0,
+\tag{7.10}
+\end{equation}\]</span> with boundary/initial data <span class="math display">\[\begin{equation}
+c(x,0)=c_w,\,\,
+c(x,y)\to c_b\, (y\to\infty),\,\,
+c(0,y)=c_b.
+\tag{7.11}
+\end{equation}\]</span></p>
+<p>Introduce the dimensionless concentration <span class="math inline">\(\theta(x,y):=\dfrac{c(x,y)-c_w}{c_b-c_w}\)</span> so that <span class="math inline">\(\theta(x,0)=0,\ \ \theta(x,\infty)=1,\ \ \theta(0,y)=1.\)</span></p>
+<p><strong>Similarity analysis</strong></p>
+<p>Seek a self-similar form <span class="math inline">\(\theta(x,y)=\Theta(\eta)\)</span> with the similarity variable <span class="math display">\[
+\eta \;=\; \frac{y}{\delta(x)}, \qquad
+\delta(x) \;=\; \Big(\frac{3D\,x}{S}\Big)^{1/3}.
+\]</span> A straightforward calculation gives <span class="math display">\[
+\theta_x= -\,\Theta'(\eta)\,\eta\,\frac{\delta'(x)}{\delta(x)},\qquad
+\theta_{yy}=\frac{\Theta''(\eta)}{\delta(x)^2},
+\qquad
+\frac{\delta'(x)}{\delta(x)}=\frac{1}{3x}.
+\]</span></p>
+<p>Substituting into <span class="math inline">\(\eqref{7.10}\)</span> yields the ordinary differential equation <span class="math display">\[\begin{equation}
+\Theta''(\eta) + \eta^2\,\Theta'(\eta) \;=\; 0,
+\quad
+\Theta(0)=0,\quad \Theta(\infty)=1.
+\tag{7.12}
+\end{equation}\]</span></p>
+<p>Let <span class="math inline">\(\Phi(\eta):=\Theta'(\eta)\)</span>. Then <span class="math inline">\(\Phi'+\eta^2\Phi=0\)</span>, so <span class="math display">\[
+\Phi(\eta)=C\,e^{-\eta^3/3},\qquad
+\Theta(\eta)=1-C\int_{\eta}^{\infty} e^{-s^3/3}\,ds.
+\]</span> Imposing <span class="math inline">\(\Theta(0)=0\)</span> fixes <span class="math display">\[
+C^{-1}=\int_0^\infty e^{-s^3/3}\,ds
+= \frac{1}{3}\,\Gamma\!\Big(\frac{1}{3}\Big)\,\Big(\frac{3}{1}\Big)^{1/3}
+=\frac{\Gamma(1/3)}{3^{2/3}},
+\]</span> <span class="math display">\[
+\Rightarrow\quad
+C=\frac{3^{2/3}}{\Gamma(1/3)}.
+\]</span></p>
+<p>Therefore <span class="math display">\[
+\Theta'(\eta)=\frac{3^{2/3}}{\Gamma(1/3)}\,e^{-\eta^3/3},
+\qquad
+\Theta(0)=0,\ \ \Theta(\infty)=1.
+\]</span></p>
+</section>
+<section id="local-wall-flux-mass-transfer-coefficient-sherwood-number" class="level5">
+<h5 class="anchored" data-anchor-id="local-wall-flux-mass-transfer-coefficient-sherwood-number"><strong>Local wall flux, mass-transfer coefficient, Sherwood number</strong></h5>
+The local diffusive wall flux is
+<span class="math display">\[\begin{aligned}
+J_w(x)\;=\; -\,D\,\bigg.\frac{\partial c}{\partial y}\bigg|_{y=0}
+&amp;=\; -\,D\,(c_b-c_w)\,\frac{\Theta'(0)}{\delta(x)}\\
+&amp;=\; (c_b-c_w)\,\frac{D\,C}{\delta(x)},
+\end{aligned}\]</span>
+<p>with <span class="math inline">\(C=\Theta'(0)=3^{2/3}/\Gamma(1/3)\)</span> and <span class="math inline">\(\delta(x)=(3Dx/S)^{1/3}\)</span>. Hence <span class="math display">\[\begin{equation}
+J_w(x)
+= \underbrace{\frac{3^{1/3}}{\Gamma(1/3)}}_{\displaystyle \approx\,0.538}\;
+(c_b-c_w)\;D^{2/3}\,S^{1/3}\,x^{-1/3}.
+|\tag{7.13}
+\end{equation}\]</span></p>
+<p>Define the local mass-transfer coefficient <span class="math inline">\(k_c(x):=J_w(x)/(c_b-c_w)\)</span>: <span class="math display">\[\begin{equation}
+k_c(x)
+= \frac{3^{1/3}}{\Gamma(1/3)}\;D^{2/3}\,S^{1/3}\,x^{-1/3}.
+\tag{7.14}
+\end{equation}\]</span></p>
+<p>Two common Sherwood-number normalizations are:</p>
+<p><strong>(i) Based on the gap <span class="math inline">\(h\)</span>.</strong> <span class="math display">\[
+\mathrm{Sh}_h(x):=\frac{k_c(x)\,h}{D}
+= \underbrace{\frac{3^{2/3}}{\Gamma(1/3)}}_{\displaystyle \approx\,0.776}\;
+\Big(\frac{S\,h^3}{D}\Big)^{1/3}\Big(\frac{h}{x}\Big)^{1/3}.
+\]</span></p>
+<p>For plane Poiseuille flow with <span class="math inline">\(S=3U/h\)</span>, <span class="math display">\[
+\mathrm{Sh}_h(x)
+\simeq 0.776\;\mathrm{Re}^{1/3}\,\mathrm{Sc}^{1/3}\,
+\Big(\frac{h}{x}\Big)^{1/3},
+\quad
+\mathrm{Re}=\frac{U h}{\nu},\ \ \mathrm{Sc}=\frac{\nu}{D}.
+\]</span></p>
+<p><strong>(ii) Based on the streamwise distance <span class="math inline">\(x\)</span>.</strong> <span class="math display">\[
+\mathrm{Sh}_x(x):=\frac{k_c(x)\,x}{D}
+= \frac{3^{1/3}}{\Gamma(1/3)}\;\Big(\frac{S\,x^2}{D}\Big)^{1/3}.
+\]</span></p>
+</section>
+<section id="length-averaged-coefficient-over-0l" class="level5">
+<h5 class="anchored" data-anchor-id="length-averaged-coefficient-over-0l"><strong>Length-averaged coefficient over <span class="math inline">\([0,L]\)</span></strong></h5>
+<p>The average mass-transfer coefficient <span class="math inline">\(\bar k_c(L)=\dfrac{1}{L}\int_0^L k_c(x)\,dx\)</span> is <span class="math display">\[
+\bar k_c(L)=\frac{3}{2}\,\frac{3^{1/3}}{\Gamma(1/3)}\;D^{2/3}S^{1/3}L^{-1/3},
+\]</span> so the length-averaged Sherwood number based on <span class="math inline">\(h\)</span> is <span class="math display">\[
+\overline{\mathrm{Sh}}_h(L)
+=\frac{\bar k_c(L)\,h}{D}
+= \underbrace{\frac{3}{2}\,\frac{3^{2/3}}{\Gamma(1/3)}}_{\displaystyle \approx\,1.164}\;
+\mathrm{Re}^{1/3}\,\mathrm{Sc}^{1/3}\,\Big(\frac{h}{L}\Big)^{1/3}.
+\]</span></p>
+</section>
+<section id="validity-and-remarks" class="level5">
+<h5 class="anchored" data-anchor-id="validity-and-remarks"><strong>Validity and remarks</strong></h5>
+<ul>
+<li><strong>Lévêque region:</strong> <span class="math inline">\(\delta(x)\ll h\)</span> so that <span class="math inline">\(u(y)\approx S y\)</span> and the core concentration remains <span class="math inline">\(c_b\)</span>. This requires <span class="math inline">\(x\ll x_\ast\)</span>, with <span class="math display">\[
+\delta/h \sim (3Dx/(S h^3))^{1/3}\ll 1
+\ \Rightarrow\
+x \ll \dfrac{S h^3}{3D}
+\sim \dfrac{U h^2}{D}.
+\]</span></li>
+<li><strong>High axial Péclet:</strong> <span class="math inline">\(Pe_x=Ux/D\gg 1\)</span> to neglect streamwise diffusion.</li>
+<li>The numerical coefficients above arise from the exact integral <span class="math display">\[
+\int_{0}^{\infty} e^{-s^3/3}\,ds = \Gamma(1/3)/3^{2/3}.
+\]</span></li>
+<li>For other geometries (e.g.&nbsp;circular tube) or different velocity profiles, only the prefactors change; the <span class="math inline">\(x^{-1/3}\)</span> and <span class="math inline">\(Re^{1/3}Sc^{1/3}\)</span> scalings persist.</li>
+</ul>
+</section>
+<section id="concluding-summary" class="level5">
+<h5 class="anchored" data-anchor-id="concluding-summary"><strong>Concluding Summary</strong></h5>
+<p>In the Lévêque entrance region of laminar channel flow, the wall flux decays as <span class="math inline">\(x^{-1/3}\)</span> and the (gap-based) Sherwood number scales as <span class="math inline">\(\mathrm{Sh}_h(x)\propto \mathrm{Re}^{1/3}\mathrm{Sc}^{1/3}(x/h)^{-1/3}\)</span>, with explicit constants given in (7.13)–(7.14).</p>
+</section>
+</section>
+<section id="references-and-further-reading" class="level4">
+<h4 class="anchored" data-anchor-id="references-and-further-reading"><strong>References and further reading</strong></h4>
+<ul>
+<li>Carslaw, H. S., &amp; Jaeger, J. C. (1959). <em>Conduction of Heat in Solids</em> (2nd ed.). Oxford: Clarendon Press.</li>
+<li>Crank, J. (1975). <em>The Mathematics of Diffusion</em> (2nd ed.). Oxford: Clarendon Press.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06_heatTransfer.html" class="pagination-link" aria-label="Chapter 6 Heat Transfer Modelling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 6 Heat Transfer Modelling</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./08_trafficflow.html" class="pagination-link" aria-label="Chapter 8 Traffic Modelling">
+        <span class="nav-page-text">Chapter 8 Traffic Modelling</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Applied Mathematical Modelling<br> © Copyright 2026, B. Wiwatanapataphee &amp; Y.H. Wu</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with ❤️ and <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

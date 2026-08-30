@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Chapter 8 Traffic Modelling – Applied Mathematical Modelling</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07_convectionDiffusion.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b4639d2bc0c44faaa91d40aa7fdb6ccb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08_trafficflow.html">Chapter 8 Traffic Modelling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Applied Mathematical Modelling</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Introduction to Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_python_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Installation Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Revision Workshop</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 1 Introduction to Mathematical Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_basicVector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 Basic Vector Arithmetic and Newton’s Laws</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_indexNotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Index Notation and Cartesian Tensors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_fundamentalEquations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Fundamental Equations of Continuum Mechanics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_incompressibleFluid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 5 Mechanics of Incompressible Newtonian Fluids</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_heatTransfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 6 Heat Transfer Modelling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_convectionDiffusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 7 Convection-Diffusion Process and Applications</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_trafficflow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 8 Traffic Modelling</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">8.1 Introduction</a></li>
+  <li><a href="#steady-flow" id="toc-steady-flow" class="nav-link" data-scroll-target="#steady-flow">8.2 Steady Flow</a>
+  <ul>
+  <li><a href="#flux-speed-and-density-relationship" id="toc-flux-speed-and-density-relationship" class="nav-link" data-scroll-target="#flux-speed-and-density-relationship">Flux, Speed and Density Relationship</a></li>
+  </ul></li>
+  <li><a href="#unsteady-traffic-flows" id="toc-unsteady-traffic-flows" class="nav-link" data-scroll-target="#unsteady-traffic-flows">8.3 Unsteady traffic flows</a>
+  <ul>
+  <li><a href="#conservation-principles-for-cars" id="toc-conservation-principles-for-cars" class="nav-link" data-scroll-target="#conservation-principles-for-cars">8.3.1. Conservation principles for cars</a></li>
+  <li><a href="#construction-of-a-solution-by-the-method-of-characteristics" id="toc-construction-of-a-solution-by-the-method-of-characteristics" class="nav-link" data-scroll-target="#construction-of-a-solution-by-the-method-of-characteristics">8.3.2. Construction of a solution by the method of characteristics</a></li>
+  <li><a href="#example-8.1-starting-from-traffic-lights." id="toc-example-8.1-starting-from-traffic-lights." class="nav-link" data-scroll-target="#example-8.1-starting-from-traffic-lights.">Example 8.1 Starting from traffic lights.</a></li>
+  <li><a href="#example-8.2-starting-from-a-traffic-jam." id="toc-example-8.2-starting-from-a-traffic-jam." class="nav-link" data-scroll-target="#example-8.2-starting-from-a-traffic-jam.">Example 8.2 Starting from a traffic jam.</a></li>
+  <li><a href="#traffic-jam-and-shock-propagation" id="toc-traffic-jam-and-shock-propagation" class="nav-link" data-scroll-target="#traffic-jam-and-shock-propagation">8.4 Traffic Jam and Shock Propagation</a></li>
+  </ul></li>
+  <li><a href="#traffic-jam" id="toc-traffic-jam" class="nav-link" data-scroll-target="#traffic-jam">8.4.1 Traffic Jam</a></li>
+  <li><a href="#shock-propagation" id="toc-shock-propagation" class="nav-link" data-scroll-target="#shock-propagation">8.4.2 Shock Propagation</a>
+  <ul>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">Physical interpretation</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#connection-with-the-traffic-flow-equation" id="toc-connection-with-the-traffic-flow-equation" class="nav-link" data-scroll-target="#connection-with-the-traffic-flow-equation">Connection with the traffic-flow equation</a></li>
+  <li><a href="#the-situation-at-a-traffic-light" id="toc-the-situation-at-a-traffic-light" class="nav-link" data-scroll-target="#the-situation-at-a-traffic-light">8.4.3 The situation at a traffic light</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#question-8.1" id="toc-question-8.1" class="nav-link" data-scroll-target="#question-8.1">Question 8.1</a></li>
+  <li><a href="#question-8.2" id="toc-question-8.2" class="nav-link" data-scroll-target="#question-8.2">Question 8.2</a></li>
+  <li><a href="#question-8.3" id="toc-question-8.3" class="nav-link" data-scroll-target="#question-8.3">Question 8.3</a></li>
+  <li><a href="#question-8.4" id="toc-question-8.4" class="nav-link" data-scroll-target="#question-8.4">Question 8.4</a></li>
+  <li><a href="#additional-questions" id="toc-additional-questions" class="nav-link" data-scroll-target="#additional-questions">Additional Questions</a></li>
+  <li><a href="#question-8.5" id="toc-question-8.5" class="nav-link" data-scroll-target="#question-8.5">Question 8.5</a></li>
+  <li><a href="#question-8.6" id="toc-question-8.6" class="nav-link" data-scroll-target="#question-8.6">Question 8.6</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 8 Traffic Modelling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">8.1 Introduction</h2>
+<p>Smooth and efficient traffic flow is important in our daily lives. Engineers/City Planners are faced with the task of designing, controlling and managing the road system to achieve such a purpose. Mathematical models can provide the understanding necessary for these purposes.</p>
+<p>Various modelling methods have been used for the study of traffic flow, including micro-models, macro-models, and complex network models. In micro-models, each car is modelled as a particle and Newton’s laws and other methods are used to study the motion of the particles (cars) and the particle-particle interactions. In macro-models, traffic flow is modelled as an incompressible fluid flow, and the continuum mechanics theory is used for the simulation. Complex network models can be used to simulate both micro- and macro behaviour of traffic flows. In this chapter, a simple model is examined that explains most phenomena observed in traffic flows. The model also provides a useful component for use in traffic control contexts and accident models.</p>
+<p>In section 8.2, we will examine a steady flow situation, and then we will examine an unsteady Behaviour in section 8.3.</p>
+</section>
+<section id="steady-flow" class="level2">
+<h2 class="anchored" data-anchor-id="steady-flow">8.2 Steady Flow</h2>
+<p>Basic traffic flow models are based on the assumption that the traffic flow is a continuous flow, and the traffic density is a continuous function of space and time. The traffic flow can be described by the following variables:</p>
+<ul>
+<li>Traffic density, <span class="math inline">\(\rho(x,t)\)</span>: the number of vehicles per unit length of the road at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>.</li>
+<li>Traffic flow, <span class="math inline">\(q(x,t)\)</span>: the number of vehicles passing a point <span class="math inline">\(x\)</span> per unit time at time <span class="math inline">\(t\)</span>.</li>
+<li>Traffic speed, <span class="math inline">\(u(x,t)\)</span>: the average speed of vehicles at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>.</li>
+</ul>
+<p>For example,</p>
+<ul>
+<li><p>if there are 20 cars on a 1 km stretch of road, the traffic density is <span class="math inline">\(\rho = 20\)</span> vehicles/km.</p></li>
+<li><p>If 10 cars pass a point in 1 minute, the traffic flow is <span class="math inline">\(q = 10\)</span> vehicles/minute.</p></li>
+<li><p>If the average speed of the cars is 60 km/h, then <span class="math inline">\(u= 60\)</span> km/h.</p></li>
+</ul>
+<p>In general, the fundamental diagram is a concave function, meaning that as traffic density increases, traffic flow increases up to a certain point (the maximum flow), and then decreases as traffic density continues to increase. This is because at low densities, vehicles can move freely and flow is high, but at high densities, vehicles are forced to slow down and flow decreases.</p>
+<p>Suppose the traffic density is <span class="math inline">\(\rho\)</span>, and the car length is <span class="math inline">\(\ell\)</span>. Determine the bumper-to-bumper spacing of the car.</p>
+<p>The bumper-to-bumper spacing <span class="math inline">\(s\)</span> can be calculated as: <span class="math display">\[
+\rho \ell + (\rho -1)s =1 \Rightarrow s = \frac{1-\rho \ell}{\rho - 1}
+\]</span></p>
+<section id="flux-speed-and-density-relationship" class="level4">
+<h4 class="anchored" data-anchor-id="flux-speed-and-density-relationship">Flux, Speed and Density Relationship</h4>
+<p>To understand the above equation, consider a road with a traffic density of <span class="math inline">\(\rho\)</span> vehicles per unit length and an average speed of <span class="math inline">\(u\)</span> units of length per unit time. The number of vehicles passing a point on the road per unit time is equal to the product of the number of vehicles per unit length and the distance traveled by each vehicle per unit time, which is equal to the traffic flow <span class="math inline">\(q\)</span>.</p>
+<div id="c6fbe622" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="470" height="114"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="69480227" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="470" height="224"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If cars are travelling at speed <span class="math inline">\(u\)</span>, then after a time <span class="math inline">\(T\)</span> the marked car at <span class="math inline">\(A\)</span> (see the above Figure) will move a distance <span class="math inline">\(uT\)</span> to <span class="math inline">\(B\)</span>. During the same time interval <span class="math inline">\(T\)</span> , all the cars in the section <span class="math inline">\(AB\)</span> (<span class="math inline">\(=uT\rho\)</span>) will have all moved on and passed <span class="math inline">\(B\)</span>. Thus, by definition, the flux past <span class="math inline">\(B\)</span> is the number of cars passing <span class="math inline">\(B\)</span> per unit time, i.e.<br>
+<span class="math display">\[\begin{align}
+q &amp;= \frac{\text{number of cars passing $B$ during $T$}}{T}\\
+&amp;= \frac{\rho u T}{T} = \rho u.\tag{8.1}
+\end{align}\]</span></p>
+<p>This equation states that the traffic flow is equal to the product of the traffic density and the traffic speed <span class="math inline">\(u\)</span>.</p>
+<p>On average, drivers’ driving speed usually depends on the maximum allowable speed <span class="math inline">\(u_{\max}\)</span> on the road and the traffic density.</p>
+<p><strong>Remarks:</strong></p>
+<ul>
+<li>Drivers drive slower when the traffic density increases. Thus, the traffic speed <span class="math inline">\(u\)</span> should be a strictly monotonically decreasing function of traffic density.<br>
+</li>
+<li>On a clear highway, drivers will, on average, travel at the maximum allowable speed <span class="math inline">\(u_{\max}\)</span>. Thus,<br>
+<span class="math display">\[
+u \rightarrow u_{\max}\quad \text{as} \quad \rho \rightarrow 0.
+\]</span></li>
+<li>When cars are bumper to bumper, drivers are reluctant to move at all. Thus, <span class="math inline">\(u \rightarrow 0 \quad \text{as} \quad \rho \rightarrow \rho_{\max}.\)</span></li>
+</ul>
+<p>The traffic speed <span class="math inline">\(u\)</span> can be expressed as a function of traffic density <span class="math inline">\(\rho\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+u = u(\rho)=u_{\max}\left[1 - \frac{\rho}{\rho_{\max}} \right].\tag{8.2}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(u(\rho)\)</span> is called the speed-density relationship. The speed-density relationship describes how the average speed of vehicles changes with traffic density.</p>
+<p>In general, the speed-density relationship is a decreasing function, meaning that as traffic density increases, traffic speed decreases. This is because at low densities, vehicles can move freely and at high speeds, but at high densities, vehicles are forced to slow down due to congestion.</p>
+<div id="ff371b79" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-4-output-1.png" width="371" height="358" class="figure-img"></p>
+<figcaption>Speed-density relationship</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The flux-density relationship</p>
+<p><span class="math display">\[\begin{equation}
+    q = q(\rho) = \rho u(\rho) = \rho u_{\max}\left[1 - \frac{\rho}{\rho_{\max}} \right].\tag{8.3}
+\end{equation}\]</span></p>
+<p>It is possible to determine experimentally the flux–density relationship using data from observation and measurement.</p>
+<div id="2e36dc19" class="cell" data-fig-height="3" data-fig-width="4" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-5-output-1.png" width="368" height="372" class="figure-img"></p>
+<figcaption>Flux-density relationship</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The flux-density model (8.3) displays the following features <span class="math display">\[
+q  \rightarrow 0 \quad \text{as} \quad \left\{ \begin{array}{l}
+         \rho \rightarrow \rho_{\max}  \\
+         \rho \rightarrow 0.
+    \end{array} \right.
+\]</span></p>
+<ul>
+<li><p>Under heavy traffic conditions <span class="math inline">\((\rho \rightarrow \rho_{\max})\)</span>, although there are many cars on the road, those cars are travelling slowly, so flux is small.</p></li>
+<li><p>Under light density conditions, although the cars on the road travel at high speed, there are very few of them.</p></li>
+<li><p>There will be a <span class="math inline">\(q_{\max}\)</span> corresponding to certain traffic density <span class="math inline">\(\rho^*\)</span>. The value of <span class="math inline">\(q_{\max}\)</span> depends on the width of the road, the lighting and the weather conditions, etc.</p></li>
+<li><p>There will be two possible traffic densities with corresponding speeds for any flux level <span class="math inline">\(q &lt;q_{\max}\)</span>, i.e., a high speed/low density solution and a low speed/high density solution.</p></li>
+</ul>
+</section>
+</section>
+<section id="unsteady-traffic-flows" class="level2">
+<h2 class="anchored" data-anchor-id="unsteady-traffic-flows">8.3 Unsteady traffic flows</h2>
+<p>In this section, we consider unsteady flow in which the density varies with location along the road. The following assumptions are made, i.e.,</p>
+<ul>
+<li><p>the flux-density relation, <span class="math inline">\(q = q(\rho)\)</span>, holds;</p></li>
+<li><p>a continuum description is viable.</p></li>
+</ul>
+<section id="conservation-principles-for-cars" class="level3">
+<h3 class="anchored" data-anchor-id="conservation-principles-for-cars">8.3.1. Conservation principles for cars</h3>
+<p>Consider a stretch of road between <span class="math inline">\(x=a\)</span> and <span class="math inline">\(x=b\)</span> at time <span class="math inline">\(t\)</span>. The number of cars in this segment is <span class="math display">\[
+N(t) = \int_a^b \rho(x,t) \, dx.
+\]</span> The rate of change of the number of cars in this segment is given by <span class="math display">\[
+\frac{dN(t)}{dt} = \frac{d}{dt} \int_a^b \rho(x,t) \, dx = \int_a^b \frac{\partial \rho}{\partial t} \, dx.
+\]</span> According to the conservation of cars, this rate of change must equal the net flux of cars into the segment: <span class="math display">\[
+\frac{dN(t)}{dt} = q(a,t) - q(b,t),
+\]</span> <span class="math display">\[
+q(x,t) = \rho(x,t) u(x,t)
+\]</span> is the traffic flux at position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>. Combining these expressions, we obtain <span class="math display">\[
+\int_a^b \frac{\partial \rho}{\partial t} \, dx = q(a,t) - q(b,t).
+\]</span> Since this holds for any interval <span class="math inline">\([a,b]\)</span>, we arrive at the conservation law <span class="math display">\[
+\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x} = 0.
+\]</span></p>
+<div id="ebfc517b" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-6-output-1.png" width="470" height="136" class="figure-img"></p>
+<figcaption>Traffic flow along a road segment</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Let <span class="math inline">\(q(x,t)\)</span> be traffic flux at the point <span class="math inline">\(x\)</span> at time <span class="math inline">\(t\)</span>, <span class="math inline">\(\rho(x,t)\)</span> be traffic density at the point <span class="math inline">\(x\)</span> at time <span class="math inline">\(t\)</span>. Then total number of cars on the road between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is<br>
+<span class="math display">\[
+\int_a^b \rho(x,t) dx.
+\]</span> Rate of increase of cars in <span class="math inline">\(\bar{ab}\)</span> is <span class="math display">\[
+\dfrac{d}{dt} \int_a^b \rho(x,t) dx = \int_a^b \rho_t(x,t) dx.
+\]</span></p>
+<p>Conservation of cars requires that</p>
+<blockquote class="blockquote">
+<p>the rate of increase of cars (increases of cars per unit time) in <span class="math inline">\(\overline{ab} \,=\)</span> number of cars entering into <span class="math inline">\(\overline{ab}\)</span> at <span class="math inline">\(x=a\)</span> per unit time <span class="math inline">\(-\)</span> number of cars exiting from <span class="math inline">\(\overline{ab}\)</span> at <span class="math inline">\(x=b\)</span> per unit time, i.e.,</p>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+        \int_a^b \rho_t(x,t) dx &amp;= q(a,t) - q(b,t) = - \int_a^b q_x(x,t) dx \\
+    \Rightarrow \quad &amp; \int_a^b \left(\rho_t(x,t) + q_x(x,t)\right) dx = 0
+\end{align*}\]</span></p>
+<p>As this is to hold for any arbitrary interval <span class="math inline">\((a,b)\)</span>, we require<br>
+<span class="math display">\[\begin{equation}
+    \rho_t(x,t) + q_x(x,t) = 0. \tag{8.4}
+\end{equation}\]</span> Substituting (8.3) into (8.4) yields <span class="math display">\[\begin{equation}
+    \rho_t(x,t) + q'(\rho)\rho_x(x,t) = 0 \tag{8.5}
+\end{equation}\]</span> which is referred to as the traffic equation.</p>
+</section>
+<section id="construction-of-a-solution-by-the-method-of-characteristics" class="level3">
+<h3 class="anchored" data-anchor-id="construction-of-a-solution-by-the-method-of-characteristics">8.3.2. Construction of a solution by the method of characteristics</h3>
+<p>Consider equation (8.5) in the form</p>
+<p><span class="math display">\[
+\dfrac{\partial \rho}{\partial t} + q'(\rho) \dfrac{\partial \rho}{\partial x} = 0.  
+\]</span></p>
+<p>Suppose along some curve <span class="math inline">\(C\)</span>, <span class="math display">\[\begin{equation}
+    \dfrac{dx}{dt} = q'(\rho).
+\end{equation}\]</span> Then equation (8.5) becomes <span class="math display">\[\begin{equation}
+    \dfrac{\partial \rho}{\partial t} + \dfrac{\partial \rho}{\partial x}\frac{dx}{dt} = \frac{D\rho}{Dt} = 0. \tag{8.6}
+\end{equation}\]</span> Since the total derivative of <span class="math inline">\(\rho\)</span> is zero as <span class="math inline">\(\rho\)</span> is constant on the curve <span class="math inline">\(C\)</span>. This, in turn, means <span class="math inline">\(q'(\rho)\)</span> is constant on the curve <span class="math inline">\(C\)</span>, and hence <span class="math inline">\(C\)</span> is a straight line.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>This means that for each constant value of <span class="math inline">\(\rho\)</span>, there corresponds a straight line (in the <span class="math inline">\(t-x\)</span> plane) along which <span class="math inline">\(\rho\)</span> has the same value. Using this information, it is conceptually easy to determine <span class="math inline">\(\rho(x,t)\)</span> given the traffic conditions at the initial time.</p>
+<p>Consider equation (8.6) with the initial condition at <span class="math inline">\(t=0\)</span>: <span class="math display">\[\begin{equation}
+    \rho(x,0) = f(x), \quad -\infty &lt; x &lt; \infty. \tag{8.7}
+\end{equation}\]</span> Then at each point <span class="math inline">\(x=\xi\)</span> along the <span class="math inline">\(t=0\)</span> axis, we can draw a straight line <span class="math inline">\(C\)</span> with the required Cauchy characteristic slope <span class="math display">\[
+q'(\rho(\xi,0)) = q'(f(\xi))
+\]</span> along which <span class="math inline">\(\rho\)</span> retains the value <span class="math inline">\(\rho(\xi,0)\)</span>.</p>
+<p>A corresponding analytical description is given by<br>
+<span class="math display">\[
+\rho(x,t) = \rho(\xi,0) \quad \text{along} \qquad x-\xi = q'(\rho(\xi,0))t,
+\]</span> where <span class="math display">\[\begin{equation}
+    q'(\rho(\xi,0))=V_{\max}\left[1- \frac{2 \rho(\xi,0)}{\rho_{\max}}\right] = V_{\max}\left[1- \frac{2 f(\xi)}{\rho_{\max}}   \right].\tag{8.8}
+\end{equation}\]</span></p>
+<p>From <span class="math inline">\(\dfrac{dx}{dt}=q'(\rho)\)</span>, it is clear <span class="math inline">\(q'(\rho)\)</span> represents a speed and we refer to it as the signal speed . The signal speed is given by the slope of the flux curve <span class="math inline">\(q(\rho)\)</span> at <span class="math inline">\(\rho\)</span> and so does not coincide with the car speed. signal speed is given by the slope of the flux curve <span class="math inline">\(q(\rho)\)</span> at <span class="math inline">\(\rho\)</span> and so does not coincide with the car speed.</p>
+</section>
+<section id="example-8.1-starting-from-traffic-lights." class="level3">
+<h3 class="anchored" data-anchor-id="example-8.1-starting-from-traffic-lights.">Example 8.1 Starting from traffic lights.</h3>
+<p>Suppose a traffic light is located at <span class="math inline">\(x =0\)</span> and cars are stopped in the section <span class="math inline">\(x&lt;0\)</span> on a red signal. Determine</p>
+<section id="a-the-traffic-density-rhoxt" class="level5">
+<h5 class="anchored" data-anchor-id="a-the-traffic-density-rhoxt">a) the traffic density <span class="math inline">\(\rho(x,t)\)</span>;</h5>
+</section>
+<section id="b-the-cars-velocity-uxt." class="level5">
+<h5 class="anchored" data-anchor-id="b-the-cars-velocity-uxt.">b) the car’s velocity <span class="math inline">\(u(x,t)\)</span>.</h5>
+<p><strong>a) Solution</strong></p>
+<p>The initial condition is given by <span class="math display">\[\begin{equation}
+    \rho(x,0) = f(x) = \begin{cases}
+    \rho_{\max}, &amp; x&lt;0,\\
+    0, &amp; x&gt;0.
+    \end{cases}
+\end{equation}\]</span></p>
+<ul>
+<li><p>At <span class="math inline">\(t=0\)</span> and <span class="math inline">\(x&lt;0\)</span>, the cars are effectively bumper to bumper so that the density is assumed to be <span class="math inline">\(\rho_{\max}\)</span> there.</p></li>
+<li><p>At <span class="math inline">\(t=0\)</span> and <span class="math inline">\(x&gt;0\)</span>, the road is empty so that the density is assumed to be zero there.</p></li>
+</ul>
+<p>The local wave speed (signal speed) along the characteristics with intercepts in <span class="math inline">\(x&gt;0\)</span> all correspond to zero density and thus from (8.8) the signal speed is <span class="math inline">\(q'(0) = V_{\max}\)</span>. The local wave speed along the characteristics with intercepts in <span class="math inline">\(x&lt;0\)</span> all correspond to maximum density and thus from (8.8) the signal speed is <span class="math inline">\(q'(\rho_{\max}) = -V_{\max}\)</span>.</p>
+<p><span class="math display">\[
+\frac{dx}{dt} = q'(\rho(\xi,0)) = q'(0) = V_{\max}.
+\]</span></p>
+<p>Similarly, the local wave speed along the characteristics with intercepts in <span class="math inline">\(x&lt;0\)</span> all correspond to the maximum density so that from (8.8)</p>
+<p><span class="math display">\[
+\frac{dx}{dt} = q'(\rho_{\max}) = - V_{\max}.
+\]</span></p>
+<div id="57bbcfd0" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-7-output-1.png" width="417" height="280" class="figure-img"></p>
+<figcaption>Characteristics for the traffic light problem</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This situation is illustrated in above Figure, where the equations of the characteristics bounding the V-shaped (or fan-like) region radiating from the origin are given. In the fan-like region, each characteristic originating from the origin corresponds to a fixed density that propagates along the line with the equation</p>
+<p><span class="math display">\[\begin{equation*}
+    x = q'(\rho)t \quad \text{for} \quad -V_{\max}t &lt; x &lt; V_{\max}t. \tag{*1}
+\end{equation*}\]</span></p>
+<p>From (8.8),</p>
+<p><span class="math display">\[
+q'(\rho) = V_{\max}\left(1 - \frac{2 \rho}{\rho_{\max}} \right).
+\]</span></p>
+<p>So (*1) becomes <span class="math display">\[\begin{align*}
+     &amp; x = V_{\max} \left( 1 - \frac{2 \rho}{\rho_{\max}}  \right) t \\
+     \Rightarrow \quad &amp; \rho = \frac{\rho_{\max}}{2}\left(1 - \frac{x}{V_{\max}t}  \right).
+\end{align*}\]</span></p>
+<p>Hence, for all later times (t &gt;0), the density is given by <span class="math display">\[\begin{equation*}
+     \rho(x,t) = \left\{ \begin{array}{ll}
+         \rho_{\max} &amp; x \leq -V_{\max}t  \\
+         \dfrac{\rho_{\max}}{2}\left( 1 - \dfrac{x}{V_{\max} t} \right) &amp; -V_{\max}t &lt; x &lt; V_{\max}t \\
+         0 &amp; x \ge V_{\max}t.   \tag{*2}
+     \end{array}\right.
+\end{equation*}\]</span></p>
+<p><strong>Remarks:</strong></p>
+<ul>
+<li><p>The above equation (*2) gives <span class="math inline">\(\rho = \rho_{\max}/2\)</span> when <span class="math inline">\(x= 0\)</span>.</p></li>
+<li><p>At later times, the initial sudden change in density has become a linear change from <span class="math inline">\(\rho_{\max}\)</span> to 0.</p></li>
+<li><p>In the fan-like region, the radiating characteristics will have density ranging from <span class="math inline">\(\rho_{\max}\)</span> to 0 as we go from left to right. Thus, the 1st car in front of the light will accelerate from zero velocity to the max velocity as there is no traffic in front. While this is happening, the density function will decrease from <span class="math inline">\(\rho_{\max}\)</span> to 0 in a smooth manner.</p></li>
+</ul>
+<p>The solution is continuous, but the slope of the solution is discontinuous at the boundaries of the fan-like region. This is a typical feature of solutions to hyperbolic equations. The solution is valid for all times (t&gt;0). As time increases, the fan-like region expands and the density in the fan-like region decreases. This is consistent with the fact that the cars are moving away from the traffic light.</p>
+<p><strong>b) Solution</strong></p>
+<p>Now consider a car initially located at <span class="math inline">\(x = -x_0\)</span>. Determine the car’s velocity <span class="math inline">\(u(x,t)\)</span>.</p>
+<p>In above Figure drawing a vertical line from the point <span class="math inline">\(x = -x_0\)</span> to the characteristic with equation</p>
+<p><span class="math display">\[
+x = -V_{\max}t.
+\]</span> we have that when <span class="math inline">\(x=-x_0,\,t=x_0/V_{\max}\)</span>. We can interpret this time interval <span class="math inline">\(x_0/V_{\max}\)</span> as the time that the car needs to wait before it reacts to the change in the signal.</p>
+<p>When <span class="math inline">\(t&gt; x_0/V_{\max}\)</span>, the car will be in the fan-like region and thus<br>
+<span class="math display">\[
+\rho = \frac{\rho_{\max}}{2}\left( 1 - \frac{x}{V_{\max}t}\right)
+\]</span> and hence from ($^*$2) the car’s velocity is given by <span class="math display">\[
+u(x,t) = V_{\max}\left( 1 - \frac{\rho}{\rho_{\max}}\right)=V_{\max}\left[1 - \frac{\rho_{\max}}{2 \rho_{\max}}\left(1 - \frac{x}{V_{\max}t} \right) \right] = \frac{V_{\max}}{2}+\frac{x}{2t} = \frac{dx}{dt}.
+\]</span></p>
+<p><span class="math display">\[
+\therefore x = A\sqrt{t} + V_{\max}t.
+\]</span></p>
+<p>As <span class="math inline">\(\displaystyle x|_{t=x_0/V_{\max}} = A \sqrt{\dfrac{x_0}{V_{\max}}}+V_{\max} \dfrac{x_0}{V_{\max}}= -x_0\)</span>,</p>
+<p><span class="math display">\[
+\Rightarrow \quad A = -2x_0 \sqrt{\dfrac{V_{\max}}{x_0}} = -2 \sqrt{x_0V_{\max}}
+\]</span></p>
+<p><span class="math display">\[
+\therefore \quad x = V_{\max}t-2\sqrt{x_0V_{\max}t}\;.
+\]</span></p>
+<p>The car’s velocity is then given by</p>
+<p><span class="math display">\[\begin{align}
+u(x,t)=\frac{dx}{dt}&amp;=V_{\max}-2\sqrt{x_0V_{\max}}\frac{1}{2}t^{-1/2}\\
+&amp;=V_{\max}-\sqrt{\frac{x_0V_{\max}}{t}}
+\end{align}\]</span> for <span class="math inline">\(\displaystyle t\geq \frac{x_0}{V_{\max}}\)</span>.</p>
+<p><strong>Remarks:</strong> The method of characteristics can be used in general to obtain the density as a function of <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span>, provided we know its initial profile and the velocity as a function of <span class="math inline">\(\rho\)</span>.</p>
+</section>
+</section>
+<section id="example-8.2-starting-from-a-traffic-jam." class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="example-8.2-starting-from-a-traffic-jam.">Example 8.2 Starting from a traffic jam.</h3>
+<p>Consider the initial density function</p>
+<p><span class="math display">\[\begin{equation*}
+    \rho(\xi,0)=\left\{
+    \begin{array}{ll}
+        \rho_{\max} &amp; \xi \leq 0 \\
+        \rho_{\max}\dfrac{(\xi-L)^2}{L^2} &amp; 0&lt;\xi&lt;L \\
+        0 &amp; \xi \geq L
+    \end{array}\right.
+\end{equation*}\]</span> where we use <span class="math inline">\(\xi\)</span> to denote the value of the intercept on the x-axis.</p>
+<p>Determine the traffic density <span class="math inline">\(\rho(x,t)\)</span> for <span class="math inline">\(t&gt;0\)</span>.</p>
+<p>Solution: The local wave speed along the characteristics with intercepts in <span class="math inline">\(x&lt;0\)</span> all correspond to maximum density and thus from (8.8) the signal speed is <span class="math inline">\(-V_{\max}\)</span>. The local wave speed along the characteristics with intercepts in <span class="math inline">\(0&lt;\xi&lt;L\)</span> all correspond to a density <span class="math inline">\(\rho(\xi,0)\)</span> and thus from (8.8) the signal speed is <span class="math inline">\(F'(\rho(\xi,0))\)</span>. The local wave speed along the characteristics with intercepts in <span class="math inline">\(\xi&gt;L\)</span> all correspond to zero density and thus from (8.8) the signal speed is <span class="math inline">\(V_{\max}\)</span>.</p>
+<p>The characteristics with intersect in <span class="math inline">\(x\leq0\)</span> correspond to the maximum density and thus <span class="math display">\[\begin{align*}
+    \frac{dx}{dt} &amp;= F'(\rho_{\max})=V_{\max}\left(1-\frac{2\rho_{\max}}{\rho_{\max}}\right) = -V_{\max} \\ \\
+    \Rightarrow \qquad x &amp;= -V_{\max}t+\xi_{\ell} \qquad (\text{use}\;\;x|_{t=0}=\xi_{\ell}\leq0).
+\end{align*}\]</span> Similarly, those characteristics that intersect the x-axis at <span class="math inline">\(\xi_r\geq L\)</span> have traffic density <span class="math inline">\(\rho=0\)</span> and thus have equation of the form<br>
+<span class="math display">\[\begin{align*}
+    \frac{dx}{dt} &amp;= F'(0)=V_{\max}\left(1-\frac{0}{\rho_{\max}}\right)=V_{\max} \\ \\
+    \Rightarrow \qquad x &amp;= V_{\max}t+\xi_r
+\end{align*}\]</span> For those characteristics with intersects <span class="math inline">\(\xi\)</span> on the x-axis, where <span class="math inline">\(0&lt;\xi&lt;L\)</span>, we have<br>
+<span class="math display">\[
+x=F'(\rho_\xi)t+\xi,
+\]</span></p>
+<p>where <span class="math inline">\(\rho_\xi\)</span> is the density along the characteristic with intercept <span class="math inline">\(\xi\)</span> and <span class="math inline">\(F(\rho_{\xi})\)</span> is given by<br>
+<span class="math display">\[
+F'(\rho_{\xi})=V_{\max}\left(1-\frac{2\rho_{\xi}}{\rho_{\max}}\right).
+\]</span> Hence, <span class="math display">\[
+x=V_{\max}\left(1-\frac{2\rho_{\xi}}{\rho_{\max}}\right)t+\xi.
+\]</span></p>
+<div id="f7a59fc0" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-8-output-1.png" width="464" height="326" class="figure-img"></p>
+<figcaption>Characteristics for the traffic jam problem</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Using the initial density function for <span class="math inline">\(0&lt;\xi&lt;L\)</span>, we have<br>
+<span class="math display">\[
+x=V_{\max}\left(1-\frac{2}{L^2}(\xi-L)^2\right)t+\xi.
+\]</span> This equation can be solved to yield <span class="math inline">\((\xi-L)\)</span> in terms of <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span> and thus determine <span class="math inline">\(\rho\)</span> in terms of <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span>.</p>
+<p>For this purpose, let <span class="math inline">\(\eta=\xi-L\)</span> to get<br>
+<span class="math display">\[\begin{align*}
+    &amp;\frac{2V_{\max}t}{L^2}\eta^2-\eta+x-L-V_{\max}t=0 \\ \\
+    \Rightarrow \qquad &amp; \eta=\frac{1\pm\sqrt{1-\dfrac{8V_{\max}t}{L^2}(x-L-V_{\max}t)}}{4V_{\max}t/L^2}
+\end{align*}\]</span> Since <span class="math inline">\(\xi\)</span> must be less than <span class="math inline">\(L\)</span>, and <span class="math inline">\(x&lt;V_{\max}t+L\)</span>, we must choose the negative sign in the solution for <span class="math inline">\(\eta\)</span>. Hence, the density, as a function of <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span>, is given by <span class="math display">\[
+\rho(x,t)=\frac{\rho_{\max}}{L^2}\left(\frac{1-\sqrt{1-\dfrac{8V_{\max}t}{L^2}(x-L-V_{\max}t)}}{4V_{\max}t/L^2}\right)^2,
+\]</span> for <span class="math inline">\(-V_{\max}t\leq x\leq V_{\max}t+L\)</span>.</p>
+</section>
+<section id="traffic-jam-and-shock-propagation" class="level3">
+<h3 class="anchored" data-anchor-id="traffic-jam-and-shock-propagation">8.4 Traffic Jam and Shock Propagation</h3>
+<p>Traffic flow can be modeled as a conservation problem in which cars are treated as a continuous quantity. The main variables are the traffic density</p>
+<p><span class="math display">\[
+\rho(x,t)=\text{number of cars per unit length},
+\]</span></p>
+<p>the average vehicle velocity</p>
+<p><span class="math display">\[
+u(x,t),
+\]</span></p>
+<p>and the traffic flow rate</p>
+<p><span class="math display">\[
+q(x,t)=\rho(x,t)u(x,t).
+\]</span></p>
+<p>Conservation of vehicles gives the one-dimensional traffic-flow equation</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial \rho}{\partial t}
++
+\frac{\partial q}{\partial x}
+=0.
+}
+\]</span></p>
+<p>If the flow rate is related to density through a constitutive relation</p>
+<p><span class="math display">\[
+q=q(\rho),
+\]</span></p>
+<p>then the governing equation becomes</p>
+<p><span class="math display">\[
+\boxed{
+\rho_t+\frac{d q}{d\rho}\rho_x=0.
+}
+\]</span></p>
+<p>This is a nonlinear first-order conservation law. Such equations can produce discontinuities in density even when the initial traffic distribution is smooth. These discontinuities correspond physically to traffic jams or sharp traffic fronts.</p>
+<hr>
+</section>
+</section>
+<section id="traffic-jam" class="level2">
+<h2 class="anchored" data-anchor-id="traffic-jam">8.4.1 Traffic Jam</h2>
+<p>A traffic jam develops when vehicles approaching from behind arrive faster than vehicles ahead can leave.</p>
+<p>Suppose there are two traffic states:</p>
+<p><span class="math display">\[
+(\rho_1,u_1,q_1)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+(\rho_2,u_2,q_2),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+q_1=\rho_1u_1,
+\qquad
+q_2=\rho_2u_2.
+\]</span></p>
+<p>Typically, free-moving traffic has relatively low density and high speed,</p>
+<p><span class="math display">\[
+\rho_1&lt;\rho_2,
+\qquad
+u_1&gt;u_2,
+\]</span></p>
+<p>while congested traffic has higher density and lower speed.</p>
+<div id="0ff48de2" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08_trafficflow_files/figure-html/cell-9-output-1.png" width="467" height="221" class="figure-img"></p>
+<figcaption>Free-moving traffic</figcaption>
+</figure>
+</div>
+</div>
+<p>Traffic jam</p>
+</div>
+<p>If faster, lighter traffic catches up with slower, denser traffic, cars accumulate near the interface. The density may therefore change sharply from <span class="math inline">\(\rho_1\)</span> to <span class="math inline">\(\rho_2\)</span>.</p>
+<p>Instead of varying smoothly, the density can have the form</p>
+<p><span class="math display">\[
+\rho(x,t)=
+\begin{cases}
+\rho_1, &amp; x&lt;x_s(t),\\
+\rho_2, &amp; x&gt;x_s(t),
+\end{cases}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+x=x_s(t)
+\]</span></p>
+<p>is the location of the traffic front.</p>
+<p>This moving discontinuity is called a <strong>shock</strong>.</p>
+<p>An important point is that the shock velocity is not generally equal to the velocity of the vehicles. Cars may move forward while the traffic jam itself moves backward along the road.</p>
+<hr>
+</section>
+<section id="shock-propagation" class="level2">
+<h2 class="anchored" data-anchor-id="shock-propagation">8.4.2 Shock Propagation</h2>
+<p>Assume that the traffic density and velocity are discontinuous at an unknown position</p>
+<p><span class="math display">\[
+x=x_s(t).
+\]</span></p>
+<p>The states immediately to the left and right of the shock are denoted by</p>
+<p><span class="math display">\[
+\rho^-=\rho(x_s^-,t),
+\qquad
+q^-=q(x_s^-,t),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\rho^+=\rho(x_s^+,t),
+\qquad
+q^+=q(x_s^+,t).
+\]</span></p>
+<p>Consider a small interval</p>
+<p><span class="math display">\[
+x_1(t)&lt;x_s(t)&lt;x_2(t).
+\]</span></p>
+<p>The total number of vehicles in this interval is</p>
+<p><span class="math display">\[
+N(t)=\int_{x_1(t)}^{x_2(t)}\rho(x,t)\,dx.
+\]</span></p>
+<p>The rate of change of the number of cars is therefore</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_{x_1(t)}^{x_2(t)}
+\rho(x,t)\,dx.
+\]</span></p>
+<p>Because the endpoints may themselves move, the number of cars entering or leaving must be calculated relative to those moving endpoints.</p>
+<p>At <span class="math inline">\(x=x_1\)</span>, the velocity of the cars relative to the endpoint is</p>
+<p><span class="math display">\[
+u(x_1,t)-\frac{dx_1}{dt}.
+\]</span></p>
+<p>Therefore, the vehicle rate entering through the left boundary is</p>
+<p><span class="math display">\[
+\rho(x_1,t)
+\left(
+u(x_1,t)-\frac{dx_1}{dt}
+\right).
+\]</span></p>
+<p>Since <span class="math inline">\(q=\rho u,\)</span> this becomes</p>
+<p><span class="math display">\[
+q(x_1,t)
+-
+\rho(x_1,t)\frac{dx_1}{dt}.
+\]</span></p>
+<p>Similarly, the vehicle rate leaving through the right boundary is</p>
+<p><span class="math display">\[
+q(x_2,t)
+-
+\rho(x_2,t)\frac{dx_2}{dt}.
+\]</span></p>
+<p>Conservation of vehicles therefore gives</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_{x_1(t)}^{x_2(t)}
+\rho(x,t)\,dx
+=
+q(x_1,t)
+-\rho(x_1,t)\frac{dx_1}{dt}
+-
+q(x_2,t)
++\rho(x_2,t)\frac{dx_2}{dt}.
+\]</span></p>
+<p>Now allow both endpoints to approach the shock:</p>
+<p><span class="math display">\[
+x_1\rightarrow x_s^-,
+\qquad
+x_2\rightarrow x_s^+.
+\]</span></p>
+<p>As the interval shrinks, the integral tends to zero. Both endpoints move with the shock velocity,</p>
+<p><span class="math display">\[
+\frac{dx_1}{dt}
+=
+\frac{dx_s}{dt}
+=
+\frac{dx_2}{dt}.
+\]</span></p>
+<p>Let <span class="math inline">\(s=\dfrac{dx_s}{dt}\)</span> denote the shock velocity. The conservation equation becomes</p>
+<p><span class="math display">\[
+0
+=
+q^--\rho^-s-q^++\rho^+s.
+\]</span></p>
+<p>Rearranging,</p>
+<p><span class="math display">\[
+q^--q^+
+=
+s(\rho^--\rho^+).
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+s
+=
+\frac{dx_s}{dt}
+=
+\frac{q^--q^+}{\rho^--\rho^+}.
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\frac{dx_s}{dt}
+=
+\frac{q^+-q^-}{\rho^+-\rho^-}.
+\]</span></p>
+<p>This is the <strong>Rankine-Hugoniot shock condition</strong>.</p>
+<hr>
+<section id="physical-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="physical-interpretation">Physical interpretation</h3>
+<p>The shock speed depends on the difference in vehicle flow across the discontinuity divided by the difference in traffic density:</p>
+<p><span class="math display">\[
+\text{shock speed}
+=
+\frac{\text{change in flow rate}}
+{\text{change in density}}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+s=\frac{q_2-q_1}{\rho_2-\rho_1}.
+\]</span></p>
+<p>Three possibilities can occur.</p>
+<ul>
+<li><p>If <span class="math inline">\(s&gt;0\)</span>, the shock moves in the positive <span class="math inline">\(x\)</span>-direction.</p></li>
+<li><p>If <span class="math inline">\(s&lt;0\)</span>, the shock travels backward, opposite to the direction in which the vehicles are moving. the shock travels backward, opposite to the direction in which the vehicles are moving.</p></li>
+<li><p>If <span class="math inline">\(s=0\)</span>, the traffic front remains stationary. the traffic front remains stationary.</p></li>
+</ul>
+<p>A backward-moving shock is especially common in traffic jams. The cars themselves may continue moving forward, but the location at which they begin slowing down moves upstream.</p>
+<hr>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Suppose traffic ahead has density <span class="math inline">\(\rho_2=100\ \text{cars/km}\)</span> and velocity <span class="math inline">\(u_2=20\ \text{km/h}.\)</span>. Then</p>
+<p><span class="math display">\[
+q_2=\rho_2u_2
+=
+100(20)
+=
+2000\ \text{cars/h}.
+\]</span></p>
+<p>Behind the traffic jam, suppose</p>
+<p><span class="math inline">\(\rho_1=40\ \text{cars/km},\)</span> and <span class="math inline">\(u_1=80\ \text{km/h}.\)</span> Then</p>
+<p><span class="math display">\[
+q_1
+=
+40(80)
+=
+3200\ \text{cars/h}.
+\]</span></p>
+<p>The shock velocity is</p>
+<p><span class="math display">\[
+s
+=
+\frac{q_2-q_1}{\rho_2-\rho_1}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+s
+=
+\frac{2000-3200}{100-40}
+=
+\frac{-1200}{60}
+=
+-20\ \text{km/h}.
+\]</span></p>
+<p>The negative sign means that although the vehicles themselves are moving forward, the traffic-jam front moves backward at <span class="math inline">\(20\)</span> km/h.</p>
+<hr>
+</section>
+<section id="connection-with-the-traffic-flow-equation" class="level3">
+<h3 class="anchored" data-anchor-id="connection-with-the-traffic-flow-equation">Connection with the traffic-flow equation</h3>
+<p>If <span class="math inline">\(q=q(\rho)\)</span>, then the governing equation is</p>
+<p><span class="math display">\[
+\rho_t+q'(\rho)\rho_x=0.
+\]</span></p>
+<p>For a smooth solution, disturbances travel along characteristics with speed</p>
+<p><span class="math display">\[
+c(\rho)=\frac{dq}{d\rho}.
+\]</span></p>
+<p>This characteristic speed is different from the vehicle velocity</p>
+<p><span class="math display">\[
+u=\frac{q}{\rho}.
+\]</span></p>
+<p>When characteristics intersect, a smooth solution can no longer exist. The density becomes discontinuous, and a shock forms. The shock then propagates according to</p>
+<p><span class="math display">\[
+\frac{dx_s}{dt}
+=
+\frac{q(\rho_2)-q(\rho_1)}
+{\rho_2-\rho_1}.
+\]</span></p>
+<p>Therefore, the characteristic speed</p>
+<p><span class="math display">\[
+\frac{dq}{d\rho}
+\]</span></p>
+<p>describes the propagation of small smooth traffic disturbances, while the Rankine-Hugoniot speed</p>
+<p><span class="math display">\[
+\frac{q_2-q_1}{\rho_2-\rho_1}
+\]</span></p>
+<p>describes the propagation of a finite discontinuity or traffic shock.</p>
+<p>In summary, a <strong>traffic jam</strong> can be interpreted mathematically as a sharp change in traffic density, and <strong>shock propagation</strong> determines how that sharp interface moves while preserving conservation of the total number of vehicles.</p>
+</section>
+<section id="the-situation-at-a-traffic-light" class="level3">
+<h3 class="anchored" data-anchor-id="the-situation-at-a-traffic-light">8.4.3 The situation at a traffic light</h3>
+<p>Suppose we have a uniform stream of cars moving with traffic density <span class="math inline">\(\rho_0\)</span>, which is suddenly stopped at a red light at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(t=0\)</span>. At <span class="math inline">\(x=0\)</span>, <span class="math inline">\(u=0\)</span>, and we can associate the density at this point with the maximum (bumper-to-bumper) density, <span class="math inline">\(\rho_m\)</span>. The initial density plot as a function of <span class="math inline">\(x\)</span> is shown in Figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="275"></p>
+</figure>
+</div>
+<p>Initial density plot as a function of <span class="math inline">\(x\)</span> for a uniform stream of cars moving with traffic density <span class="math inline">\(\rho_0\)</span>, which is suddenly stopped at a red light at <span class="math inline">\(x=0\)</span> and <span class="math inline">\(t=0\)</span>.</p>
+<p>Its corresponding characteristics are shown in Figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="275"></p>
+</figure>
+</div>
+<p>This characteristics for the oncoming cars are shown sloping to the right, while those characteristics corresponding to <span class="math inline">\(\rho_m\)</span> are shown sloping to the left and originating from <span class="math inline">\(x&gt;0\)</span>. Where the characteristics intersect, the density at each point is multi-valued, which corresponds to what we termed breaking waves earlier. A shock can be fitted to make the density single-valued.</p>
+<p>For relatively light traffic (that is, <span class="math inline">\(\rho_0\)</span> not close to <span class="math inline">\(\rho_m\)</span>),</p>
+<ul>
+<li><p>the characteristics for the oncoming cars are shown sloping to the right, while those characteristics corresponding to <span class="math inline">\(\rho_m\)</span> are shown sloping to the left and originating from <span class="math inline">\(x&gt;0\)</span>.</p></li>
+<li><p>Where the characteristics intersect, the density at each point is multi-valued, which corresponds to what we termed breaking waves earlier. A shock can be fitted to make the density single-valued. This shock has a speed given by</p></li>
+</ul>
+<p><span class="math display">\[
+\frac{dx_s}{dt}=\frac{\rho_m u(\rho_m)-\rho_0u(\rho_0)}{\rho_m-\rho_0}=-\frac{\rho_0 u(\rho_0)}{\rho_m-\rho_0}.
+\]</span> Thus, the shock propagates to the left. At a later time <span class="math inline">\(t&gt;0\)</span>, this shock front would be located at</p>
+<p><span class="math display">\[
+x_s=-\frac{\rho_0 u(\rho_0)}{\rho_m-\rho_0}t.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The shock trajectory together with the characteristics is shown on the left in the above Figure at some time <span class="math inline">\(t&gt;0\)</span>. On the right, the density profile at this time is also shown. Now, in the region <span class="math inline">\(x&gt;0\)</span>, just past the traffic light, the last car that passed the light before it turned red is travelling at the velocity <span class="math inline">\(u(\rho_0)\)</span>. The red signal therefore separates a region of zero density from one of density <span class="math inline">\(\rho_0\)</span> and the density at <span class="math inline">\(t=0\)</span> may be illustrated by that in Figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="375"></p>
+</figure>
+</div>
+<p>This again has a region of low density behind one of higher density, which means there will be another shock in <span class="math inline">\(x&gt;0\)</span>, with the shock velocity given by</p>
+<p><span class="math display">\[
+\frac{dx_r}{dt}=\frac{\rho_0u(\rho_0)}{\rho_0-0}=u(\rho_0),
+\]</span> and after time <span class="math inline">\(t\)</span>, this shock will be at</p>
+<p><span class="math display">\[
+x_r=u(\rho_0)t.
+\]</span></p>
+<p>Hence, for <span class="math inline">\(t=0\)</span> and before the light turns green, the density profile is as given in Figure below. The shock at <span class="math inline">\(x_s\)</span> is moving to the left, while the shock at <span class="math inline">\(x_r\)</span> is moving to the right. The density profile between these two shocks is uniform and equal to <span class="math inline">\(\rho_0\)</span>.</p>
+<p>Suppose the traffic light turns green at <span class="math inline">\(t=\tau\)</span>. After this time, the shock ahead of the lights continues to move forward at the speed <span class="math inline">\(u(\rho_0)\)</span>, while the shock behind the light continues to move to the left, as traffic with density <span class="math inline">\(\rho_0\)</span> continue to arrive. To simplify matters, let us assume the velocity-density function <span class="math display">\[u=u_m(1-\rho/\rho_m),\]</span> and <span class="math display">\[q=u_m(\rho-\rho^2/\rho_m),\]</span> which we have used before. At time <span class="math inline">\(t=\tau\)</span>, the rear shock is at</p>
+<p><span class="math display">\[
+x_{s\tau}=-\frac{\rho_0 u(\rho_0)}{\rho_m-\rho_0}t=-\frac{\rho_0 u_m}{\rho_m}t.
+\]</span></p>
+<p>For the car at the front of the line of stopped cars, we now have the density function, <span class="math inline">\(-u_m(t-\tau)&lt;x&lt;u_m(t-\tau)\)</span>, <span class="math display">\[\begin{equation}
+    \rho_{\tau}(x,t)=\frac{\rho_m}{2}\left(1-\frac{x}{u_m(t-\tau)}\right),  \tag{8.10}
+\end{equation}\]</span> where we use <span class="math inline">\(\rho_\tau\)</span> to remind ourselves that this expression holds from time <span class="math inline">\(t=\tau\)</span> onwards. Hence, a short time after <span class="math inline">\(t=\tau\)</span>, the density profile looks like that given in Figure below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="375"></p>
+</figure>
+</div>
+<p>If at time <span class="math inline">\(t=t_d\)</span>, the line of stopped cars completely dissipates, at this time we must have<br>
+<span class="math display">\[\begin{equation*}
+    -u_m(t_d-\tau)=x_{s\tau}=-\frac{\rho_0u_mt_d}{\rho_m}
+\end{equation*}\]</span> or <span class="math display">\[\begin{equation*}
+    t_d=\frac{\tau}{1-\rho_0/\rho_m}. \tag{8.11}
+\end{equation*}\]</span></p>
+<p>At this point in time, the density on the left is given by the solid lines, and the dotted lines represent the situation a little time after <span class="math inline">\(t=t_d\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/Ch8-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="275"></p>
+</figure>
+</div>
+<p>The discontinuity in the density is between <span class="math inline">\(\rho_0\)</span> and that given by <span class="math inline">\(\rho_\tau\)</span> in (8.10), which is not constant. The strength of the shock is defined as the difference between the traffic densities across the shock, and is not constant in this case. It actually decreases as time increases. The shock velocity is now given by</p>
+<p><span class="math display">\[\begin{align*}
+    \frac{dx_\text{late}}{dt}&amp;=\frac{q(\rho_\tau)-q(\rho_0)}{\rho_\tau-\rho_0} \\
+    &amp;=\frac{u_m(\rho_\tau-\rho_\tau^2/\rho_m)-u_m(\rho_0-\rho_0^2/\rho_m)}{\rho_\tau-\rho_0} \\
+    &amp;=\frac{u_m(\rho_\tau-\rho_\tau^2/\rho_m-\rho_0+\rho_0^2/\rho_m)}{\rho_\tau-\rho_0} \\
+    &amp;=u_m\left(1-\frac{\rho_\tau+\rho_0}{\rho_m}\right).
+\end{align*}\]</span></p>
+<p>Substituting for <span class="math inline">\(\rho_\tau\)</span>, and integrating, we end up with<br>
+<span class="math display">\[
+x_\text{late}=A\sqrt{t-\tau}+u_m(t-\tau)(1-2\rho_0/\rho_m),
+\]</span></p>
+<p>where <span class="math inline">\(A\)</span> is an integration constant, which can be found by using the condition that when <span class="math inline">\(t=t_d,\; x_\text{late}=-u_m\rho_0t_d/\rho_m\)</span>, which gives</p>
+<p><span class="math display">\[
+A=-2u_m\left(\frac{\rho_0\tau}{\rho_m-\rho_0}\right)^{1/2}\left(1-\frac{\rho_0}{\rho_m}\right).
+\]</span></p>
+<p>Hence, the solution for <span class="math inline">\(x_\text{late}\)</span> is <span class="math display">\[\begin{equation}
+    x_\text{late}=-2u_m\left(1-\frac{\rho_0}{\rho_m}\right)\left(\frac{\rho_0\tau}{\rho_m-\rho_0}\right)^{1/2}\sqrt{t-\tau}+u_m(t-\tau)\left(1-\frac{2\rho_0}{\rho_m}\right). \tag{8.11}
+\end{equation}\]</span> For values of <span class="math inline">\(\rho_0&lt;\rho_m/2\)</span>, that is light traffic, it can be shown that the shock eventually reverses direction and head back to the origin. If it reaches the origin at time <span class="math inline">\(t-t_\text{clear}\)</span>, the value of <span class="math inline">\(t_\text{clear}\)</span> can be obtained by solving (8.11) with <span class="math inline">\(x_\text{late}=0\)</span>. This gives</p>
+<p><span class="math display">\[
+t_\text{clear}=\frac{\tau}{(1-2\rho_0/\rho_m)^2}.
+\]</span></p>
+<p>Looking at the values of the density at <span class="math inline">\(x=0\)</span>, we note that <span class="math inline">\(\rho(0,t)=\rho_m\)</span> for <span class="math inline">\(t&lt;\tau\)</span>.</p>
+<p>Then <span class="math inline">\(\rho(0,t)=\rho_m/2\)</span> for <span class="math inline">\(\tau&lt;t&lt;t_\text{clear}\)</span>. When the shock reaches the origin again, the density has to drop back to <span class="math inline">\(\rho_0\)</span>, the uniform traffic density.</p>
+<p>Thus, <span class="math inline">\(t_\text{clear}\)</span> can be interpreted as the time for the congestion to clear.</p>
+<p>On the other hand, if <span class="math inline">\(\rho_0&gt;\rho_m/2,\;x_\text{late}\)</span> is always negative, and so the shock never returns to the origin.</p>
+<p>Thus, for heavy traffic, the congestion caused by a momentary disturbance never quite dissipates.</p>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="question-8.1" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.1">Question 8.1</h3>
+<p>Let the velocity field be <span class="math inline">\(u=u_m(1-\rho/\rho_m)\)</span> where <span class="math inline">\(u_m\)</span> and <span class="math inline">\(\rho_m\)</span> are the maximum velocity and density, respectively. If the initial traffic density is given by <span class="math display">\[\begin{equation*}
+        \rho(\xi,0)=\left\{\begin{array}{cc}
+            \rho_m, &amp; \xi&lt;0 \\
+            \rho_m/2, &amp; 0&lt;\xi&lt;a \\
+            0, &amp; \xi&gt;a.
+        \end{array}\right.
+\end{equation*}\]</span> Sketch the characteristics and the density at all late times.</p>
+<p><strong>Note</strong>: there are two small fan–like regions, one radiating from <span class="math inline">\(x=0\)</span> and one from <span class="math inline">\(x=a\)</span>.</p>
+</section>
+<section id="question-8.2" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.2">Question 8.2</h3>
+<p>A car stops 1 car length behind a traffic light. Find the trajectory of the car as it starts when the light turns green and accelerates to the maximum velocity. What is its acceleration when it is level with the lights? Assume the velocity field <span class="math inline">\(u=u_m(1-\rho/\rho_m)\)</span> as before.</p>
+</section>
+<section id="question-8.3" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.3">Question 8.3</h3>
+<p>Given the initial density <span class="math display">\[\begin{equation*}
+        \rho(\xi,0)=\left\{\begin{array}{cc}
+            3\rho_m/5, &amp; \xi&lt;0 \\
+            \rho_m/5, &amp; \xi&gt;0.
+        \end{array}\right.
+\end{equation*}\]</span> If the velocity field is the same as for question 1, sketch the initial density, the characteristics and the density at later times.</p>
+</section>
+<section id="question-8.4" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.4">Question 8.4</h3>
+<p>Given the velocity field <span class="math inline">\(u(\rho)=u_m(1-\rho^2/\rho^2_m)\)</span>, where <span class="math inline">\(u_m\)</span> and <span class="math inline">\(\rho_m\)</span> have the same meaning as before and <span class="math display">\[\begin{equation*}
+        \rho(\xi,0)=\left\{\begin{array}{cc}
+            \rho_m, &amp; \xi&lt;0 \\
+            \rho_m(L-\xi)/L, &amp; 0&lt;\xi&lt;L \\
+            0, &amp; \xi&gt;L.
+        \end{array}\right.
+    \end{equation*}\]</span> Determine the characteristics and <span class="math inline">\(\rho(x,t)\)</span> for <span class="math inline">\(t&gt;0\)</span>.</p>
+</section>
+<section id="additional-questions" class="level3">
+<h3 class="anchored" data-anchor-id="additional-questions">Additional Questions</h3>
+</section>
+<section id="question-8.5" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.5">Question 8.5</h3>
+<p>A car is stopped at a traffic light. When the light turns green, the car accelerates to the maximum velocity. Find the trajectory of the car and its acceleration when it is level with the traffic light. Assume the velocity field <span class="math inline">\(u=u_m(1-\rho^2/\rho^2_m)\)</span> as before.</p>
+</section>
+<section id="question-8.6" class="level3">
+<h3 class="anchored" data-anchor-id="question-8.6">Question 8.6</h3>
+<ul>
+<li><p>Derive <span class="math inline">\(q(\rho)=\rho u(\rho)\)</span> and show that with <span class="math inline">\(u(\rho)=u_m\left(1-\dfrac{\rho^2}{\rho_m}\right),\)</span> we have <span class="math inline">\(q(\rho)=u_m\left(1-\dfrac{\rho^2}{\rho_m}\right),\)</span> which is quadratic; sketch <span class="math inline">\(q(\rho)\)</span>.</p></li>
+<li><p>From condervation law, <span class="math inline">\(\dfrac{\partial \rho}{\partial t}+\dfrac{\partial q(\rho)}{\partial x}=0,\)</span> prove density is constant along <span class="math inline">\(\dfrac{dx}{dt}=q'(\rho)\)</span> and interpret <span class="math inline">\(q'(\rho)\)</span> physically.</p></li>
+<li><p>For <span class="math inline">\(\rho(x,0)=\rho_{\max}\)</span> for <span class="math inline">\(x&lt;0\)</span> and <span class="math inline">\(0\)</span> for <span class="math inline">\(x&gt;0\)</span>, find <span class="math inline">\(\rho(x,t)\)</span> for <span class="math inline">\(t&gt;0\)</span> (linear model).</p></li>
+<li><p>Define a traffic shock and derive</p></li>
+</ul>
+<p><span class="math display">\[
+s'(t)=\dfrac{dx}{dt}=\frac{q(\rho_2)-q(\rho_1)}{\rho_2-\rho_1}.
+\]</span></p>
+<ul>
+<li><p>For <span class="math inline">\(q(\rho)=V_{\max}\!\big(1-(\rho/\rho_{\max})^2\big)\)</span>,</p>
+<ul>
+<li>find <span class="math inline">\(q(\rho)\)</span>;</li>
+<li>compute <span class="math inline">\(q'(\rho)\)</span>;</li>
+<li>compare with the linear model.</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./07_convectionDiffusion.html" class="pagination-link" aria-label="Chapter 7 Convection-Diffusion Process and Applications">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Chapter 7 Convection-Diffusion Process and Applications</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Applied Mathematical Modelling<br> © Copyright 2026, B. Wiwatanapataphee &amp; Y.H. Wu</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This book was built with ❤️ and <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
