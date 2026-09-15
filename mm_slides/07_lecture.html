@@ -445,8 +445,8 @@ x^*=\dfrac{x}{L},\qquad y^*=\dfrac{y}{W},\qquad \theta=\dfrac{T-T_1}{T_0-T_1},
 
 <h4 id="governing-pde-dimensionless-for-thetax-y">Governing PDE (dimensionless) for <span class="math inline">\(\theta(x^*, y^*)\)</span></h4>
 <p><span class="math display">\[
-\frac{\partial^2 \theta}{\partial x^{*2}} + \frac{\partial^2 \theta}{\partial y^{*2}}=0,
-\qquad 0&lt;x&lt;L,\; 0&lt;y&lt;W
+\frac{1}{\gamma^2}\frac{\partial^2 \theta}{\partial x^{*2}} + \frac{\partial^2 \theta}{\partial y^{*2}}=0,
+\qquad 0&lt;x^*&lt;1,\; 0&lt;y^*&lt;1
 \]</span></p>
 <div class="columns">
 <div class="column" style="width:30%;">
@@ -467,9 +467,46 @@ x^*=\dfrac{x}{L},\qquad y^*=\dfrac{y}{W},\qquad \theta=\dfrac{T-T_1}{T_0-T_1},
 </div>
 </div></div>
 <div class="fragment">
+<p>Define</p>
+<p><span class="math display">\[
+u(x^*,y^*)=\theta(x^*,y^*)-\theta_b(x^*)=\theta(x^*,y^*)-(1-x^*).
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Because <span class="math inline">\(\theta_b(x^*)\)</span> satisfies the Dirichlet BCs at <span class="math inline">\(x^*=0\)</span> and <span class="math inline">\(x^*=1\)</span>, the function <span class="math inline">\(u(x^*,y^*)\)</span> will satisfy homogeneous Dirichlet BCs at these boundaries.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>Since <span class="math inline">\(1-x^*\)</span> has zero second derivative, <span class="math inline">\(u\)</span> satisfies the same PDE as <span class="math inline">\(\theta\)</span> but with homogeneous Dirichlet BCs at <span class="math inline">\(x^*=0\)</span> and <span class="math inline">\(x^*=1\)</span>, i.e.,</p>
+<div class="fragment">
+<p><span class="math display">\[
+u(0,y^*)=u(1,y^*)=0.
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">At insulted bottom boundary, the derivative of <span class="math inline">\(u\)</span> with respect to <span class="math inline">\(y^*\)</span> is zero:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{\partial u}{\partial y^*}(x^*,0)=0.
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">At the convective top boundary, the derivative of <span class="math inline">\(u\)</span> with respect to <span class="math inline">\(y^*\)</span> is related to the Biot number:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+-\frac{\partial u}{\partial y^*}(x^*,1)-\mathrm{Bi}\,u(x^*,1)=\mathrm{Bi}(1-x^*-\theta_\infty).
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
 <p>To solve the PDE with the given BCs, we seek a product solution of the form</p>
+<div class="fragment">
 <p><span id="eq-product-solution"><span class="math display">\[
-\theta(x^*,y^*)=X(x^*)Y(y^*).
+u(x^*,y^*)=X(x^*)Y(y^*).
 \tag{18}\]</span></span></p>
 </div>
 <div class="fragment">
@@ -486,18 +523,7 @@ X''+\lambda^2 X=0, \quad
 Y''-\frac{\lambda^2}{\gamma^2}Y=0.
 \]</span></p>
 </div></div>
-</section>
-<section class="slide level2">
-
 <h4 class="fragment" id="bcs-for-x-dirichlet-at-x01-after-shifting-to-homogeneous-form">BCs for <span class="math inline">\(X\)</span> (Dirichlet at <span class="math inline">\(x^*=0,1\)</span> after shifting to homogeneous form):</h4>
-<div class="fragment">
-<p>Introduce <span class="math inline">\(u=\theta-\theta_b(x^*)\)</span> with a simple bridging function <span class="math inline">\(\theta_b(x^*)=1-x^*\)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\Rightarrow \quad\text{so that}\quad u(0,y^*)=u(1,y^*)=0.
-\]</span></p>
-</div>
 <div class="fragment">
 <p>The function <span class="math inline">\(u\)</span> satisfies homogeneous Dirichlet BCs at <span class="math inline">\(x^*=0\)</span> and <span class="math inline">\(x^*=1\)</span>.</p>
 <p><span class="math display">\[
@@ -524,77 +550,126 @@ Y_n'(0)=0,\quad
 \]</span></p>
 </div>
 </div></div>
-<div class="fragment" style="margin-top: -0.5em; font-size: 0.9em">
-<p>Solution for <span class="math inline">\(Y_n\)</span> (using <span class="math inline">\(Y_n' (0)=0,\,\, \Rightarrow\)</span> cosh form): <span class="math display">\[
-\begin{align}
-Y_n(y^*)&amp;=\cosh\!\left(\frac{n\pi}{\gamma} y^*\right)
-+\alpha_n\,\sinh\!\left(\frac{n\pi}{\gamma} y^*\right),\\
-\text{with}\quad \alpha_n&amp;=\frac{\frac{n\pi}{\gamma}\,\sinh\!\left(\frac{n\pi}{\gamma}\right)-\mathrm{Bi}\,\cosh\!\left(\frac{n\pi}{\gamma}\right)}
-{\mathrm{Bi}\,\sinh\!\left(\frac{n\pi}{\gamma}\right)+\frac{n\pi}{\gamma}\,\cosh\!\left(\frac{n\pi}{\gamma}\right)}.
-\end{align}
-\]</span></p>
-</div>
 </section>
 <section class="slide level2">
 
+<p>Define <span class="math inline">\(\alpha_n = \frac{n\pi}{\gamma}\)</span>, then the DE for <span class="math inline">\(Y_n\)</span> becomes</p>
 <div class="fragment">
-<p>Final representation is <span class="math display">\[
-\theta(x^*,y^*) = \theta_b(x^*) +
-\sum_{n=1}^{\infty} A_n \sin(n\pi x^*)\,Y_n(y^*),
-\]</span> where <span class="math inline">\(A_n\)</span> follow from projecting the residual at <span class="math inline">\(y^*=1\)</span> onto <span class="math inline">\(\sin(n\pi x^*)\)</span>.</p>
+<p><span class="math display">\[
+Y_n''-\alpha_n^2 Y_n=0
+\]</span></p>
 </div>
+<ul>
+<li class="fragment">Hence, the solution for <span class="math inline">\(Y_n\)</span> can be written as</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+Y_n(y^*) = A_n\cosh(\alpha_n y^*) + B_n \sinh(\alpha_n y^*).
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The constants <span class="math inline">\(A_n\)</span> and <span class="math inline">\(B_n\)</span> are determined from the boundary conditions.</p>
+<ul>
+<li class="fragment">The insulation at the bottom boundary (<span class="math inline">\(y^*=0\)</span>) implies <span class="math inline">\(Y_n'(0)=0\)</span>, which gives <span class="math inline">\(B_n=0\)</span>.</li>
+<li class="fragment">Hence <span class="math inline">\(Y_n(y^*) = A_n \cosh(\alpha_n y^*)\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
 <h4 class="fragment" id="determination-of-coefficients-a_n">Determination of Coefficients <span class="math inline">\(A_n\)</span></h4>
 <div class="fragment">
-<p>We expanded <span class="math display">\[
-u(x^*,y^*)=\sum_{n=1}^\infty A_n \sin(n\pi x^*)\,Y_n(y^*),
-\qquad Y_n(y^*)=\cosh\!\left(\frac{n\pi}{\gamma}y^*\right),
-\]</span> with <span class="math inline">\(\gamma=L/W\)</span> and <span class="math inline">\(u=\theta-\theta_b(x^*)\)</span>, <span class="math inline">\(\theta_b(x^*)=1-x^*\)</span>.</p>
+<p>Using the separation of variables solution for <span class="math inline">\(u\)</span>, we have <span class="math display">\[
+u(x^*,y^*)=\sum_{n=1}^\infty A_n \sin(n\pi x^*)\,\cosh(\alpha_n y^*),
+\]</span></p>
 </div>
 <h4 class="fragment" id="top-boundary-condition"><strong>Top boundary condition:</strong></h4>
+<ul>
+<li class="fragment">At the top boundary (<span class="math inline">\(y^*=1\)</span>), the boundary condition is applied:</li>
+</ul>
 <div class="fragment">
 <p><span class="math display">\[
--\,u_{y^*}(x^*,1)-\mathrm{Bi}\,u(x^*,1)=\mathrm{Bi}\,[\,\theta_b(x^*)-\theta_\infty\,], \quad\text{with}\quad \theta_\infty=\dfrac{T_\infty-T_1}{T_0-T_1}
+u(x^*,1) = \sum_{n=1}^\infty A_n \sin(n\pi x^*)\,\cosh(\alpha_n)
+\]</span></p>
+</div>
+<div class="fragment">
+<p>while <span class="math display">\[
+u_{y^*}(x^*,1) = \sum_{n=1}^\infty A_n \alpha_n \sin(n\pi x^*)\,\sinh(\alpha_n)
 \]</span></p>
 </div>
 </section>
 <section class="slide level2">
 
-<p>Projecting onto <span class="math inline">\(\sin(n\pi x^*)\)</span> yields <span class="math display">\[
--\,A_n\,\alpha_n\sinh(\alpha_n)
-= \mathrm{Bi}\Big[\,A_n\cosh(\alpha_n)+b_n\,\Big],
-\qquad \alpha_n=\frac{n\pi}{\gamma},
-\]</span> with <span class="math display">\[
-b_n=\frac{2}{n\pi}\int_{0}^{1}\big(1-x^*-\theta_\infty\big)\sin(n\pi x^*)\,dx^*
-=\frac{2}{n\pi}\Big[1-\theta_\infty(1-(-1)^n)\Big].
-\]</span></p>
-<p><span class="math display">\[\begin{align}
-\Rightarrow\quad  A_n&amp;=-\,\frac{\mathrm{Bi}\,b_n}{\alpha_n\sinh(\alpha_n)+\mathrm{Bi}\cosh(\alpha_n)},\\ \\
-b_n &amp;=
-\begin{cases}
-\dfrac{2}{n\pi}, &amp; n\ \text{even}, \\[6pt]
-\dfrac{2}{n\pi}\,(1-2\theta_\infty), &amp; n\ \text{odd}.
-\end{cases}
-\end{align}\]</span></p>
-</section>
-<section class="slide level2">
-
+<p>Substituting into the top boundary condition gives</p>
 <div class="fragment">
-<p>Since <span class="math inline">\(u=\theta-\theta_b(x^*)\)</span>, <span class="math inline">\(\theta_b(x^*)=1-x^*\)</span> and</p>
+<p><span class="math display">\[
+-\sum_{n=1}^\infty A_n \left[\alpha_n \sinh(\alpha_n) + \mathrm{Bi} \cosh(\alpha_n)\right] \sin(n\pi x^*) = \mathrm{Bi}\,[\,1-x^*-\theta_\infty\,].
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Now expand the right-hand side in a Fourier sine series to determine the coefficients <span class="math inline">\(A_n\)</span>.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\mathrm{Bi}(1-x^*-\theta_\infty) = \sum_{n=1}^\infty b_n \sin(n\pi x^*),
+\]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-u(x^*,y^*)=\sum_{n=1}^\infty A_n \sin(n\pi x^*)\,\cosh\!\left(\frac{n\pi}{\gamma}y^*\right),
+\text{where}\quad b_n = \frac{2}{\mathrm{Bi}}\int_0^1 (1-x^*-\theta_\infty) \sin(n\pi x^*)\,dx^*
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Use <span class="math inline">\(b_n\)</span> to solve for <span class="math inline">\(A_n\)</span> in the Fourier series expansion.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>Since <span class="math inline">\(\displaystyle\int_0^1 (1-x^*)\sin(n\pi x^*)\,dx^*=\frac{1}{n\pi}\)</span> and</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\displaystyle\int_0^1 \theta_\infty \sin(n\pi x^*)\,dx^* = \frac{\theta_\infty}{n\pi}(1-(-1)^n)\)</span>, we have</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\Rightarrow \int_0^1 (1-x^*-\theta_\infty) \sin(n\pi x^*)\,dx^* = \frac{1}{n\pi}\Big[1-\theta_\infty(1-(-1)^n)\Big].
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Then <span class="math display">\[
-\theta(x^*,y^*) = 1 - x^* - \sum_{n=1}^\infty \frac{\mathrm{Bi}\,b_n}{\alpha_n\sinh(\alpha_n)+\mathrm{Bi}\cosh(\alpha_n)} \sin(n\pi x^*)\,\cosh\!\left(\frac{n\pi}{\gamma}y^*\right).
+<p><span class="math display">\[
+\therefore\quad b_n = 2\mathrm{Bi}\int_0^1 (1-x^*-\theta_\infty) \sin(n\pi x^*)\,dx^* = \frac{2\mathrm{Bi}}{n\pi}\Big[1-\theta_\infty(1-(-1)^n)\Big].
 \]</span></p>
 </div>
-<p><br></p>
+<ul>
+<li class="fragment">Comparing Fourier series coefficients on both sides of the top boundary condition equation allows us to solve for <span class="math inline">\(A_n\)</span> in terms of <span class="math inline">\(b_n\)</span>.</li>
+</ul>
 <div class="fragment">
-<p>As <span class="math inline">\(\theta =\dfrac{T-T_1}{T_0-T_1}\)</span>, we have the solution <span class="math display">\[
-T(x^*,y^*) = T_1 + \theta(T_0-T_1).
+<p><span class="math display">\[
+A_n = -\,\frac{b_n}{\alpha_n\sinh(\alpha_n)+\mathrm{Bi}\cosh(\alpha_n)}.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Thus,</p>
+<div class="fragment">
+<p><span class="math display">\[
+u(x^*,y^*)=\sum_{n=1}^\infty A_n \sin(n\pi x^*)\,\cosh\!\left(\frac{n\pi}{\gamma}y^*\right).
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">As <span class="math inline">\(\theta = u+1-x^*\)</span>, we have the final dimensionless solution is</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\theta(x^*,y^*) = 1 - x^* + \sum_{n=1}^\infty A_n \sin(n\pi x^*)\,\cosh\!\left(\frac{n\pi}{\gamma}y^*\right).
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Finally, return to dimensionless temperature using</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+T(x^*,y^*) = T_1 + \theta(x^*,y^*)\,(T_0-T_1).
 \]</span></p>
 </div>
 </section>
