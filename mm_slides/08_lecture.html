@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="08_lecture_files/libs/clipboard/clipboard.min.js"></script>
+<script src="08_lecture_files/libs/quarto-html/tabby.min.js"></script>
+<script src="08_lecture_files/libs/quarto-html/popper.min.js"></script>
+<script src="08_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="08_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="08_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="08_lecture_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Prof.&nbsp;Benchawan Wiwatanapataphee">
+  <meta name="dcterms.date" content="2026-09-22">
+  <title>Lecture 8 — Traffic Flow Modelling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="08_lecture_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="08_lecture_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="08_lecture_files/libs/revealjs/dist/theme/quarto-122a39bcdf345efb8425e5ad88032412.css">
+  <link href="08_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="08_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="08_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="08_lecture_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="08_lecture_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="08_lecture_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  
+  <script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0/dist/mermaid-layout-elk.esm.min.mjs';
+  mermaid.registerLayoutLoaders(elkLayouts);
+  </script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Lecture 8 — Traffic Flow Modelling</h1>
+  <p class="subtitle">MATH3001(5005) — Applied Mathematical Modelling</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Prof.&nbsp;Benchawan Wiwatanapataphee
+</div>
+        <p class="quarto-title-affiliation">
+            Curtin University
+          </p>
+    </div>
+</div>
+
+  <p class="date">22 Sep 2026</p>
+</section>
+<section id="goals-today" class="slide level2 scrollable">
+<h2>Goals today:</h2>
+<ol type="1">
+<li class="fragment">Introduction<br> 1.1 Why study traffic flow<br> 1.2 Impact of non-recurrent events<br> 1.3 What mathematical modelling offers<br> 1.4 Traffic performance indicators<br></li>
+<li class="fragment">Basic traffic-flow concepts<br> 2.1 Speed-Density-Flow Relationship (Greenshields model)<br> 2.2 Triangular Fundamental Diagram<br></li>
+<li class="fragment">Continuity equations - Conservation of vehicle flows<br> 3.1 Homogeneous roads section<br> 3.2 Road sections with ramps<br> 3.3 Changes in the number of lanes<br></li>
+<li class="fragment">Method of Characteristics<br> 4.1 Characteristics fan<br> 4.2 Traffic-signal release<br></li>
+</ol>
+</section>
+<section id="introduction" class="slide level2">
+<h2>1. Introduction</h2>
+<h3 id="why-study-traffic-flow">1.1 Why study traffic flow?</h3>
+<p>Traffic congestion is a critical issue as population and economic activity grow.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/fig1_lec8.png" class="quarto-figure quarto-figure-center" width="550"></p>
+</figure>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<p>Speed of traffic flow is a key indicator of road performance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/fig2_lec8.png" class="quarto-figure quarto-figure-center" width="550"></p>
+</figure>
+</div>
+</div></div>
+<ul>
+<li class="fragment">Congestion is particularly severe during rush hours and under non-recurrent events such as rainfall, accidents, roadworks, and special events.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="impact-of-non-recurrent-events">1.2 Impact of non-recurrent events</h3>
+<ul>
+<li class="fragment">Rainfall can reduce visibility and road friction. During incidents it can cause:</li>
+</ul>
+<div class="columns">
+<div class="column center fragment" style="width:33%;">
+<p>lower traffic speed</p>
+</div><div class="column center fragment" style="width:33%;">
+<p>higher traffic density</p>
+</div><div class="column center fragment" style="width:33%;">
+<p>lower flow rate.</p>
+</div></div>
+<ul>
+<li class="fragment"><p><strong>Environment</strong>: Increase fuel consumption and greenhouse gas emissions.</p></li>
+<li class="fragment"><p><strong>Social</strong>: Increase stress, reduce quality of life and waste time for commuters.</p></li>
+<li class="fragment"><p><strong>Safety </strong>: Increase the likelihood of accidents and compromise road safety.</p></li>
+<li class="fragment"><p><strong>Economic</strong>: Traffic congestion in Australia was estimated to cost the economy <span class="math inline">\(18.9\)</span> billion in 2016, with forecasts of up to <span class="math inline">\(38.8\)</span> billion by 2031.</p></li>
+</ul>
+<div class="columns" style="">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/fig3_lec8.png" class="quarto-figure quarto-figure-center" width="300"></p>
+</figure>
+</div>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/fig4_lec8.png" class="quarto-figure quarto-figure-center" width="300"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="what-mathematical-modelling-offers">1.3 What mathematical modelling offers</h3>
+<div style="font-size: 0.8em;">
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Mathematical models help us understand, predict, and optimise traffic flow under varying conditions. They can quantify the effects of rainfall, accidents, and roadworks, and help develop strategies that mitigate congestion.</p>
+</div>
+</div>
+</div>
+</div>
+<h3 class="fragment" id="traffic-performance-indicators">1.4 Traffic performance indicators</h3>
+<ul>
+<li class="fragment"><strong>Speed <span class="math inline">\(v\)</span></strong> (km/hour): average vehicle speed on a road segment.</li>
+<li class="fragment"><strong>Density <span class="math inline">\(\rho\)</span></strong> (vehicles/km): number of vehicles per unit length of road.</li>
+<li class="fragment"><strong>Flow rate <span class="math inline">\(q\)</span></strong> (vehicles/hour): number of vehicles passing a point per unit time.</li>
+<li class="fragment"><strong>Travel time</strong> (hours): time needed to travel between two locations.</li>
+<li class="fragment"><strong>Queue length</strong> (km): length of the vehicle queue at a bottleneck or intersection.</li>
+<li class="fragment"><strong>Level of service</strong>: qualitative description from free flow to congested flow.</li>
+</ul>
+</section>
+<section id="basic-traffic-flow-concepts" class="slide level2">
+<h2>2. Basic traffic-flow concepts</h2>
+<ul>
+<li class="fragment"><strong><span style="color:blue;">Micro</span>scopic models</strong> describe <em>individual vehicles</em> and their interactions.</li>
+</ul>
+<div class="columns fragment">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch8-microscopic.png" class="quarto-figure quarto-figure-center" width="400"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>For an individual vehicle (particle) <span class="math inline">\(\alpha\)</span>, <span class="math display">\[
+\frac{dv_\alpha}{dt} = a_\alpha(s_\alpha,v_\alpha,\Delta v_\alpha)
+\]</span></p>
+</div></div>
+<div style="margin-top: -1.5em;">
+<ul>
+<li class="fragment"><strong><span style="color:blue;">Macro</span>scopic models</strong> describe <em>aggregate variables</em> such as <span class="math inline">\(\rho\)</span>, <span class="math inline">\(q\)</span>, and <span class="math inline">\(v\)</span>.</li>
+</ul>
+</div>
+<div class="columns fragment">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch8-macroscopic.png" class="quarto-figure quarto-figure-center" width="300"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>Focus on quantities per lane, the average, or the total.</p>
+</div></div>
+<div style="margin-top: -1.5em;">
+<ul>
+<li class="fragment"><strong><span style="color:blue;">Meso</span>scopic models</strong> combine individual behaviour with aggregate traffic characteristics.</li>
+</ul>
+</div>
+<div style="margin-top: -0.5em;">
+<ul>
+<li class="fragment"><strong>Hybrid models</strong> combine modelling scales in different parts of a traffic system.</li>
+</ul>
+</div>
+<div class="fragment" style="font-size: 0.8em; margin-top: -1em;">
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>This lecture uses a <strong>macroscopic</strong> description.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="speed-density-flow-relationship-greenshields-model">2.1 Speed-Density-Flow relationship (Greenshields model)</h3>
+<p>The fundamental traffic quantities, density <span class="math inline">\(\rho\)</span>, flow rate <span class="math inline">\(q\)</span>, and speed <span class="math inline">\(v\)</span>, are</p>
+<p><span class="math display">\[
+\rho = \frac{\text{number of vehicles}}{\text{unit length}},\quad
+q = \frac{\text{number of vehicles}}{\text{unit time}},\quad
+v = \frac{\text{distance}}{\text{unit time}}.
+\]</span></p>
+<div class="fragment">
+<p>The quantities are related by</p>
+<div style="margin-top: -2em;">
+<p><span id="eq-eq1"><span class="math display">\[
+\hspace{5em}\color{blue}{q = \rho v}
+\tag{1}\]</span></span></p>
+</div>
+</div>
+<h4 class="fragment" id="speed-density-relationship">Speed-Density relationship</h4>
+<div class="columns fragment">
+<div class="column" style="width:35%;">
+<p><br></p>
+<div id="72b675e2" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-2-output-1.png" class="quarto-figure quarto-figure-center" width="307" height="230"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:65%;">
+<div style="margin-top: -2em;">
+<p><span id="eq-eq2"><span class="math display">\[
+\color{blue}{v = V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right)}
+\tag{2}\]</span></span></p>
+</div>
+<p>Driver’s driving speed usually depends on the maximum allowed speed <span class="math inline">\(V_{\max}\)</span> and density <span class="math inline">\(\rho\)</span>.</p>
+<ul>
+<li class="fragment">Driver drive slower as the density <span class="math inline">\(\rho\)</span> increases.</li>
+<li class="fragment">On a clear road (<span class="math inline">\(\rho \rightarrow 0\)</span>), drivers’<span class="math inline">\(v \rightarrow V_{\max}\)</span>.</li>
+<li class="fragment">When cars are bumper-to-bumper (<span class="math inline">\(\rho=\rho_{\max}\)</span>), <span class="math inline">\(v\rightarrow 0\)</span>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h4 id="flow-density-relationship">Flow-Density relationship</h4>
+<p>From (<a href="#/eq-eq1" class="quarto-xref">1</a>) and (<a href="#/eq-eq2" class="quarto-xref">2</a>):</p>
+<div style="margin-top: -2.5em;">
+<p><span id="eq-eq3"><span class="math display">\[
+\color{blue}{q(\rho) = \rho V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right)}
+\tag{3}\]</span></span></p>
+</div>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div id="c3bd1274" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-3-output-1.png" class="quarto-figure quarto-figure-center" width="273" height="173"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:65%;">
+<ul>
+<li class="fragment">Flow <span class="math inline">\(q \rightarrow 0\)</span> as density <span class="math inline">\(\rho \rightarrow 0\)</span> or <span class="math inline">\(\rho \rightarrow \rho_{\max}\)</span>.</li>
+<li class="fragment">Two possible <span class="math inline">\(\rho\)</span> values give the same flow <span class="math inline">\(q\)</span>.</li>
+<li class="fragment">Flow is maximised at the critical density <span class="math inline">\(\rho_c\)</span>.</li>
+</ul>
+</div></div>
+<h4 class="fragment" id="fundamental-diagrams">Fundamental diagrams</h4>
+<div class="fragment">
+<div id="cf9fbc08" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-4-output-1.png" class="quarto-figure quarto-figure-center" width="852" height="228"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 scrollable">
+
+<h4 id="example-a-greenshields-flow-density-model">Example: a Greenshields flow-density model</h4>
+<ol type="a">
+<li class="fragment">Using a Greenshields model, calculate the speed and flow for <span class="math inline">\(\rho = 50, 100, 150\)</span> veh/km given <span class="math inline">\(V_{\max}=120\)</span> km/h and <span class="math inline">\(\rho_{\max}=200\)</span> veh/km.</li>
+</ol>
+<div class="fragment">
+<p>From (<a href="#/eq-eq3" class="quarto-xref">3</a>), <span class="math inline">\(\qquad q(\rho)=\rho V_{\max}\left(1-\dfrac{\rho}{\rho_{\max}}\right)=120\rho\left(1-\dfrac{\rho}{200}\right).\)</span></p>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:55%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\rho\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(v\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">120(1-50/200)=90</td>
+<td style="text-align: center;">50(90)=4500</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">120(1-100/200)=60</td>
+<td style="text-align: center;">100(60)=6000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">150</td>
+<td style="text-align: center;">120(1-150/200)=30</td>
+<td style="text-align: center;">150(30)=4500</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column fragment" style="width:45%;">
+<div id="47437f48" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-5-output-1.png" class="quarto-figure quarto-figure-center" width="308" height="210"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div style="margin-top: -2em;">
+<ol start="2" type="a">
+<li class="fragment">Determine the critical density, maximum flow, and corresponding speed.</li>
+</ol>
+</div>
+<div class="fragment">
+<p>Since <span class="math inline">\(q(\rho)=120\rho-0.6\rho^2\)</span>, <span class="math inline">\(\dfrac{dq}{d\rho}=120-1.2\rho=0 \; \Longrightarrow \; \rho_c=100\)</span> veh/km.</p>
+</div>
+<div class="fragment">
+<p>At this density, <span class="math inline">\(\qquad Q_{\max}=6000\)</span> veh/h and <span class="math inline">\(v_c=60\)</span> km/h.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="triangular-fundamental-diagram">2.2 Triangular fundamental diagram</h3>
+<p>We can also describe traffic flow using the triangular fundamental diagram, which is characterised by a <strong>piecewise linear relationship</strong> between flow and density.</p>
+<p><span id="eq-triangular-fundamental-diagram"><span class="math display">\[
+q = Q(\rho) = \min\{v_f\rho,\; w(\rho_j-\rho)\}
+\tag{4}\]</span></span></p>
+<p>or</p>
+<div style="margin-top: -2em;">
+<p><span class="math display">\[
+Q(\rho) = \begin{cases}
+v_f \rho, &amp; \rho \le \rho_c \\
+w(\rho_j - \rho), &amp; \rho &gt; \rho_c,
+\end{cases}
+\]</span></p>
+</div>
+<div class="columns">
+<div class="column">
+<ul>
+<li class="fragment"><span class="math inline">\(v_f\)</span> is the free-flow speed (<span class="math inline">\(v_f=V_{\max}\)</span>),</li>
+<li class="fragment"><span class="math inline">\(\rho_c\)</span> is the critical density,</li>
+<li class="fragment"><span class="math inline">\(w\)</span> is the backward congestion-wave speed,</li>
+<li class="fragment"><span class="math inline">\(\rho_j\)</span> is the jam density (<span class="math inline">\(\rho_j \approx \rho_\max\)</span>),</li>
+<li class="fragment"><span class="math inline">\(Q_{\max}\)</span> is the maximum flow (road capacity).</li>
+</ul>
+</div><div class="column fragment">
+<div id="e068c67e" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-6-output-1.png" class="quarto-figure quarto-figure-center" width="468" height="324"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="continuity-equations---conservation-of-vehicle-flows" class="slide level2">
+<h2>3. Continuity equations - Conservation of vehicle flows</h2>
+<div style="font-size: 0.8em">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Number of vehicles <span class="math inline">\(N(t)\)</span> is conserved as they move along a road.</p>
+<p>The continuity equation depends on the <strong>geometry of the road infrastructure</strong>.</p>
+<ul>
+<li class="fragment"><strong>Homogeneous road sections:</strong> No ramps or lane changes.</li>
+<li class="fragment"><strong>Sections with on-ramps or off-ramps:</strong> External inflows or outflows.</li>
+<li class="fragment"><strong>Sections with lane changes:</strong> Changes in the number of lanes affect the density and flow.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Consider a road segment <span class="math inline">\([x_1,x_2]\)</span> and let <span class="math inline">\(N(t)=\displaystyle\int_{x_1}^{x_2}\rho(x,t)\,dx\)</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\text{accumulation}=\text{inflow}-\text{outflow}+\text{external inflow}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{d}{dt}\int_{x_1}^{x_2}\rho(x,t)\,dx
+=q(x_1,t)-q(x_2,t)+\int_{x_1}^{x_2}r(x,t)\,dx.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Flow is taken in the positive <span class="math inline">\(x\)</span> direction: it enters at <span class="math inline">\(x_1\)</span> and leaves at <span class="math inline">\(x_2\)</span>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="units-and-assumptions">Units and assumptions</h4>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Typical units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\rho(x,t)\)</span></td>
+<td style="text-align: left;">vehicles per unit length</td>
+<td style="text-align: left;">veh/km</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(q(x,t)\)</span></td>
+<td style="text-align: left;">vehicles passing per unit time</td>
+<td style="text-align: left;">veh/h</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(r(x,t)\)</span></td>
+<td style="text-align: left;">vehicles added per unit length and time</td>
+<td style="text-align: left;">veh/(km h)</td>
+</tr>
+</tbody>
+</table>
+<h4 class="fragment" id="the-one-dimensional-model-assumes-that">The one-dimensional model assumes that</h4>
+<ul>
+<li class="fragment">traffic is represented by averaged quantities;</li>
+<li class="fragment">vehicles are conserved inside the road segment;</li>
+<li class="fragment">lane changes are negligible or included in the averages;</li>
+<li class="fragment">the road geometry is known.</li>
+</ul>
+<div class="fragment">
+<p>The continuity equation alone does not determine <span class="math inline">\(q\)</span>. A constitutive relation such as <span class="math inline">\(q=Q(\rho)\)</span> is needed to close the model.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>The three macroscopic quantities satisfy <span class="math inline">\(q=\rho v\)</span> and <span class="math inline">\(q=Q(\rho)\)</span>.</p>
+<div class="fragment">
+<p>Substituting the flow-density relation into the homogeneous continuity equation gives</p>
+<p><span class="math display">\[
+\boxed{\frac{\partial \rho}{\partial t}+\frac{\partial Q(\rho)}{\partial x}=0.}\]</span></p>
+<p>This is the <strong>first-order Lighthill–Whitham–Richards (LWR)</strong> model.</p>
+</div>
+<div class="columns">
+<div class="column fragment">
+<p>Using the chain rule,</p>
+<p><span class="math display">\[
+\boxed{\frac{\partial \rho}{\partial t}+Q'(\rho)\frac{\partial \rho}{\partial x}=0.}\]</span></p>
+</div><div class="column fragment">
+<ul>
+<li class="fragment"><span class="math inline">\(\rho_t\)</span> describes local accumulation or depletion of vehicles.</li>
+<li class="fragment"><span class="math inline">\(Q(\rho)_x\)</span> describes the spatial change in traffic flow.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="homogeneous-road-section">3.1 Homogeneous road section</h3>
+<div class="columns">
+<div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch8-homogenous.png" class="quarto-figure quarto-figure-center" width="300"></p>
+</figure>
+</div>
+</div><div class="column">
+<p>For a section from <span class="math inline">\(x\)</span> to <span class="math inline">\(x+\Delta x\)</span>,</p>
+<p><span class="math display">\[
+N(t) = \rho(x,t)\,\Delta x.
+\]</span></p>
+</div></div>
+<div class="fragment">
+<p>Conservation gives <span class="math inline">\(\qquad \dfrac{dN}{dt} = q(x,t)-q(x+\Delta x,t).\)</span></p>
+</div>
+<div class="fragment">
+<p>Taking the limit <span class="math inline">\(\Delta x\to0\)</span> gives</p>
+<p><span id="eq-eq-continuity-homogeneous"><span class="math display">\[
+\boxed{\dfrac{\partial \rho}{\partial t} + \dfrac{\partial q}{\partial x}=0}.
+\tag{5}\]</span></span></p>
+</div>
+<ul>
+<li class="fragment">The rate of change of density in time and the rate of change of flow in space must balance.</li>
+<li class="fragment">This equation is valid for road-average quantities and does not account for lane-changing in lane-specific quantities.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div style="font-size:0.9em;">
+<p>Consider a section of length <span class="math inline">\(\Delta x\)</span>. Let <span class="math inline">\(\rho_{\mathrm{tot}}(x,t)\)</span> be the total vehicle density across all lanes, and let <span class="math inline">\(q_{\mathrm{tot}}(x,t)\)</span> be the total flow.</p>
+<div class="columns">
+<div class="column">
+<ul>
+<li class="fragment">The number of vehicles in the section is approximately</li>
+</ul>
+</div><div class="column fragment" style="margin-top: -1.5em;">
+<p><span class="math display">\[
+\begin{aligned}
+n(t)&amp;=\int_x^{x+\Delta x}\rho_{\mathrm{tot}}(x',t)\,dx' \\
+&amp;\approx \rho_{\mathrm{tot}}(x,t)\,\Delta x.
+\end{aligned}
+\]</span></p>
+</div></div>
+<div style="margin-top:-0.5em;">
+<ul>
+<li class="fragment">Conservation says that the rate of change of <span class="math inline">\(n(t)\)</span> equals inflow minus outflow:</li>
+</ul>
+</div>
+<div class="fragment" style="margin-top: -1em;">
+<p><span class="math display">\[
+\frac{d}{dt}\left[\rho_{\mathrm{tot}}(x,t)\Delta x\right]
+=q_{\mathrm{tot}}(x,t)-q_{\mathrm{tot}}(x+\Delta x,t).
+\]</span></p>
+</div>
+<div class="columns">
+<div class="column" style="width:47%;">
+<ul>
+<li class="fragment">Divide by <span class="math inline">\(\Delta x\)</span> and use a first-order difference quotient:</li>
+</ul>
+</div><div class="column fragment" style="margin-top: -0.5em;">
+<p><span class="math display">\[
+\frac{\partial\rho_{\mathrm{tot}}}{\partial t}
+\approx-\frac{q_{\mathrm{tot}}(x+\Delta x,t)-q_{\mathrm{tot}}(x,t)}{\Delta x}.
+\]</span></p>
+</div></div>
+<div style="margin-top: -1em;">
+<ul>
+<li class="fragment">Taking <span class="math inline">\(\Delta x\to0\)</span> gives the total-quantity continuity eq: <span class="math inline">\(\dfrac{\partial\rho_{\mathrm{tot}}}{\partial t}+\dfrac{\partial q_{\mathrm{tot}}}{\partial x}=0.\)</span></li>
+</ul>
+</div>
+<ul>
+<li class="fragment"><p>For <span class="math inline">\(n\)</span> lanes, <span class="math inline">\(\rho_{\mathrm{tot}}=n\rho\)</span> and <span class="math inline">\(q_{\mathrm{tot}}=nq\)</span>. If <span class="math inline">\(n\)</span> is constant, divide by <span class="math inline">\(n\)</span> to obtain the lane-average form (<a href="#/eq-eq-continuity-homogeneous" class="quarto-xref">5</a>).</p></li>
+<li class="fragment"><p>When <span class="math inline">\(n=n(x)\)</span> varies, division by <span class="math inline">\(n\)</span> must be done after differentiating <span class="math inline">\(nq\)</span>; this is why the variable-lane equation contains <span class="math inline">\(\dfrac{1}{n(x)}\partial_x(nq)\)</span>.</p></li>
+</ul>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="traffic-jam-clearing-on-homogeneous-road">Traffic jam clearing on homogeneous road</h4>
+<p>Consider a homogeneous road section. Initially, the road is congested with density <span class="math inline">\(\rho_0\)</span> at <span class="math inline">\(t=0\)</span>. For <span class="math inline">\(t&gt;0\)</span>, the density is prescribed by</p>
+<p><span class="math display">\[
+\rho(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right),
+\qquad 0&lt;x&lt;\Delta x.
+\]</span></p>
+<p>Assume the Greenshields speed-density relation (<a href="#/eq-eq3" class="quarto-xref">3</a>) and <span class="math inline">\(\rho_0=\rho_{\max}\)</span>. Find the speed <span class="math inline">\(v(x,t)\)</span>, the flow <span class="math inline">\(q(x,t)\)</span>, and the maximum flow.</p>
+<div class="fragment">
+<p>Substitute the density into (<a href="#/eq-eq3" class="quarto-xref">3</a>) yields</p>
+<p><span class="math display">\[
+v(x,t)=V_{\max}\left[1-\frac{\rho_0(1-x/\Delta x)}{\rho_{\max}}\right]
+=\frac{x}{\Delta x}V_{\max}.
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Thus <span class="math inline">\(v=0\)</span> at <span class="math inline">\(x=0\)</span> and increases linearly to <span class="math inline">\(V_{\max}\)</span> at <span class="math inline">\(x=\Delta x\)</span>.</li>
+</ul>
+<div class="fragment">
+<p>Using (<a href="#/eq-eq1" class="quarto-xref">1</a>),</p>
+<div style="margin-top: -2.5em;">
+<p><span class="math display">\[
+q(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right)
+\frac{x}{\Delta x}V_{\max}
+=\rho_0V_{\max}\frac{x}{\Delta x}\left(1-\frac{x}{\Delta x}\right).
+\]</span></p>
+</div>
+</div>
+<ul>
+<li class="fragment">The flow is zero at both ends of the clearing region and is largest inside it.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>Differentiate with respect to <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+\frac{dq}{dx}=\frac{\rho_0V_{\max}}{\Delta x^2}
+(\Delta x-2x).
+\]</span></p>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{dq}{dx}=0\quad\Longrightarrow\quad x=\frac{\Delta x}{2}.
+\]</span></p>
+</div>
+<div class="fragment">
+<p>At this point,</p>
+<p><span class="math display">\[
+q_{\max}=\frac{\rho_0V_{\max}}{4},
+\qquad
+\rho\left(\frac{\Delta x}{2},t\right)=\frac{\rho_0}{2}.
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The maximum flow occurs halfway through the transition from jam density to an empty road, and it is denoted by <span class="math inline">\(q_{\max}\)</span>.</p></li>
+<li class="fragment"><p>For the complete piecewise picture, the jam region <span class="math inline">\(x\leq0\)</span> has <span class="math inline">\(\rho=\rho_0\)</span> and <span class="math inline">\(v=0\)</span>, while the empty region <span class="math inline">\(x\geq\Delta x\)</span> has <span class="math inline">\(\rho=0\)</span> and <span class="math inline">\(q=0\)</span>.</p></li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+
+<h4 id="example-1-homogeneous-road-section">Example 1: Homogeneous Road Section</h4>
+<p>Consider a traffic in a <strong>homogeneous road section</strong> is initially congested with a density <span class="math inline">\(\rho_0\)</span>​ at <span class="math inline">\(t=0\)</span>. The traffic starts to ease at <span class="math inline">\(x=0\)</span>, causing the traffic flow to change such that the traffic density is given by</p>
+<p><span id="eq-eq-ex1"><span class="math display">\[
+\rho(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right),
+\qquad t&gt;0.
+\tag{6}\]</span></span></p>
+<ol type="a">
+<li>Derive the traffic velocity <span class="math inline">\(v(x,t)\)</span>.</li>
+<li>Determine where the density <span class="math inline">\(\rho(x,t)\)</span> reaches zero and interpret its significance for traffic flow.</li>
+<li>Sketch the density function <span class="math inline">\(\rho(x,t)\)</span> and the corresponding flow <span class="math inline">\(q(x,t)\)</span> for <span class="math inline">\(t&gt;0\)</span>.</li>
+<li>Determine and sketch the characteristics of the traffic flow in the <span class="math inline">\((x,t)\)</span> plane.</li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol type="a">
+<li class="fragment"><strong>Derive the traffic velocity <span class="math inline">\(v(x,t)\)</span>.</strong></li>
+</ol>
+<div class="fragment">
+<p>Substitute (<a href="#/eq-eq-ex1" class="quarto-xref">6</a>) into (<a href="#/eq-eq2" class="quarto-xref">2</a>), we have</p>
+<p><span class="math display">\[
+v=V_\max\left[1-\frac{\rho_0\left(1-\frac{x}{\Delta x}\right)}{\rho_0}\right]=\frac{xV_\max}{\Delta x}
+\]</span></p>
+</div>
+<ol start="2" type="a">
+<li class="fragment"><strong>Determine where the density <span class="math inline">\(\rho(x,t)\)</span> reaches</strong></li>
+</ol>
+<div class="fragment">
+<p>Solve (<a href="#/eq-eq-ex1" class="quarto-xref">6</a>) for <span class="math inline">\(x\)</span> when <span class="math inline">\(\rho(x,t)=0\)</span>, we have <span class="math display">\[
+\rho(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right) = 0
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\left(1-\frac{x}{\Delta x}\right) = 0 \quad \Longrightarrow \quad x = \Delta x
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>At <span class="math inline">\(x = \Delta x\)</span>, the traffic density reaches zero, indicating an empty road section.</p></li>
+<li class="fragment"><p>This signifies the end of traffic jam or the beginning of free-flowing traffic.</p></li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="3" type="a">
+<li class="fragment"><strong>Sketch the <span class="math inline">\(\rho(x,t)\)</span> and the corresponding <span class="math inline">\(q(x,t)\)</span> for <span class="math inline">\(t&gt;0\)</span>.</strong></li>
+</ol>
+<ul>
+<li class="fragment">Sketch <span class="math inline">\(\rho(x,t)\)</span>
+<ul>
+<li class="fragment">For <span class="math inline">\(x&lt;0\)</span>, the jam density is <span class="math inline">\(\rho_0=\rho_m\)</span></li>
+<li class="fragment">For <span class="math inline">\(0\leq x\leq\Delta x\)</span>, the density decreases <strong>linearly</strong> from <span class="math inline">\(\rho_0\)</span> to <span class="math inline">\(0\)</span>. <span class="math display">\[
+\rho(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right) = -\frac{\rho_0}{\Delta x}x+\rho_0
+\]</span></li>
+<li class="fragment">For <span class="math inline">\(x&gt;\Delta x\)</span>, the density is zero, indicating an empty road section.</li>
+</ul></li>
+</ul>
+<div class="columns">
+<div class="column fragment" style="width:55%;">
+<p><span class="math display">\[
+\therefore \rho(x,t) = \begin{cases}
+\rho_0, &amp; x&lt;0,\\
+\rho_0\left(1-\frac{x}{\Delta x}\right), &amp; 0\leq x\leq\Delta x,\\
+0, &amp; x&gt;\Delta x
+\end{cases}
+\]</span></p>
+</div><div class="column fragment" style="width:45%;">
+<div id="67dac984" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-7-output-1.png" width="422" height="275"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<ul>
+<li class="fragment">Sketch <span class="math inline">\(q(x,t)\)</span>
+<ul>
+<li class="fragment">For <span class="math inline">\(x \leq 0\)</span>, <span class="math inline">\(\rho_0=\rho_m\)</span> and <span class="math inline">\(v_0=0\)</span>; therefore, <span class="math display">\[
+q(x,t)=\rho_0\cdot v_0=0
+\]</span></li>
+<li class="fragment">For <span class="math inline">\(0 &lt; x \leq \Delta x\)</span>, substitute <span class="math inline">\(v(x,t)\)</span> from part (a) yields <span class="math display">\[
+\begin{aligned}
+q(x,t) &amp;=\rho(x,t)\cdot v(x,t) = \rho_0 \left(1-\frac{x}{\Delta x}\right) \cdot \frac{xV_\max}{\Delta x} \\
+q'(x,t) &amp;= \frac{\rho_0 V_\max}{(\Delta x)^2} (\Delta x-2x) = 0 \Rightarrow x=\Delta x/2 \\
+Q_\max &amp;= (\rho V_\max)/4 \text{ at } x=\Delta x/2
+\end{aligned}
+\]</span></li>
+<li class="fragment">For <span class="math inline">\(x &gt; \Delta_x\)</span>, <span class="math inline">\(q(x,t) = 0\)</span>.</li>
+</ul></li>
+</ul>
+<div class="columns fragment">
+<div class="column" style="font-size: 0.9em;">
+<p><span class="math display">\[
+\begin{aligned}
+\therefore q(x,t)=\begin{cases}
+0, &amp; x \leq 0 \\
+\rho V_\max\left[1-\frac{\rho}{\rho_0}\right] , &amp; 0 &lt; x \leq \Delta x \\
+0, &amp; x &gt; \Delta x
+\end{cases}
+\end{aligned}
+\]</span></p>
+</div><div class="column" style="margin-top:-4em;">
+<div id="6d386596" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-8-output-1.png" class="quarto-figure quarto-figure-center" width="421" height="275"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="4" type="a">
+<li class="fragment"><strong>Determine the characteristics of the traffic flow in the <span class="math inline">\((x,t)\)</span> plane.</strong></li>
+</ol>
+<div class="columns">
+<div class="column">
+<ul>
+<li class="fragment">For <span class="math inline">\(x \leq 0, \rho_0=\rho_m\)</span> and <span class="math inline">\(v_0=0\)</span> <span class="math display">\[
+\color{green}{x(t)=x_0}.
+\]</span></li>
+<li class="fragment">For <span class="math inline">\(0 &lt; x &lt; \Delta x,\)</span>
+<ul>
+<li class="fragment">From (a), <span class="math inline">\(v(x,t) = \dfrac{dx}{dt} = \dfrac{xV_\max}{\Delta x}\)</span></li>
+<li class="fragment">Integrating <span class="math display">\[
+\begin{aligned}
+\int \frac{1}{x} \, dx &amp;= \int \frac{V_\max}{\Delta x} \, dt \\
+\ln(x) &amp;= \frac{V_\max}{\Delta x} t + \ln(x_0)
+\end{aligned}
+\]</span> <span class="math display">\[
+\color{blue}{x(t) = x_0 \exp(\frac{V_\max}{\Delta x} t)}
+\]</span></li>
+</ul></li>
+<li class="fragment">For <span class="math inline">\(x \geq \Delta x, \color{red}{x(t)=x_0 + V_\max t}\)</span></li>
+</ul>
+</div><div class="column fragment" style="font-size: 0.9em;">
+<p><span class="math display">\[
+\therefore x(t) = \begin{cases}
+\color{green}{x_0}, &amp; x \leq 0 \\
+\color{blue}{x_0 \exp(\frac{V_\max}{\Delta x} t)}, &amp; 0 &lt; x &lt; \Delta x \\
+\color{red}{x_0 + V_\max t}, &amp; x \geq \Delta x
+\end{cases}
+\]</span></p>
+<div id="ff28ea8e" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-9-output-1.png" class="quarto-figure quarto-figure-center" width="469" height="371"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+
+<h3 id="road-sections-with-ramps">3.2 Road sections with ramps</h3>
+<p>Let <span class="math inline">\(r(x,t)\)</span> be the net inflow per unit length. The continuity equation becomes</p>
+<p><span id="eq-eq5"><span class="math display">\[
+\boxed{\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x}=r(x,t)},
+\tag{7}\]</span></span></p>
+<p><span class="math display">\[
+r(x,t) = \begin{cases}
+\dfrac{q_r}{n \cdot L}, &amp; x \text{ at merging or diverging zones},\\
+0, &amp; \text{otherwise},
+\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(q_r\)</span> is the ramp flow, <span class="math inline">\(n\)</span> is the number of lanes, and <span class="math inline">\(L\)</span> is the ramp length.</p>
+<ul>
+<li class="fragment">An on-ramp contributes positive flow; an off-ramp contributes negative flow.</li>
+</ul>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<svg viewbox="0 0 620 260" role="img" aria-label="Road section with an on-ramp and an off-ramp" style="width:100%; height:auto;">
+<defs> <marker id="arrow-ramp" markerwidth="9" markerheight="9" refx="7" refy="4" orient="auto"> <path d="M0,0 L8,4 L0,8 z" fill="#333333"></path> </marker> </defs> <path d="M35 78 L585 78" stroke="#333333" stroke-width="42" fill="none"></path> <path d="M35 78 L585 78" stroke="#f2f2f2" stroke-width="3" stroke-dasharray="20 14" fill="none"></path> <path d="M35 214 L260 214 Q315 214 350 78" stroke="#1f6f8b" stroke-width="18" fill="none"></path> <path d="M380 78 Q420 214 585 214" stroke="#d05a3a" stroke-width="18" fill="none"></path> <line x1="95" y1="78" x2="175" y2="78" stroke="#ffffff" stroke-width="4" marker-end="url(#arrow-ramp)"></line> <line x1="415" y1="78" x2="495" y2="78" stroke="#ffffff" stroke-width="4" marker-end="url(#arrow-ramp)"></line> <line x1="125" y1="214" x2="220" y2="214" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow-ramp)"></line> <line x1="450" y1="214" x2="535" y2="214" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow-ramp)"></line> <text x="250" y="48" font-size="20">main road</text> <text x="105" y="250" font-size="19" fill="#1f6f8b">on-ramp: +r</text> <text x="405" y="250" font-size="19" fill="#d05a3a">off-ramp: -r</text>
+</svg>
+</div><div class="column fragment" style="width:50%;">
+<p>The source term <span class="math inline">\(r(x,t)\)</span> represents the net exchange of vehicles:</p>
+<ul>
+<li class="fragment"><strong>on-ramp</strong> adds vehicles, so <span class="math inline">\(r&gt;0\)</span>;</li>
+<li class="fragment"><strong>off-ramp</strong> removes vehicles, so <span class="math inline">\(r&lt;0\)</span>.</li>
+</ul>
+</div></div>
+</section>
+<section class="slide level2">
+
+<p>The main-road flow changes as vehicles enter or leave the road section.</p>
+<ul>
+<li class="fragment">Integrating the ramp equation over <span class="math inline">\([x_1,x_2]\)</span> gives</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{dN}{dt}=q(x_1,t)-q(x_2,t)+\int_{x_1}^{x_2}r(x,t)\,dx.
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Thus a ramp changes the total number of vehicles in the control volume, not merely the local density.</li>
+<li class="fragment">In steady state, <span class="math inline">\(\rho_t=0\)</span>, so the main-road flow increases downstream when the net ramp contribution is positive.</li>
+<li class="fragment">The ramp contribution can be positive (on-ramp) or negative (off-ramp), affecting the downstream flow accordingly.</li>
+<li class="fragment">The effect of ramps is integrated into the overall traffic flow model through the source term <span class="math inline">\(r(x,t)\)</span>.</li>
+<li class="fragment">The source term <span class="math inline">\(r(x,t)\)</span> allows the model to account for complex traffic scenarios involving multiple ramps along the road.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p>An on-ramp adds demand to the main road. If the ramp inflow is <span class="math inline">\(r(x,t)\)</span>,</p>
+<p><span class="math display">\[
+\rho_t+q_x=r(x,t).\]</span></p>
+<div class="fragment">
+<p>Ramp metering controls <span class="math inline">\(r\)</span> so that the downstream flow remains below capacity:</p>
+<p><span class="math display">\[
+q_{\mathrm{main}}+q_{\mathrm{ramp}}\leq C_{\mathrm{downstream}}.\]</span></p>
+</div>
+<div class="fragment">
+<p>The controller must balance two queues:</p>
+</div>
+<ul>
+<li class="fragment">too little ramp flow leaves unused highway capacity;</li>
+<li class="fragment">too much ramp flow creates a main-road queue;</li>
+<li class="fragment">the target is to keep the main road near, but below, capacity.</li>
+</ul>
+<div class="fragment">
+<p>For the numerical model in this lecture,</p>
+<p><span class="math display">\[
+C_{\mathrm{downstream}}\approx1928.6\text{ veh/h per lane}.
+\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="multiple-ramps-along-a-road">Multiple ramps along a road</h4>
+<div class="columns">
+<div class="column" style="width:68%;">
+<svg viewbox="0 0 760 330" role="img" aria-label="Main road with two on-ramps and two off-ramps" style="width:100%; height:auto;">
+<defs> <marker id="arrow-multi-ramp" markerwidth="9" markerheight="9" refx="7" refy="4" orient="auto"> <path d="M0,0 L8,4 L0,8 z" fill="#333333"></path> </marker> </defs> <path d="M40 150 L720 150" stroke="#333333" stroke-width="48" fill="none"></path> <path d="M40 150 L720 150" stroke="#f2f2f2" stroke-width="3" stroke-dasharray="22 15" fill="none"></path> <path d="M40 290 L145 290 Q185 290 220 150" stroke="#1f6f8b" stroke-width="17" fill="none"></path> <path d="M300 290 L355 290 Q395 290 430 150" stroke="#1f6f8b" stroke-width="17" fill="none"></path> <path d="M500 150 Q535 290 575 290 L720 290" stroke="#d05a3a" stroke-width="17" fill="none"></path> <path d="M600 150 Q635 35 680 35 L720 35" stroke="#d05a3a" stroke-width="17" fill="none"></path> <line x1="80" y1="150" x2="165" y2="150" stroke="#fff" stroke-width="4" marker-end="url(#arrow-multi-ramp)"></line> <line x1="535" y1="150" x2="620" y2="150" stroke="#fff" stroke-width="4" marker-end="url(#arrow-multi-ramp)"></line> <line x1="70" y1="290" x2="135" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"></line> <line x1="325" y1="290" x2="390" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"></line> <line x1="615" y1="290" x2="690" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"></line> <line x1="650" y1="35" x2="705" y2="35" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"></line> <text x="300" y="112" font-size="20">main road flow q(x,t)</text> <text x="75" y="322" font-size="17" fill="#1f6f8b">on-ramp r_1 &gt; 0</text> <text x="300" y="322" font-size="17" fill="#1f6f8b">on-ramp r_2 &gt; 0</text> <text x="505" y="322" font-size="17" fill="#d05a3a">off-ramp r_3 &lt; 0</text> <text x="575" y="25" font-size="17" fill="#d05a3a">off-ramp r_4 &lt; 0</text>
+</svg>
+</div><div class="column" style="width:32%;">
+<p>For a steady road section,</p>
+<p><span class="math display">\[
+\frac{dq}{dx}=r(x).
+\]</span></p>
+<p>The main-road flow rises after an on-ramp and falls after an off-ramp.</p>
+</div></div>
+<p>At each location, the net source is the sum of all ramp contributions:</p>
+<p><span class="math display">\[
+r(x,t)=r_1(x,t)+r_2(x,t)+r_3(x,t)+r_4(x,t).
+\]</span></p>
+</section>
+<section class="slide level2 scrollable">
+
+<h4 id="example-on-ramp-traffic-flow">Example: On-Ramp Traffic Flow</h4>
+<p>Consider a two-lane highway with an on-ramp of length <span class="math inline">\(350\)</span> m.</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="noncremental">
+<ul>
+<li class="fragment">On-ramp flow: <span class="math inline">\(q_r=300\)</span> vehicles/hour.</li>
+<li class="fragment">Highway speed: <span class="math inline">\(v=90\)</span> km/hour.</li>
+<li class="fragment">Upstream density: <span class="math inline">\(\rho_0=25\)</span> vehicles/km.</li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch8-OR.png" class="quarto-figure quarto-figure-center" height="150"></p>
+</figure>
+</div>
+</div></div>
+<ol type="a">
+<li class="fragment">Evaluate the steady-state density 250 m downstream of the ramp.</li>
+<li class="fragment">Determine <span class="math inline">\(q_\text{out}\)</span> downstream of the ramp (i.e., at <span class="math inline">\(x=\)</span> 350 m).</li>
+<li class="fragment">If the highway capacity is 1250 vehicles/hour/lane, evaluate whether a traffic jam occurs downstream of the ramp.</li>
+<li class="fragment">Suppose that the flow rate from the on-ramp doubles to 600 vehicles/hour. How does this affect the downstream density and potential traffic congestion?</li>
+</ol>
+</section>
+<section class="slide level2 scrollable">
+
+<ol type="a">
+<li class="fragment"><strong>Evaluate the steady-state density 250 m downstream of the ramp.</strong></li>
+</ol>
+<ul>
+<li class="fragment">From (<a href="#/eq-eq5" class="quarto-xref">7</a>), <span class="math display">\[
+\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x} = \frac{q_r}{n \cdot L}
+\]</span></li>
+<li class="fragment">Steady-state assumption: <span class="math inline">\(\frac{\partial \rho}{\partial t} = 0\)</span>, so <span class="math display">\[
+\frac{\partial (\rho V)}{\partial x} = \frac{q_r}{n \cdot L}.
+\]</span></li>
+<li class="fragment">Therefore, <span class="math display">\[
+\frac{\partial \rho}{\partial x} = \frac{q_r}{V \cdot n \cdot L} = \frac{300}{90 \cdot 2 \cdot 0.35} = 4.76 \text{ veh/km}^2.
+\]</span></li>
+<li class="fragment">Integrate with respect to <span class="math inline">\(x\)</span> to find the density 250 m downstream: <span class="math display">\[
+\rho(x) = 4.76x + \rho_0 =  4.76 \cdot 0.25 + 25 = 26.19 \text{ veh/km}.
+\]</span></li>
+<li class="fragment">Therefore, the steady-state density 250 m downstream of the ramp increases from the upstream density <span class="math inline">\(\rho_0 = 25\)</span> vehicles/km to <span class="math inline">\(\rho = 26.19\)</span> vehicles/km.</li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="2" type="a">
+<li class="fragment"><strong>Determine <span class="math inline">\(q_\text{out}\)</span> downstream of the ramp (i.e., at <span class="math inline">\(x=350\)</span> m).</strong></li>
+</ol>
+<ul>
+<li class="fragment">From (a), <span class="math inline">\(\rho(x=0.35) = 4.76 \cdot 0.35 + 25 = 26.67 \text{ veh/km}\)</span>.</li>
+<li class="fragment">Therefore, the downstream flow rate is <span class="math display">\[
+q_\text{out} = \rho V = 26.67 \cdot 90 = 2400 \text{ veh/hr}.
+\]</span></li>
+</ul>
+<ol start="3" type="a">
+<li class="fragment"><strong>If the highway capacity is 1250 veh/hr/lane, evaluate whether a traffic jam occurs downstream of the ramp.</strong></li>
+</ol>
+<ul>
+<li class="fragment">Highway capacity for 2 lanes: <span class="math inline">\(1250 \cdot n = 1250 \cdot 2 = 2500\)</span> veh/hr.</li>
+<li class="fragment">From (b) <span class="math inline">\(q_\text{out} = 2400 &lt; 2500 =\)</span> highway capacity.</li>
+<li class="fragment">Therefore, a traffic jam does not occur downstream of the ramp.</li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+
+<ol start="4" type="a">
+<li class="fragment"><strong>Suppose that the flow rate from the on-ramp doubles to <span class="math inline">\(600\)</span> veh/hr. How does this affect the downstream density and potential traffic congestion?</strong></li>
+</ol>
+<ul>
+<li class="fragment">From (a) <span class="math display">\[
+\frac{\partial \rho}{\partial x} = \frac{q_r}{V \cdot n \cdot L} = \frac{600}{90 \cdot 2 \cdot 0.35} = 9.52 \text{ veh/km}^2.
+\]</span></li>
+<li class="fragment">Integrate with respect to <span class="math inline">\(x\)</span> to find the new downstream density: <span class="math display">\[
+\rho(x) = 9.52x + \rho_0 =  9.52 \cdot 0.35 + 25 = 28.332 \text{ veh/km}
+\]</span></li>
+<li class="fragment">The new downstream flow rate is <span class="math display">\[
+q_\text{out} = \rho V = 28.332 \cdot 90 = 2550 &gt; 2500 \text{ (highway capacity)}.
+\]</span></li>
+<li class="fragment">Therefore, a traffic jam is likely to occur downstream of the ramp.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="changes-in-the-number-of-lanes">3.3 Changes in the number of lanes</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Let <span class="math inline">\(n(x)\)</span> denote the location-dependent number of lanes. For total quantities, (<a href="#/eq-eq5" class="quarto-xref">7</a>) becomes</p>
+<p><span class="math display">\[
+\frac{\partial ({\color{red}{n}}\rho)}{\partial t}+\frac{\partial({\color{red}{n}}q)}{\partial x}={\color{red}{n}}r.
+\]</span></p>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/Ch8-NoLanesChange.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div></div>
+<div class="fragment">
+<p>For lane-average quantities,</p>
+<div style="margin-top: -3.5em;">
+<p><span id="eq-eq6"><span class="math display">\[
+\boxed{\frac{\partial \rho}{\partial t}+\frac{\partial q}{\partial x}=-\frac{q}{n} \frac{dn}{dx}}.
+\tag{8}\]</span></span></p>
+</div>
+</div>
+<ul>
+<li class="fragment">The lane count <span class="math inline">\(n(x)\)</span> can vary along the road.
+<ul>
+<li class="fragment">a lane addition creates a transition to larger <span class="math inline">\(n\)</span>;</li>
+<li class="fragment">a lane drop creates a transition to smaller <span class="math inline">\(n\)</span>;</li>
+<li class="fragment">the transition zone may have a non-integer effective lane count.</li>
+</ul></li>
+<li class="fragment"><strong>Lane-average quantities</strong> are often more useful because traffic behaviour can vary significantly between lanes.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>The conservation law must therefore be written for <span class="math inline">\(n\rho\)</span> and <span class="math inline">\(nq\)</span>, or converted to lane-average quantities.</p>
+</div>
+</div>
+</div>
+<h4 class="fragment" id="example-lane-drop-scenario">Example: Lane-drop scenario</h4>
+<div class="fragment">
+<p>Suppose the upstream demand is <span class="math inline">\(4500\)</span> veh/h and the per-lane capacity is <span class="math inline">\(Q_{\max}=1928.6\)</span> veh/h.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Road section</th>
+<th style="text-align: right;">Lanes</th>
+<th style="text-align: right;">Total capacity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Upstream</td>
+<td style="text-align: right;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(3Q_{\max}=5785.8\)</span> veh/h</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Downstream</td>
+<td style="text-align: right;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2Q_{\max}=3857.2\)</span> veh/h</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">An upstream demand of <span class="math inline">\(4500\)</span> veh/h is below the three-lane capacity but above the two-lane capacity.</li>
+<li class="fragment">The lane drop therefore creates a queue downstream of the merge, and the queue boundary propagates upstream.</li>
+</ul>
+</div>
+</section>
+<section id="method-of-characteristics" class="slide level2">
+<h2>4. Method of characteristics</h2>
+<p>From the LWR equation to characteristic curves, we follow the method of characteristics to track how traffic density evolves along these curves.</p>
+<p>Write the homogeneous LWR equation as</p>
+<p><span class="math display">\[
+\rho_t+q'(\rho)\rho_x=0,\quad q(\rho)=\rho v(\rho).\]</span></p>
+<ul>
+<li class="fragment"><p>For a curve <span class="math inline">\(x=x(t)\)</span>, <span class="math inline">\(\displaystyle \frac{d\rho}{dt}=\rho_t+\rho_x\frac{dx}{dt}.\)</span></p></li>
+<li class="fragment"><p>Choose <span class="math inline">\(\frac{dx}{dt}=q'(\rho)\)</span>. Then <span class="math inline">\(\displaystyle \frac{d\rho}{dt}=\rho_t+q'(\rho)\rho_x=0.\)</span></p></li>
+<li class="fragment"><p>Along each characteristic, the density remains constant, and the characteristic speed is the slope of the flow-density curve.</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<p><strong>Initial data and characteristic equations</strong></p>
+<p>Suppose <span class="math inline">\(\rho(x,0)=f(x)\)</span>. The characteristic starting at <span class="math inline">\(x=\xi\)</span> satisfies</p>
+<ul>
+<li class="fragment"><p><span class="math inline">\(\rho(x,t)=f(\xi),\quad x-\xi=q'\bigl(f(\xi)\bigr)t.\)</span></p></li>
+<li class="fragment"><p>Equivalently, <span class="math inline">\(x(\xi,t)=\xi+q'\bigl(f(\xi)\bigr)t.\)</span></p></li>
+<li class="fragment"><p>For Greenshields flow,</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+q(\rho)=V_{\max}\rho\left(1-\frac{\rho}{\rho_{\max}}\right),
+\qquad
+q'(\rho)=V_{\max}\left(1-\frac{2\rho}{\rho_{\max}}\right).\]</span></p>
+</div>
+<ul>
+<li class="fragment">Low-density characteristics move downstream; high-density characteristics move upstream.</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="characteristic-fan">4.1 Characteristic fan</h3>
+<p>Place a traffic light at <span class="math inline">\(x=0\)</span>. Initially, cars are stopped in <span class="math inline">\(x&lt;0\)</span> and the road ahead is empty in <span class="math inline">\(x&gt;0\)</span>:</p>
+<p><span class="math display">\[
+\rho(x,0)=
+\begin{cases}
+\rho_{\max}, &amp; x&lt;0,\\
+0, &amp; x&gt;0.
+\end{cases}
+\]</span></p>
+<ul>
+<li class="fragment"><p>For Greenshields flow, <span class="math inline">\(q'(0)=V_{\max}\)</span> and <span class="math inline">\(q'(\rho_{\max})=-V_{\max}\)</span>.</p>
+<ul>
+<li class="fragment">The boundary characteristics are</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+x=-V_{\max}t,\qquad x=V_{\max}t.\]</span></p>
+</div>
+<ul>
+<li class="fragment">Inside the fan <span class="math inline">\(-V_{\max}t&lt;x&lt;V_{\max}t\)</span>,</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+x=V_{\max}\left(1-\frac{2\rho}{\rho_{\max}}\right)t,\quad
+\therefore \quad \rho(x,t)=\frac{\rho_{\max}}{2}\left(1-\frac{x}{V_{\max}t}\right).\]</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>The complete solution for <span class="math inline">\(t&gt;0\)</span> is</p>
+<p><span class="math display">\[
+\rho(x,t)=
+\begin{cases}
+\rho_{\max}, &amp; x\leq -V_{\max}t,\\[2pt]
+\dfrac{\rho_{\max}}{2}\left(1-\dfrac{x}{V_{\max}t}\right),
+&amp; -V_{\max}t&lt;x&lt;V_{\max}t,\\[6pt]
+0, &amp; x\geq V_{\max}t.
+\end{cases}
+\]</span></p>
+<div id="2330132b" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-10-output-1.png" class="quarto-figure quarto-figure-center" width="757" height="373"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="traffic-signal-release">4.2 Traffic-signal release</h3>
+<p>When a traffic signal changes from red to green, a queue discharges from the stop line. The method of characteristics predicts how the release wave travels through the queue.</p>
+<ul>
+<li class="fragment">the queue is described by high density and low speed;</li>
+<li class="fragment">the empty road ahead is described by low density and high speed;</li>
+<li class="fragment">the transition creates a rarefaction fan;</li>
+<li class="fragment">vehicles begin moving when the signal change reaches their characteristic.</li>
+</ul>
+<div class="fragment">
+<p>For a vehicle initially <span class="math inline">\(x_0\)</span> upstream of the signal,</p>
+<p><span class="math display">\[
+t_{\mathrm{response}}=\frac{x_0}{V_{\max}}.
+\]</span></p>
+<p>This estimate can be used to predict queue discharge time and the distance affected by a signal change.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="vehicle-response-to-the-signal">Vehicle response to the signal</h4>
+<p>Consider a car initially at <span class="math inline">\(x=-x_0\)</span>, where <span class="math inline">\(x_0&gt;0\)</span>. The left boundary characteristic is <span class="math inline">\(x=-V_{\max}t\)</span>. The car reaches the fan when</p>
+<p><span class="math display">\[
+-x_0=-V_{\max}t\quad\Longrightarrow\quad t=\frac{x_0}{V_{\max}}.\]</span></p>
+<div class="fragment">
+<p>Therefore,</p>
+<p><span class="math display">\[
+v(x,t)=0\quad\text{for}\quad 0\leq t&lt;\frac{x_0}{V_{\max}},\]</span></p>
+</div>
+<div class="fragment">
+<p>and the car begins to respond at <span class="math inline">\(t=x_0/V_{\max}\)</span>.</p>
+</div>
+<div class="fragment">
+<p>This is the time required for the traffic-signal change to reach the vehicle.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="example-vehicle-velocity-after-the-signal-arrives">Example: vehicle velocity after the signal arrives</h4>
+<p>Let <span class="math inline">\(t_0=x_0/V_{\max}\)</span>. Before the signal change reaches the car, it remains stopped:</p>
+<p><span class="math display">\[
+V_{\mathrm{car}}(t)=0,\qquad 0\leq t&lt;t_0.
+\]</span></p>
+<p>For <span class="math inline">\(t\geq t_0\)</span>, the car lies in the rarefaction fan. Its trajectory satisfies</p>
+<p><span class="math display">\[
+\frac{dx}{dt}=v(x,t)
+=\frac{V_{\max}}{2}\left(1+\frac{x}{V_{\max}t}\right),
+\qquad x(t_0)=-x_0.
+\]</span></p>
+<p>Solving gives</p>
+<p><span class="math display">\[
+x_{\mathrm{car}}(t)=V_{\max}t
+-2\sqrt{x_0V_{\max}t},\qquad t\geq t_0,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+\boxed{V_{\mathrm{car}}(t)=V_{\max}
+\left(1-\sqrt{\frac{x_0}{V_{\max}t}}\right),\qquad t\geq t_0.}
+\]</span></p>
+<p>At <span class="math inline">\(t=t_0\)</span>, the velocity is <span class="math inline">\(0\)</span>; as <span class="math inline">\(t\)</span> increases, the car accelerates toward <span class="math inline">\(V_{\max}\)</span>.</p>
+</section>
+<section class="slide level2">
+
+<h4 id="characteristics-in-the-xt-plane"><strong>Characteristics in the <span class="math inline">\((x,t)\)</span> plane</strong></h4>
+<div id="1a68605b" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="08_lecture_files/figure-revealjs/cell-11-output-1.png" class="quarto-figure quarto-figure-center" width="852" height="468"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="margin-top: -2em;">
+<ul>
+<li class="fragment"><p>The vertical segment is the waiting period.</p></li>
+<li class="fragment"><p>Its intersection with <span class="math inline">\(x=-V_{\max}t\)</span> occurs at <span class="math inline">\(t_0\)</span>, exactly as predicted by the characteristic calculation.</p></li>
+</ul>
+</div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="figs/curtin-logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="08_lecture_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="08_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="08_lecture_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="08_lecture_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":false,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"hideMissingTitles":true,"titleSelector":"h1, h2, h3"},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const xrefs = window.document.querySelectorAll('a.quarto-xref');
+        const processXRef = (id, note) => {
+          // Strip column container classes
+          const stripColumnClz = (el) => {
+            el.classList.remove("page-full", "page-columns");
+            if (el.children) {
+              for (const child of el.children) {
+                stripColumnClz(child);
+              }
+            }
+          }
+          stripColumnClz(note)
+          if (id === null || id.startsWith('sec-')) {
+            // Special case sections, only their first couple elements
+            const container = document.createElement("div");
+            if (note.children && note.children.length > 2) {
+              container.appendChild(note.children[0].cloneNode(true));
+              for (let i = 1; i < note.children.length; i++) {
+                const child = note.children[i];
+                if (child.tagName === "P" && child.innerText === "") {
+                  continue;
+                } else {
+                  container.appendChild(child.cloneNode(true));
+                  break;
+                }
+              }
+              if (window.Quarto?.typesetMath) {
+                window.Quarto.typesetMath(container);
+              }
+              return container.innerHTML
+            } else {
+              if (window.Quarto?.typesetMath) {
+                window.Quarto.typesetMath(note);
+              }
+              return note.innerHTML;
+            }
+          } else {
+            // Remove any anchor links if they are present
+            const anchorLink = note.querySelector('a.anchorjs-link');
+            if (anchorLink) {
+              anchorLink.remove();
+            }
+            if (window.Quarto?.typesetMath) {
+              window.Quarto.typesetMath(note);
+            }
+            if (note.classList.contains("callout")) {
+              return note.outerHTML;
+            } else {
+              return note.innerHTML;
+            }
+          }
+        }
+        for (var i=0; i<xrefs.length; i++) {
+          const xref = xrefs[i];
+          tippyHover(xref, undefined, function(instance) {
+            instance.disable();
+            let url = xref.getAttribute('href');
+            let hash = undefined; 
+            if (url.startsWith('#')) {
+              hash = url;
+            } else {
+              try { hash = new URL(url).hash; } catch {}
+            }
+            if (hash) {
+              const id = hash.replace(/^#\/?/, "");
+              const note = window.document.getElementById(id);
+              if (note !== null) {
+                try {
+                  const html = processXRef(id, note.cloneNode(true));
+                  instance.setContent(html);
+                } finally {
+                  instance.enable();
+                  instance.show();
+                }
+              } else {
+                // See if we can fetch this
+                fetch(url.split('#')[0])
+                .then(res => res.text())
+                .then(html => {
+                  const parser = new DOMParser();
+                  const htmlDoc = parser.parseFromString(html, "text/html");
+                  const note = htmlDoc.getElementById(id);
+                  if (note !== null) {
+                    const html = processXRef(id, note);
+                    instance.setContent(html);
+                  } 
+                }).finally(() => {
+                  instance.enable();
+                  instance.show();
+                });
+              }
+            } else {
+              // See if we can fetch a full url (with no hash to target)
+              // This is a special case and we should probably do some content thinning / targeting
+              fetch(url)
+              .then(res => res.text())
+              .then(html => {
+                const parser = new DOMParser();
+                const htmlDoc = parser.parseFromString(html, "text/html");
+                const note = htmlDoc.querySelector('main.content');
+                if (note !== null) {
+                  // This should only happen for chapter cross references
+                  // (since there is no id in the URL)
+                  // remove the first header
+                  if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                    note.children[0].remove();
+                  }
+                  const html = processXRef(null, note);
+                  instance.setContent(html);
+                } 
+              }).finally(() => {
+                instance.enable();
+                instance.show();
+              });
+            }
+          }, function(instance) {
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
