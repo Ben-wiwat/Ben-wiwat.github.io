@@ -6,8 +6,8 @@
 <script src="07_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="07_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="07_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="07_lecture_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="07_lecture_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Prof.&nbsp;Benchawan Wiwatanapataphee">
   <meta name="dcterms.date" content="2026-09-15">
@@ -18,16 +18,10 @@
   <link rel="stylesheet" href="07_lecture_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="07_lecture_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
+    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: 1.5em;}
-    div.column{flex: auto;}
-    @media screen {
-    div.columns{gap: min(4vw, 1.5em);}
-    div.column{overflow-x: auto;}
-    }
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -36,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="07_lecture_files/libs/revealjs/dist/theme/quarto-122a39bcdf345efb8425e5ad88032412.css">
+  <link rel="stylesheet" href="07_lecture_files/libs/revealjs/dist/theme/quarto-1de548083f58796e3a0222fb97514f34.css">
   <link href="07_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="07_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="07_lecture_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -149,7 +143,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;Benchawan Wiwatanapataphee
+Prof.&nbsp;Benchawan Wiwatanapataphee 
 </div>
         <p class="quarto-title-affiliation">
             Curtin University
@@ -234,7 +228,9 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 <p>Introduce the separation of variables technique to solve the PDE.</p>
 <div class="fragment">
 <p><span id="eq-eq4"><span class="math display">\[
+\begin{aligned}
 \theta(x,y) = X(x)\cdot Y(y)
+\end{aligned}
 \tag{4}\]</span></span></p>
 </div>
 <div class="fragment">
@@ -242,7 +238,9 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 </div>
 <div class="fragment">
 <p><span id="eq-eq5"><span class="math display">\[
+\begin{aligned}
 - \frac{1}{X}\frac{d^2 X}{dx^2} = \frac{1}{Y}\frac{d^2 Y}{dy^2} = \mu
+\end{aligned}
 \tag{5}\]</span></span></p>
 </div>
 <div class="fragment">
@@ -254,11 +252,15 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 <div class="columns fragment">
 <div class="column">
 <p><span id="eq-eq6"><span class="math display">\[
+\begin{aligned}
 \frac{d^2 X}{dx^2} + \lambda^2 X = 0
+\end{aligned}
 \tag{6}\]</span></span></p>
 </div><div class="column">
 <p><span id="eq-eq7"><span class="math display">\[
+\begin{aligned}
 \frac{d^2 Y}{dy^2} - \lambda^2 Y = 0
+\end{aligned}
 \tag{7}\]</span></span></p>
 </div></div>
 <div class="fragment">
@@ -267,11 +269,15 @@ Prof.&nbsp;Benchawan Wiwatanapataphee
 <div class="columns fragment">
 <div class="column">
 <p><span id="eq-eq8"><span class="math display">\[
+\begin{aligned}
 X = C_1 \cos \lambda x + C_2 \sin \lambda x
+\end{aligned}
 \tag{8}\]</span></span></p>
 </div><div class="column">
 <p><span id="eq-eq9"><span class="math display">\[
+\begin{aligned}
 Y = C_3 e^{-\lambda y} + C_4 e^{\lambda y}
+\end{aligned}
 \tag{9}\]</span></span></p>
 </div></div>
 </section>
@@ -340,7 +346,9 @@ Y(0) = C_3 + C_4 = 0 \quad \Rightarrow \quad C_3 = -C_4
 \tag{13}\]</span></span></p>
 <div class="fragment">
 <p>A more general solution may be obtained using the principle of superposition <span id="eq-eq14"><span class="math display">\[
+\begin{aligned}
 \theta(x,y) = \sum_{n=1}^{\infty} C_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi y}{L}
+\end{aligned}
 \tag{14}\]</span></span></p>
 </div>
 <div class="fragment">
@@ -348,8 +356,10 @@ Y(0) = C_3 + C_4 = 0 \quad \Rightarrow \quad C_3 = -C_4
 </div>
 <div class="fragment" style="font-size: 0.9em;">
 <p><span id="eq-eq15"><span class="math display">\[
+\begin{aligned}
 \theta(x,W) = 1 = \sum_{n=1}^{\infty} C_n \sin \frac{n\pi x}{L} \sinh \frac{n\pi W}{L}
 = \sum_{n=1}^{\infty} \left[ C_n \sinh \frac{n\pi W}{L} \right] \sin \frac{n\pi x}{L},
+\end{aligned}
 \tag{15}\]</span></span></p>
 </div>
 <div class="fragment">
@@ -375,11 +385,15 @@ C_n \sinh \frac{n\pi W}{L} = \frac{2}{L} \int_0^L \left[1 \cdot \sin \frac{n\pi 
 <div class="columns" style="font-size: 0.9em;">
 <div class="column">
 <p><span class="math display">\[
+\begin{aligned}
 C_n \sinh \frac{n\pi W}{L} = \frac{2}{n\pi} \left[1 - (-1)^n\right]
+\end{aligned}
 \]</span></p>
 </div><div class="column fragment">
 <p><span id="eq-eq16"><span class="math display">\[
+\begin{aligned}
 \Rightarrow \quad C_n = \frac{2\left[1 - (-1)^n\right]}{n\pi \sinh \dfrac{n\pi W}{L}}
+\end{aligned}
 \tag{16}\]</span></span></p>
 </div></div>
 <div class="fragment" style="font-size: 0.5em;">
@@ -387,9 +401,11 @@ C_n \sinh \frac{n\pi W}{L} = \frac{2}{n\pi} \left[1 - (-1)^n\right]
 <div class="callout-body">
 <div class="callout-content">
 <p>The Fourier sine series expansionof <span class="math inline">\(f(x)\)</span> defined on <span class="math inline">\([0,L]\)</span> is <span class="math display">\[
+\begin{aligned}
 f(x) = \sum_{n=1}^{\infty} b_n \sin \frac{n\pi x}{L}
 \qquad \text{with} \qquad
 b_n = \frac{2}{L} \int_0^L f(x) \sin \frac{n\pi x}{L} \, dx
+\end{aligned}
 \]</span></p>
 </div>
 </div>
@@ -400,14 +416,18 @@ b_n = \frac{2}{L} \int_0^L f(x) \sin \frac{n\pi x}{L} \, dx
 </div>
 <div class="fragment fade-in" style="font-size: 0.9em;">
 <p><span class="math display">\[
+\begin{aligned}
 \theta(x,y) = \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^{n+1} + 1}{n}
 \sin \frac{n\pi x}{L} \, \frac{\sinh \left(\dfrac{n\pi y}{L}\right)}{\sinh \left(\dfrac{n\pi W}{L}\right)}.
+\end{aligned}
 \]</span></p>
 </div>
 <div class="fragment fade-in" style="font-size: 0.9em;">
 <p><span id="eq-eq17"><span class="math display">\[
+\begin{aligned}
 \Rightarrow  T(x,y) = T_1 + (T_2-T_1)\frac{2}{\pi} \sum_{n=1}^{\infty} \frac{(-1)^{n+1} + 1}{n}
 \sin \frac{n\pi x}{L} \, \frac{\sinh \left(\dfrac{n\pi y}{L}\right)}{\sinh \left(\dfrac{n\pi W}{L}\right)}
+\end{aligned}
 \tag{17}\]</span></span></p>
 </div>
 </section>
@@ -616,7 +636,7 @@ u_{y^*}(x^*,1) = \sum_{n=1}^\infty A_n \alpha_n \sin(n\pi x^*)\,\sinh(\alpha_n)
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\text{where}\quad b_n = \frac{2}{\mathrm{Bi}}\int_0^1 (1-x^*-\theta_\infty) \sin(n\pi x^*)\,dx^*
+\text{where}\quad b_n = 2\mathrm{Bi}\int_0^1 (1-x^*-\theta_\infty) \sin(n\pi x^*)\,dx^*
 \]</span></p>
 </div>
 <ul>
@@ -820,50 +840,66 @@ T = T_1 \quad \text{at } t&gt;0, \; x=0, 2L
 <section class="slide level2">
 
 <p>To reduce the number of non-homogeneous BCs so as to apply the <strong>separation of variables method</strong>, let</p>
-<div class="fragment" style="margin-top: -2em;">
+<div class="fragment" style="margin-top: -1em;">
 <p><span class="math display">\[
+\begin{aligned}
 \theta = T - T_1.
+\end{aligned}
 \]</span></p>
 </div>
 <div class="fragment">
 <p>Then</p>
-<div style="margin-top: -2em;">
+<div style="margin-top: -1em;">
 <p><span id="eq-eqB4"><span class="math display">\[
+\begin{aligned}
 \frac{\partial^2 \theta}{\partial x^2} = \frac{1}{\alpha}\,\frac{\partial \theta}{\partial t}
+\end{aligned}
 \tag{23}\]</span></span></p>
 </div>
 </div>
 <div class="fragment">
 <p><span id="eq-eqB5"><span class="math display">\[
+\begin{aligned}
 \theta = \theta_i = T_i - T_1
 \quad \text{at } t=0,\; 0 \leq x \leq 2L
+\end{aligned}
 \tag{24}\]</span></span></p>
 </div>
 <div class="fragment">
 <p><span id="eq-eqB6"><span class="math display">\[
+\begin{aligned}
 \theta = 0 \quad \text{at } x=0,2L,\;\; t&gt;0
+\end{aligned}
 \tag{25}\]</span></span></p>
 </div>
 <div class="fragment">
 <p>To solve the problem, use separation of variables. Let <span id="eq-eqB7"><span class="math display">\[
+\begin{aligned}
 \theta = X(x)T(t)
+\end{aligned}
 \tag{26}\]</span></span></p>
 </div>
 <div class="fragment">
 <p>Substituting (<a href="#/eq-eqB7" class="quarto-xref">26</a>) into (<a href="#/eq-eqB4" class="quarto-xref">23</a>),</p>
-<div style="margin-top: -2em;">
+<div style="margin-top: -1em;">
 <p><span id="eq-eqB8"><span class="math display">\[
+\begin{aligned}
 \frac{1}{X}\frac{d^2X}{dx^2} = \frac{1}{\alpha T}\frac{dT}{dt} = -\lambda^2
+\end{aligned}
 \tag{27}\]</span></span></p>
 </div>
 </div>
 <div class="fragment">
 <p>From the homogeneous BCs (<a href="#/eq-eqB6" class="quarto-xref">25</a>), we have</p>
 <p><span id="eq-eqB9"><span class="math display">\[
+\begin{aligned}
 \theta(0,t)=X(0)T(t)=0 \;\;\Rightarrow\;\; X(0)=0  
+\end{aligned}
 \tag{28}\]</span></span></p>
 <p><span id="eq-eqB10"><span class="math display">\[
+\begin{aligned}
 \theta(2L,t)=X(2L)T(t)=0 \;\;\Rightarrow\;\; X(2L)=0  
+\end{aligned}
 \tag{29}\]</span></span></p>
 </div>
 </section>
@@ -1916,7 +1952,7 @@ T_4(x),
         margin: 5.0e-2,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

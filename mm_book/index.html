@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,16 +11,10 @@
 
 <title>Applied Mathematical Modelling</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,18 +35,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="./00_python_setup.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-b4639d2bc0c44faaa91d40aa7fdb6ccb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-df0e66e7e03db005fdca0997575a4fea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-774f581f871a14bd68681a78fcf41193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-06461a6aecc75111b898f483e183b344.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-774f581f871a14bd68681a78fcf41193.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -509,8 +504,8 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: center;">10</td>
 <td style="text-align: center;">22 Sep</td>
-<td>8. Applications of Mathematical Modelling</td>
-<td style="text-align: center;"><a href="https://ben-wiwat.github.io/mm_slides/08_lecture#/title-slide"><iconify-icon role="img" inline="" icon="grommet-icons:workshop" style="color:red;" aria-label="Lecture" title="Lecture"></iconify-icon></a></td>
+<td>8. Traffic Flow Modelling I</td>
+<td style="text-align: center;"><a href="https://ben-wiwat.github.io/mm_slides/08_lecture#/title-slide"><iconify-icon role="img" inline="" icon="grommet-icons:workshop" style="color:green;" aria-label="Lecture" title="Lecture"></iconify-icon></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">11</td>
@@ -521,19 +516,19 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td style="text-align: center;">12</td>
 <td style="text-align: center;">6 Oct</td>
-<td>9. Traffic Flow Modelling I</td>
+<td>9. Traffic Flow Modelling II</td>
 <td style="text-align: center;"><a href="https://ben-wiwat.github.io/mm_slides/09_lecture#/title-slide"><iconify-icon role="img" inline="" icon="grommet-icons:workshop" style="color:red;" aria-label="Lecture" title="Lecture"></iconify-icon></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">13</td>
 <td style="text-align: center;">13 Oct</td>
-<td>10. Traffic Flow Modelling II</td>
+<td>10. Revision</td>
 <td style="text-align: center;"><a href="https://ben-wiwat.github.io/mm_slides/10_lecture#/title-slide"><iconify-icon role="img" inline="" icon="grommet-icons:workshop" style="color:red;" aria-label="Lecture" title="Lecture"></iconify-icon></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">14</td>
 <td style="text-align: center;">20 Oct</td>
-<td>Revision and Examination Preparation</td>
+<td>Project Presentation</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">

@@ -1,0 +1,1714 @@
+---
+title: "Lecture 8 — Traffic Flow Modelling"
+subtitle: "MATH3001(5005) — Applied Mathematical Modelling"
+author:
+  - name: Prof. Benchawan Wiwatanapataphee
+    affiliation: Curtin University
+date: "2026-09-22"
+date-format: "D MMM YYYY"
+format:
+  revealjs:
+    html-math-method: mathjax
+    crossrefs-hover: true
+    theme: [simple, custom.scss]
+    logo: "figs/curtin-logo.png"
+    center: false
+    slide-number: true
+    incremental: true
+    toc: false
+    scrollable: true
+    chalkboard: true
+    margin: 0.05
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Outline
+
+1. Introduction and traffic-flow quantities
+2. Fundamental diagram and macroscopic models
+3. Continuity equations
+4. Lighthill–Whitham–Richards (LWR) model
+5. Worked examples and characteristics
+
+---
+
+## 1. Introduction
+
+### Why study traffic flow?
+
+Traffic congestion is a critical issue as population and economic activity grow.
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](figs/fig1_lec8.png){fig-align="center" width="550px"}
+
+:::
+
+::: {.column width="50%" .fragment}
+
+Speed of traffic flow is a key indicator of road performance.
+
+![](figs/fig2_lec8.png){fig-align="center" width="550px"}
+
+:::
+
+:::
+
+* Congestion is particularly severe during rush hours and under non-recurrent events such as rainfall, accidents, roadworks, and special events.
+
+---
+
+### Impact of non-recurrent events
+
+* Rainfall can reduce visibility and road friction. During incidents it can cause:
+
+    - lower traffic speed;
+    - higher traffic density;
+    - lower flow rate.
+
+
+* **Environmental impact**: Traffic congestion contributes to increased fuel consumption and greenhouse gas emissions.
+
+* **Social impact**: Traffic congestion can lead to increased stress, reduced quality of life, and lost time for commuters.
+
+* **Safety impact**: Traffic congestion can increase the likelihood of accidents and compromise road safety.
+
+* **Economic impact**: Traffic congestion in Australia was estimated to cost the economy $18.9$ billion in 2016, with forecasts of up to $38.8$ billion by 2031.
+
+---
+
+### What mathematical modelling offers
+
+::: {.callout-important style="font-size: 0.8em;"}
+
+Mathematical models help us understand, predict, and optimise traffic flow under varying conditions. They can quantify the effects of rainfall, accidents, and roadworks, and help develop strategies that mitigate congestion.
+:::
+
+::: {.columns}
+
+::: {.column}
+
+![](figs/fig3_lec8.png){fig-align="center" width="450px"}
+
+:::
+
+::: {.column}
+
+![](figs/fig4_lec8.png){fig-align="center" width="450px"}
+
+:::
+
+:::
+
+---
+
+### Traffic performance indicators {.fragment}
+
+- **Speed, $v$**: average vehicle speed on a road segment.
+- **Density, $\rho$**: number of vehicles per unit length of road.
+- **Flow rate, $q$**: number of vehicles passing a point per unit time.
+- **Travel time**: time needed to travel between two locations.
+- **Queue length**: length of the vehicle queue at a bottleneck or intersection.
+- **Level of service**: qualitative description from free flow to congested flow.
+
+---
+
+## 2. Basic traffic-flow concepts
+
+### Microscopic and macroscopic models
+
+- **Microscopic models** describe individual vehicles and their interactions.
+- **Macroscopic models** describe aggregate variables such as $\rho$, $q$, and $v$.
+- **Mesoscopic models** combine individual behaviour with aggregate traffic characteristics.
+- **Hybrid models** combine modelling scales in different parts of a traffic system.
+
+::: {.callout-note .fragment}
+This lecture uses a macroscopic description.
+::: 
+
+---
+
+### The three fundamental quantities 
+
+
+
+::: {.columns}
+
+::: {.column .fragment}
+
+#### For a road segment,
+
+\begin{aligned}
+\rho &= \frac{\text{number of vehicles}}{\text{unit length}},\\
+q &= \frac{\text{number of vehicles}}{\text{unit time}},\\
+v &= \frac{\text{distance}}{\text{unit time}}.
+\end{aligned}
+
+:::
+
+::: {.column .fragment}
+![](figs/ch8-2(a).png){fig-align="center" width="350px"}
+
+
+:::
+
+:::
+
+#### The quantities are related by {.fragment}
+
+::: {.fragment}
+
+$$
+q = \rho v.$$
+
+$$
+\text{Typical units are vehicles/km, vehicles/hour, and km/hour.}$$
+:::
+
+
+---
+
+### Flow-density relation {.fragment}
+
+* The relationship between flow and density.
+
+::: {.fragment}
+$$
+q = Q(\rho) = \min\{v_f\rho,\; w(\rho_j-\rho)\}.$$
+:::
+
+::: {.columns}
+::: {.column width="62%" .fragment}
+
+<svg viewBox="0 0 640 390" role="img" aria-label="Triangular fundamental diagram showing flow as a function of density" style="width:100%; height:auto;">
+  <line x1="78" y1="320" x2="590" y2="320" stroke="#333333" stroke-width="2"/>
+  <line x1="78" y1="320" x2="78" y2="38" stroke="#333333" stroke-width="2"/>
+  <line x1="78" y1="320" x2="380" y2="92" stroke="#1f6f8b" stroke-width="5"/>
+  <line x1="380" y1="92" x2="560" y2="320" stroke="#d05a3a" stroke-width="5"/>
+  <line x1="380" y1="320" x2="380" y2="92" stroke="#777777" stroke-width="2" stroke-dasharray="7 6"/>
+  <line x1="78" y1="92" x2="380" y2="92" stroke="#777777" stroke-width="2" stroke-dasharray="7 6"/>
+  <circle cx="380" cy="92" r="6" fill="#222222"/>
+  <text x="328" y="350" font-size="19">critical density rho_c</text>
+  <text x="548" y="350" font-size="19">rho_j</text>
+  <text x="45" y="327" font-size="19">0</text>
+  <text x="28" y="87" font-size="19">Q_max</text>
+  <text x="302" y="75" font-size="19">capacity</text>
+  <text x="175" y="156" font-size="19" fill="#1f6f8b">v_f rho</text>
+  <text x="445" y="178" font-size="19" fill="#d05a3a">w(rho_j - rho)</text>
+  <text x="290" y="382" font-size="21">density, rho</text>
+  <text x="18" y="210" font-size="21" transform="rotate(-90 18 210)">flow, Q(rho)</text>
+</svg>
+
+:::
+::: {.column width="38%"}
+
+- $v_f$ is the free-flow speed.
+- $w$ is the backward congestion-wave speed.
+- $\rho_j$ is the jam density.
+- The maximum value of $Q$ is the road capacity.
+
+:::
+:::
+
+---
+
+## Example: a Greenshields flow-density model
+
+A highway is modelled using
+
+$$
+q=\rho V,
+\qquad
+V=V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right),
+$$
+
+where $V_{\max}=120$ km/h and $\rho_{\max}=200$ veh/km.
+
+### Calculate speed and flow {.fragment}
+
+::: {.fragment}
+Combining the two equations gives
+
+$$
+q(\rho)=\rho V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right)
+=120\rho\left(1-\frac{\rho}{200}\right).
+$$
+
+| Density $\rho$ (veh/km) | Speed $V$ (km/h) | Flow $q$ (veh/h) |
+|:--:|:--:|:--:|
+| $50$ | $120(1-50/200)=90$ | $50(90)=4500$ |
+| $100$ | $120(1-100/200)=60$ | $100(60)=6000$ |
+| $150$ | $120(1-150/200)=30$ | $150(30)=4500$ |
+:::
+
+---
+
+### Plot and maximum flow
+
+
+::: {.columns}
+
+::: {.column}
+The flow-density curve is a downward-opening parabola:
+
+<svg viewBox="0 0 660 300" role="img" aria-label="Greenshields parabolic flow-density curve with maximum at density 100" style="width:100%; height:auto;">
+  <line x1="70" y1="250" x2="620" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="250" x2="70" y2="30" stroke="#333" stroke-width="2"/>
+  <path d="M70 250 C150 105 265 55 345 55 C425 55 540 105 620 250" fill="none" stroke="#1f6f8b" stroke-width="5"/>
+  <line x1="345" y1="250" x2="345" y2="55" stroke="#777" stroke-width="2" stroke-dasharray="7 6"/>
+  <line x1="70" y1="55" x2="345" y2="55" stroke="#777" stroke-width="2" stroke-dasharray="7 6"/>
+  <circle cx="345" cy="55" r="6" fill="#d05a3a"/>
+  <circle cx="207" cy="105" r="5" fill="#333"/>
+  <circle cx="482" cy="105" r="5" fill="#333"/>
+  <text x="322" y="275" font-size="18">100</text>
+  <text x="20" y="60" font-size="18">6000</text>
+  <text x="355" y="45" font-size="18" fill="#d05a3a">maximum flow</text>
+  <text x="260" y="295" font-size="20">density, rho (veh/km)</text>
+  <text x="12" y="180" font-size="20" transform="rotate(-90 12 180)">flow, F (veh/h)</text>
+</svg>
+
+
+:::
+
+::: {.column .fragment}
+
+Since $q(\rho)=120\rho-0.6\rho^2$,
+
+::: {.fragment}
+$$
+\frac{dq}{d\rho}=120-1.2\rho=0$$
+
+$$
+\Longrightarrow\quad
+\rho^*=100\text{ veh/km}.$$
+
+:::
+
+
+:::
+
+:::
+
+::: {.fragment}
+At this density,
+
+$$
+q_{\max}=6000\text{ veh/h},
+\qquad
+V^*=60\text{ km/h}.$$
+:::
+
+
+---
+
+## 3. Conservation and continuity
+
+### Conservation of vehicles
+
+The continuity equation follows from conservation of vehicle flows:
+
+> Vehicles are neither created nor destroyed as they move along a road.
+
+* We distinguish between homogeneous road sections, sections with on-ramps or off-ramps, and sections where the number of lanes changes.
+
+### The control-volume idea {.fragment}
+
+::: {.fragment} 
+Choose a road segment $[x_1,x_2]$ and let
+
+$$
+N(t)=\int_{x_1}^{x_2}\rho(x,t)\,dx$$
+
+be the number of vehicles inside it. 
+:::
+
+---
+
+The rate of accumulation is always
+
+$$
+\text{accumulation}=\text{inflow}-\text{outflow}+\text{external inflow}.$$
+
+::: {.fragment}
+Therefore,
+
+$$
+\frac{d}{dt}\int_{x_1}^{x_2}\rho(x,t)\,dx
+=q(x_1,t)-q(x_2,t)+\int_{x_1}^{x_2}r(x,t)\,dx.
+$$
+
+This integral balance is the starting point for every continuity equation in this section.
+:::
+
+::: {.callout-note .fragment}
+Flow is taken in the positive $x$ direction: it enters at $x_1$ and leaves at $x_2$.
+:::
+
+---
+
+### Homogeneous road section
+
+::: {.fragment}
+For a section from $x$ to $x+\Delta x$,
+
+$$
+N(t) = \rho(x,t)\,\Delta x.$$
+:::
+
+::: {.fragment}
+Conservation gives
+
+$$\frac{dN}{dt} = q(x,t)-q(x+\Delta x,t).$$
+
+Taking the limit $\Delta x\to0$ gives
+
+$$
+\boxed{\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x}=0.}
+$$
+
+:::
+
+* The rate of change of density in time and the rate of change of flow in space must balance. This equation is valid for road-average quantities and does not account for lane-changing in lane-specific quantities.
+
+---
+
+### Derivation from a homogeneous road section
+
+Consider a section of length $\Delta x$. Let $\rho_{\mathrm{tot}}(x,t)$ be the total
+vehicle density across all lanes, and let $q_{\mathrm{tot}}(x,t)$ be the total flow.
+
+* The number of vehicles in the section is approximately
+
+::: {.fragment}
+$$
+n(t)=\int_x^{x+\Delta x}\rho_{\mathrm{tot}}(x',t)\,dx'
+\approx \rho_{\mathrm{tot}}(x,t)\,\Delta x.$$
+:::
+
+* Conservation says that the rate of change of this number equals inflow minus outflow:
+
+::: {.fragment}
+$$
+\frac{d}{dt}\left[\rho_{\mathrm{tot}}(x,t)\Delta x\right]
+=q_{\mathrm{tot}}(x,t)-q_{\mathrm{tot}}(x+\Delta x,t).
+$$
+:::
+
+---
+
+Divide by $\Delta x$ and use a first-order difference quotient:
+
+::: {.fragment}
+$$
+\frac{\partial\rho_{\mathrm{tot}}}{\partial t}
+\approx-\frac{q_{\mathrm{tot}}(x+\Delta x,t)-q_{\mathrm{tot}}(x,t)}{\Delta x}.
+$$
+:::
+
+* Taking $\Delta x\to0$ gives the total-quantity continuity equation:
+
+::: {.fragment}
+$$
+\frac{\partial\rho_{\mathrm{tot}}}{\partial t}
+  +\frac{\partial q_{\mathrm{tot}}}{\partial x}=0.
+$$
+:::
+
+* For $n$ lanes, $\rho_{\mathrm{tot}}=n\rho$ and $q_{\mathrm{tot}}=nq$. If $n$ is
+constant, divide by $n$ to obtain the lane-average form:
+
+::: {.fragment}
+$$
+\frac{\partial\rho}{\partial t}+\frac{\partial q}{\partial x}=0.
+$$
+:::
+
+* When $n=n(x)$ varies, division by $n$ must be done after differentiating $nq$;
+  this is why the variable-lane equation contains $\frac{1}{n(x)}\partial_x(nq)$.
+
+---
+
+### Example: traffic jam clearing
+
+Consider a homogeneous road section. Initially, the road is congested with density
+$\rho_0$ at $t=0$. For $t>0$, the density is prescribed by
+
+$$
+\rho(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right),
+\qquad 0<x<\Delta x.
+$$
+
+Assume the Greenshields speed-density relation
+
+$$
+V=V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right),
+\qquad \rho_0=\rho_{\max}.
+$$
+
+Find the speed $V(x,t)$, the flow $q(x,t)$, and the maximum flow.
+
+---
+
+
+### Solution: speed
+
+Substitute the density into the speed-density relation:
+
+$$
+V(x,t)=V_{\max}\left[1-\frac{\rho_0(1-x/\Delta x)}{\rho_{\max}}\right]
+=\frac{x}{\Delta x}V_{\max}.
+$$
+
+* Thus $V=0$ at $x=0$ and increases linearly to $V_{\max}$ at $x=\Delta x$.
+
+
+### Solution: flow {.fragment}
+
+::: {.fragment}
+Using $q=\rho V$,
+
+$$
+q(x,t)=\rho_0\left(1-\frac{x}{\Delta x}\right)
+\frac{x}{\Delta x}V_{\max}
+=\rho_0V_{\max}\frac{x}{\Delta x}\left(1-\frac{x}{\Delta x}\right).
+$$
+:::
+
+* The flow is zero at both ends of the clearing region and is largest inside it.
+
+
+---
+
+
+### Solution: maximum flow
+
+Differentiate with respect to $x$:
+
+$$
+\frac{dq}{dx}=\frac{\rho_0V_{\max}}{\Delta x^2}
+(\Delta x-2x).
+$$
+
+
+
+#### Therefore, {.fragment}
+
+::: {.fragment}
+$$
+\frac{dq}{dx}=0\quad\Longrightarrow\quad x=\frac{\Delta x}{2}.$$
+:::
+
+#### At this point, {.fragment}
+
+::: {.fragment}
+$$
+q_{\max}=\frac{\rho_0V_{\max}}{4},
+\qquad
+\rho\left(\frac{\Delta x}{2},t\right)=\frac{\rho_0}{2}.
+$$
+:::
+
+* The maximum flow occurs halfway through the transition from jam density to an empty road, and it is denoted by $q_{\max}$.
+ 
+
+* For the complete piecewise picture, the jam region $x\leq0$ has
+$\rho=\rho_0$ and $V=0$, while the empty region $x\geq\Delta x$ has
+$\rho=0$ and $q=0$.
+
+---
+
+### Units and assumptions
+
+| Quantity | Meaning | Typical units |
+|:--|:--|:--|
+| $\rho(x,t)$ | vehicles per unit length | veh/km |
+| $q(x,t)$ | vehicles passing per unit time | veh/h |
+| $r(x,t)$ | vehicles added per unit length and time | veh/(km h) |
+
+### The one-dimensional model assumes that {.fragment}
+
+- traffic is represented by averaged quantities;
+- vehicles are conserved inside the road segment;
+- lane changes are negligible or included in the averages;
+- the road geometry is known.
+
+::: {.fragment}
+The continuity equation alone does not determine $q$. A constitutive relation such as
+$q=Q(\rho)$ is needed to close the model.
+:::
+
+---
+
+### Road sections with ramps
+
+Let $r(x,t)$ be the net inflow per unit length. The continuity equation becomes
+
+$$
+\boxed{\frac{\partial \rho}{\partial t} + \frac{\partial q}{\partial x}=r(x,t).}
+$$
+
+* An on-ramp contributes positive flow; an off-ramp contributes negative flow.
+
+::: {.columns}
+::: {.column width="50%" .fragment}
+
+<svg viewBox="0 0 620 260" role="img" aria-label="Road section with an on-ramp and an off-ramp" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-ramp" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <path d="M35 78 L585 78" stroke="#333333" stroke-width="42" fill="none"/>
+  <path d="M35 78 L585 78" stroke="#f2f2f2" stroke-width="3" stroke-dasharray="20 14" fill="none"/>
+  <path d="M35 214 L260 214 Q315 214 350 78" stroke="#1f6f8b" stroke-width="18" fill="none"/>
+  <path d="M380 78 Q420 214 585 214" stroke="#d05a3a" stroke-width="18" fill="none"/>
+  <line x1="95" y1="78" x2="175" y2="78" stroke="#ffffff" stroke-width="4" marker-end="url(#arrow-ramp)"/>
+  <line x1="415" y1="78" x2="495" y2="78" stroke="#ffffff" stroke-width="4" marker-end="url(#arrow-ramp)"/>
+  <line x1="125" y1="214" x2="220" y2="214" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow-ramp)"/>
+  <line x1="450" y1="214" x2="535" y2="214" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow-ramp)"/>
+  <text x="250" y="48" font-size="20">main road</text>
+  <text x="105" y="250" font-size="19" fill="#1f6f8b">on-ramp: +r</text>
+  <text x="405" y="250" font-size="19" fill="#d05a3a">off-ramp: -r</text>
+</svg>
+
+:::
+::: {.column width="50%" .fragment}
+
+The source term $r(x,t)$ represents the net exchange of vehicles:
+
+- an **on-ramp** adds vehicles, so $r>0$;
+- an **off-ramp** removes vehicles, so $r<0$.
+:::
+:::
+
+---
+
+The main-road flow changes as vehicles enter or leave the road section.
+
+* Integrating the ramp equation over $[x_1,x_2]$ gives
+
+::: {.fragment}
+$$
+\frac{dN}{dt}=q(x_1,t)-q(x_2,t)+\int_{x_1}^{x_2}r(x,t)\,dx.
+$$
+:::
+
+* Thus a ramp changes the total number of vehicles in the control volume, not merely the local density. 
+* In steady state, $\rho_t=0$, so the main-road flow increases downstream when the net ramp contribution is positive.
+* The ramp contribution can be positive (on-ramp) or negative (off-ramp), affecting the downstream flow accordingly.
+* The effect of ramps is integrated into the overall traffic flow model through the source term $r(x,t)$.
+* The source term $r(x,t)$ allows the model to account for complex traffic scenarios involving multiple ramps along the road.
+
+---
+
+### Multiple ramps along a road
+
+::: {.columns}
+::: {.column width="68%"}
+
+<svg viewBox="0 0 760 330" role="img" aria-label="Main road with two on-ramps and two off-ramps" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-multi-ramp" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <path d="M40 150 L720 150" stroke="#333333" stroke-width="48" fill="none"/>
+  <path d="M40 150 L720 150" stroke="#f2f2f2" stroke-width="3" stroke-dasharray="22 15" fill="none"/>
+  <path d="M40 290 L145 290 Q185 290 220 150" stroke="#1f6f8b" stroke-width="17" fill="none"/>
+  <path d="M300 290 L355 290 Q395 290 430 150" stroke="#1f6f8b" stroke-width="17" fill="none"/>
+  <path d="M500 150 Q535 290 575 290 L720 290" stroke="#d05a3a" stroke-width="17" fill="none"/>
+  <path d="M600 150 Q635 35 680 35 L720 35" stroke="#d05a3a" stroke-width="17" fill="none"/>
+  <line x1="80" y1="150" x2="165" y2="150" stroke="#fff" stroke-width="4" marker-end="url(#arrow-multi-ramp)"/>
+  <line x1="535" y1="150" x2="620" y2="150" stroke="#fff" stroke-width="4" marker-end="url(#arrow-multi-ramp)"/>
+  <line x1="70" y1="290" x2="135" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"/>
+  <line x1="325" y1="290" x2="390" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"/>
+  <line x1="615" y1="290" x2="690" y2="290" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"/>
+  <line x1="650" y1="35" x2="705" y2="35" stroke="#fff" stroke-width="3" marker-end="url(#arrow-multi-ramp)"/>
+  <text x="300" y="112" font-size="20">main road flow q(x,t)</text>
+  <text x="75" y="322" font-size="17" fill="#1f6f8b">on-ramp r_1 &gt; 0</text>
+  <text x="300" y="322" font-size="17" fill="#1f6f8b">on-ramp r_2 &gt; 0</text>
+  <text x="505" y="322" font-size="17" fill="#d05a3a">off-ramp r_3 &lt; 0</text>
+  <text x="575" y="25" font-size="17" fill="#d05a3a">off-ramp r_4 &lt; 0</text>
+</svg>
+
+:::
+::: {.column width="32%"}
+
+
+
+For a steady road section,
+
+$$
+\frac{dq}{dx}=r(x).
+$$
+
+The main-road flow rises after an on-ramp and falls after an off-ramp.
+
+:::
+:::
+
+At each location, the net source is the sum of all ramp contributions:
+
+$$
+r(x,t)=r_1(x,t)+r_2(x,t)+r_3(x,t)+r_4(x,t).
+$$
+
+---
+
+### Changes in the number of lanes
+
+Let $n(x)$ denote the location-dependent number of lanes. For total quantities,
+
+$$
+\frac{\partial (n\rho)}{\partial t}+\frac{\partial(nq)}{\partial x}=nr.$$
+
+::: {.fragment}
+For lane-average quantities,
+
+$$
+\frac{\partial \rho}{\partial t}+\frac{1}{n(x)}\frac{\partial(nq)}{\partial x}=r.$$
+:::
+
+
+::: {.columns}
+::: {.column width="58%"}
+
+<svg viewBox="0 0 680 300" role="img" aria-label="Road section where the number of lanes changes from two to three and back to two" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-lanes" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <line x1="55" y1="78" x2="625" y2="78" stroke="#333333" stroke-width="18"/>
+  <line x1="55" y1="138" x2="625" y2="138" stroke="#333333" stroke-width="18"/>
+  <path d="M55 198 L235 198 L300 168 L380 168 L445 198 L625 198" stroke="#333333" stroke-width="18" fill="none"/>
+  <line x1="55" y1="78" x2="625" y2="78" stroke="#f2f2f2" stroke-width="2" stroke-dasharray="16 12"/>
+  <line x1="55" y1="138" x2="625" y2="138" stroke="#f2f2f2" stroke-width="2" stroke-dasharray="16 12"/>
+  <line x1="55" y1="198" x2="235" y2="198" stroke="#f2f2f2" stroke-width="2" stroke-dasharray="16 12"/>
+  <line x1="445" y1="198" x2="625" y2="198" stroke="#f2f2f2" stroke-width="2" stroke-dasharray="16 12"/>
+  <line x1="95" y1="45" x2="175" y2="45" stroke="#333333" stroke-width="3" marker-end="url(#arrow-lanes)"/>
+  <line x1="480" y1="45" x2="560" y2="45" stroke="#333333" stroke-width="3" marker-end="url(#arrow-lanes)"/>
+  <text x="95" y="25" font-size="20">n = 2 lanes</text>
+  <text x="282" y="125" font-size="20" fill="#1f6f8b">n = 3</text>
+  <text x="480" y="25" font-size="20">n = 2 lanes</text>
+  <text x="267" y="255" font-size="19">transition zone</text>
+</svg>
+
+:::
+::: {.column width="42%" .fragment}
+
+Lane-average quantities are often more useful because traffic behaviour can vary significantly between lanes.
+
+:::
+:::
+
+---
+
+The lane count $n(x)$ can vary along the road.
+
+- a lane addition creates a transition to larger $n$;
+- a lane drop creates a transition to smaller $n$;
+- the transition zone may have a non-integer effective lane count.
+
+### Total versus lane-average quantities {.fragment}
+
+
+::: {.fragment}
+Let $\rho(x,t)$ and $q(x,t)$ denote **lane-average** density and flow:
+
+$$
+\rho=\frac{\text{vehicles}}{\text{km per lane}},\qquad
+q=\frac{\text{vehicles}}{\text{hour per lane}}.
+$$
+:::
+
+::: {.fragment}
+Multiplying by the number of lanes gives the corresponding **total** quantities per
+road cross-section:
+
+$$
+\rho_{\mathrm{tot}}=n(x)\rho,\qquad
+q_{\mathrm{tot}}=n(x)q.
+$$
+:::
+
+* Thus,  a three-lane road can carry three times the flow of a one-lane road when the
+lane-average flow is the same.
+
+---
+
+### Continuity equation with variable lanes
+
+::: {.fragment}
+Apply conservation to the total quantities. If $r$ is the lane-average external
+inflow per unit length, then
+
+$$
+\boxed{\frac{\partial(n\rho)}{\partial t}
+  +\frac{\partial(nq)}{\partial x}=nr.}
+$$
+:::
+
+::: {.fragment}
+If the lane count is fixed, $n_x=0$, and division by $n$ recovers
+
+$$\rho_t+q_x=r.$$
+:::
+
+::: {.fragment}
+If $n$ varies with position, expand the spatial derivative:
+
+$$
+\boxed{\rho_t+\frac{1}{n(x)}\frac{\partial(nq)}{\partial x}=r.}
+$$
+:::
+
+* The extra factor $n(x)$ accounts for vehicles entering or leaving the road because
+the available number of lanes changes.
+
+---
+
+::: {.callout-tip}
+The conservation law must therefore be written for $n\rho$ and $nq$, or converted to lane-average quantities.
+:::
+
+
+### Lane-drop example {.fragment}
+
+::: {.fragment}
+Suppose the per-lane capacity is $Q_{\max}=1928.6$ veh/h.
+
+| Road section | Lanes | Total capacity |
+|:--|--:|--:|
+| Upstream | $3$ | $3Q_{\max}=5785.8$ veh/h |
+| Downstream | $2$ | $2Q_{\max}=3857.2$ veh/h |
+
+An upstream demand of $4500$ veh/h is below the three-lane capacity but above the
+two-lane capacity. The lane drop therefore creates a queue downstream of the merge,
+and the queue boundary propagates upstream.
+:::
+
+---
+
+## 4. Worked example: homogeneous road
+
+### Example 1
+
+Traffic in a homogeneous road section is initially congested. At $t=0$ the traffic starts to ease, and the density is prescribed as a function $\rho(x,t)$.
+
+1. Derive the traffic velocity.
+2. Find where the density reaches zero.
+3. Sketch the density and velocity fields.
+4. Determine the characteristics in the $(x,t)$ plane.
+
+### Velocity from density and flow {.fragment}
+
+::: {.fragment}
+From $q=\rho v$,
+
+$$
+v(x,t)=\frac{q(x,t)}{\rho(x,t)}.$$
+:::
+
+---
+
+From $q=\rho v$,
+
+$$
+v(x,t)=\frac{q(x,t)}{\rho(x,t)}.$$
+
+::: {.fragment}
+
+If $q=Q(\rho)$, then
+
+$$
+v(\rho)=\frac{Q(\rho)}{\rho}.$$
+:::
+
+* For a linear free-flow branch $Q(\rho)=v_f\rho$, the velocity is constant: $v=v_f$.
+
+
+### The point where density vanishes {.fragment}
+
+
+* The location where $\rho(x,t)=0$ marks an empty road section. 
+
+* In the example, it is the boundary between the remaining traffic jam and free-flowing or empty road.
+
+---
+
+::: {.columns}
+::: {.column width="50%"}
+
+#### Qualitative density field
+
+<svg viewBox="0 0 600 360" role="img" aria-label="Qualitative density field showing a congested region clearing over time" style="width:100%; height:auto;">
+  <line x1="70" y1="300" x2="565" y2="300" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="300" x2="70" y2="35" stroke="#333" stroke-width="2"/>
+  <path d="M70 95 C180 95 245 115 330 160 C415 205 480 230 565 250 L565 300 L70 300 Z" fill="#d98a45" opacity="0.65"/>
+  <path d="M70 95 C180 95 245 115 330 160 C415 205 480 230 565 250" fill="none" stroke="#8d3028" stroke-width="4"/>
+  <path d="M70 125 C180 125 245 145 330 185 C415 225 480 248 565 265" fill="none" stroke="#c76b35" stroke-width="3"/>
+  <path d="M70 160 C180 160 245 178 330 210 C415 240 480 265 565 278" fill="none" stroke="#d9a13e" stroke-width="3"/>
+  <text x="15" y="88" font-size="18">high rho</text>
+  <text x="15" y="292" font-size="18">zero rho</text>
+  <text x="282" y="337" font-size="20">position, x</text>
+  <text x="18" y="220" font-size="20" transform="rotate(-90 18 220)">time, t</text>
+  <text x="355" y="115" font-size="18" fill="#8d3028">jam boundary</text>
+</svg>
+
+:::
+::: {.column width="50%"}
+
+#### Qualitative velocity field
+
+<svg viewBox="0 0 600 360" role="img" aria-label="Qualitative velocity field increasing as congestion clears" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-velocity" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#1f6f8b"/>
+    </marker>
+  </defs>
+  <line x1="70" y1="300" x2="565" y2="300" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="300" x2="70" y2="35" stroke="#333" stroke-width="2"/>
+  <path d="M70 255 C180 250 245 225 330 180 C415 135 480 105 565 80" fill="none" stroke="#1f6f8b" stroke-width="5"/>
+  <line x1="140" y1="255" x2="190" y2="245" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-velocity)"/>
+  <line x1="240" y1="220" x2="305" y2="195" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-velocity)"/>
+  <line x1="350" y1="170" x2="425" y2="135" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-velocity)"/>
+  <line x1="455" y1="115" x2="535" y2="83" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-velocity)"/>
+  <text x="18" y="260" font-size="18">low v</text>
+  <text x="18" y="80" font-size="18">high v</text>
+  <text x="282" y="337" font-size="20">position, x</text>
+  <text x="18" y="220" font-size="20" transform="rotate(-90 18 220)">time, t</text>
+</svg>
+
+:::
+:::
+
+* The exact curves depend on the prescribed function $\rho(x,t)$ and the chosen fundamental diagram $Q(\rho)$. 
+* These are qualitative sketches only.
+
+---
+
+### Characteristics
+
+Substituting $q=Q(\rho)$ into the homogeneous continuity equation gives
+
+::: {.fragment}
+$$\frac{\partial \rho}{\partial t}+Q'(\rho)\frac{\partial \rho}{\partial x}=0.$$
+:::
+
+
+* Along a characteristic $x(t)$,
+
+::: {.fragment}
+$$
+\frac{dx}{dt}=Q'(\rho),\qquad \frac{d\rho}{dt}=0.$$
+:::
+
+* Density is constant along each characteristic, while its speed is the slope of the fundamental diagram at that density.
+
+---
+
+#### Characteristics in the $(x,t)$ plane
+
+<svg viewBox="0 0 760 300" role="img" aria-label="Characteristic lines in the position-time plane" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-characteristic" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <line x1="75" y1="250" x2="710" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="75" y1="250" x2="75" y2="35" stroke="#333" stroke-width="2"/>
+  <line x1="115" y1="220" x2="540" y2="65" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-characteristic)"/>
+  <line x1="190" y1="220" x2="590" y2="105" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-characteristic)"/>
+  <line x1="275" y1="220" x2="625" y2="155" stroke="#d05a3a" stroke-width="3" marker-end="url(#arrow-characteristic)"/>
+  <line x1="360" y1="220" x2="655" y2="195" stroke="#d05a3a" stroke-width="3" marker-end="url(#arrow-characteristic)"/>
+  <line x1="75" y1="220" x2="710" y2="220" stroke="#999" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="602" y="38" font-size="19">free flow: Q'(rho) &gt; 0</text>
+  <text x="480" y="285" font-size="19">congestion: Q'(rho) &lt; 0</text>
+  <text x="328" y="285" font-size="20">position, x</text>
+  <text x="20" y="175" font-size="20" transform="rotate(-90 20 175)">time, t</text>
+  <text x="88" y="215" font-size="18">initial data</text>
+</svg>
+
+* Characteristics are straight when $\rho$ is constant along them. 
+
+* Their direction is controlled by $Q'(\rho)$: free-flow disturbances move downstream, while congested
+disturbances move upstream.
+
+---
+
+## Method of characteristics
+
+### From the LWR equation to characteristic curves
+
+Write the homogeneous LWR equation as
+
+$$
+\rho_t+q'(\rho)\rho_x=0,\quad q(\rho)=\rho V(\rho).$$
+
+
+* For a curve $x=x(t)$,  $\displaystyle \frac{d\rho}{dt}=\rho_t+\rho_x\frac{dx}{dt}.$
+
+
+* Choose $\frac{dx}{dt}=q'(\rho)$. Then $\displaystyle \frac{d\rho}{dt}=\rho_t+q'(\rho)\rho_x=0.$
+
+
+* Along each characteristic, the density remains constant, and the characteristic speed is
+the slope of the flow-density curve.
+
+
+---
+
+### Initial data and characteristic equations
+
+Suppose $\rho(x,0)=f(x)$. The characteristic starting at $x=\xi$ satisfies
+
+
+* $\rho(x,t)=f(\xi),\quad x-\xi=q'\bigl(f(\xi)\bigr)t.$
+
+
+* Equivalently,  $x(\xi,t)=\xi+q'\bigl(f(\xi)\bigr)t.$
+
+
+* For Greenshields flow,
+
+::: {.fragment}
+$$
+q(\rho)=V_{\max}\rho\left(1-\frac{\rho}{\rho_{\max}}\right),
+\qquad
+q'(\rho)=V_{\max}\left(1-\frac{2\rho}{\rho_{\max}}\right).$$
+:::
+
+* Low-density characteristics move downstream; high-density characteristics move upstream.
+
+---
+
+## Red-light example: characteristic fan
+
+Place a traffic light at $x=0$. Initially, cars are stopped in $x<0$ and the road
+ahead is empty in $x>0$:
+
+$$
+\rho(x,0)=
+\begin{cases}
+\rho_{\max}, & x<0,\\
+0, & x>0.
+\end{cases}
+$$
+
+* For Greenshields flow, $q'(0)=V_{\max}$ and $q'(\rho_{\max})=-V_{\max}$.
+
+  * The boundary characteristics are
+
+::: {.fragment}
+$$
+x=-V_{\max}t,\qquad x=V_{\max}t.$$
+:::
+
+* Inside the fan $-V_{\max}t<x<V_{\max}t$,
+
+::: {.fragment}
+$$
+x=V_{\max}\left(1-\frac{2\rho}{\rho_{\max}}\right)t,\quad
+\therefore \quad \rho(x,t)=\frac{\rho_{\max}}{2}\left(1-\frac{x}{V_{\max}t}\right).$$
+:::
+
+---
+
+The complete solution for $t>0$ is
+
+$$
+\rho(x,t)=
+\begin{cases}
+\rho_{\max}, & x\leq -V_{\max}t,\\[2pt]
+\dfrac{\rho_{\max}}{2}\left(1-\dfrac{x}{V_{\max}t}\right),
+& -V_{\max}t<x<V_{\max}t,\\[6pt]
+0, & x\geq V_{\max}t.
+\end{cases}
+$$
+
+<svg viewBox="0 0 760 330" role="img" aria-label="V-shaped characteristic fan from a red traffic light" style="width:100%; height:auto;">
+  <defs><marker id="arrow-fan" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+  <line x1="60" y1="275" x2="710" y2="275" stroke="#333" stroke-width="2"/>
+  <line x1="380" y1="275" x2="380" y2="35" stroke="#333" stroke-width="2"/>
+  <path d="M380 275 L110 55" stroke="#d05a3a" stroke-width="4" marker-end="url(#arrow-fan)"/>
+  <path d="M380 275 L650 55" stroke="#1f6f8b" stroke-width="4" marker-end="url(#arrow-fan)"/>
+  <path d="M380 275 L220 145" stroke="#c78b3a" stroke-width="3" marker-end="url(#arrow-fan)"/>
+  <path d="M380 275 L300 210" stroke="#c78b3a" stroke-width="3" marker-end="url(#arrow-fan)"/>
+  <path d="M380 275 L460 210" stroke="#c78b3a" stroke-width="3" marker-end="url(#arrow-fan)"/>
+  <path d="M380 275 L540 145" stroke="#c78b3a" stroke-width="3" marker-end="url(#arrow-fan)"/>
+  <text x="90" y="45" font-size="19" fill="#d05a3a">rho_max</text>
+  <text x="650" y="45" font-size="19" fill="#1f6f8b">rho = 0</text>
+  <text x="352" y="300" font-size="18">x = 0</text>
+  <text x="310" y="315" font-size="20">position, x</text>
+  <text x="320" y="28" font-size="20">time, t</text>
+  <text x="105" y="235" font-size="18" fill="#d05a3a">x = -V_max t</text>
+  <text x="505" y="235" font-size="18" fill="#1f6f8b">x = V_max t</text>
+  <text x="315" y="130" font-size="18">fan region</text>
+  <text x="75" y="265" font-size="17">congested</text>
+  <text x="570" y="265" font-size="17">empty road</text>
+</svg>
+
+---
+
+## Vehicle response to the signal
+
+Consider a car initially at $x=-x_0$, where $x_0>0$. The left boundary characteristic
+is $x=-V_{\max}t$. The car reaches the fan when
+
+$$
+-x_0=-V_{\max}t\quad\Longrightarrow\quad t=\frac{x_0}{V_{\max}}.$$
+
+::: {.fragment}
+Therefore,
+
+$$V(x,t)=0\quad\text{for}\quad 0\leq t<\frac{x_0}{V_{\max}},$$
+:::
+
+::: {.fragment}
+and the car begins to respond at $t=x_0/V_{\max}$. 
+
+:::
+
+::: {.fragment}
+This is the time required for the traffic-signal change to reach the vehicle.
+:::
+
+---
+
+### Example: vehicle velocity after the signal arrives
+
+Let $t_0=x_0/V_{\max}$. Before the signal change reaches the car, it remains stopped:
+
+$$
+V_{\mathrm{car}}(t)=0,\qquad 0\leq t<t_0.
+$$
+
+For $t\geq t_0$, the car lies in the rarefaction fan. Its trajectory satisfies
+
+$$
+\frac{dx}{dt}=V(x,t)
+=\frac{V_{\max}}{2}\left(1+\frac{x}{V_{\max}t}\right),
+\qquad x(t_0)=-x_0.
+$$
+
+Solving gives
+
+$$
+x_{\mathrm{car}}(t)=V_{\max}t
+-2\sqrt{x_0V_{\max}t},\qquad t\geq t_0,
+$$
+
+and therefore
+
+$$
+\boxed{V_{\mathrm{car}}(t)=V_{\max}
+\left(1-\sqrt{\frac{x_0}{V_{\max}t}}\right),\qquad t\geq t_0.}
+$$
+
+At $t=t_0$, the velocity is $0$; as $t$ increases, the car accelerates toward
+$V_{\max}$.
+
+---
+
+#### Characteristics in the $(x,t)$ plane
+
+<svg viewBox="0 0 760 360" role="img" aria-label="Vehicle response and signal characteristic in the position-time plane" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-vehicle-response" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333"/>
+    </marker>
+  </defs>
+  <line x1="70" y1="300" x2="710" y2="300" stroke="#333" stroke-width="2"/>
+  <line x1="380" y1="300" x2="380" y2="30" stroke="#333" stroke-width="2"/>
+  <line x1="380" y1="300" x2="170" y2="55" stroke="#d05a3a" stroke-width="4" marker-end="url(#arrow-vehicle-response)"/>
+  <line x1="285" y1="300" x2="285" y2="165" stroke="#777" stroke-width="3" stroke-dasharray="8 6"/>
+  <path d="M285 300 C285 270 292 238 310 210 C335 170 375 140 425 105" fill="none" stroke="#1f6f8b" stroke-width="4" marker-end="url(#arrow-vehicle-response)"/>
+  <circle cx="285" cy="165" r="6" fill="#222"/>
+  <text x="105" y="50" font-size="18" fill="#d05a3a">signal: x = -V_max t</text>
+  <text x="190" y="325" font-size="18">initial car x = -x_0</text>
+  <text x="292" y="155" font-size="18">t_0 = x_0/V_max</text>
+  <text x="430" y="100" font-size="18" fill="#1f6f8b">car trajectory</text>
+  <text x="325" y="350" font-size="20">position, x</text>
+  <text x="315" y="22" font-size="20">time, t</text>
+  <text x="82" y="285" font-size="17">waiting: V = 0</text>
+  <text x="470" y="270" font-size="17">accelerating</text>
+</svg>
+
+* The vertical segment is the waiting period. 
+
+* Its intersection with $x=-V_{\max}t$ occurs at $t_0$, exactly as predicted by the characteristic calculation.
+
+
+
+---
+
+### Example 1: exact characteristics
+
+For the jam-clearing example,
+
+$$
+V(x,t)=
+\begin{cases}
+0, & x\leq0,\\
+\dfrac{x}{\Delta x}V_{\max}, & 0<x<\Delta x,\\
+V_{\max}, & x\geq\Delta x.
+\end{cases}
+$$
+
+* Characteristics satisfy $dx/dt=V(x,t)$. Let $x(0)=x_0$.
+
+::: {.fragment}
+For $x_0\leq0$,
+
+$$
+x(t)=x_0.$$
+:::
+
+::: {.fragment}
+For $0<x_0<\Delta x$,
+
+$$
+\frac{dx}{dt}=\frac{V_{\max}}{\Delta x}x
+\quad\Longrightarrow\quad
+\frac{dx}{x}=\frac{V_{\max}}{\Delta x}\,dt.$$
+:::
+
+---
+
+
+Integrating,
+
+$$
+\ln x=\frac{V_{\max}}{\Delta x}t+\ln x_0,
+$$
+
+::: {.fragment}
+
+so
+
+$$
+x(t)=x_0\exp\left(\frac{V_{\max}}{\Delta x}t\right).$$
+:::
+
+::: {.fragment}
+
+For $x_0\geq\Delta x$,
+
+$$
+\frac{dx}{dt}=V_{\max}
+\quad\Longrightarrow\quad
+\boxed{x(t)=x_0+V_{\max}t}.
+$$
+:::
+
+* The characteristics are therefore:
+
+  - vertical in the jammed region;
+  - exponentially increasing through the clearing region;
+  - straight lines in the free-flow region.
+
+
+---
+
+#### Sketch in the $(x,t)$ plane 
+
+<svg viewBox="0 0 760 330" role="img" aria-label="Exact characteristic curves for a jam-clearing traffic flow" style="width:100%; height:auto;">
+  <defs>
+    <marker id="arrow-exact-characteristic" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <line x1="80" y1="275" x2="710" y2="275" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="275" x2="80" y2="35" stroke="#333" stroke-width="2"/>
+  <line x1="235" y1="275" x2="235" y2="35" stroke="#777" stroke-width="2" stroke-dasharray="7 6"/>
+  <path d="M145 250 L145 75" fill="none" stroke="#555" stroke-width="3" marker-end="url(#arrow-exact-characteristic)"/>
+  <path d="M175 250 C178 205 185 150 205 105 C218 75 225 55 235 45" fill="none" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-exact-characteristic)"/>
+  <path d="M205 250 C210 215 220 160 235 125 C260 95 300 70 345 50" fill="none" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-exact-characteristic)"/>
+  <path d="M235 250 L430 80" fill="none" stroke="#d05a3a" stroke-width="3" marker-end="url(#arrow-exact-characteristic)"/>
+  <path d="M275 250 L470 80" fill="none" stroke="#d05a3a" stroke-width="3" marker-end="url(#arrow-exact-characteristic)"/>
+  <text x="105" y="300" font-size="18">jam: x &lt; 0</text>
+  <text x="250" y="300" font-size="18">clearing: 0 &lt; x &lt; Delta x</text>
+  <text x="520" y="300" font-size="18">free flow</text>
+  <text x="220" y="25" font-size="18">x = Delta x</text>
+  <text x="345" y="325" font-size="20">position, x</text>
+  <text x="20" y="185" font-size="20" transform="rotate(-90 20 185)">time, t</text>
+</svg>
+
+The exponential characteristics approach the free-flow boundary and then continue as
+straight lines with slope $V_{\max}$. The jammed characteristics remain at fixed $x$.
+
+---
+
+## 5. Worked example: an on-ramp
+
+### Example 2
+
+Consider a two-lane highway with an on-ramp of length $350$ m.
+
+- On-ramp flow: $q_r=300$ vehicles/hour.
+- Highway speed: $v=90$ km/hour.
+- Upstream density: $\rho_0=25$ vehicles/km.
+- Evaluate the traffic state $250$ m downstream of the ramp.
+- Highway capacity: $1250$ vehicles/hour/lane.
+
+::: {.fragment}
+Use the steady-state ramp equation
+
+$$
+\frac{dq}{dx}=q_r/L,$$
+:::
+
+::: {.fragment}
+and $q=\rho v$. At $x=0.25$ km.
+:::
+
+---
+
+For the given on-ramp and highway conditions, we can use the steady-state ramp equation to determine the flow downstream of the ramp.
+
+$$
+\frac{dq}{dx}=q_r/L,$$
+
+and $q=\rho v$. At $x=0.25$ km,
+
+::: {.fragment}
+$$
+q(0.25)=q(0)+q_r\frac{0.25}{0.35}.$$
+:::
+
+* The density increases only slightly, from approximately $25$ to $26.19$ vehicles/km.
+
+* If the on-ramp flow doubles to $600$ vehicles/hour, the downstream density increases again. 
+    * The larger inflow can exceed highway capacity, causing traffic congestion.
+
+* The modelling lesson is that a ramp source changes the flow along the road, even when the road speed is treated as constant.
+
+---
+
+## 6. The LWR model
+
+### From conservation to LWR
+
+* The three macroscopic quantities satisfy $q=\rho v$ and $q=Q(\rho)$. 
+
+::: {.fragment}
+Substituting the flow-density relation into the homogeneous continuity equation gives
+
+$$
+\boxed{\frac{\partial \rho}{\partial t}+\frac{\partial Q(\rho)}{\partial x}=0.}$$
+
+This is the first-order Lighthill–Whitham–Richards model.
+:::
+
+::: {.columns}
+
+::: {.column .fragment}
+Using the chain rule,
+
+$$
+\boxed{\frac{\partial \rho}{\partial t}+Q'(\rho)\frac{\partial \rho}{\partial x}=0.}$$
+:::
+
+::: {.column .fragment}
+
+- $\rho_t$ describes local accumulation or depletion of vehicles.
+- $Q(\rho)_x$ describes the spatial change in traffic flow.
+
+:::
+
+:::
+
+
+---
+
+### Wave velocity
+
+Using the chain rule, we can rewrite the LWR model in quasi-linear form, which highlights the wave-like nature of traffic flow.
+
+
+::: {.fragment}
+The traffic-wave velocity is
+
+$$
+c(\rho)=Q'(\rho).$$
+:::
+
+* For a linear free-flow branch, $c=v_f>0$ and disturbances move downstream. 
+
+* For the congested branch, $c<0$ and disturbances move upstream. 
+
+* At capacity, $Q'(\rho)=0$, so the wave is stationary.
+
+---
+
+For the triangular fundamental diagram,
+
+$$
+c(\rho)=Q'(\rho)=
+\begin{cases}
+v_f, & 0<\rho<\rho_c,\\
+-w, & \rho_c<\rho<\rho_j.
+\end{cases}
+$$
+
+### Numerical example {.fragment}
+
+::: {.fragment}
+Take
+
+$$
+v_f=90\text{ km/h},\qquad w=15\text{ km/h},\qquad \rho_j=150\text{ veh/km}.$$
+:::
+
+::: {.fragment}
+The critical density is found by equating the two branches of $Q(\rho)$:
+
+$$
+\rho_c=\frac{w\rho_j}{v_f+w}
+  =\frac{15(150)}{90+15}=21.43\text{ veh/km}.$$
+:::
+
+::: {.fragment}
+Therefore,
+
+$$
+c(\rho)=
+\begin{cases}
+90\text{ km/h}, & 0<\rho<21.43\text{ veh/km},\\
+-15\text{ km/h}, & 21.43<\rho<150\text{ veh/km}.
+\end{cases}
+$$
+:::
+
+---
+
+The corresponding road capacity is
+
+$$Q_{\max}=v_f\rho_c=90(21.43)\approx1928.6\text{ veh/h}.$$
+
+::: {.columns}
+::: {.column width="65%"}
+
+<svg viewBox="0 0 680 360" role="img" aria-label="Plot of characteristic wave velocity as a function of density" style="width:100%; height:auto;">
+  <line x1="78" y1="180" x2="625" y2="180" stroke="#333" stroke-width="2"/>
+  <line x1="78" y1="320" x2="78" y2="35" stroke="#333" stroke-width="2"/>
+  <line x1="78" y1="80" x2="390" y2="80" stroke="#1f6f8b" stroke-width="5"/>
+  <line x1="390" y1="80" x2="390" y2="280" stroke="#777" stroke-width="2" stroke-dasharray="7 6"/>
+  <line x1="390" y1="280" x2="590" y2="280" stroke="#d05a3a" stroke-width="5"/>
+  <circle cx="390" cy="180" r="6" fill="#222"/>
+  <text x="18" y="87" font-size="19">90 km/h</text>
+  <text x="12" y="287" font-size="19">-15 km/h</text>
+  <text x="330" y="340" font-size="19">rho_c = 21.43</text>
+  <text x="555" y="205" font-size="19">rho</text>
+  <text x="390" y="170" font-size="18">c = 0</text>
+  <text x="145" y="65" font-size="18" fill="#1f6f8b">free flow</text>
+  <text x="445" y="265" font-size="18" fill="#d05a3a">congested flow</text>
+  <text x="12" y="30" font-size="20">c(rho) = Q'(rho)</text>
+</svg>
+
+:::
+::: {.column width="35%"}
+
+At $\rho=\rho_c$, the fundamental diagram has a corner, so $Q'(\rho)$ is not classically defined.
+
+:::
+:::
+
+---
+
+
+## The LWR model: shock-wave propagation
+
+
+### What is a shock wave? {.fragment}
+
+* A shock wave is a moving interface separating two traffic states with different
+densities and flows:
+
+::: {.fragment}
+$$
+(\rho_1,q_1)\quad\big|\quad(\rho_2,q_2).$$
+:::
+
+* Let the interface position be $x_s(t)$ and define its speed by $V_s=\dfrac{dx_s}{dt}.$
+
+
+
+
+### Derivation of shock speed {.fragment}
+
+* Consider a road segment of length $L$ containing the interface. If the interface is
+at $x_s(t)$, the total number of vehicles is
+
+::: {.fragment}
+
+$$
+N(t)=\rho_1x_s(t)+\rho_2\bigl(L-x_s(t)\bigr).$$
+:::
+
+---
+
+Conservation gives $dN/dt=q_1-q_2$. Differentiating the vehicle count,
+
+::: {.fragment}
+$$
+\frac{dN}{dt}=(\rho_1-\rho_2)\frac{dx_s}{dt}
+=(\rho_1-\rho_2)V_s.
+$$
+:::
+
+* Therefore,
+
+::: {.fragment}
+$$
+\boxed{V_s=\frac{q_2-q_1}{\rho_2-\rho_1}.}$$
+:::
+
+* This is the Rankine–Hugoniot condition for the LWR conservation law.
+
+
+### Interpreting the sign {.fragment}
+
+- $V_s<0$: the shock travels upstream, against the traffic direction.
+- $V_s>0$: the shock travels downstream, with the traffic direction.
+- $V_s=0$: the interface is stationary.
+
+---
+
+For a compressive shock, characteristics approach the interface from both sides:
+
+$$q'(\rho_2)<V_s<q'(\rho_1).$$
+
+<svg viewBox="0 0 760 300" role="img" aria-label="Shock wave separating upstream and downstream traffic states" style="width:100%; height:auto;">
+  <defs><marker id="arrow-shock" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
+  <line x1="60" y1="220" x2="700" y2="220" stroke="#333" stroke-width="2"/>
+  <path d="M390 35 L390 270" stroke="#d05a3a" stroke-width="5" stroke-dasharray="12 8"/>
+  <line x1="80" y1="170" x2="350" y2="105" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-shock)"/>
+  <line x1="700" y1="170" x2="430" y2="105" stroke="#1f6f8b" stroke-width="3" marker-end="url(#arrow-shock)"/>
+  <line x1="390" y1="220" x2="335" y2="220" stroke="#d05a3a" stroke-width="4" marker-end="url(#arrow-shock)"/>
+  <text x="90" y="55" font-size="19">upstream state</text><text x="90" y="80" font-size="18">rho_1, q_1</text>
+  <text x="535" y="55" font-size="19">downstream state</text><text x="535" y="80" font-size="18">rho_2, q_2</text>
+  <text x="402" y="145" font-size="18" fill="#d05a3a">shock x_s(t)</text>
+  <text x="300" y="270" font-size="18">V_s &lt; 0: upstream</text><text x="300" y="295" font-size="19">position, x</text>
+</svg>
+
+---
+
+## Shock-wave example
+
+Use the Greenshields model
+
+$$F(\rho)=\rho V_{\max}\left(1-\frac{\rho}{\rho_{\max}}\right),$$
+
+with $V_{\max}=100$ km/h and $\rho_{\max}=120$ veh/km. 
+
+* Let $\rho_1=60\text{ veh/km},\qquad \rho_2=90\text{ veh/km}.$
+
+
+### Solution {.fragment}
+
+::: {.fragment}
+$$
+q_1=60(100)\left(1-\frac{60}{120}\right)=3000\text{ veh/h},$$
+
+$$
+q_2=90(100)\left(1-\frac{90}{120}\right)=2250\text{ veh/h}.$$
+:::
+
+---
+
+Hence,
+
+::: {.fragment}
+$$
+V_s=\frac{2250-3000}{90-60}=-25\text{ km/h}.$$
+:::
+
+* The negative speed means that the shock propagates upstream, representing a traffic
+jam or sudden slowdown travelling against vehicle motion.
+
+* To travel $5$ km upstream, $t=\dfrac{5}{25}=0.2\text{ h}=12\text{ min}.$
+
+
+### A downstream shock {.fragment}
+
+* If $\rho_1=30$ veh/km and $\rho_2=60$ veh/km, then
+
+::: {.fragment}
+$$
+q_1=2250\text{ veh/h},\qquad q_2=3000\text{ veh/h},$$
+$$
+V_s=\frac{3000-2250}{60-30}=25\text{ km/h}>0.$$
+
+This interface propagates downstream.
+:::
+
+---
+
+## Challenge: a transition into congestion
+
+* Use the triangular model $Q(\rho)=\min\{90\rho,\;15(150-\rho)\},$
+with flow in veh/h and density in veh/km. 
+
+
+* Let the density changes abruptly from 
+$\rho_L=10\text{ veh/km}\;\text{to}\quad\rho_R=60\text{ veh/km}$, where $L$ denotes the upstream state and $R$ the downstream state.c
+
+#### Determine: {.fragment}
+
+1. $Q(\rho_L)$ and $Q(\rho_R)$;
+2. the characteristic speeds $c(\rho_L)$ and $c(\rho_R)$;
+3. the transition-wave speed using$s=\frac{Q(\rho_R)-Q(\rho_L)}{\rho_R-\rho_L};$
+4. whether the transition wave moves upstream or downstream;
+5. whether the result is consistent with the characteristic speeds.
+
+---
+
+### Solution
+
+The two states lie on different branches:
+
+::: {.fragment}
+$$
+Q(10)=90(10)=900\text{ veh/h},\qquad
+Q(60)=15(150-60)=1350\text{ veh/h}.
+$$
+:::
+
+::: {.fragment}
+Their characteristic speeds are
+
+$$
+c(10)=90\text{ km/h},\qquad c(60)=-15\text{ km/h}.$$
+:::
+
+::: {.fragment}
+The transition-wave speed is
+
+$$
+s=\frac{1350-900}{60-10}=9\text{ km/h}.
+$$
+:::
+
+::: {.fragment}
+Since $s>0$, the interface moves downstream. Because
+
+$$-15 < 9 < 90,$$
+
+the wave speed lies between the characteristic speeds, as expected for a compressive
+transition from free flow into congestion.
+:::
+
+---
+
+
+## Further examples
+
+### Example 3: classify two traffic states
+
+Use $Q(\rho)=\min\{90\rho,\;15(150-\rho)\}.$
+
+Find the flow and wave speed for:
+
+- State A: $\rho_A=15$ veh/km;
+- State B: $\rho_B=80$ veh/km.
+
+::: {.fragment}
+### Solution
+
+State A is free flow because $15<\rho_c=21.43$:
+
+$$Q(15)=90(15)=1350\text{ veh/h},\qquad c(15)=90\text{ km/h}.$$
+
+State B is congested because $80>\rho_c$:
+
+$$Q(80)=15(150-80)=1050\text{ veh/h},\qquad c(80)=-15\text{ km/h}.$$
+:::
+
+---
+
+### Example 4: can an on-ramp cause congestion?
+
+A one-lane road carries $1700$ veh/h. An on-ramp adds $300$ veh/h. The road has
+$v_f=90$ km/h, $w=15$ km/h, and $\rho_j=150$ veh/km.
+
+* Determine whether the downstream road can carry the combined flow.
+
+::: {.fragment}
+### Solution
+
+The road capacity is
+
+$$Q_{\max}\approx1928.6\text{ veh/h}.$$
+
+The combined demand is
+
+$$1700+300=2000\text{ veh/h}>Q_{\max}.$$
+
+Therefore, the downstream section cannot carry all incoming vehicles. A queue forms
+upstream of the bottleneck and the congestion boundary travels upstream.
+:::
+
+---
+
+### Example 5: a lane drop
+
+Suppose three lanes merge into two lanes. Each lane has capacity
+$1928.6$ veh/h, and the upstream demand is $4500$ veh/h.
+
+* Determine whether the lane drop creates congestion.
+
+::: {.fragment}
+### Solution
+
+Before the lane drop,
+
+$$C_{\text{upstream}}=3(1928.6)=5785.8\text{ veh/h}.$$
+
+After the lane drop,
+
+$$C_{\text{downstream}}=2(1928.6)=3857.2\text{ veh/h}.$$
+
+Since $4500>3857.2$, the downstream capacity is insufficient. The lane drop creates
+a queue even though the upstream three-lane section has enough capacity.
+:::
+
+---
+
+## 7. Summary
+
+- Traffic flow is described using density, flow, and speed.
+- The fundamental relation is $q=\rho v$.
+- A flow-density relation $q=Q(\rho)$ closes the macroscopic model.
+- Conservation of vehicles gives the continuity equation.
+- Ramps and lane changes modify the conservation law through source terms and lane counts.
+- The LWR model is the first-order conservation law $\rho_t+Q(\rho)_x=0$.
+- Characteristics travel at the wave velocity $Q'(\rho)$.
+- Capacity comparisons determine whether an on-ramp creates downstream congestion.
+
+---
+
+## Questions
+
+1. Which traffic quantity changes most directly when vehicles accumulate?
+2. How does an on-ramp modify the continuity equation?
+3. What determines the direction of a traffic wave?
+4. Why can a small increase in inflow trigger a large queue?
+
+## Answers
+
+1. **Density, $\rho$.** Vehicle accumulation changes the number of vehicles per unit length, so $\rho$ increases. Since $q=\rho v$, the flow may also change, but density is the direct measure of accumulation.
+
+2. **It adds a source term.** For net ramp inflow $r(x,t)$,
+   $$\rho_t+q_x=r(x,t).$$
+   An on-ramp has $r>0$ and increases the main-road flow downstream.
+
+3. **The sign of the characteristic speed $c(\rho)=Q'(\rho)$.** If $c>0$, the wave moves downstream; if $c<0$, it moves upstream; and if $c=0$, it is stationary.
+
+4. **The inflow can exceed the available capacity.** Once demand is greater than the downstream road's supply, vehicles accumulate faster than they leave. Density rises, a queue forms, and the congestion boundary can propagate upstream.
