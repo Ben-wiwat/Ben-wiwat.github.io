@@ -200,15 +200,15 @@
               </tr>
               <tr>
                 <td>Citations</td>
-                <td>1666</td>
+                <td data-scholar="citations">1853</td>
               </tr>
               <tr>
                 <td>h-index</td>
-                <td>21</td>
+                <td data-scholar="h-index">23</td>
               </tr>
               <tr>
                 <td>i10-index</td>
-                <td>41</td>
+                <td data-scholar="i10-index">47</td>
               </tr>
             </table>
             <br>
@@ -223,17 +223,17 @@
               var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                  labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
+                  labels: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"],
                   datasets: [{
                     label: 'Citations per year',
                     backgroundColor: [],
-                    data: [95, 102, 149, 147, 148, 104, 109, 131, 140, 104],
+                    data: [95, 151, 148, 151, 102, 110, 139, 140, 166, 125],
                   }],
                 },
                 options: {
                   scales: {
                     y: {
-                      max: 160,
+                      suggestedMax: 160,
                       min: 0,
                       ticks: {
                         stepSize: 40,
@@ -247,13 +247,12 @@
               let dataset = myChart.data.datasets[0];
 
               let data = dataset.data;
-              let data_ord = [...data].sort();
+              let data_ord = data.map((value, index) => ({ value, index })).sort((a, b) => a.value - b.value);
 
               let plus = 0;
 
               for (let i = 0; i < data_ord.length; i++) {
-                let value = data_ord[i];
-                dataset.backgroundColor[data.indexOf(value)] = adjust('#a6bddb', plus);
+                dataset.backgroundColor[data_ord[i].index] = adjust('#a6bddb', plus);
                 plus -= 10
               }
               myChart.update();
